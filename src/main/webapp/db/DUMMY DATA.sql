@@ -47,10 +47,17 @@ INSERT INTO MEMBER (mID, mPW, mNAME, mEMAIL, mADDR, mPOST, MBIRTH, MPHOTO)
 -- SPOT --
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('한라산국립공원', 'admin', 2, '제주특별자치도 제주시 오등동 산 182', '064-713-9950', 'https://jeju.go.kr/hallasan/index.htm', '계절과 기후변화에 따른 입산 통제구간은 홈페이지 참고', '한라산국립공원m.jpg', '한라산국립공원s.jpg', 33.37856425194726, 126.5431717373512, '무료');
+<<<<<<< HEAD
 
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('성산일출봉(UNESCO 세계자연유산)', 'admin', 2, '제주특별자치도 서귀포시 성산읍 일출로 284-12', '064-783-0959', 'http://www.jeju.go.kr/dorip/seongsan.htm', '매일 07:00 - 20:00 (18:50분매표마감) 3~9월 / 매월 첫째 월요일 휴관 (단, 등하산교차로, 우뭇개 전망대, 우뭇개 해안은 무료개방) 매일 07:30 - 19:00 (17:50분매표마감) 10~2월 / 매월 첫째 월요일 휴관', '성산일출봉m.jpg', '성산일출봉s.jpg', 33.45917466716145, 126.94059127727817, '유료,개인 (성인 5,000원 / 청소년, 군인 2,500원 / 어린이 2,500원), 단체 (성인 4,000원 / 청소년, 군인 2,000원 / 어린이 2,000원)');
 
+=======
+    
+insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
+    values('성산일출봉(UNESCO 세계자연유산)', 'admin', 2, '제주특별자치도 서귀포시 성산읍 일출로 284-12', '064-783-0959', 'http://www.jeju.go.kr/dorip/seongsan.htm', '매일 07:00 - 20:00 (18:50분매표마감) 3~9월 / 매월 첫째 월요일 휴관 (단, 등하산교차로, 우뭇개 전망대, 우뭇개 해안은 무료개방) 매일 07:30 - 19:00 (17:50분매표마감) 10~2월 / 매월 첫째 월요일 휴관', '성산일출봉m.jpg', '성산일출봉s.jpg', 33.45917466716145, 126.94059127727817, '유료,개인 (성인 5,000원 / 청소년, 군인 2,500원 / 어린이 2,500원), 단체 (성인 4,000원 / 청소년, 군인 2,000원 / 어린이 2,000원)');
+    
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
 insert into spot (sName, aId, locationNo, sAddr, sTel, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('협재해수욕장', 'admin', 1, '제주특별자치도 제주시 한림읍 한림로 329-10', '064-728-3981', '협재 종합상황실: 064-728-3981(해수욕장 개장기간 동안 운영)', '협재해수욕장m.jpg', '협재해수욕장s.jpg', 33.39906165536689, 126.1241478664344, '무료');
 
@@ -68,10 +75,17 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RADDR, RTEL, RLINK, RINFO, RMENU
 -- HOTEL --
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
               VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.48582927685537', '126.48379663399649', 80000, 'A');
+<<<<<<< HEAD
 
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
               VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.492437097713896', '126.42864471233102', 1350000, 'A');
 
+=======
+              
+INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
+              VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.492437097713896', '126.42864471233102', 1350000, 'A');
+              
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
               VALUES ('호텔더원', 'theOne', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 특별자치도, 연동 사장3길 33 KR', '064-798-0001', 'http://www.hoteltheone.com/', '제주 시내에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 성산일출봉을 방문해 보세요.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.483523318292406', '126.49084698890063', 85000, 'A');
 INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
@@ -99,7 +113,11 @@ VALUES (scheduleNo_seq.NEXTVAL, 'kim', '산책여행', TO_TIMESTAMP('2023-09-01 
 
 INSERT INTO Schedule (scheduleNo, mId, scheduleTitle, startDate, endDate, scheduleContent, hName, rName, sName)
 VALUES (scheduleNo_seq.NEXTVAL, 'kim', '드라이브여행', TO_TIMESTAMP('2023-10-01 13:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2023-10-04 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), '제주에서의 시원한 바닷바람과 함께하는 드라이브 여행', '위드시티호텔', '올레칠돈', '협재해수욕장');
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
 -- BOOKMARK --
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME) 
     VALUES (bookmarkNo_seq.NEXTVAL, 'aaa', '호텔더원', NULL, NULL);
@@ -108,7 +126,11 @@ INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
     VALUES (bookmarkNo_seq.NEXTVAL, 'kim', null, NULL, '한라산국립공원');
 
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
 -- SPOTCOMMENT --
 insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '한라산국립공원', 'aaa', '높아서 오르지는 못했지만, 겨울에 가면 눈꽃으로 특히나 아름다운 산', sCommentNo_seq.CURRVAL, 0, 0);
 
@@ -132,8 +154,13 @@ INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, 
     VALUES (hCommentNo_seq.NEXTVAL, '위드시티호텔', 'bbb', NULL, '공항에서 가까워서 편했어요', hCommentNo_seq.CURRVAL, 0, 0, SYSDATE);
 INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
     VALUES (hCommentNo_seq.NEXTVAL, '그라벨호텔', 'kim', NULL, '시내랑 가까워서 움직이기 좋아요', hCommentNo_seq.CURRVAL, 0, 0, SYSDATE);
+<<<<<<< HEAD
 
 
+=======
+    
+    
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
 -- FESTIVAL --
 INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)
     VALUES (festivalNo_seq.NEXTVAL, 'admin', '휴애리 봄 수국축제', '2023.04.07. ~ 2023.06.14.');

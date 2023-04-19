@@ -95,18 +95,31 @@ CREATE TABLE hotel (
   hLatitude NUMBER(10, 6) NOT NULL, -- 위도
   hLongitude NUMBER(10, 6) NOT NULL , -- 경도
   hPrice NUMBER(8),
+<<<<<<< HEAD
   requestStatus VARCHAR(1) DEFAULT 'P' NOT NULL -- P:대기, A:승인, R:거절
+=======
+  requestStatus VARCHAR(1) DEFAULT 'P' NOT NULL  -- P:대기, A:승인, R:거절
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
 ); -- 숙소 테이블
 
 CREATE TABLE Hreservation (
     mID VARCHAR2(50) PRIMARY KEY,
     hNAME VARCHAR2(50) REFERENCES HOTEL(hNAME),
+<<<<<<< HEAD
     inDate DATE NOT NULL,  
     outDate DATE NOT NULL,   
     rWhether VARCHAR(1) DEFAULT 'N' NOT NULL    -- 예약여부 Y, N
 ); -- 호텔 예약 테이블
 
 
+=======
+    inDate DATE NOT NULL UNIQUE,  
+    outDate DATE NOT NULL UNIQUE,   
+    rWhether VARCHAR(1) DEFAULT 'N' NOT NULL    -- 예약여부 Y, N
+); -- 호텔 예약 테이블
+
+                      
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
 CREATE TABLE restaurant (
   rName VARCHAR2(50) PRIMARY KEY,
   bId VARCHAR2(50) REFERENCES Business(bId) ON DELETE CASCADE,
@@ -134,7 +147,11 @@ CREATE TABLE spot (
   sTel VARCHAR2(50),
   sLink VARCHAR2(200),
   sInfo CLOB NOT NULL,
+<<<<<<< HEAD
   sTime VARCHAR2(2000),
+=======
+  sTime VARCHAR2(50),
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
   sMainImg VARCHAR2(255) NOT NULL,
   sSubImg_1 VARCHAR2(255),
   sSubImg_2 VARCHAR2(255),
@@ -205,4 +222,8 @@ CREATE TABLE spotComment (
     sCrdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -- 관광지 댓글 테이블
 
+<<<<<<< HEAD
 COMMIT;
+=======
+COMMIT;
+>>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a

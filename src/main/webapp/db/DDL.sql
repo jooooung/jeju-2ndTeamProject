@@ -148,10 +148,14 @@ CREATE TABLE spot (
   sLink VARCHAR2(200),
   sInfo CLOB NOT NULL,
 <<<<<<< HEAD
+<<<<<<< HEAD
   sTime VARCHAR2(2000),
 =======
   sTime VARCHAR2(50),
 >>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
+=======
+  sTime VARCHAR2(2000),
+>>>>>>> c328b511a74017dc894151be9cc9d4a3420659da
   sMainImg VARCHAR2(255) NOT NULL,
   sSubImg_1 VARCHAR2(255),
   sSubImg_2 VARCHAR2(255),
@@ -216,14 +220,15 @@ CREATE TABLE spotComment (
     sName VARCHAR2(50) REFERENCES SPOT(sName),
     mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
     sContent CLOB NOT NULL,
-    sGroup NUMBER(5) NOT NULL,
-    sStep NUMBER(5) NOT NULL,
-    sIndent NUMBER(5) NOT NULL,
     sCrdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -- 관광지 댓글 테이블
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 COMMIT;
 =======
 COMMIT;
 >>>>>>> febad4d93eac1533e389fb62f30595c18ad21e5a
+=======
+COMMIT;
+>>>>>>> c328b511a74017dc894151be9cc9d4a3420659da

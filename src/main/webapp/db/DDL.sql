@@ -95,14 +95,14 @@ CREATE TABLE hotel (
   hLatitude NUMBER(10, 6) NOT NULL, -- 위도
   hLongitude NUMBER(10, 6) NOT NULL , -- 경도
   hPrice NUMBER(8),
-  requestStatus VARCHAR(1) DEFAULT 'P'  -- P:대기, A:승인, R:거절
+  requestStatus VARCHAR(1) DEFAULT 'P' NOT NULL  -- P:대기, A:승인, R:거절
 ); -- 숙소 테이블
 
 CREATE TABLE Hreservation (
     mID VARCHAR2(50) PRIMARY KEY,
     hNAME VARCHAR2(50) REFERENCES HOTEL(hNAME),
-    inDate DATE NOT NULL,  
-    outDate DATE NOT NULL,   
+    inDate DATE NOT NULL UNIQUE,  
+    outDate DATE NOT NULL UNIQUE,   
     rWhether VARCHAR(1) DEFAULT 'N' NOT NULL    -- 예약여부 Y, N
 ); -- 호텔 예약 테이블
 
@@ -123,7 +123,7 @@ CREATE TABLE restaurant (
   rLatitude NUMBER(10, 6) NOT NULL, -- 위도
   rLongitude NUMBER(10, 6) NOT NULL, -- 경도
   rPrice VARCHAR2(2000),
-  requestStatus VARCHAR(1) DEFAULT 'P'
+  requestStatus VARCHAR(1) DEFAULT 'P' NOT NULL
 ); -- 맛집 테이블
 
 CREATE TABLE spot (

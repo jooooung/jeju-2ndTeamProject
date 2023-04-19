@@ -107,14 +107,18 @@ INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
     VALUES (bookmarkNo_seq.NEXTVAL, 'kang', null, '올래국수', null);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
     VALUES (bookmarkNo_seq.NEXTVAL, 'kim', null, NULL, '한라산국립공원');
+INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
+    VALUES (bookmarkNo_seq.NEXTVAL, 'aaa', null, NULL, '한라산국립공원');
+INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
+    VALUES (bookmarkNo_seq.NEXTVAL, 'bbb', null, NULL, '성산일출봉(UNESCO 세계자연유산)');
 
     
 -- SPOTCOMMENT --
-insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '한라산국립공원', 'aaa', '높아서 오르지는 못했지만, 겨울에 가면 눈꽃으로 특히나 아름다운 산', sCommentNo_seq.CURRVAL, 0, 0);
+insert into spotComment (sCommentNo, sName, mId, sContent) values (sCommentNo_seq.nextval, '한라산국립공원', 'aaa', '높아서 오르지는 못했지만, 겨울에 가면 눈꽃으로 특히나 아름다운 산');
 
-insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '성산일출봉(UNESCO 세계자연유산)', 'bbb', '아침 일찍 일출보러온 보람이 있습니다... 제주도 필수코스라고 생각해요', sCommentNo_seq.CURRVAL, 0, 0);
+insert into spotComment (sCommentNo, sName, mId, sContent) values (sCommentNo_seq.nextval, '성산일출봉(UNESCO 세계자연유산)', 'bbb', '아침 일찍 일출보러온 보람이 있습니다... 제주도 필수코스라고 생각해요');
 
-insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '성산일출봉(UNESCO 세계자연유산)', 'aaa', '날씨 좋은날 일출 보러가면 너무 예뻐요', sCommentNo_seq.CURRVAL, 0, 0);
+insert into spotComment (sCommentNo, sName, mId, sContent) values (sCommentNo_seq.nextval, '성산일출봉(UNESCO 세계자연유산)', 'aaa', '날씨 좋은날 일출 보러가면 너무 예뻐요');
 
 -- RESTAURANTCOMMENT --
 insert into restaurantComment (rCommentNo, rName, mId, bID, RContent, RGroup, RStep, RIndent) -- 원 댓글

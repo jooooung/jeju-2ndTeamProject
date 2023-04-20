@@ -1,23 +1,23 @@
 ------------------------------------------------------
 --           MEMBER query            
 ------------------------------------------------------
--- (1) 회원 ID 중복체크
-SELECT * FROM MEMBER WHERE MID='kang';
+-- (1) 회원 ID 중복체크 - idConfirm
+SELECT COUNT(*) FROM MEMBER WHERE MID = 'kang';
 
--- (2) 회원 이메일 중복체크
-SELECT * FROM MEMBER WHERE mEMAIL = 'kang@naver.com';
+-- (2) 회원 이메일 중복체크 - emailConfirm
+SELECT COUNT(*) FROM MEMBER WHERE mEMAIL = 'kang@Naver.com';
 
--- (3) 회원가입
+-- (3) 회원가입 - joinMember
 INSERT INTO MEMBER (mID, mPW, mNAME, mEMAIL, mADDR, mPOST, MBIRTH, MPHOTO)
-    VALUES ('kang', '123', '강성빈', 'kang@NN.COM', '서울시 강서구', '12345', '1994-08-25','NOIMG.JPG');
+    VALUES ('kang', '123', '강성빈', 'kang@Naver.com', '서울시 강서구', '12345', '1994-08-25','NOIMG.JPG');
 
--- (4) 로그인
+-- (4) 로그인 - loginCheck
 SELECT * FROM MEMBER WHERE mID='kang' AND mPW='123';
 
--- (5) mID로 DTO 가져오기 (로그인 성공시 session에 넣기위한 용도)
+-- (5) 상세보기 - getDetailMember
 SELECT * FROM MEMBER WHERE mID='aaa';
 
--- (6) 회원정보 수정
+-- (6) 회원정보 수정 - modifyMember
 UPDATE MEMBER SET 
         mPW = '123',
         mNAME = '수정용',
@@ -28,19 +28,29 @@ UPDATE MEMBER SET
         mPHOTO = 'NOIMG.JPG'
     WHERE mID = 'kang';
 
--- (7) 회원탈퇴
+-- (7) 회원탈퇴 - deleteMember
 DELETE FROM MEMBER WHERE mID = 'kang';
 
--- (8) 작성한 글 보기
-SELECT * FROM Review WHERE mID = 'kim';
+-- (8) 작성한 글 보기 - getReview
+SELECT * FROM Review WHERE mID = 'aaa';
 
 -- (9) 작성한 댓글 보기
-SELECT * FROM restaurantComment WHERE mID = 'kim';
-SELECT * FROM hotelComment WHERE mID = 'kang';
-SELECT * FROM spotComment WHERE mID = 'kang';
+SELECT * FROM restaurantComment WHERE mID = 'pham'; -- getrsComment
+SELECT * FROM hotelComment WHERE mID = 'kang'; -- gethotelComment
+SELECT * FROM spotComment WHERE mID = 'kang'; -- getsoptComment
 
--- (10) 북마크한 리스트 보기
-SELECT * FROM BOOKMARK WHERE mID = 'kang';
+-- (10) 북마크한 리스트 전체 보기
+SELECT * FROM BOOKMARK WHERE mID = 'kim' ORDER BY BOOKMARK_NO DESC;
+
+-- (11) 북마크한 리스트 중 식당만 보기
+SELECT * FROM BOOKMARK WHERE MID = 'kim' AND;
+
+
+SELECT * 
+    FROM MEMBER M, BOOKMARK B
+    WHERE M.MID=B.MID(+);
+
+
 
 SELECT * FROM MEMBER;
 COMMIT;

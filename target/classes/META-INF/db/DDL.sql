@@ -13,6 +13,7 @@ DROP TABLE Member;
 DROP TABLE Business;
 DROP TABLE Admin;
 DROP TABLE location;
+DROP TABLE RestauranTtype;
 
 DROP SEQUENCE FestivalNo_seq;
 DROP SEQUENCE bookmarkNo_seq;
@@ -22,6 +23,7 @@ DROP SEQUENCE sCommentNo_seq;
 DROP SEQUENCE hCommentNo_seq;
 DROP SEQUENCE rCommentNo_seq;
 DROP SEQUENCE locationNo_seq;
+DROP SEQUENCE RestauranTtypeNo_seq;
 
 
 CREATE TABLE Member (
@@ -76,7 +78,13 @@ CREATE SEQUENCE locationNo_seq MAXVALUE 99 NOCACHE NOCYCLE;
 CREATE TABLE location (
     locationNo NUMBER(2) PRIMARY KEY,
     lName VARCHAR2(50)
-);
+); -- 지역테이블
+
+CREATE SEQUENCE RestauranTtypeNo_seq MAXVALUE 99 NOCACHE NOCYCLE;
+CREATE TABLE RestauranTtype (
+    RestauranTtypeNo NUMBER(2) PRIMARY KEY,
+    RTName VARCHAR2(50)
+); -- 식당종류 테이블
 
 CREATE TABLE hotel (
   hName VARCHAR2(50) PRIMARY KEY,
@@ -95,14 +103,14 @@ CREATE TABLE hotel (
   hLatitude NUMBER(10, 6) NOT NULL, -- 위도
   hLongitude NUMBER(10, 6) NOT NULL , -- 경도
   hPrice NUMBER(8),
-  requestStatus VARCHAR(1) DEFAULT 'P' NOT NULL  -- P:대기, A:승인, R:거절
+  requestStatus VARCHAR(1) DEFAULT 'P'  -- P:대기, A:승인, R:거절
 ); -- 숙소 테이블
 
 CREATE TABLE Hreservation (
     mID VARCHAR2(50) PRIMARY KEY,
     hNAME VARCHAR2(50) REFERENCES HOTEL(hNAME),
-    inDate DATE NOT NULL UNIQUE,  
-    outDate DATE NOT NULL UNIQUE,   
+    inDate DATE NOT NULL,  
+    outDate DATE NOT NULL,   
     rWhether VARCHAR(1) DEFAULT 'N' NOT NULL    -- 예약여부 Y, N
 ); -- 호텔 예약 테이블
 
@@ -111,6 +119,7 @@ CREATE TABLE restaurant (
   rName VARCHAR2(50) PRIMARY KEY,
   bId VARCHAR2(50) REFERENCES Business(bId) ON DELETE CASCADE,
   locationNo NUMBER(5) REFERENCES location(locationNo),
+  RestauranTtypeNo NUMBER(5) REFERENCES RestauranTtype(RestauranTtypeNo),
   rAddr VARCHAR2(200),
   rTel VARCHAR2(20),
   rLink VARCHAR2(200),
@@ -123,7 +132,7 @@ CREATE TABLE restaurant (
   rLatitude NUMBER(10, 6) NOT NULL, -- 위도
   rLongitude NUMBER(10, 6) NOT NULL, -- 경도
   rPrice VARCHAR2(2000),
-  requestStatus VARCHAR(1) DEFAULT 'P' NOT NULL
+  requestStatus VARCHAR(1) DEFAULT 'P'
 ); -- 맛집 테이블
 
 CREATE TABLE spot (
@@ -199,6 +208,27 @@ CREATE TABLE spotComment (
     sName VARCHAR2(50) REFERENCES SPOT(sName),
     mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
     sContent CLOB NOT NULL,
+    sGroup NUMBER(5) NOT NULL,
+    sStep NUMBER(5) NOT NULL,
+    sIndent NUMBER(5) NOT NULL,
     sCrdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -- 관광지 댓글 테이블
+
+SELECT * FROM restaurant;
+SELECT * FROM restaurantComment;
+SELECT * FROM Festival;
+SELECT * FROM MEMBER;
+SELECT * FROM BOOKMARK;
+SELECT * FROM RestauranTtype;
+--------------
+SELECT * FROM Review;
+SELECT * FROM hotelComment;
+SELECT * FROM spotComment;
+SELECT * FROM Schedule;
+SELECT * FROM Hreservation;
+SELECT * FROM hotel;
+SELECT * FROM spot;
+SELECT * FROM Business;
+SELECT * FROM Admin;
+SELECT * FROM LOCATION;
 COMMIT;

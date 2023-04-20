@@ -181,12 +181,26 @@ insert into restaurantComment (rCommentNo, rName, bID, RContent, RGroup, RStep, 
     values (rCommentNo_seq.nextval, '올래국수', 'su', '헉 고객님 칭찬 베리 감사합니다!', 3, 1, 1);
 
 -- hotelComment --
+-- 원 댓글
 INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
     VALUES (hCommentNo_seq.NEXTVAL, '호텔더원', 'aaa', NULL, '깨끗하고 좋아요', hCommentNo_seq.CURRVAL, 0, 0, SYSDATE);
+INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
+    VALUES (hCommentNo_seq.NEXTVAL, '호텔더원', 'bbb', NULL, '경치가 너무 좋네요', hCommentNo_seq.CURRVAL, 0, 0, SYSDATE);
 INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
     VALUES (hCommentNo_seq.NEXTVAL, '위드시티호텔', 'bbb', NULL, '공항에서 가까워서 편했어요', hCommentNo_seq.CURRVAL, 0, 0, SYSDATE);
 INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
     VALUES (hCommentNo_seq.NEXTVAL, '그라벨호텔', 'kim', NULL, '시내랑 가까워서 움직이기 좋아요', hCommentNo_seq.CURRVAL, 0, 0, SYSDATE);
+
+-- 답 댓글
+INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
+    VALUES (hCommentNo_seq.NEXTVAL, '호텔더원', NULL, 'theOne', '항상 좋은 모습으로 보답하겠습니다', 1, 1, 1, SYSDATE);
+INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
+    VALUES (hCommentNo_seq.NEXTVAL, '호텔더원', NULL, 'theOne', '보답하겠습니다', 4, 1, 1, SYSDATE);
+
+-- 댓글의 댓글
+INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
+    VALUES (hCommentNo_seq.NEXTVAL, '호텔더원', 'aaa', NULL, '감사합니다', 1, 2, 2, SYSDATE);
+
     
 -- FESTIVAL --
 INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)

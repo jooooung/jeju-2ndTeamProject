@@ -1,7 +1,8 @@
 ------------------------------------------------------
 --           restaurant query            
 ------------------------------------------------------
--- (1) 식당목록 (startRow ~ endRow까지) 전체
+-- (1) 식당목록 전체(startRow ~ endRow까지)
+
 SELECT * 
     FROM (SELECT ROWNUM RN, A.*
         FROM (SELECT R.* FROM restaurant R, BUSINESS B  WHERE R.BID = B.BID ORDER BY RPRICE DESC) A)
@@ -12,6 +13,33 @@ SELECT *
     FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM restaurant S, (SELECT rName, COUNT(*) bCnt FROM BOOKMARK GROUP BY rName)B 
         WHERE S.rName = B.rName(+) ORDER BY bCnt DESC)A)
 WHERE RN BETWEEN 1 AND 3;
+
+
+-- 식당목록 카페
+SELECT * FROM (SELECT ROWNUM RN, A.* 
+    FROM (SELECT * FROM  RESTAURANT WHERE RestauranTtypeNo LIKE '%'||'5'||'%' ORDER BY RNAME DESC) A) 
+    WHERE RN BETWEEN 1 AND 10;
+    
+-- 식당목록 국수
+SELECT * FROM (SELECT ROWNUM RN, A.* 
+    FROM (SELECT * FROM  RESTAURANT WHERE RestauranTtypeNo LIKE '%'||'4'||'%' ORDER BY RNAME DESC) A) 
+    WHERE RN BETWEEN 1 AND 10;
+    
+-- 식당목록 고기
+SELECT * FROM (SELECT ROWNUM RN, A.* 
+    FROM (SELECT * FROM  RESTAURANT WHERE RestauranTtypeNo LIKE '%'||'1'||'%' ORDER BY RNAME DESC) A) 
+    WHERE RN BETWEEN 1 AND 10;
+    
+-- 식당목록 해산물
+SELECT * FROM (SELECT ROWNUM RN, A.* 
+    FROM (SELECT * FROM  RESTAURANT WHERE RestauranTtypeNo LIKE '%'||'2'||'%' ORDER BY RNAME DESC) A) 
+    WHERE RN BETWEEN 1 AND 10;
+    
+-- 식당목록 분식
+SELECT * FROM (SELECT ROWNUM RN, A.* 
+    FROM (SELECT * FROM  RESTAURANT WHERE RestauranTtypeNo LIKE '%'||'3'||'%' ORDER BY RNAME DESC) A) 
+    WHERE RN BETWEEN 1 AND 10;
+
 
 -- (2) 등록된 식당 갯수
 SELECT COUNT(*) FROM RESTAURANT;
@@ -46,27 +74,28 @@ DELETE FROM RESTAURANT WHERE RNAME = '바뀐식당';
 -- (6) 상세보기 
 SELECT * FROM RESTAURANT WHERE RNAME = '올래국수';
 
+-- (7) 숙소 등록 승인 여부                 
+    -- 관리자가 숙소 등록 승인
+UPDATE RESTAURANT SET requestStatus = 'A';
+    -- 관리자가 숙소 등록 거절
+UPDATE RESTAURANT SET requestStatus = 'R';
 
 ------------------------------------------------------
 --           restaurantComment query            
 ------------------------------------------------------
-select * from restaurantComment;
-SELECT * FROM MEMBER;
-SELECT * FROM ADMIN;
-SELECT * FROM Business;
 
 -- (1) 댓글 전체출력
 SELECT A. *,
     (SELECT MNAME FROM MEMBER WHERE A.MID=MID) MNAME,
     (SELECT BNAME FROM BUSINESS WHERE A.BID=BID) BNAME
         FROM (SELECT ROWNUM RN, B.*
-            FROM (SELECT * FROM RESTAURANTCOMMENT ORDER BY RCRDATE) B) A
+            FROM (SELECT * FROM RESTAURANTCOMMENT ORDER BY RGROUP DESC, RSTEP) B) A
     WHERE RN BETWEEN 1 AND 30;
 
 -- (2) 댓글갯수 
 SELECT COUNT(*) FROM RESTAURANTCOMMENT;
 
--- (3) 댓글쓰기
+-- (3) 댓글쓰기 (멤버)
 insert into restaurantComment (rCommentNo, rName, mId, bID, RContent, RGroup, RStep, RIndent) -- 원 댓글
     values (rCommentNo_seq.nextval, '올래국수', 'pham', null, '대퓨님 너무 맛있어요.', rCommentNo_seq.CURRVAL, 0, 0);
 
@@ -77,3 +106,25 @@ SELECT * FROM RESTAURANTCOMMENT WHERE RCOMMENTNO = '1';
 UPDATE RESTAURANTCOMMENT SET
     RContent = '수정된 내용'
     WHERE RNAME = '올래국수' AND MID = 'pham';
+
+-- (6)댓글 삭제
+DELETE FROM RESTAURANTCOMMENT 
+    WHERE RCOMMENTNO = 1 AND (MID = (SELECT MID FROM RESTAURANTCOMMENT WHERE RCOMMENTNO = 1)
+    OR BID = (SELECT BID FROM RESTAURANTCOMMENT WHERE RCOMMENTNO = 1));
+
+-- (7) 대댓글 쓰기 전 단계
+UPDATE RESTAURANTCOMMENT 
+    SET RSTEP = RSTEP + 1
+    WHERE RGROUP = 3 AND RSTEP > 0;
+
+-- (8) 대댓글 쓰기(업체)
+insert into restaurantComment (rCommentNo, rName, mId, bID, RContent, RGroup, RStep, RIndent)
+    values (rCommentNo_seq.nextval, '올래국수', null, 'guk', '다음에 또 방문 해주세요^^.', 3, 1, 1);
+
+COMMIT;
+SELECT * FROM RESTAURANTCOMMENT;
+SELECT * FROM RESTAURANT;
+SELECT * FROM FESTIVAL;
+SELECT * FROM MEMBER;
+SELECT * FROM BOOKMARK;
+

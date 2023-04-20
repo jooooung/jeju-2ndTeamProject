@@ -109,8 +109,8 @@ CREATE TABLE hotel (
 CREATE TABLE Hreservation (
     mID VARCHAR2(50) PRIMARY KEY,
     hNAME VARCHAR2(50) REFERENCES HOTEL(hNAME),
-    inDate DATE NOT NULL,  
-    outDate DATE NOT NULL,   
+    inDate DATE NOT NULL UNIQUE,  
+    outDate DATE NOT NULL UNIQUE,   
     rWhether VARCHAR(1) DEFAULT 'N' NOT NULL    -- 예약여부 Y, N
 ); -- 호텔 예약 테이블
 

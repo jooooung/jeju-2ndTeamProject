@@ -77,9 +77,15 @@ UPDATE RESTAURANT SET requestStatus = 'A';
     -- 관리자가 숙소 등록 거절
 UPDATE RESTAURANT SET requestStatus = 'R';
 
+
 ------------------------------------------------------
 --           restaurantComment query            
 ------------------------------------------------------
+select * from restaurantComment;
+SELECT * FROM MEMBER;
+SELECT * FROM ADMIN;
+SELECT * FROM Business;
+
 -- (1) 댓글 전체출력
 SELECT A. *,
     (SELECT MNAME FROM MEMBER WHERE A.MID=MID) MNAME,
@@ -123,3 +129,4 @@ SELECT * FROM RESTAURANT;
 SELECT * FROM FESTIVAL;
 SELECT * FROM MEMBER;
 SELECT * FROM BOOKMARK;
+

@@ -34,16 +34,13 @@ SELECT *
         WHERE S.SNAME = B.SNAME(+) AND SPRICE = '무료')A)
 WHERE RN BETWEEN 1 AND 3;
 
--- 1-5. 지역별 관광지 리스트 출력 (지도)
-SELECT S.*, LNAME FROM SPOT S, LOCATION L WHERE LNAME = '서귀포시' AND S.LOCATIONNO = L.LOCATIONNO;
-
 -- 2. 관광지 등록
 INSERT INTO SPOT (SNAME, AID, LOCATIONNO, SADDR, STEL, SINFO, SMAINIMG, SSUBIMG_1, SLATITUDE, SLONGITUDE, SPRICE) 
     VALUES('협재해수욕장1', 'admin', 1, '제주특별자치도 제주시 한림읍 한림로 329-10', '064-728-3981', '협재 종합상황실: 064-728-3981(해수욕장 개장기간 동안 운영)', '협재해수욕장m.jpg', '협재해수욕장s.jpg', 33.39906165536689, 126.1241478664344, '무료');
     
 -- 3. 관광지 삭제
 DELETE FROM SPOT WHERE SNAME = '협재해수욕장1';
-select * from spot;
+
 -- 4. 관광지 수정
 UPDATE SPOT SET SNAME = '협재해수욕장_수정',
                 LOCATIONNO = 2,

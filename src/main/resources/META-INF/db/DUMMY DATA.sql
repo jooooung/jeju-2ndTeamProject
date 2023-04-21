@@ -73,7 +73,7 @@ insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, s
 insert into spot (sName, aId, locationNo, sAddr, sTel, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('협재해수욕장', 'admin', 1, '제주특별자치도 제주시 한림읍 한림로 329-10', '064-728-3981', 
     '협재 종합상황실: 064-728-3981(해수욕장 개장기간 동안 운영)', '협재해수욕장m.jpg', 
-    '협재해수욕장s.jpg', 33.39906165536689, 126.1241478664344, '무료');
+    '협재해수욕장s.jpg', 33.39396920901713, 126.23921468065957, '무료');
 
 -- RESTAURANT --
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)

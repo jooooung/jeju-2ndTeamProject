@@ -2,7 +2,6 @@
 --           restaurant query            
 ------------------------------------------------------
 -- (1) 식당목록 전체(startRow ~ endRow까지)
-
 SELECT * 
     FROM (SELECT ROWNUM RN, A.*
         FROM (SELECT R.* FROM restaurant R, BUSINESS B  WHERE R.BID = B.BID ORDER BY RPRICE DESC) A)
@@ -13,7 +12,6 @@ SELECT *
     FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM restaurant S, (SELECT rName, COUNT(*) bCnt FROM BOOKMARK GROUP BY rName)B 
         WHERE S.rName = B.rName(+) ORDER BY bCnt DESC)A)
 WHERE RN BETWEEN 1 AND 3;
-
 
 -- 식당목록 카페
 SELECT * FROM (SELECT ROWNUM RN, A.* 
@@ -39,7 +37,6 @@ SELECT * FROM (SELECT ROWNUM RN, A.*
 SELECT * FROM (SELECT ROWNUM RN, A.* 
     FROM (SELECT * FROM  RESTAURANT WHERE RestauranTtypeNo LIKE '%'||'3'||'%' ORDER BY RNAME DESC) A) 
     WHERE RN BETWEEN 1 AND 10;
-
 
 -- (2) 등록된 식당 갯수
 SELECT COUNT(*) FROM RESTAURANT;
@@ -84,10 +81,6 @@ UPDATE RESTAURANT SET requestStatus = 'R';
 ------------------------------------------------------
 --           restaurantComment query            
 ------------------------------------------------------
-<<<<<<< HEAD
-
-=======
->>>>>>> 7e5b796c8332002906f578be5336f7d97b2323de
 -- (1) 댓글 전체출력
 SELECT A. *,
     (SELECT MNAME FROM MEMBER WHERE A.MID=MID) MNAME,

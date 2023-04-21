@@ -48,6 +48,9 @@ SELECT (SELECT COUNT(*) FROM BOOKMARK WHERE RNAME = '올래국수') bCnt, R.*
 SELECT (SELECT COUNT(*) FROM BOOKMARK WHERE HNAME = '호텔더원') bCnt, H.*
     FROM HOTEL H WHERE HNAME = '호텔더원';
 
+select * from  hotel;
+select * from restaurant;
+
 -- 5. 지도에 마커 추가
     -- 관광지
 SELECT S.*, NVL(bCnt, 0) bCnt 

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.MapSpotDao">
+	<resultMap type="MapSpot" id="SpotResult">
+		<result property="sname" column="sname"/>
+		<result property="aid" column="aid"/>
+		<result property="locationno" column="locationno"/>
+		<result property="saddr" column="saddr"/>
+		<result property="stel" column="stel"/>
+		<result property="slink" column="slink"/>
+		<result property="sinfo" column="sinfo"/>
+		<result property="stime" column="stime"/>
+		<result property="smainimg" column="smainimg"/>
+		<result property="ssubimg_1" column="ssubimg_1"/>
+		<result property="ssubimg_2" column="ssubimg_2"/>
+		<result property="ssubimg_3" column="ssubimg_3"/>
+		<result property="slatitude" column="slatitude"/>
+		<result property="slongitude" column="slongitude"/>
+		<result property="sprice" column="sprice"/>
+	</resultMap>
+	<select id="mapSpotList" resultMap="SpotResult">
+		SELECT S.*, NVL(bCnt, 0) bCnt 
+			FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+		WHERE S.SNAME = B.SNAME(+)
+	</select>
+	<select id="spotList" parameterType="MapSpot" resultMap="SpotResult">
+		SELECT * 
+    		FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        		WHERE S.SNAME = B.SNAME(+) ORDER BY bCnt DESC)A)
+			WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id="spotPlaceSchList" resultMap="SpotResult">
+		SELECT S.*, LNAME FROM SPOT S, LOCATION L WHERE LNAME = #{lname} AND S.LOCATIONNO = L.LOCATIONNO
+	</select>
+</mapper>

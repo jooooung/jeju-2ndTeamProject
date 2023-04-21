@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.MapHotelDao">
+	<resultMap type="MapHotel" id="HotelResult">
+		<result property="hname" column="hname"/>
+		<result property="bid" column="bid"/>
+		<result property="haddr" column="haddr"/>
+		<result property="htel" column="htel"/>
+		<result property="hlink" column="hlink"/>
+		<result property="hinfo" column="hinfo"/>
+		<result property="intime" column="intime"/>
+		<result property="outtime" column="outtime"/>
+		<result property="hmainimg" column="hmainimg"/>
+		<result property="hsubimg_1" column="hsubimg_1"/>
+		<result property="hsubimg_2" column="hsubimg_2"/>
+		<result property="hsubimg_3" column="hsubimg_3"/>
+		<result property="hlatitude" column="hlatitude"/>
+		<result property="hlongitude" column="hlongitude"/>
+		<result property="hprice" column="hprice"/>
+	</resultMap>
+	<select id="mapHotelList" resultMap="HotelResult">
+		SELECT H.*, NVL(bCnt, 0) bCnt 
+    		FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME)B 
+		WHERE H.HNAME = B.HNAME(+)
+	</select>
+	<!-- restaurant -->
+	<select id="hotelList" parameterType="MapHotel" resultMap="HotelResult">
+		SELECT * 
+    		FROM (SELECT ROWNUM RN, A.* 
+        		FROM (SELECT H.*, NVL(bCnt, 0) bCnt 
+                	FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+            WHERE H.HNAME = B.HNAME(+) ORDER BY bCnt DESC) A)
+    	WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	<select id="hotelPlaceSchList" resultMap="HotelResult">
+		SELECT H.*, LNAME FROM HOTEL H, LOCATION L WHERE LNAME =  '#{lname} AND H.LOCATIONNO = L.LOCATIONNO
+	</select>
+</mapper>

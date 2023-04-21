@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lec.jeju.service.MapService;
 
-
 @Controller
+@RequestMapping("map")
 public class MapController {
 	@Autowired
 	private MapService mservice;
-	@RequestMapping(value = "map", method = RequestMethod.GET)
+	@RequestMapping(value = "mapList", method = RequestMethod.GET)
 	public String map(Model model) {
 		model.addAttribute("spot", mservice.mapSpotList());
 		model.addAttribute("res", mservice.mapRestaurantList());

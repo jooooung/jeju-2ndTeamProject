@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.MapRestaurantDao">
-	<resultMap type="MapRestaurant" id="ResResult">
+	<resultMap type="MapRestaurant" id="MapResResult">
 		<result property="rname" column="rname"/>
 		<result property="bid" column="bid"/>
 		<result property="locationno" column="locationno"/>
@@ -27,13 +27,13 @@
 		WHERE R.RNAME = B.RNAME(+)
 	</select>
 	<!-- restaurant -->
-	<select id="restaurantList" parameterType="MapRestaurant" resultMap="ResResult">
+	<select id="restaurantList" parameterType="MapRestaurant" resultMap="MapResResult">
 		SELECT * 
     		FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*, NVL(bCnt, 0) bCnt FROM RESTAURANT R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
         	WHERE R.RNAME = B.RNAME(+) ORDER BY bCnt DESC)A)
 		WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
-	<select id="resPlaceSchList" resultMap="ResResult">
+	<select id="resPlaceSchList" resultMap="MapResResult">
 		SELECT R.*, LNAME FROM RESTAURANT R, LOCATION L WHERE LNAME =  #{lname} AND R.LOCATIONNO = L.LOCATIONNO
 	</select>
 </mapper>

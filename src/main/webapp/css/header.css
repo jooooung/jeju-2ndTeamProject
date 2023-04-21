@@ -1,0 +1,101 @@
+@charset "UTF-8";
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: white;
+}
+
+ul, ol {
+	list-style: none;
+}
+
+.navbar a:hover:not(.navbar_logo a) {
+	font-weight: bold;
+	cursor: pointer;
+	color: #ffd400;
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: rgba(0, 0, 0, .3);
+	padding: 0 12px;
+	height: 80px;
+	color: white;
+}
+
+.navbar .navbar_logo {
+	font-size: 30px;
+}
+
+.navbar .navbar_logo img {
+	width: 80px;
+	height: 80px;
+}
+
+.navbar_menu {
+	display: flex;
+	padding-left: 0;
+	text-align: center;
+	position: relative;
+	font-size: 20px;
+}
+
+.navbar_menu li:hover {
+	font-weight: bold;
+	color: #ffd400;
+}
+
+.navbar_menu ul {
+	overflow: hidden;
+}
+
+.navbar_menu ul>li {
+	float: left;
+	padding: 5px 40px;
+	line-height: 25px;
+	width: 100px;
+}
+
+.navbar_menu li {
+	padding: 8px 12px;
+}
+
+.navbar_menu li .subMenu {
+	display: none;
+	position: absolute;
+	font-size: 15px;
+	width: 100px;
+	z-index: 2;
+}
+
+.navbar_menu li:hover .subMenu {
+	display: block;
+	padding: 5px 40px;
+	line-height: 25px;
+	padding-left: 0;
+}
+
+.navbar_menu li .subMenu li {
+	display: block;
+	padding: 5px 10px;
+}
+
+.navbar_menu li .subMenu li:first-child {
+	padding-top: 25px;
+}
+
+.log ul {
+	display: flex;
+	text-align: center;
+}
+
+.log li {
+	padding: 0 10px;
+}

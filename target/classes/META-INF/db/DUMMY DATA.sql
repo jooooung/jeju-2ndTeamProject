@@ -73,7 +73,7 @@ insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, s
 insert into spot (sName, aId, locationNo, sAddr, sTel, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('협재해수욕장', 'admin', 1, '제주특별자치도 제주시 한림읍 한림로 329-10', '064-728-3981', 
     '협재 종합상황실: 064-728-3981(해수욕장 개장기간 동안 운영)', '협재해수욕장m.jpg', 
-    '협재해수욕장s.jpg', 33.39906165536689, 126.1241478664344, '무료');
+    '협재해수욕장s.jpg', 33.39396920901713, 126.23921468065957, '무료');
 
 -- RESTAURANT --
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
@@ -94,25 +94,25 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, R
     VALUES ('명진전복', 'jin', 1, 2, '제주특별자치도 제주시 구좌읍 해맞이해안로 1282', '064-782-9944', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020047', 
     '명진전복은 전복돌솥밥, 전복구이, 전복죽 등을 판매하는 인기 맛집 입니다!', '전복구이',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.53248445339446, 126.85020647896245, '12,000원');     
+            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.53246865592159, 126.8501903577186, '12,000원');     
 
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('가시아방', 'bang', 5, 4, '제주특별자치도 서귀포시 성산읍 섭지코지로 10', '064-783-0987', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000018307', 
     '국수가 먹고싶을땐? 가시아방', '고기국수, 비빔국수',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.53248445339446, 126.85020647896245, '8,000원');
+            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.43858028658235, 126.9180594306653, '8,000원');
 
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('돈사돈', 'don', 1, 1, '제주특별자치도 제주시 우평로 19', '064-746-8989', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020104', 
     '진정한 흑돼지 달인', '흑돼지 오겹살',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.53248445339446, 126.85020647896245, '30,000원');
+            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.478845919157024, 126.46402562151444, '30,000원');
             
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('봄날카페', 'bom', 1, 5, '제주특별자치도 제주시 애월읍 애월로1길 25', '064-799-4999', 
     'link', 
     '드라마 맨도롱 또똣의 주인공이 일하던 카페', '아메리카노',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.53248445339446, 126.85020647896245, '3,000원');
+            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.46242809443207, 126.30958428618032 , '3,000원');
 
 
 

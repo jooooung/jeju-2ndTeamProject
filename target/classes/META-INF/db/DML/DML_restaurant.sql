@@ -45,9 +45,10 @@ SELECT * FROM (SELECT ROWNUM RN, A.*
 SELECT COUNT(*) FROM RESTAURANT;
 
 -- (3) 식당등록
-INSERT INTO RESTAURANT (RNAME, BID, LOCATIONNO, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
-    VALUES ('제주김만복', 'su', 1, '제주특별자치도 제주시 오라로 41', '064-759-8582', 'LINK', '매일매일 신선한 재료로 정성스레 만드는 만복이네 김밥입니다!', '만복김밥', 
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.497066158681676, 126.50894864880289, '세트가 단돈 만원!');
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+    VALUES ('올래국수', 'guk', 1, 4, '제주특별자치도 제주시 귀아랑길 24 (연동)', '064-742-7355', 'LINK', 
+    '너 올래 안올래? 올래국수!', '해물국수',
+            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.49710002092335, 126.5089619090469, '국수 7000원 부터');
             
 -- (4) 등록된 식당 수정
 UPDATE RESTAURANT SET
@@ -83,7 +84,10 @@ UPDATE RESTAURANT SET requestStatus = 'R';
 ------------------------------------------------------
 --           restaurantComment query            
 ------------------------------------------------------
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7e5b796c8332002906f578be5336f7d97b2323de
 -- (1) 댓글 전체출력
 SELECT A. *,
     (SELECT MNAME FROM MEMBER WHERE A.MID=MID) MNAME,
@@ -91,7 +95,7 @@ SELECT A. *,
         FROM (SELECT ROWNUM RN, B.*
             FROM (SELECT * FROM RESTAURANTCOMMENT ORDER BY RGROUP DESC, RSTEP) B) A
     WHERE RN BETWEEN 1 AND 30;
-
+ 
 -- (2) 댓글갯수 
 SELECT COUNT(*) FROM RESTAURANTCOMMENT;
 
@@ -118,13 +122,8 @@ UPDATE RESTAURANTCOMMENT
     WHERE RGROUP = 3 AND RSTEP > 0;
 
 -- (8) 대댓글 쓰기(업체)
-insert into restaurantComment (rCommentNo, rName, mId, bID, RContent, RGroup, RStep, RIndent)
-    values (rCommentNo_seq.nextval, '올래국수', null, 'guk', '다음에 또 방문 해주세요^^.', 3, 1, 1);
+INSERT INTO restaurantComment (rCommentNo, rName, mId, bID, RContent, RGroup, RStep, RIndent)
+    VALUES (rCommentNo_seq.nextval, '올래국수', null, 'guk', '다음에 또 방문 해주세요^^.', 3, 1, 1);
+
 
 COMMIT;
-SELECT * FROM RESTAURANTCOMMENT;
-SELECT * FROM RESTAURANT;
-SELECT * FROM FESTIVAL;
-SELECT * FROM MEMBER;
-SELECT * FROM BOOKMARK;
-

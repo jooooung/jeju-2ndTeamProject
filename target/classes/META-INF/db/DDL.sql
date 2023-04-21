@@ -30,8 +30,10 @@ CREATE TABLE Member (
     mId VARCHAR2(50) PRIMARY KEY,
     mPw VARCHAR2(50) NOT NULL,
     mName VARCHAR2(50) NOT NULL,
+    mTel VARCHAR2(50) NOT NULL,
     mEmail VARCHAR2(100) NOT NULL,
     mAddr VARCHAR2(200),
+    mDeAddr VARCHAR2(200),
     mPost VARCHAR2(50),
     mBirth DATE NOT NULL,
     mPhoto VARCHAR2(255),
@@ -220,6 +222,7 @@ SELECT * FROM Festival;
 SELECT * FROM MEMBER;
 SELECT * FROM BOOKMARK;
 SELECT * FROM RestauranTtype;
+SELECT * FROM restaurant;
 --------------
 SELECT * FROM Review;
 SELECT * FROM hotelComment;

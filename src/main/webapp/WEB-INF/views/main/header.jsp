@@ -26,7 +26,7 @@
 			</div>
 			<div class="navbar_menu">
 				<ul>
-					<li onclick="location.href='${conPath}/map/mapList'" style="cursor: pointer;">지도</li>
+					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>
 						여행지
 						<ol class="subMenu">

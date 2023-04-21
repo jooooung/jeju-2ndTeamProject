@@ -44,18 +44,19 @@ INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('theOne', '123', '호텔�
 INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('hotel', '123', '호텔', 'hotel@naver.com'); 
 
 -- MEMBER -- 
-insert into member (mId, mPw, mName, mEmail, mAddr, mPost, mBirth)
-    values('aaa', '1', '홍길동', 'hong@hong.com', '서울시 중랑구', '12345', '1995-12-12');
-insert into member (mId, mPw, mName, mEmail, mAddr, mPost, mBirth)
-    values('bbb', '1', '김길동', 'kim@kim.com', '서울시 서대문구', '12345', '1997-04-28');
-INSERT INTO MEMBER (mID, mPW, mNAME, mEMAIL, mADDR, mPOST, MBIRTH, MPHOTO)
-    VALUES ('kim', '123', '김민지', 'kim@naver.com', '강원도 춘천시', '12345', '2004-05-07','NOIMG.JPG');
-INSERT INTO MEMBER (mID, mPW, mNAME, mEMAIL, mADDR, mPOST, MBIRTH, MPHOTO)
-    VALUES ('pham', '123', '팜하니', 'hani@naver.com', '서울시 강서구', '45678', '2004-10-06','NOIMG.JPG');
-INSERT INTO MEMBER (mID, mPW, mNAME, mEMAIL, mADDR, mPOST, MBIRTH, MPHOTO)
-    VALUES ('zico', '123', '지아코', 'zico@naver.com', '서울시 강북구', '54524', '1992-09-14','NOIMG.JPG');
-INSERT INTO MEMBER (mID, mPW, mNAME, mEMAIL, mADDR, mPOST, MBIRTH, MPHOTO)
-    VALUES ('kang', '123', '강성빈', 'kang@naver.com', '서울시 강서구', '12345', '1994-08-25','NOIMG.JPG');
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
+    values('aaa', '1', '홍길동','010-1234-1234',  'hong@hong.com', '서울시 중랑구', 'xx아파트', '12345', '1995-12-12');
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
+    values('bbb', '1', '김길동', '010-4321-4321', 'kim@kim.com', '서울시 서대문구', '이젠빌라', '12345', '1997-04-28');
+    
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
+    VALUES ('kim', '123', '김민지', '010-1234-4321', 'kim@naver.com', '강원도 춘천시', '춘천아파트',' 12345', '2004-05-07','민지.png', SYSDATE);
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
+    VALUES ('pham', '123', '팜하니',  '010-4321-1234', 'hani@naver.com', '서울시 강서구', '염창아파트', '45678', '2004-10-06','하니.png', SYSDATE);
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
+    VALUES ('zico', '123', '지아코', '010-6666-666', 'zico@naver.com', '서울시 강북구', '강북아파트', '54524', '1992-09-14','gico.png', SYSDATE);
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
+    VALUES ('kang', '123', '강성빈',  '010-5555-4343', 'kang@naver.com', '서울시 강서구', '미주아파트', '12345', '1994-08-25','kang.png', SYSDATE);
 
 -- SPOT --
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
@@ -80,6 +81,7 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, R
     VALUES ('제주김만복', 'su', 1, 3, '제주특별자치도 제주시 오라로 41', '064-759-8582', 'LINK', 
     '매일매일 신선한 재료로 정성스레 만드는 만복이네 김밥입니다!', '만복김밥', 
             'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.497066158681676, 126.50894864880289, '세트가 단돈 만원!');
+            
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('올래국수', 'guk', 1, 4, '제주특별자치도 제주시 귀아랑길 24 (연동)', '064-742-7355', 'LINK', 
     '너 올래 안올래? 올래국수!', '해물국수',

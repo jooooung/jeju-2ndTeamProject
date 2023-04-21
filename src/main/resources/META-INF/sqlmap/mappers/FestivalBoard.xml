@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.FestivalDao">
+	<resultMap type="Festival" id="FestivalResult">
+		<result property="festivalno" column="festivalno" />
+		<result property="aid" column="aid" />
+		<result property="ftitle" column="ftitle" />
+		<result property="fcontent" column="fcontent" />
+		<result property="fhit" column="fhit" />
+		<result property="frdate" column="frdate" />
+	</resultMap>
+
+	<!-- 전체목록 페이징 출력 -->
+	<select id="FestivalList" parameterType="Festival"
+		resultMap="FestivalResult">
+		SELECT * FROM
+		(SELECT ROWNUM RN, A.* FROM
+		(SELECT N.* FROM
+		FESTIVAL N, ADMIN A WHERE N.AID = A.AID ORDER BY festivalNo
+		DESC) A)
+		WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+
+	<!-- 등록된 글 갯수 -->
+	<select id="totCntFestival" resultType="int">
+		SELECT COUNT(*) FROM
+		FESTIVAL
+	</select>
+
+	<!-- 글등록 -->
+	<insert id="writeFestival" parameterType="Festival">
+		INSERT INTO FESTIVAL
+		(FESTIVALNO, AID, FTITLE, FCONTENT)
+		VALUES (festivalNo_seq.NEXTVAL, #{aid}, #{ftitle}, #{fcontent})
+	</insert>
+
+	<!-- 상세보기, 수정 View -->
+	<select id="contentFestival" parameterType="int"
+		resultType="Festival">
+		SELECT F.*, ANAME FROM FESTIVAL F, ADMIN A WHERE
+		F.AID=A.AID AND FESTIVALNO= #{festivalno}
+	</select>
+
+	<!-- 글수정 -->
+	<update id="modifiyFestival" parameterType="Festival">
+		UPDATE FESTIVAL SET
+		FTITLE = #{ftitle},
+		FCONTENT = #{fcontent},
+		FRDATE = SYSDATE
+		WHERE FESTIVALNO = #{festivalno}
+	</update>
+
+	<!-- 조회수 1 올리기 -->
+	<update id="hitupFestival" parameterType="int">
+		UPDATE FESTIVAL SET
+		FHIT = FHIT + 1 WHERE FESTIVALNO = #{festivalno}
+	</update>
+
+	<!-- 글삭제 -->
+	<delete id="deleteFestival" parameterType="int">
+		DELETE FROM FESTIVAL
+		WHERE FESTIVALNO = #{festivalno}
+	</delete>
+</mapper>

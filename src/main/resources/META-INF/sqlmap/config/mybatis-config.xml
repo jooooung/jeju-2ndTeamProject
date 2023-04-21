@@ -4,13 +4,22 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+		<!-- 김훈 -->
 		<typeAlias type="com.lec.jeju.vo.MapSpot" alias="MapSpot"/>
 		<typeAlias type="com.lec.jeju.vo.MapRestaurant" alias="MapRestaurant"/>
 		<typeAlias type="com.lec.jeju.vo.MapHotel" alias="MapHotel"/>
+		
+		<!-- 강성빈 -->
+		<typeAlias type="com.lec.jeju.vo.FestivalBoard" alias="Festival" />
+		
 	</typeAliases>
 	<mappers>
+		<!-- 김훈 -->
 		<mapper resource="META-INF/sqlmap/mappers/MapSpot.xml"/>
 		<mapper resource="META-INF/sqlmap/mappers/MapRestaurant.xml"/>
 		<mapper resource="META-INF/sqlmap/mappers/MapHotel.xml"/>
+		
+		<!-- 강성빈 -->
+		<mapper resource="META-INF/sqlmap/mappers/FestivalBoard.xml" />
 	</mappers>
 </configuration>

@@ -1,0 +1,6 @@
+<mapper namespace="com.example.mapper.AdminMapper">
+    <insert id="insertAdmin" parameterType="Admin">
+        INSERT INTO Admin (aId, aPw, aName)
+        VALUES (#{aId}, #{aPw}, #{aName})
+    </insert>
+</mapper>

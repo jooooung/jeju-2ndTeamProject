@@ -7,88 +7,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<style>
-		*{
-			padding: 0;
-			margin: 0;
-			color: white;
-		}
-		a{
-			text-decoration: none;
-			color: white;
-		}
-		.navbar a:hover:not(.navbar_logo a){
-			font-weight: bold;
-			cursor: pointer;
-			color: #ffd400;
-		}
-		.navbar{
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			background: rgba(0,0,0,.3);
-			padding: 8px 12px;
-			height: 80px;
-		}
-		.navbar .navbar_logo{
-			font-size: 30px;
-		}
-		.navbar .navbar_logo img{
-			width: 80px;
-			height: 80px;
-		}
-		.navbar_menu{
-			display: flex;
-			padding-left: 0;
-			list-style: none;
-			text-align: center;
-			position: relative;
-			font-size: 20px;
-		}
-		.navbar_menu ul{
-			overflow: hidden;
-		}
-		.navbar_menu ul>li{
-			float:left;
-			padding:5px 40px;
-			line-height: 25px;
-			width:100px;
-		}
-		.navbar_menu li{
-			padding: 8px 12px;
-			list-style: none;
-		}
-		.navbar_menu li .subMenu {
-			display:none;
-			position: absolute;
-			font-size: 15px;
-			width: 100px;
-			z-index: 2;
-		}
-		.navbar_menu li:hover .subMenu {
-			display: block; 
-			padding:5px 40px;
-			line-height: 25px;
-			padding-left: 0;
-			
-		}
-		.navbar_menu li .subMenu li{
-			display: block;
-			padding: 5px 10px;
-		}
-		.log ul{
-			display: flex;
-			list-style: none;
-			text-align: center;
-		}
-		.log li{
-			padding: 0 10px;
-		}
-		
-			
-	
-	</style>
-	<link href="${conPath }/css/style.css" rel=stylesheet>
+	<link href="${conPath }/css/header.css" rel=stylesheet>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<script>
 		$(document).ready(function(){
@@ -102,12 +21,14 @@
 			<div class="navbar_logo">
 				<a href="">
 					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
-					<span>제주어때</span>
+					<span>JEJU</span>
 				</a>
 			</div>
 			<div class="navbar_menu">
 				<ul>
-					<li>여행지
+					<li onclick="location.href=''" style="cursor: pointer;">지도</li>
+					<li>
+						여행지
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
@@ -150,6 +71,7 @@
 			</div>
 			<div class="navbar_menu">
 				<ul>
+					<li onclick="location.href=''" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
@@ -192,6 +114,7 @@
 			</div>
 			<div class="navbar_menu">
 				<ul>
+					<li onclick="location.href=''" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
@@ -232,6 +155,7 @@
 			</div>
 			<div class="navbar_menu">
 				<ul>
+					<li onclick="location.href=''" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>

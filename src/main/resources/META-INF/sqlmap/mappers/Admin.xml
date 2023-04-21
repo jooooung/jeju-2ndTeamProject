@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.AdminDao">
+	
+	 <!-- 로그인 -->
+	<select id="login" parameterType="Admin" resultType="com.lec.jeju.vo.Admin">
+        SELECT * FROM Admin WHERE aId=#{aId} AND aPw=#{aPw}
+    </select>
+    
+	<!-- 업체 등록 승인, 거절 -->
+    <update id="updateHotelRequestStatus" parameterType="Hotel">
+        UPDATE Hotel SET requestStatus=#{requestStatus} WHERE hName=#{hName}
+    </update>
+
+    <update id="updateRestaurantRequestStatus" parameterType="Restaurant">
+        UPDATE Restaurant SET requestStatus=#{requestStatus} WHERE rName=#{rName}
+    </update>
+	
+	<!-- 업체 등록 승인 요청 목록 -->
+    <select id="selectHotelApprovalRequests" resultType="com.lec.jeju.vo.Hotel">
+        SELECT * FROM Hotel WHERE requestStatus='P'
+    </select>
+
+    <select id="selectRestaurantApprovalRequests" resultType="com.lec.jeju.vo.Restaurant">
+        SELECT * FROM Restaurant WHERE requestStatus='P'
+    </select>
+	
+	<!-- 업체 등록 승인 현황 -->
+    <select id="selectApprovedHotels" resultType="com.lec.jeju.vo.Hotel">
+        SELECT * FROM Hotel WHERE requestStatus='A'
+    </select>
+
+    <select id="selectApprovedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
+        SELECT * FROM Restaurant WHERE requestStatus='A'
+    </select>
+    
+	<!-- 업체 등록 거절 현황 -->
+    <select id="selectRejectedHotels" resultType="com.lec.jeju.vo.Hotel">
+        SELECT * FROM Hotel WHERE requestStatus='R'
+    </select>
+
+    <select id="selectRejectedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
+        SELECT * FROM Restaurant WHERE requestStatus='R'
+    </select>
+	
+	<!-- 게시글 삭제 -->
+	<!-- 페스티벌 -->
+	<delete id="deleteFestival" parameterType="int">
+	    DELETE FROM Festival
+	    WHERE festivalNo = #{festivalNo}
+	</delete>
+	
+	<!-- 리뷰 -->
+	<delete id="deleteReview" parameterType="int">
+	    DELETE FROM Review
+	    WHERE reviewNo = #{reviewNo}
+	</delete>
+	
+	<!-- 댓글 삭제 -->
+	<!-- 호텔 -->
+	<delete id="deleteHotelComment" parameterType="int">
+	    DELETE FROM hotelComment
+	    WHERE hCommentNo = #{hCommentNo}
+	</delete>
+	
+	<!-- 식당 -->
+	<delete id="deleteRestaurantComment" parameterType="int">
+	    DELETE FROM restaurantComment
+	    WHERE rCommentNo = #{rCommentNo}
+	</delete>
+	
+	<!-- 관광지 -->
+	<delete id="deleteSpotComment" parameterType="int">
+	    DELETE FROM spotComment
+	    WHERE sCommentNo = #{sCommentNo}
+	</delete>
+</mapper>

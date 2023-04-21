@@ -1,1 +1,6 @@
-/target/
+target/
+property/
+sqlmap/
+mappers/
+com.lec.jeju.service/
+AdminController

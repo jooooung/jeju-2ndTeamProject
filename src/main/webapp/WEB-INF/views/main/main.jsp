@@ -168,7 +168,7 @@
 				</a>
 			</div>
 			<div class="sub">
-				<a>
+				<a href="">
 						<img alt="" src="https://www.visitjeju.net/image/main/theme/theme01_0406.jpg">
 					<p>
 						설명<br>
@@ -177,7 +177,7 @@
 				</a>
 			</div>
 			<div class="sub">
-				<a>
+				<a href="">
 						<img alt="" src="https://www.visitjeju.net/image/main/theme/theme01_0406.jpg">
 					<p>
 						설명<br>
@@ -186,7 +186,7 @@
 				</a>
 			</div>
 			<div class="sub">
-				<a>
+				<a href="">
 						<img alt="" src="https://www.visitjeju.net/image/main/theme/theme01_0406.jpg">
 					<p>
 						설명<br>
@@ -196,7 +196,20 @@
 			</div>
 		</div>
 		<div class="review">
-			
+			<div class="main">
+				<a href="">
+					<img alt="" src="https://www.visitjeju.net/image/main/theme/theme01_0406.jpg">
+					<p>
+						설명<br>
+						제목
+					</p>
+				</a>
+			</div>
+			<div class="sub">
+				<p>
+					리뷰 제목
+				</p>
+			</div>
 		</div>
 	</div>
 

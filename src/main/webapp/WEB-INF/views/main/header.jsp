@@ -34,7 +34,8 @@
 			font-size: 30px;
 		}
 		.navbar .navbar_logo img{
-			width: 50px;
+			width: 80px;
+			height: 80px;
 		}
 		.navbar_menu{
 			display: flex;
@@ -51,7 +52,7 @@
 			float:left;
 			padding:5px 40px;
 			line-height: 25px;
-			width: auto;
+			width:100px;
 		}
 		.navbar_menu li{
 			padding: 8px 12px;
@@ -61,11 +62,15 @@
 			display:none;
 			position: absolute;
 			font-size: 15px;
-			width: auto;
+			width: 100px;
+			z-index: 2;
 		}
 		.navbar_menu li:hover .subMenu {
 			display: block; 
-			background: rgba(0,0,0,.3);
+			padding:5px 40px;
+			line-height: 25px;
+			padding-left: 0;
+			
 		}
 		.navbar_menu li .subMenu li{
 			display: block;
@@ -97,7 +102,7 @@
 			<div class="navbar_logo">
 				<a href="">
 					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
-					JEJU
+					<span>제주어때</span>
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -131,6 +136,127 @@
 				<ul>
 					<li><a href="">회원가입</a></li>
 					<li><a href="">로그인</a></li>
+				</ul>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${not empty member and empty business and empty admin}"><!-- 회원 -->
+		<div class="navbar">
+			<div class="navbar_logo">
+				<a href="">
+					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
+					<span>JEJU</span>
+				</a>
+			</div>
+			<div class="navbar_menu">
+				<ul>
+					<li>여행지
+						<ol class="subMenu">
+							<li><a href="">관광</a></li>
+							<li><a href="">음식</a></li>
+							<li><a href="">숙박</a></li>
+						</ol>
+					</li>
+					<li>게시판
+						<ol class="subMenu">
+							<li><a href="">축제정보</a></li>
+							<li><a href="">여행리뷰</a></li>
+							<li><a href="">공지사항</a></li>
+						</ol>
+					</li>
+					<li>마이페이지
+						<ol class="subMenu">
+							<li><a href="">나의일정</a></li>
+							<li><a href="">나의리뷰</a></li>
+							<li><a href="">예약내역</a></li>
+							<li><a href="">즐겨찾기</a></li>
+							<li><a href="">정보수정</a></li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<div class="log">
+				<ul>
+					<li><a href="">로그아웃</a></li>
+				</ul>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${empty member and not empty business and empty admin}"><!-- 업체 -->
+		<div class="navbar">
+			<div class="navbar_logo">
+				<a href="">
+					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
+					<span>JEJU</span>
+				</a>
+			</div>
+			<div class="navbar_menu">
+				<ul>
+					<li>여행지
+						<ol class="subMenu">
+							<li><a href="">관광</a></li>
+							<li><a href="">음식</a></li>
+							<li><a href="">숙박</a></li>
+						</ol>
+					</li>
+					<li>게시판
+						<ol class="subMenu">
+							<li><a href="">축제정보</a></li>
+							<li><a href="">여행리뷰</a></li>
+							<li><a href="">공지사항</a></li>
+						</ol>
+					</li>
+					<li>내업체관리
+						<ol class="subMenu">
+							<li><a href="">업체관리</a></li>
+							<li><a href="">예약목록</a></li>
+							<li><a href="">정보수정</a></li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<div class="log">
+				<ul>
+					<li><a href="">로그아웃</a></li>
+				</ul>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${empty member and empty business and not empty admin}"><!-- 관리자 -->
+		<div class="navbar">
+			<div class="navbar_logo">
+				<a href="">
+					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
+					<span>JEJU</span>
+				</a>
+			</div>
+			<div class="navbar_menu">
+				<ul>
+					<li>여행지
+						<ol class="subMenu">
+							<li><a href="">관광</a></li>
+							<li><a href="">음식</a></li>
+							<li><a href="">숙박</a></li>
+						</ol>
+					</li>
+					<li>게시판
+						<ol class="subMenu">
+							<li><a href="">축제정보</a></li>
+							<li><a href="">여행리뷰</a></li>
+							<li><a href="">공지사항</a></li>
+						</ol>
+					</li>
+					<li>관리하기
+						<ol class="subMenu">
+							<li><a href="">업체목록</a></li>
+							<li><a href="">관광지목록</a></li>
+						</ol>
+					</li>
+				</ul>
+			</div>
+			<div class="log">
+				<ul>
+					<li><a href="">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>

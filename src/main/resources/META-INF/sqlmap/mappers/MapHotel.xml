@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.MapHotelDao">
-	<resultMap type="Hotel" id="HotelResult">
+	<resultMap type="MapHotel" id="HotelResult">
 		<result property="hname" column="hname"/>
 		<result property="bid" column="bid"/>
 		<result property="haddr" column="haddr"/>
@@ -26,7 +26,7 @@
 		WHERE H.HNAME = B.HNAME(+)
 	</select>
 	<!-- restaurant -->
-	<select id="hotelList" parameterType="Hotel" resultMap="HotelResult">
+	<select id="hotelList" parameterType="MapHotel" resultMap="HotelResult">
 		SELECT * 
     		FROM (SELECT ROWNUM RN, A.* 
         		FROM (SELECT H.*, NVL(bCnt, 0) bCnt 

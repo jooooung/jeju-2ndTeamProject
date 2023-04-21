@@ -4,9 +4,9 @@
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.lec.jeju.vo.MapSpot" alias="Spot"/>
-		<typeAlias type="com.lec.jeju.vo.MapRestaurant" alias="Restaurant"/>
-		<typeAlias type="com.lec.jeju.vo.MapHotel" alias="Hotel"/>
+		<typeAlias type="com.lec.jeju.vo.MapSpot" alias="MapSpot"/>
+		<typeAlias type="com.lec.jeju.vo.MapRestaurant" alias="MapRestaurant"/>
+		<typeAlias type="com.lec.jeju.vo.MapHotel" alias="MapHotel"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="META-INF/sqlmap/mappers/MapSpot.xml"/>

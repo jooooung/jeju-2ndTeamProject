@@ -3,7 +3,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.MapRestaurantDao">
-	<resultMap type="Restaurant" id="ResResult">
+	<resultMap type="MapRestaurant" id="ResResult">
 		<result property="rname" column="rname"/>
 		<result property="bid" column="bid"/>
 		<result property="locationno" column="locationno"/>
@@ -21,13 +21,13 @@
 		<result property="rlongitude" column="rlongitude"/>
 		<result property="rprice" column="rprice"/>
 	</resultMap>
-	<select id="mapRestaurantList" resultMap="ResResult">
+	<select id="mapRestaurantList" resultMap="MapResResult">
 		SELECT R.*, NVL(bCnt, 0) bCnt 
     		FROM RESTAURANT R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
 		WHERE R.RNAME = B.RNAME(+)
 	</select>
 	<!-- restaurant -->
-	<select id="restaurantList" parameterType="Restaurant" resultMap="ResResult">
+	<select id="restaurantList" parameterType="MapRestaurant" resultMap="ResResult">
 		SELECT * 
     		FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*, NVL(bCnt, 0) bCnt FROM RESTAURANT R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
         	WHERE R.RNAME = B.RNAME(+) ORDER BY bCnt DESC)A)

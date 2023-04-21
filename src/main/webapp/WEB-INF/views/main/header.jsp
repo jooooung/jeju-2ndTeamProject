@@ -32,7 +32,7 @@
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="">숙박</a></li>
+							<li><a href="location.href''">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판

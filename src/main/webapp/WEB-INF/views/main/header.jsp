@@ -9,11 +9,7 @@
 	<title>Insert title here</title>
 	<link href="${conPath }/css/header.css" rel=stylesheet>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-	<script>
-		$(document).ready(function(){
-			
-		};
-	</script>
+
 </head>
 <body>
 	<c:if test="${empty member and empty business and empty admin}"><!-- 비회원 -->
@@ -26,7 +22,7 @@
 			</div>
 			<div class="navbar_menu">
 				<ul>
-					<li onclick="location.href=''" style="cursor: pointer;">지도</li>
+					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>
 						여행지
 						<ol class="subMenu">
@@ -37,7 +33,7 @@
 					</li>
 					<li>게시판
 						<ol class="subMenu">
-							<li><a href="">축제정보</a></li>
+							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="">여행리뷰</a></li>
 							<li><a href="">공지사항</a></li>
 						</ol>
@@ -55,8 +51,8 @@
 			</div>
 			<div class="log">
 				<ul>
-					<li><a href="">회원가입</a></li>
-					<li><a href="">로그인</a></li>
+					<li><a href="${conPath }/member.do?method=join">회원가입</a></li>
+					<li><a href="${conPath }/member.do?method=login">로그인</a></li>
 				</ul>
 			</div>
 		</div>
@@ -92,14 +88,15 @@
 							<li><a href="">나의리뷰</a></li>
 							<li><a href="">예약내역</a></li>
 							<li><a href="">즐겨찾기</a></li>
-							<li><a href="">정보수정</a></li>
+							<li><a href="${conPath }/member.do?method=modify">정보수정</a></li>
 						</ol>
 					</li>
 				</ul>
 			</div>
 			<div class="log">
 				<ul>
-					<li><a href="">로그아웃</a></li>
+					<li><a>${member.mname }님 &nbsp;</a></li>
+					<li><a href="${conPath }/member.do?method=logout">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>

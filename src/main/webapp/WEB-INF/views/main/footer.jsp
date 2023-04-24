@@ -12,13 +12,6 @@
 <body>
 	<footer>
 		<div class="middle">
-			<ul class="list">
-				<li>개인정보처리방침</li>
-				<li>이용약관</li>
-				<li>틀린정보신고</li>
-				<li>제주소식</li>
-				<li>관광업체등록신청</li>
-			</ul>
 			<ul class="list_addr">
 				<li>(00000) 제주특별자치도 제주시 </li>
 				<li>
@@ -30,6 +23,13 @@
 				<li>관광불편신고 : 제주안내 120콜센터(국번없이 120번)</li>
 			</ul>
 			<p class="txt_copyright">Copyright©Jeju Organization, All rights reserved.</p>
+			<ul class="list">
+				<li>개인정보처리방침</li>
+				<li>이용약관</li>
+				<li>틀린정보신고</li>
+				<li>제주소식</li>
+				<li>관광업체등록신청</li>
+			</ul>
 		</div>
 	</footer>
 </body>

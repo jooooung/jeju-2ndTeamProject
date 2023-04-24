@@ -19,7 +19,7 @@
 	<c:if test="${empty member and empty business and empty admin}"><!-- 비회원 -->
 		<div class="navbar">
 			<div class="navbar_logo">
-				<a href="">
+				<a href='${conPath }/main.do'">
 					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
 					<span>JEJU</span>
 				</a>
@@ -32,7 +32,7 @@
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="location.href''">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판

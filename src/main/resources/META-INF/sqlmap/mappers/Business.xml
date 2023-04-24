@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.BusinessDao">
+	<!-- 업체 회원가입 -->
+    <insert id="insertBusiness" parameterType="Business">
+        INSERT INTO Business (bId, bPw, bName, bEmail)
+        VALUES (#{bId}, #{bPw}, #{bName}, #{bEmail})
+    </insert>
+
+    <!-- 업체 정보수정 -->
+    <update id="updateBusiness" parameterType="Business">
+        UPDATE Business
+        SET bPw = #{bPw}, bName = #{bName}, bEmail = #{bEmail}
+        WHERE bId = #{bId}
+    </update>
+
+    <!-- 업체 등록요청 (등록글 작성) -->
+    <!-- Hotel 등록 -->
+    <insert id="insertHotel" parameterType="Hotel">
+        INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
+        VALUES (#{hName}, #{bId}, #{locationNo}, #{hAddr}, #{hTel}, #{hLink}, #{hInfo}, #{inTime}, #{outTime}, #{hMainImg}, #{hSubImg_1}, #{hSubImg_2}, #{hSubImg_3}, #{hLatitude}, #{hLongitude}, #{hPrice}, #{requestStatus})
+    </insert>
+
+    <!-- Restaurant 등록 -->
+    <insert id="insertRestaurant" parameterType="Restaurant">
+        INSERT INTO Restaurant (rName, bId, locationNo, rAddr, rTel, rLink, rInfo, rMenu, rMainImg, rSubImg_1, rSubImg_2, rSubImg_3, rLatitude, rLongitude, rPrice, requestStatus)
+        VALUES (#{rName}, #{bId}, #{locationNo}, #{rAddr}, #{rTel}, #{rLink}, #{rInfo}, #{rMenu}, #{rMainImg}, #{rSubImg_1}, #{rSubImg_2}, #{rSubImg_3}, #{rLatitude}, #{rLongitude}, #{rPrice}, #{requestStatus})
+    </insert>
+
+    <!-- 업체 등록요청 (등록글 수정) -->
+    <!-- Hotel 수정 -->
+    <update id="updateHotel" parameterType="Hotel">
+        UPDATE Hotel
+        SET hName = #{hName}, locationNo = #{locationNo}, hAddr = #{hAddr}, hTel = #{hTel}, hLink = #{hLink}, hInfo = #{hInfo}, inTime = #{inTime}, outTime = #{outTime},
+            hMainImg = #{hMainImg}, hSubImg_1 = #{hSubImg_1}, hSubImg_2 = #{hSubImg_2}, hSubImg_3 = #{hSubImg_3}, hLatitude = #{hLatitude}, hLongitude = #{hLongitude}, hPrice = #{hPrice}
+        WHERE hName = #{hName} AND bId = #{bId}
+    </update>
+
+    <!-- Restaurant 수정 -->
+    <update id="updateRestaurant" parameterType="Restaurant">
+		UPDATE Restaurant
+	    SET rName = #{rName}, locationNo = #{locationNo}, rAddr = #{rAddr}, rTel = #{rTel}, rLink = #{rLink}, rInfo = #{rInfo}, rMenu = #{rMenu}, rMainImg = #{rMainImg}, rSubImg_1 = #{rSubImg_1}, rSubImg_2 = #{rSubImg_2}, rSubImg_3 = #{rSubImg_3}, rLatitude = #{rLatitude}, rLongitude = #{rLongitude}, rPrice = #{rPrice}
+	    WHERE rName = #{rName}
+	</update>
+	
+	<!-- Hotel 삭제 매퍼 -->
+	<delete id="deleteHotel" parameterType="String">
+	    DELETE FROM Hotel WHERE hName=#{hName}
+	</delete>
+	
+	<!-- Restaurant 삭제 매퍼 -->
+	<delete id="deleteRestaurant" parameterType="String">
+	    DELETE FROM Restaurant WHERE rName=#{rName}
+	</delete>
+	
+	<!-- Hotel 나의 글 조회 매퍼 -->
+	<select id="selectMyHotelPosts" resultType="Hotel">
+	    SELECT * FROM Hotel WHERE bId=#{bId}
+	</select>
+		
+	<!-- Restaurant 나의 글 조회 매퍼 -->
+	<select id="selectMyRestaurantPosts" resultType="Restaurant">
+	    SELECT * FROM Restaurant WHERE bId=#{bId}
+	</select>
+	
+	<!-- Hotel 나의 댓글 조회 매퍼 -->
+	<select id="selectMyHotelComments" resultType="HotelComment">
+	    SELECT * FROM hotelComment WHERE bId=#{bId}
+	</select>
+	
+	<!-- Restaurant 나의 댓글 조회 매퍼 -->
+	<select id="selectMyRestaurantComments" resultType="RestaurantComment">
+	    SELECT * FROM restaurantComment WHERE bId=#{bId}
+	</select>
+	
+	<!-- Hotel 등록 승인 여부 확인 매퍼 -->
+	<select id="selectHotelApprovalStatus" resultType="Hotel">
+	    SELECT requestStatus FROM Hotel WHERE hName=#{hName}
+	</select>
+	
+	<!-- Restaurant 등록 승인 여부 확인 매퍼 -->
+	<select id="selectRestaurantApprovalStatus" resultType="Restaurant">
+	    SELECT requestStatus FROM Restaurant WHERE rName=#{rName}
+	</select>
+	
+	<!-- Business 탈퇴 매퍼 -->
+	<delete id="deleteBusiness" parameterType="String">
+	    DELETE FROM Business WHERE bId=#{bId}
+	</delete>
+</mapper>

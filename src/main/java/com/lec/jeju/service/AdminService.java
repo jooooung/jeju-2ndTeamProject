@@ -2,15 +2,21 @@ package com.lec.jeju.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Service;
 
+import com.lec.jeju.vo.Admin;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.Restaurant;
 
 @Service
 public interface AdminService {	
-	public boolean login(String apd, String apw);
-
+	
+	public String loginCheck(String aid, String apw, HttpSession httpSession);
+	
+	public Admin getDetailAdmin(String aid);
+	
 	public List<Hotel> getHotelApprovalList();
 
 	public void updateHotelApproval(String hname, String approval);

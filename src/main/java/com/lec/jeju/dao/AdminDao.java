@@ -13,15 +13,17 @@ import com.lec.jeju.vo.Restaurant;
 @Repository
 @Mapper
 public interface AdminDao {
-	public boolean login(@Param("aId") String aId, @Param("aPw") String aPw);
-
+	public int idConfirm(String aid);
+	
 	public List<Hotel> selectHotelApprovalList();
+	
+	public Admin getDetailAdmin(String aid);
 
-	public void updateHotelApproval(@Param("hName") String hName, @Param("approval") String approval);
+	public void updateHotelApproval(@Param("hname") String hname, @Param("approval") String approval);
 
 	public List<Restaurant> selectRestaurantApprovalList();
 
-	public void updateRestaurantApproval(@Param("rName") String rName, @Param("approval") String approval);
+	public void updateRestaurantApproval(@Param("rname") String rname, @Param("approval") String approval);
 
 	public List<Hotel> selectApprovedHotels();
 
@@ -30,5 +32,4 @@ public interface AdminDao {
 	public List<Hotel> selectRejectedHotels();
 
 	public List<Restaurant> selectRejectedRestaurants();
-
 }

@@ -30,8 +30,5 @@
 			             WHERE H.HNAME = B.HNAME(+) ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
-		<if test">
-		
-		</if>
 	</select>
 </mapper>

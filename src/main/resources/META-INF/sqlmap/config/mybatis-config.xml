@@ -7,10 +7,16 @@
 		<typeAlias type="com.lec.jeju.vo.MapSpot" alias="MapSpot"/>
 		<typeAlias type="com.lec.jeju.vo.MapRestaurant" alias="MapRestaurant"/>
 		<typeAlias type="com.lec.jeju.vo.MapHotel" alias="MapHotel"/>
+		<typeAlias type="com.lec.jeju.vo.Admin" alias="Admin"/>
+		<typeAlias type="com.lec.jeju.vo.Hotel" alias="Hotel"/>
+<!-- 		<typeAlias type="com.lec.jeju.vo.Restaurant" alias="Restaurant"/> -->
 	</typeAliases>
 	<mappers>
 		<mapper resource="META-INF/sqlmap/mappers/MapSpot.xml"/>
 		<mapper resource="META-INF/sqlmap/mappers/MapRestaurant.xml"/>
 		<mapper resource="META-INF/sqlmap/mappers/MapHotel.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Admin.xml"/>
+		<mapper resource="META-INF/sqlmap/mappers/Hotel.xml"/>
+<!-- 		<mapper resource="META-INF/sqlmap/mappers/Restaurant.xml"/> -->
 	</mappers>
 </configuration>

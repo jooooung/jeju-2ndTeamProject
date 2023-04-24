@@ -10,38 +10,38 @@
     </select>
 
 	<!-- 업체 등록 승인, 거절 -->
-    <update id="updateHotelRequestStatus" parameterType="Hotel">
+    <update id="approveHotel" parameterType="Hotel">
         UPDATE Hotel SET requestStatus=#{requestStatus} WHERE hName=#{hName}
     </update>
 
-    <update id="updateRestaurantRequestStatus" parameterType="Restaurant">
+    <update id="approveRestaurant" parameterType="Restaurant">
         UPDATE Restaurant SET requestStatus=#{requestStatus} WHERE rName=#{rName}
     </update>
 
 	<!-- 업체 등록 승인 요청 목록 -->
-    <select id="selectHotelApprovalRequests" resultType="com.lec.jeju.vo.Hotel">
+    <select id="hotelApproval" resultType="com.lec.jeju.vo.Hotel">
         SELECT * FROM Hotel WHERE requestStatus='P'
     </select>
 
-    <select id="selectRestaurantApprovalRequests" resultType="com.lec.jeju.vo.Restaurant">
+    <select id="restaurantApproval" resultType="com.lec.jeju.vo.Restaurant">
         SELECT * FROM Restaurant WHERE requestStatus='P'
     </select>
 
 	<!-- 업체 등록 승인 현황 -->
-    <select id="selectApprovedHotels" resultType="com.lec.jeju.vo.Hotel">
+    <select id="approvedHotels" resultType="com.lec.jeju.vo.Hotel">
         SELECT * FROM Hotel WHERE requestStatus='A'
     </select>
 
-    <select id="selectApprovedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
+    <select id="approvedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
         SELECT * FROM Restaurant WHERE requestStatus='A'
     </select>
 
 	<!-- 업체 등록 거절 현황 -->
-    <select id="selectRejectedHotels" resultType="com.lec.jeju.vo.Hotel">
+    <select id="rejectedHotels" resultType="com.lec.jeju.vo.Hotel">
         SELECT * FROM Hotel WHERE requestStatus='R'
     </select>
 
-    <select id="selectRejectedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
+    <select id="rejectedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
         SELECT * FROM Restaurant WHERE requestStatus='R'
     </select>
 

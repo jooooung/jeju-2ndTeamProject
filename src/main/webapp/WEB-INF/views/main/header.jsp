@@ -15,7 +15,7 @@
 	<c:if test="${empty member and empty business and empty admin}"><!-- 비회원 -->
 		<div class="navbar">
 			<div class="navbar_logo">
-				<a href='${conPath }/main.do'">
+				<a href="${conPath }/main.do">	
 					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
 					<span>JEJU</span>
 				</a>
@@ -51,7 +51,7 @@
 			</div>
 			<div class="log">
 				<ul>
-					<li><a href="${conPath }/member.do?method=join">회원가입</a></li>
+					<li><a href="${conPath }/member.do?method=joinAgreePage">회원가입</a></li>
 					<li><a href="${conPath }/member.do?method=login">로그인</a></li>
 				</ul>
 			</div>
@@ -60,7 +60,7 @@
 	<c:if test="${not empty member and empty business and empty admin}"><!-- 회원 -->
 		<div class="navbar">
 			<div class="navbar_logo">
-				<a href="">
+				<a href="${conPath }/main.do">
 					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
 					<span>JEJU</span>
 				</a>
@@ -77,7 +77,7 @@
 					</li>
 					<li>게시판
 						<ol class="subMenu">
-							<li><a href="">축제정보</a></li>
+							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="">여행리뷰</a></li>
 							<li><a href="">공지사항</a></li>
 						</ol>

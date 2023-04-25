@@ -10,17 +10,17 @@
 <title>Insert title here</title>
 <link href="${conPath }/css/member/login.css" rel=stylesheet>
 <style>
-#content {
-	width: 800px;
-	height: 350px;
-	margin: 50px auto;
-}
 </style>
 </head>
 <body>
 	<c:if test="${joinResult eq 1 }">
 		<script>
 			alert('회원가입 감사합니다');
+		</script>
+	</c:if>
+	<c:if test="${modifyResult eq 1 }">
+		<script>
+			alert('정보수정 성공');
 		</script>
 	</c:if>
 	<c:if test="${not empty loginResult}">
@@ -53,10 +53,9 @@
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="2" style="text-align: center;">
 					<input type="submit" value="로그인">
-					<input type="button" value="회원가입" class="submit-btn" onclick="location='${conPath}/member.do?method=join'">
-					
+					<input type="button" value="회원가입" class="submit-btn" onclick="location='${conPath}/member.do?method=joinAgreePage'">
 					</td>
 				</tr>
 			</table>

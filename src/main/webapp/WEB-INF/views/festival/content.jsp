@@ -71,13 +71,17 @@
 				</tr>
 				<tr>
 					<td colspan="2">
+						<c:if test="${empty member and not empty admin}">
+							<button class="btn" 
+								onclick="location.href='${conPath}/festival/modifyView.do?festivalno=${param.festivalno }&pageNum=${param.pageNum }'">
+								수정
+							</button>
+							</c:if>
+						<c:if test="${empty member and not empty admin}"> 
 						<button class="btn"
-							onclick="location.href='${conPath}/festival/modifyView.do?festivalno=${param.festivalno }&pageNum=${param.pageNum }'">
-							수정</button> <!--<c:if test="${empty member and not empty admin}"></c:if> -->
-						<button class="btn"
-							onclick="delete1('${contentFestival.festivalno}')">삭제</button>
-						<button class="btn"
-							onclick="location.href='${conPath}/festival/list.do?pageNum=${param.pageNum }'">목록</button>
+								onclick="delete1('${contentFestival.festivalno}')">삭제</button>
+						</c:if>
+						<button class="btn" onclick="location.href='${conPath}/festival/list.do?pageNum=${param.pageNum }'">목록</button>
 					</td>
 				</tr>
 			</table>

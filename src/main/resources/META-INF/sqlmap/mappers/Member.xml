@@ -16,16 +16,21 @@
 		<result property="mphoto" column="mphoto" />
 		<result property="mrdate" column="mrdate" />
 	</resultMap>
-
 	<!-- ID 중복체크 -->
 	<select id="idConfirm" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM MEMBER WHERE MID = #{mid, jdbcType=VARCHAR}
 	</select>
+	
+	<!-- 이메일 중복체크 -->
+	<select id="emailConfirm" parameterType="String" resultType="int">
+	    SELECT COUNT(*) FROM MEMBER WHERE MEMAIL = #{memail, jdbcType=VARCHAR}
+	</select>
 
+	
 	<!-- 회원가입 -->
 	<insert id="joinMember" parameterType="Member">
 	insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto)
-    values(#{mid}, #{mpw}, #{mname}, #{mtel}, #{memail}, #{maddr}, #{mdeaddr}, #{mpost}, #{mbirth}, #{mphoto})
+    values(#{mid}, #{mpw}, #{mname}, #{mtel}, #{memail}, #{maddr}, #{mdeaddr}, #{mpost}, #{mbirth}, #{mphoto, jdbcType=VARCHAR})
 	</insert>
 
 	<!-- 로그인 -->
@@ -43,13 +48,13 @@
 	UPDATE MEMBER SET 
         mPW = #{mpw},
         mNAME = #{mname},
-        mEMAIL = '#{memail},
+        mEMAIL = #{memail},
         mADDR = #{maddr},
         mDEADDR = #{mdeaddr},
         mPOST = #{mpost},
-        mBIRTH = #{mbirth},
-        mPHOTO = #{mphoto}
-    WHERE mID = #{mid}
+        mBIRTH = #{mbirth, jdbcType=TIMESTAMP},
+		mPHOTO = #{mphoto}
+    WHERE mID = #{mid, jdbcType=VARCHAR}
 	</update>
 	
 	<!-- 회원탈퇴 -->

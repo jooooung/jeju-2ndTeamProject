@@ -18,6 +18,6 @@ public class MapController {
 		model.addAttribute("spot", mservice.mapSpotList());
 		model.addAttribute("res", mservice.mapRestaurantList());
 		model.addAttribute("hotel", mservice.mapHotelList());
-		return "map/map";
+		return "map/mapt";
 	}
 }

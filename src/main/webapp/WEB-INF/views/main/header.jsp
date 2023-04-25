@@ -15,7 +15,7 @@
 	<c:if test="${empty member and empty business and empty admin}"><!-- 비회원 -->
 		<div class="navbar">
 			<div class="navbar_logo">
-				<a href="${conPath }/main.do">
+				<a href="${conPath }/main.do">	
 					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
 					<span>JEJU</span>
 				</a>

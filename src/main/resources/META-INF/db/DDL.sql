@@ -186,8 +186,8 @@ CREATE TABLE hotelComment (
     bId VARCHAR2(50) REFERENCES BUSINESS(bId) ON DELETE CASCADE,
     hContent CLOB NOT NULL,
     hGroup NUMBER(5) NOT NULL,
-    hStep NUMBER(5) NOT NULL,
-    hIndent NUMBER(5) NOT NULL,
+    hStep NUMBER(5) NOT NULL,       -- 출력순서
+    hIndent NUMBER(5) NOT NULL,     -- 들여쓰기
     hCrdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -- 숙소댓글 테이블
 

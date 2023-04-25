@@ -7,7 +7,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath }/css/style.css" rel=stylesheet>
 </head>
 <body>
 		<jsp:forward page="main.do"/>

@@ -29,5 +29,10 @@ public class Hotel {
     private int startrow;
 	private int endrow;
 	
-	private String schword;
+	private String schitem;		// 지역 선택 변수
+	private String schword;		// 호텔명 검색 변수
+	
+	private Location location;
+	private Hreservation hreservation;
+	private HotelComment hotelComment;
 }

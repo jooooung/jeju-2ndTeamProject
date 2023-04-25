@@ -152,32 +152,37 @@
 			</div>
 			<div class="navbar_menu">
 				<ul>
-					<li onclick="location.href=''" style="cursor: pointer;">지도</li>
+					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판
 						<ol class="subMenu">
-							<li><a href="">축제정보</a></li>
+							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="">여행리뷰</a></li>
 							<li><a href="">공지사항</a></li>
 						</ol>
 					</li>
 					<li>관리하기
 						<ol class="subMenu">
-							<li><a href="">업체목록</a></li>
-							<li><a href="">관광지목록</a></li>
+							<li><a href="${conPath }/admin/hotelApproval.do">호텔 등록 승인 요청 목록</a></li>
+							<li><a href="${conPath }/admin/restaurantApproval.do">식당 등록 승인 요청 목록</a></li>
+							<li><a href="${conPath }/admin/approvedHotels.do">호텔 등록 승인 목록</a></li>
+							<li><a href="${conPath }/admin/approvedRestaurants.do">식당 등록 승인 목록</a></li>
+							<li><a href="${conPath }/admin/rejectedHotels.do">호텔 등록 거절 목록</a></li>
+							<li><a href="${conPath }/admin/rejectedRestaurants.do">식당 등록 거절 목록</a></li>
+							<li><a href="${conPath }/main.do">관광지목록</a></li>
 						</ol>
 					</li>
 				</ul>
 			</div>
 			<div class="log">
 				<ul>
-					<li><a href="">로그아웃</a></li>
+					<li><a href="${conPath}/admin.do?method=logout">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>

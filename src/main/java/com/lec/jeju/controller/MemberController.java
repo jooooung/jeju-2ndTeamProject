@@ -33,7 +33,7 @@ public class MemberController {
 		model.addAttribute("memailConfirmResult", memberService.emailConfirm(memail));
 		return "member/memailConfirm";
 	}
-
+  
 	// 회원가입 약관
 	@RequestMapping(params = "method=joinAgreePage", method = RequestMethod.GET)
 	public String joinAgreePage() {

@@ -141,9 +141,9 @@
 		</c:if>
 		</div>
 		<div id="right">
-		<%-- <c:if test="${not empty admin }"> --%>
-				<button class="btn" onclick="location='${conPath}/festival/write.do'">글등록</button>
-		<%-- </c:if> --%>
+		<c:if test="${not empty admin }">
+			<button class="btn" onclick="location='${conPath}/festival/write.do'">글등록</button>
+		</c:if>
 		</div>
 	</div>
 	<jsp:include page="../main/footer.jsp" />

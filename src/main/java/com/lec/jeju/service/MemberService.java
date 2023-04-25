@@ -17,9 +17,9 @@ public interface MemberService {
 
 	public Member getDetailMember(String mid);
 
-	public int modifyMember(Member member, HttpSession httpSession);
+	public int modifyMember(Member member, HttpSession httpSession, MultipartHttpServletRequest mRequest);
 
-	public int deleteMember(HttpSession httpSession, String mid);
+	public int deleteMember( String mid);
 
 	public void logout(HttpSession httpSession);
 

@@ -5,19 +5,32 @@
 <mapper namespace="com.lec.jeju.dao.AdminDao">
 
 	 <!-- 로그인 -->
-	<select id="login" parameterType="Admin" resultType="com.lec.jeju.vo.Admin">
-        SELECT * FROM Admin WHERE aId=#{aId} AND aPw=#{aPw}
+	<select id="loginCheck" parameterType="Admin" resultType="Admin">
+        SELECT * FROM Admin WHERE aid=#{aid} AND apw=#{apw}
     </select>
-
+	
+	<!-- 상세보기 -->
+	<select id="getDetailAdmin" parameterType="String" resultType="Admin">
+		SELECT * FROM ADMIN WHERE aid = #{aid}
+	</select>
+	
 	<!-- 업체 등록 승인, 거절 -->
     <update id="approveHotel" parameterType="Hotel">
-        UPDATE Hotel SET requestStatus=#{requestStatus} WHERE hName=#{hName}
+        UPDATE Hotel SET requestStatus='A' WHERE hName=#{hname}
+    </update>
+    
+    <update id="rejectHotel" parameterType="Hotel">
+        UPDATE Hotel SET requestStatus='R' WHERE hName=#{hname}
     </update>
 
     <update id="approveRestaurant" parameterType="Restaurant">
-        UPDATE Restaurant SET requestStatus=#{requestStatus} WHERE rName=#{rName}
+        UPDATE Restaurant SET requestStatus='A' WHERE rName=#{rname}
     </update>
-
+    
+    <update id="rejectRestaurant" parameterType="Restaurant">
+        UPDATE Restaurant SET requestStatus='R' WHERE rName=#{rname}
+    </update>
+	
 	<!-- 업체 등록 승인 요청 목록 -->
     <select id="hotelApproval" resultType="com.lec.jeju.vo.Hotel">
         SELECT * FROM Hotel WHERE requestStatus='P'
@@ -37,43 +50,52 @@
     </select>
 
 	<!-- 업체 등록 거절 현황 -->
-    <select id="rejectedHotels" resultType="com.lec.jeju.vo.Hotel">
+   <select id="rejectedHotels" resultType="com.lec.jeju.vo.Hotel">
         SELECT * FROM Hotel WHERE requestStatus='R'
     </select>
 
     <select id="rejectedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
         SELECT * FROM Restaurant WHERE requestStatus='R'
     </select>
-
+	
+	<!-- 비즈니스 등록 승인 및 거절 요청의 상세 내용 보기 -->
+	<select id="selectHotelByName" parameterType="String" resultType="com.lec.jeju.vo.Hotel">
+		SELECT * FROM Hotel WHERE hName=#{hname}
+	</select>
+	
+	<select id="selectRestaurantByName" parameterType="String" resultType="com.lec.jeju.vo.Restaurant">
+		SELECT * FROM Restaurant WHERE rName=#{rname}
+	</select>
+	
 	<!-- 게시글 삭제 -->
 	<!-- 페스티벌 -->
 	<delete id="deleteFestival" parameterType="int">
 	    DELETE FROM Festival
-	    WHERE festivalNo = #{festivalNo}
+	    WHERE festivalNo = #{festivalno}
 	</delete>
 
 	<!-- 리뷰 -->
 	<delete id="deleteReview" parameterType="int">
 	    DELETE FROM Review
-	    WHERE reviewNo = #{reviewNo}
+	    WHERE reviewNo = #{reviewno}
 	</delete>
 
 	<!-- 댓글 삭제 -->
 	<!-- 호텔 -->
 	<delete id="deleteHotelComment" parameterType="int">
 	    DELETE FROM hotelComment
-	    WHERE hCommentNo = #{hCommentNo}
+	    WHERE hCommentNo = #{hcommentno}
 	</delete>
 
 	<!-- 식당 -->
 	<delete id="deleteRestaurantComment" parameterType="int">
 	    DELETE FROM restaurantComment
-	    WHERE rCommentNo = #{rCommentNo}
+	    WHERE rCommentNo = #{rcommentno}
 	</delete>
 
 	<!-- 관광지 -->
 	<delete id="deleteSpotComment" parameterType="int">
 	    DELETE FROM spotComment
-	    WHERE sCommentNo = #{sCommentNo}
+	    WHERE sCommentNo = #{scommentno}
 	</delete>
 </mapper>

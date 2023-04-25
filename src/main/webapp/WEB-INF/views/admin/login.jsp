@@ -6,15 +6,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<link href="${conPath }/css/style.css" rel="stylesheet">
-<style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Insert title here</title>
+	<link href="${conPath }/css/member/login.css" rel=stylesheet>
+	<style>
 	#content {
-		width: 800px; height:350px;
+		width: 800px;
+		height: 350px;
 		margin: 50px auto;
 	}
-</style>
+	</style>
 </head>
 <body>
 	<c:if test="${not empty loginResult}">
@@ -22,12 +23,12 @@
 	</c:if>
 	<c:if test="${not empty admin }">
 		<script>
-			location.href='${conPath}/main.do';
+			location.href='${conPath}/main/main.do';
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div id="content">
-	<form action="${conPath}/admin/login" method="post">
+	<form action="${conPath}/admin.do" method="post">
 		<input type="hidden" name="method" value="login">
 		<input type="hidden" name="after" value="${empty param.after ?  'main.do':param.after}">
 		<table>

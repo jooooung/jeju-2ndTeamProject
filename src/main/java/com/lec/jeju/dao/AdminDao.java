@@ -8,28 +8,38 @@ import org.springframework.stereotype.Repository;
 
 import com.lec.jeju.vo.Admin;
 import com.lec.jeju.vo.Hotel;
+import com.lec.jeju.vo.Member;
 import com.lec.jeju.vo.Restaurant;
 
-@Repository
 @Mapper
 public interface AdminDao {
 	public int idConfirm(String aid);
 	
-	public List<Hotel> selectHotelApprovalList();
-	
 	public Admin getDetailAdmin(String aid);
+	
+	public Admin loginCheck(Admin admin);
+	
+	public List<Hotel> hotelApproval(String requeststatus);
 
-	public void updateHotelApproval(@Param("hname") String hname, @Param("approval") String approval);
+	public List<Restaurant> restaurantApproval(String requeststatus);
+	
+	public void approveHotel(@Param("hname") String hname, @Param("approval") String approval, @Param("requeststatus") String requeststatus);
 
-	public List<Restaurant> selectRestaurantApprovalList();
+	public void approveRestaurant(@Param("rname") String rname, @Param("approval") String approval, @Param("requeststatus") String requeststatus);
 
-	public void updateRestaurantApproval(@Param("rname") String rname, @Param("approval") String approval);
+	public void rejectHotel(@Param("hname") String hname, @Param("approval") String approval, @Param("requeststatus") String requeststatus);
 
-	public List<Hotel> selectApprovedHotels();
+	public void rejectRestaurant(@Param("rname") String rname, @Param("approval") String approval, @Param("requeststatus") String requeststatus);
+	
+	public List<Hotel> approvedHotels(String requeststatus);
+	
+    public List<Restaurant> approvedRestaurants(String requeststatus);
+    
+    public List<Hotel> rejectedHotels(String requeststatus);
+    
+    public List<Restaurant> rejectedRestaurants(String requeststatus);
+    
+    public Hotel selectHotelByName(String hname);
 
-	public List<Restaurant> selectApprovedRestaurants();
-
-	public List<Hotel> selectRejectedHotels();
-
-	public List<Restaurant> selectRejectedRestaurants();
+    public Restaurant selectRestaurantByName(String rname);
 }

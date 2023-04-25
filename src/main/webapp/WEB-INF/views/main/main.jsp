@@ -17,6 +17,18 @@
 	</script>
 </head>
 <body>
+	<c:set var="SUCCESS" value="1" />
+	<c:set var="FAIL" value="0" />
+	<c:if test="${modifyResult eq SUCCESS}"> <!-- 정보수정 -->
+		<script>
+			alert('정보수정 성공');
+		</script>
+	</c:if>
+	<c:if test="${not empty msg and empty member }">  <!-- 회원탈퇴 성공시 -->
+		<script>
+			alert('회원탈퇴가 완료 되었습니다. 감사합니다.');
+		</script>
+	</c:if>
 	<jsp:include page="header.jsp"/>
 	<div class="swiper mySwiper">
 	    <div class="swiper-wrapper">

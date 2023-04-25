@@ -1,26 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="conPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
     <title>다양한 이미지 마커 표시하기</title>
-    <style>
-	#mapwrap{position:relative;overflow:hidden;}
-	.category, .category *{margin:0;padding:0;color:#000;}   
-	.category {position:absolute;overflow:hidden;top:10px;left:10px;width:150px;height:50px;z-index:10;border:1px solid black;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background-color:#fff;}
-	.category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
-	.category li{list-style:none;float:left;width:50px;height:45px;padding-top:5px;cursor:pointer;} 
-	.category .ico_comm {display:block;margin:0 auto 2px;width:22px;height:26px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png') no-repeat;} 
-	.category .ico_spot {background-position:-10px 0;}  
-	.category .ico_res {background-position:-10px -36px;}   
-	.category .ico_hotel {background-position:-10px -72px;} 
-	</style>
+    <link href="${conPath }/css/map.css" rel=stylesheet>
 </head>
 <body>
-<div id="mapwrap"> 
+<jsp:include page="../main/header.jsp"/>
+<div id="mapwrap" class="map_wrap"> 
     <!-- 지도가 표시될 div -->
-    <div id="map" style="width:100%;height:700px;"></div>
+    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
     <!-- 지도 위에 표시될 마커 카테고리 -->
     <div class="category">
         <ul>
@@ -34,16 +27,30 @@
             </li>
             <li id="hotelMenu" onclick="changeMarker('hotel')">
                 <span class="ico_comm ico_hotel"></span>
-                호텔
+                숙박
             </li>
         </ul>
     </div>
+    <div id="menu_wrap" class="bg_white">
+        <div class="option">
+            <div>
+                <form onsubmit="searchPlaces(); return false;">
+                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
+                    <button type="submit">검색하기</button> 
+                </form>
+            </div>
+        </div>
+        <hr>
+        <ul id="placesList"></ul>
+        <div id="pagination"></div>
+    </div>
 </div>
+
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=21cedbfdcfb60dc62330e49e8c4f4a19"></script>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = { 
-	        center: new kakao.maps.LatLng(33.37681, 126.53871), // 지도의 중심좌표
+	        center: new kakao.maps.LatLng(33.35011815587967, 126.34393085440018), // 지도의 중심좌표
 	        level: 10 // 지도의 확대 레벨
 	    };
 	
@@ -55,40 +62,100 @@
 	var resList = [];
 	var hotel = ${hotel};
 	var hotelList = [];
-	
 	// spot 마커가 표시될 좌표 배열입니다
 	for (var i in spot) {
-		spotList.push({
-			content: '<span class="info-title">' + spot[i].sname + '</span>',
+		var spotContent = 
+	        '<div class="wrap">' + 
+	        '    <div class="info">' + 
+	        '        <div class="title">' + spot[i].sname +   
+	        '        </div>' + 
+	        '        <div class="body">' + 
+	        '            <div class="img">' +
+	        '                <img src="${conPath}/spotImgFileUpload/' + spot[i].smainimg + '"width="73" height="70">' +
+	        '           </div>' + 
+	        '            <div class="desc">' + 
+	        '                <div class="addr">'+spot[i].saddr.substring(spot[i].saddr.indexOf('도')+2) +'</div>' + 
+	        '            <div class="esc">' + 
+	        '                <div class="ellipsis">'+spot[i].sinfo+'</div>' + 
+	        '            </div>' + 
+	        '                <div class="jibun">' + spot[i].stel + '</div>' + 
+	        '            </div>' + 
+	        '        </div>' + 
+	        '    </div>' +    
+	        '</div>';
+	        
+        spotList.push({
+        	title: spot[i].sname,
+			content: spotContent,
 			latlng: new kakao.maps.LatLng(spot[i].slatitude, spot[i].slongitude)
 		})
 	};
 	
 	// res 마커가 표시될 좌표 배열입니다
 	for (var i in res) {
+		var resContent = 
+	        '<div class="wrap">' + 
+	        '    <div class="info">' + 
+	        '        <div class="title">' + res[i].rname +   
+	        '        </div>' + 
+	        '        <div class="body">' + 
+	        '            <div class="img">' +
+	        '                <img src="${conPath}/resImgFileUpload/' + res[i].rmainimg + '"width="73" height="70">' +
+	        '           </div>' + 
+	        '            <div class="desc">' + 
+	        '                <div class="addr">'+res[i].raddr.substring(res[i].raddr.indexOf('도')+2) +'</div>' + 
+	        '            <div class="esc">' + 
+	        '                <div class="ellipsis">'+res[i].rinfo+'</div>' + 
+	        '            </div>' + 
+	        '                <div class="jibun">' + res[i].rtel + '</div>' + 
+	        '            </div>' + 
+	        '        </div>' + 
+	        '    </div>' +    
+	        '</div>';
 		resList.push({
-			content: res[i].rname,
+			title: res[i].rname,
+			content: resContent,
 			latlng: new kakao.maps.LatLng(res[i].rlatitude, res[i].rlongitude)
 		})
 	};
 	
 	// hotel 마커가 표시될 좌표 배열입니다
 	for (var i in hotel) {
+		var hotelContent = 
+	        '<div class="wrap">' + 
+	        '    <div class="info">' + 
+	        '        <div class="title">' + hotel[i].hname +   
+	        '        </div>' + 
+	        '        <div class="body">' + 
+	        '            <div class="img">' +
+	        '                <img src="${conPath}/hotelImgFileUpload/' + hotel[i].hmainimg + '"width="73" height="70">' +
+	        '           </div>' + 
+	        '            <div class="desc">' + 
+	        '                <div class="addr">'+hotel[i].haddr.substring(hotel[i].haddr.indexOf('도')+2) +'</div>' + 
+	        '            <div class="esc">' + 
+	        '                <div class="ellipsis">'+hotel[i].hinfo+'</div>' + 
+	        '            </div>' + 
+	        '                <div class="jibun">' + hotel[i].htel + '</div>' + 
+	        '            </div>' + 
+	        '        </div>' + 
+	        '    </div>' +    
+	        '</div>';
 		hotelList.push({
-			content: hotel[i].hname,
+			title: hotel[i].hname,
+			content: hotelContent,
 			latlng: new kakao.maps.LatLng(hotel[i].hlatitude, hotel[i].hlongitude)
 		})
 	};   
 	
-	var markerImageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/category.png';  // 마커이미지의 주소입니다. 스프라이트 이미지 입니다
+	var markerImageSrc = '../icon/sprite.png';  // 마커이미지의 주소입니다. 스프라이트 이미지 입니다
 	    spotMarkers = [], // spot 마커 객체를 가지고 있을 배열입니다
 	    resMarkers = [], // res 마커 객체를 가지고 있을 배열입니다
 	    hotelMarkers = []; // hotel 마커 객체를 가지고 있을 배열입니다
 	
 	    
-	createSpotMarkers(); // spot 마커를 생성하고 커피숍 마커 배열에 추가합니다
-	createResMarkers(); // res 마커를 생성하고 편의점 마커 배열에 추가합니다
-	createHotelMarkers(); // hotel 마커를 생성하고 주차장 마커 배열에 추가합니다
+	createSpotMarkers(); // spot 마커를 생성하고 spot 마커 배열에 추가합니다
+	createResMarkers(); // res 마커를 생성하고 res 마커 배열에 추가합니다
+	createHotelMarkers(); // hotel 마커를 생성하고 hotel 마커 배열에 추가합니다
 	
 	changeMarker('spot'); // 지도에 spot 마커가 보이도록 설정합니다    
 	
@@ -105,104 +172,79 @@
 	        position: position,
 	        image: image
 	    });
-	    
 	    return marker;  
 	}   
-	   
+	
 	// spot 마커를 생성하고 spot 마커 배열에 추가하는 함수입니다
 	function createSpotMarkers() {
-	    
 	    for (var i = 0; i < spotList.length; i++) {  
-	        
-	        var imageSize = new kakao.maps.Size(22, 26),
+	        var imageSize = new kakao.maps.Size(35, 33),
 	            imageOptions = {  
-	                spriteOrigin: new kakao.maps.Point(10, 0),    
+	                spriteOrigin: new kakao.maps.Point(0, 66),    
 	                spriteSize: new kakao.maps.Size(36, 98)  
-	            };     
-	        
+	            };  
 	        // 마커이미지와 마커를 생성합니다
 	        var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),    
 	        spotMarker = createMarker(spotList[i].latlng, markerImage)
 	        
-	         // 마커에 표시할 인포윈도우를 생성합니다 
-		    var spotInfowindow = new kakao.maps.InfoWindow({
-		        content: spotList[i].content // 인포윈도우에 표시할 내용
-		    });
-	
-		    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-		    kakao.maps.event.addListener(spotMarker, 'mouseover', makeOverListener(map, spotMarker, spotInfowindow));
-		    kakao.maps.event.addListener(spotMarker, 'mouseout', makeOutListener(spotInfowindow));
-	        
 	        // 생성된 마커를 spot 마커 배열에 추가합니다
 	        spotMarkers.push(spotMarker);
-	    }     
-	}
-	
-	// spot 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-	function makeOverListener(map, spotMarker, spotInfowindow) {
-	    return function() {
-	    	spotInfowindow.open(map, spotMarker);
-	    };
-	}
+	     	
+		    // 커스텀 오버레이 생성
+	    	var overlay = new kakao.maps.CustomOverlay({
+	   			content: spotList[i].content,
+	   			map: map,
+	   			position: spotList[i].latlng   
+			});
+		    
+	    	// 지도 onload시 커스텀 오버레이 비활성화
+	    	overlay.setMap(null);
 
-	// spot 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-	function makeOutListener(spotInfowindow) {
-	    return function() {
-	    	spotInfowindow.close();
-	    };
+	    	// 마커 클릭 시 커스텀 오버레이 활성화
+			kakao.maps.event.addListener(spotMarker, 'mouseover', makeOpenListener(map, overlay));
+			kakao.maps.event.addListener(spotMarker, 'mouseout', makeCLoseListener(overlay));
+	    }
 	}
 	
 	// spot 마커들의 지도 표시 여부를 설정하는 함수입니다
 	function setSpotMarkers(map) {        
 	    for (var i = 0; i < spotMarkers.length; i++) {  
 	    	spotMarkers[i].setMap(map);
-	    }        
+	    }
 	}
-
+	
 	// res 마커를 생성하고 res 마커 배열에 추가하는 함수입니다
 	function createResMarkers() {
 	    for (var i = 0; i < resList.length; i++) {
 	        
-	        var imageSize = new kakao.maps.Size(22, 26),
+	        var imageSize = new kakao.maps.Size(35, 33),
 	            imageOptions = {   
-	                spriteOrigin: new kakao.maps.Point(10, 36),    
+	                spriteOrigin: new kakao.maps.Point(0, 32),    
 	                spriteSize: new kakao.maps.Size(36, 98) 
 	            };       
 	     
 	        // 마커이미지와 마커를 생성합니다
 	        var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),    
 	        resMarker = createMarker(resList[i].latlng, markerImage); 
-	        
-	        // 마커에 표시할 인포윈도우를 생성합니다 
-		    var resInfowindow = new kakao.maps.InfoWindow({
-		        content: resList[i].content // 인포윈도우에 표시할 내용
-		    });
-
-		    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-		    kakao.maps.event.addListener(resMarker, 'mouseover', makeOverListener(map, resMarker, resInfowindow));
-		    kakao.maps.event.addListener(resMarker, 'mouseout', makeOutListener(resInfowindow));
-	
+	       
 	        // 생성된 마커를 res 마커 배열에 추가합니다
-	        resMarkers.push(resMarker);    
-	    }        
-	}
-	
-	// res 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-	function makeOverListener(map, resMarker, resInfowindow) {
-	    return function() {
-	    	resInfowindow.open(map, resMarker);
-	    };
-	}
+	        resMarkers.push(resMarker);  
+	        
+	        // 커스텀 오버레이 생성
+	    	var overlay = new kakao.maps.CustomOverlay({
+	   			content: resList[i].content,
+	   			map: map,
+	   			position: resList[i].latlng   
+			});
+		    
+	    	// 지도 onload시 커스텀 오버레이 비활성화
+	    	overlay.setMap(null);
 
-	// res 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-	function makeOutListener(resInfowindow) {
-	    return function() {
-	    	resInfowindow.close();
-	    };
+	    	// 마커 클릭 시 커스텀 오버레이 활성화
+			kakao.maps.event.addListener(resMarker, 'mouseover', makeOpenListener(map, overlay));
+			kakao.maps.event.addListener(resMarker, 'mouseout', makeCLoseListener(overlay));
+	        
+	    }        
 	}
 	
 	// res 마커들의 지도 표시 여부를 설정하는 함수입니다
@@ -216,9 +258,9 @@
 	function createHotelMarkers() {
 	    for (var i = 0; i < hotelList.length; i++) {
 	        
-	        var imageSize = new kakao.maps.Size(22, 26),
+	        var imageSize = new kakao.maps.Size(35, 33),
 	            imageOptions = {   
-	                spriteOrigin: new kakao.maps.Point(10, 72),    
+	                spriteOrigin: new kakao.maps.Point(0, 0),    
 	                spriteSize: new kakao.maps.Size(36, 98)  
 	            };       
 	     
@@ -226,19 +268,21 @@
 	        var markerImage = createMarkerImage(markerImageSrc, imageSize, imageOptions),    
 	        hotelMarker = createMarker(hotelList[i].latlng, markerImage);  
 	        
-	        // 마커에 표시할 인포윈도우를 생성합니다 
-		    var hotelInfowindow = new kakao.maps.InfoWindow({
-		        content: hotelList[i].content // 인포윈도우에 표시할 내용
-		    });
-
-		    // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-		    // 이벤트 리스너로는 클로저를 만들어 등록합니다 
-		    // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-		    kakao.maps.event.addListener(hotelMarker, 'mouseover', makeOverListener(map, hotelMarker, hotelInfowindow));
-		    kakao.maps.event.addListener(hotelMarker, 'mouseout', makeOutListener(hotelInfowindow));
-	
 	        // 생성된 마커를 hotel 마커 배열에 추가합니다
-	        hotelMarkers.push(hotelMarker);        
+	        hotelMarkers.push(hotelMarker);     
+	        
+	        var overlay = new kakao.maps.CustomOverlay({
+	   			content: hotelList[i].content,
+	   			map: map,
+	   			position: hotelList[i].latlng   
+			});
+		    
+	    	// 지도 onload시 커스텀 오버레이 비활성화
+	    	overlay.setMap(null);
+
+	    	// 마커 클릭 시 커스텀 오버레이 활성화
+			kakao.maps.event.addListener(hotelMarker, 'mouseover', makeOpenListener(map, overlay));
+			kakao.maps.event.addListener(hotelMarker, 'mouseout', makeCLoseListener(overlay));
 	    }                
 	}
 	
@@ -249,17 +293,17 @@
 	    }        
 	}
 	
-	// hotel 인포윈도우를 표시하는 클로저를 만드는 함수입니다 
-	function makeOverListener(map, hotelMarker, hotelInfowindow) {
-	    return function() {
-	    	hotelInfowindow.open(map, hotelMarker);
-	    };
+	// 커스텀 오버레이를 표시하는 클로저를 만드는 함수입니다
+	function makeOpenListener(map, overlay) {
+		return function() {
+		   	overlay.setMap(map);
+		};
 	}
-
-	// hotel 인포윈도우를 닫는 클로저를 만드는 함수입니다 
-	function makeOutListener(hotelInfowindow) {
+	
+	// 커스텀 오버레이를 닫는 클로저를 만드는 함수입니다 
+	function makeCLoseListener(overlay) {
 	    return function() {
-	    	hotelInfowindow.close();
+	    	overlay.setMap(null);
 	    };
 	}
 	
@@ -312,5 +356,6 @@
 	    }    
 	} 
 </script>
+<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

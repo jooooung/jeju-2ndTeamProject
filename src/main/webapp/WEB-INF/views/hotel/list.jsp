@@ -133,10 +133,10 @@
 			<ul>
 			<c:forEach var="list" items="${list }">
 				<li>
-				<img alt="" src="${conPath }/hotelImgFileUpload/${list.hmainimg}" style="width: 100px">
-				${list.hname}<br>
-				${list.hinfo}<br>
-				${list }<br> 
+					<img alt="" src="${conPath }/hotelImgFileUpload/${list.hmainimg}" style="width: 100px">
+					${list.hname}<br>
+					${list.hinfo}<br>
+					${list }<br> 
 				
 				</li>
 			</c:forEach>

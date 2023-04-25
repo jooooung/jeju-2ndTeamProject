@@ -76,3 +76,5 @@ SELECT rName, requestStatus
 -- 9. 업체 탈퇴
 DELETE FROM Business
     WHERE bId = 'bid';
+
+COMMIT;

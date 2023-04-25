@@ -3,6 +3,10 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.HotelDao">
+	<resultMap type="Location" id="Location">
+		<result property="locationno" column="locationno"/>
+		<result property="lname" column="lname"/>
+	</resultMap>
 	<resultMap type="Hotel" id="HotelResult">
 		<result property="hname" column="hname"/>
 		<result property="bid" column="bid"/>
@@ -20,7 +24,7 @@
 		<result property="hlatitude" column="hlatitude"/>
 		<result property="hlongitude" column="hlongitude"/>
 		<result property="hprice" column="hprice"/>
-		<result property="lname" column="lname"/>
+		<collection property="location" resultMap="Location"/>
 	</resultMap>
 	<select id="hotelList" parameterType="Hotel" resultMap="HotelResult"><!-- 승인받은 업체만 출력 -->
 		<if test="schitem == null or schitem== ''"><!-- 호텔명 미검색, 지역 미선택-->
@@ -31,7 +35,7 @@
 			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
-		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 미선택 -->
+		<if test="schitem == 'all'"><!-- 호텔명 검색, 지역 미선택 -->
 			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
@@ -46,7 +50,7 @@
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
 			                    WHERE H.HNAME = B.HNAME(+)  AND H.LOCATIONNO = L.LOCATIONNO 
-			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = 1 ORDER BY bCnt DESC) A)
+			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = #{locationno} ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN 1 AND 3
 		</if>
 		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 선택 -->
@@ -76,7 +80,7 @@
 	</select>
 	
 	<!-- 숙소 상세보기 -->
-	<select id="detailHotel" parameterType="Hotel">
+	<select id="detailHotel" parameterType="String" resultType="Hotel">
 		SELECT (SELECT COUNT(*) FROM BOOKMARK WHERE HNAME = #{hname}) bCnt, lName, H.*
 		    FROM HOTEL H, LOCATION L WHERE H.LOCATIONNO = L.LOCATIONNO 
 		    AND HNAME = #{hname}

@@ -10,11 +10,13 @@
 		<typeAlias type="com.lec.jeju.vo.Admin" alias="Admin"/>
 		<typeAlias type="com.lec.jeju.vo.Restaurant" alias="Restaurant"/>
 		<typeAlias type="com.lec.jeju.vo.FestivalBoard" alias="Festival" />
+		<typeAlias type="com.lec.jeju.vo.Location" alias="Location"/>
 		<typeAlias type="com.lec.jeju.vo.Hotel" alias="Hotel"/>
 		<typeAlias type="com.lec.jeju.vo.Hreservation" alias="Hreservation"/>
 		<typeAlias type="com.lec.jeju.vo.HotelComment" alias="HotelComment"/>
 		<typeAlias type="com.lec.jeju.vo.Member" alias="Member" />
 		<!-- <typeAlias type="com.lec.jeju.vo.Member" alias="BookMark" /> -->
+		
 	</typeAliases>
 	
 	<mappers>

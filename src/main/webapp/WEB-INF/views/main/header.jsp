@@ -28,7 +28,7 @@
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="${conPath }/hotel/list.do">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판
@@ -72,7 +72,7 @@
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판
@@ -116,7 +116,8 @@
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
+							<li><a href="">등록하기</a></li>
 						</ol>
 					</li>
 					<li>게시판
@@ -157,7 +158,7 @@
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판

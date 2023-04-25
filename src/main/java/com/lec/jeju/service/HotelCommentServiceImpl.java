@@ -22,7 +22,7 @@ public class HotelCommentServiceImpl implements HotelCommentService {
 	}// 숙소 댓글 목록
 
 	@Override
-	public int totCntHcomment(HotelComment hotelComment) {
+	public int totCntHcomment(String hname, HotelComment hotelComment) {
 		return hCommentDao.totCntHcomment(hotelComment);
 	}// 숙소 댓글 개수
 

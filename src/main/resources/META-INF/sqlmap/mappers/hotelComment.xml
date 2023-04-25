@@ -30,7 +30,7 @@
 	<!-- 원 댓글 달기 -->
 	<insert id="registerHcomment" parameterType="HotelComment">
 		INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
-	    	VALUES (hCommentNo_seq.NEXTVAL, #{hname}, #{mid}, #{bid}, #{hcomment}, hCommentNo_seq.CURRVAL, 0, 0, SYSDATE)
+	    	VALUES (hCommentNo_seq.NEXTVAL, #{hname}, #{mid, jdbcType=VARCHAR}, #{bid, jdbcType=VARCHAR}, #{hcontent}, hCommentNo_seq.CURRVAL, 0, 0, SYSDATE)
     </insert>
     
     <!-- 답 댓글 달기 전 작업 -->
@@ -44,7 +44,7 @@
     <!-- 답댓글 달기 -->
     <insert id="replyHotelComment" parameterType="HotelComment">
     	INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
-    		VALUES (hCommentNo_seq.NEXTVAL, #{hname}, #{mid}, #{bid}, #{hcomment}, #{hgroup}, #{hindent}+1, #{hstep}+1, SYSDATE)
+    		VALUES (hCommentNo_seq.NEXTVAL, #{hname}, #{mid}, #{bid}, #{hcontent}, #{hgroup}, #{hindent}+1, #{hstep}+1, SYSDATE)
     </insert>
     
     <!-- 댓글 수정 -->

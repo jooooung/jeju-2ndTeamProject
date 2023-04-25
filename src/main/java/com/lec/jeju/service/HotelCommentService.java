@@ -9,7 +9,7 @@ public interface HotelCommentService {
 	public List<HotelComment> hCommentList(HotelComment hotelComment, String pageNum);	
 	
 	// 특정 숙소 댓글수
-	public int totCntHcomment(HotelComment hotelComment);
+	public int totCntHcomment(String hname, HotelComment hotelComment);
 	
 	// 원 댓글 달기
 	public int registerHcomment(HotelComment hotelComment);

@@ -29,20 +29,16 @@
 	      </div>
 	      <div class="swiper-slide" style="background-image: url('https://api.cdn.visitjeju.net/imageResource/file/202302/27/f00efcb3-63f6-4635-bd8f-81db3d1ddc55.jpg');">
 	      	<div class="mainCopyWrap">
-	      		<a href="">
 		      		<p class="stitle">2023년 봄 놓치지 말아야 할 제주 관광 10선</p>
 		      		<p class="title">영동바람 따라, 제주에 봄이 왔구나</p>
 		      		<button onclick="location.href='#축제 상세보기'">상세보기</button>
-	      		</a>
 	      	</div>
 	      </div>
 	      <div class="swiper-slide" style="background-image: url('https://api.cdn.visitjeju.net/imageResource/file/202301/03/341db8f8-e622-4589-acf7-e6860a593e76.jpg');">
 	      	<div class="mainCopyWrap">
-	      		<a href="">
 		      		<p class="stitle">혼자가 아닌 반려견과 함께하는 여행</p>
 		      		<p class="title"><혼저옵서게></p>
 		      		<button onclick="location.href='#축제 상세보기'">상세보기</button>
-	      		</a>
 	      	</div>
 	      </div>
 	    </div>

@@ -6,27 +6,27 @@
 	<!-- 업체 회원가입 -->
     <insert id="insertBusiness" parameterType="Business">
         INSERT INTO Business (bId, bPw, bName, bEmail)
-        VALUES (#{bId}, #{bPw}, #{bName}, #{bEmail})
+        VALUES (#{bid}, #{bpw}, #{bname}, #{bemail})
     </insert>
 
     <!-- 업체 정보수정 -->
     <update id="updateBusiness" parameterType="Business">
         UPDATE Business
-        SET bPw = #{bPw}, bName = #{bName}, bEmail = #{bEmail}
-        WHERE bId = #{bId}
+        SET bPw = #{bpw}, bName = #{bname}, bEmail = #{bemail}
+        WHERE bId = #{bid}
     </update>
 
     <!-- 업체 등록요청 (등록글 작성) -->
     <!-- Hotel 등록 -->
     <insert id="insertHotel" parameterType="Hotel">
         INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
-        VALUES (#{hName}, #{bId}, #{locationNo}, #{hAddr}, #{hTel}, #{hLink}, #{hInfo}, #{inTime}, #{outTime}, #{hMainImg}, #{hSubImg_1}, #{hSubImg_2}, #{hSubImg_3}, #{hLatitude}, #{hLongitude}, #{hPrice}, #{requestStatus})
+        VALUES (#{hname}, #{bid}, #{locationno}, #{haddr}, #{htel}, #{hlink}, #{hinfo}, #{intime}, #{outtime}, #{hmainimg}, #{hsubimg_1}, #{hsubimg_2}, #{hsubimg_3}, #{hlatitude}, #{hlongitude}, #{hprice}, #{requeststatus})
     </insert>
 
     <!-- Restaurant 등록 -->
     <insert id="insertRestaurant" parameterType="Restaurant">
         INSERT INTO Restaurant (rName, bId, locationNo, rAddr, rTel, rLink, rInfo, rMenu, rMainImg, rSubImg_1, rSubImg_2, rSubImg_3, rLatitude, rLongitude, rPrice, requestStatus)
-        VALUES (#{rName}, #{bId}, #{locationNo}, #{rAddr}, #{rTel}, #{rLink}, #{rInfo}, #{rMenu}, #{rMainImg}, #{rSubImg_1}, #{rSubImg_2}, #{rSubImg_3}, #{rLatitude}, #{rLongitude}, #{rPrice}, #{requestStatus})
+        VALUES (#{rname}, #{bid}, #{locationno}, #{raddr}, #{rtel}, #{rlink}, #{rinfo}, #{rmenu}, #{rmainImg}, #{rsubimg_1}, #{rsubimg_2}, #{rsubimg_3}, #{rlatitude}, #{rlongitude}, #{rprice}, #{requeststatus})
     </insert>
 
     <!-- 업체 등록요청 (등록글 수정) -->
@@ -34,59 +34,59 @@
     <update id="updateHotel" parameterType="Hotel">
         UPDATE Hotel
         SET hName = #{hName}, locationNo = #{locationNo}, hAddr = #{hAddr}, hTel = #{hTel}, hLink = #{hLink}, hInfo = #{hInfo}, inTime = #{inTime}, outTime = #{outTime},
-            hMainImg = #{hMainImg}, hSubImg_1 = #{hSubImg_1}, hSubImg_2 = #{hSubImg_2}, hSubImg_3 = #{hSubImg_3}, hLatitude = #{hLatitude}, hLongitude = #{hLongitude}, hPrice = #{hPrice}
-        WHERE hName = #{hName} AND bId = #{bId}
+            hMainImg = #{hmainimg}, hSubImg_1 = #{hsubimg_1}, hSubImg_2 = #{hsubimg_2}, hSubImg_3 = #{hsubimg_3}, hLatitude = #{hlatitude}, hLongitude = #{hlongitude}, hPrice = #{hprice}
+        WHERE hName = #{hname} AND bId = #{bid}
     </update>
 
     <!-- Restaurant 수정 -->
     <update id="updateRestaurant" parameterType="Restaurant">
 		UPDATE Restaurant
-	    SET rName = #{rName}, locationNo = #{locationNo}, rAddr = #{rAddr}, rTel = #{rTel}, rLink = #{rLink}, rInfo = #{rInfo}, rMenu = #{rMenu}, rMainImg = #{rMainImg}, rSubImg_1 = #{rSubImg_1}, rSubImg_2 = #{rSubImg_2}, rSubImg_3 = #{rSubImg_3}, rLatitude = #{rLatitude}, rLongitude = #{rLongitude}, rPrice = #{rPrice}
-	    WHERE rName = #{rName}
+	    SET rName = #{rname}, locationNo = #{locationno}, rAddr = #{raddr}, rTel = #{rtel}, rLink = #{rlink}, rInfo = #{rinfo}, rMenu = #{rmenu}, rMainImg = #{rmainimg}, rSubImg_1 = #{rsubimg_1}, rSubImg_2 = #{rsubimg_2}, rSubImg_3 = #{rsubimg_3}, rLatitude = #{rlatitude}, rLongitude = #{rlongitude}, rPrice = #{rprice}
+	    WHERE rName = #{rname}
 	</update>
 	
 	<!-- Hotel 삭제 매퍼 -->
 	<delete id="deleteHotel" parameterType="String">
-	    DELETE FROM Hotel WHERE hName=#{hName}
+	    DELETE FROM Hotel WHERE hName=#{hname}
 	</delete>
 	
 	<!-- Restaurant 삭제 매퍼 -->
 	<delete id="deleteRestaurant" parameterType="String">
-	    DELETE FROM Restaurant WHERE rName=#{rName}
+	    DELETE FROM Restaurant WHERE rName=#{rname}
 	</delete>
 	
 	<!-- Hotel 나의 글 조회 매퍼 -->
 	<select id="selectMyHotelPosts" resultType="Hotel">
-	    SELECT * FROM Hotel WHERE bId=#{bId}
+	    SELECT * FROM Hotel WHERE bId=#{bid}
 	</select>
 		
 	<!-- Restaurant 나의 글 조회 매퍼 -->
 	<select id="selectMyRestaurantPosts" resultType="Restaurant">
-	    SELECT * FROM Restaurant WHERE bId=#{bId}
+	    SELECT * FROM Restaurant WHERE bId=#{bid}
 	</select>
 	
 	<!-- Hotel 나의 댓글 조회 매퍼 -->
 	<select id="selectMyHotelComments" resultType="HotelComment">
-	    SELECT * FROM hotelComment WHERE bId=#{bId}
+	    SELECT * FROM hotelComment WHERE bId=#{bid}
 	</select>
 	
 	<!-- Restaurant 나의 댓글 조회 매퍼 -->
 	<select id="selectMyRestaurantComments" resultType="RestaurantComment">
-	    SELECT * FROM restaurantComment WHERE bId=#{bId}
+	    SELECT * FROM restaurantComment WHERE bId=#{bid}
 	</select>
 	
 	<!-- Hotel 등록 승인 여부 확인 매퍼 -->
 	<select id="selectHotelApprovalStatus" resultType="Hotel">
-	    SELECT requestStatus FROM Hotel WHERE hName=#{hName}
+	    SELECT requestStatus FROM Hotel WHERE hName=#{hname}
 	</select>
 	
 	<!-- Restaurant 등록 승인 여부 확인 매퍼 -->
 	<select id="selectRestaurantApprovalStatus" resultType="Restaurant">
-	    SELECT requestStatus FROM Restaurant WHERE rName=#{rName}
+	    SELECT requestStatus FROM Restaurant WHERE rName=#{rname}
 	</select>
 	
 	<!-- Business 탈퇴 매퍼 -->
 	<delete id="deleteBusiness" parameterType="String">
-	    DELETE FROM Business WHERE bId=#{bId}
+	    DELETE FROM Business WHERE bId=#{bid}
 	</delete>
 </mapper>

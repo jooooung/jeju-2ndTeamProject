@@ -33,9 +33,6 @@ public class MemberController {
 		return "member/memailConfirm";
 	}
 	
-	
-	
-	
 	// 회원가입 View
 	@RequestMapping(params = "method=join", method = RequestMethod.GET)
 	public String join() {

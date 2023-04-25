@@ -1,40 +1,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="conPath" value="${pageContext.request.contextPath }"/>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>승인된 호텔 목록</title>
+	<meta charset="UTF-8">
+	<title>승인된 호텔 목록</title>
+	<link href="${conPath }/css/admin/approved.css" rel=stylesheet>
 </head>
 <body>
-	<h1>승인된 호텔 목록</h1>
-	
-	<c:if test="${not empty approvedList}">
-		<table border="1">
-			<thead>
-				<tr>
-					<th>호텔명</th>
-					<th>주소</th>
-					<th>전화번호</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${approvedList}" var="hotel">
+	<jsp:include page="../main/header.jsp"/>
+	<div class="container">
+		<h2>승인된 호텔 목록</h2>
+		<c:if test="${not empty approvedList}">
+			<main>
+			<table>
+				<thead>
 					<tr>
-						<td>${hotel.hname}</td>
-						<td>${hotel.haddress}</td>
-						<td>${hotel.htel}</td>
+						<th>호텔명</th>
+						<th>주소</th>
+						<th>전화번호</th>
 					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-	</c:if>
-	
-	<c:if test="${empty approvedList}">
-		<p>승인된 호텔이 없습니다.</p>
-	</c:if>
-	
-	<br>
-	<a href="<%=request.getContextPath()%>/admin/hotelApproval.do">호텔 승인 요청 목록으로 돌아가기</a>
+				</thead>
+				<tbody>
+					<c:forEach items="${approvedList}" var="hotel">
+						<tr>
+							<td>${hotel.hname}</td>
+							<td>${hotel.haddr}</td>
+							<td>${hotel.htel}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+			</main>
+		</c:if>
+		<div class="btn-wrapper">
+			<a href="${conPath}/admin/rejectedHotels.do" class="my-button">호텔 거절 목록</a>
+			<a href="${conPath}/admin/hotelApproval.do" class="my-button">호텔 등록 요청 목록</a>
+			<a href="${conPath}/main.do" class="my-button">메인으로 돌아가기</a>
+		</div>
+	</div>
+	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

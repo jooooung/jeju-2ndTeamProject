@@ -1,5 +1,5 @@
 ------------------------- DUMMY DATA ------------------
-
+select * from location;
 -- LOCATION --
 insert into location values (locationNo_seq.nextval, '제주시');
 insert into location values (locationNo_seq.nextval, '서귀포시');
@@ -133,8 +133,9 @@ INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, ou
 
 -- Hreservation --
 INSERT INTO Hreservation (MID, HNAME, INDATE, OUTDATE, RWHETHER) VALUES ('aaa', '위드시티호텔', '2023-04-20', '2023-04-22', 'Y');
-INSERT INTO Hreservation (MID, HNAME, INDATE, OUTDATE, RWHETHER) VALUES ('bbb', '그라벨호텔', '2023-04-20', '2023-04-22', 'Y');
 INSERT INTO Hreservation (MID, HNAME, INDATE, OUTDATE, RWHETHER) VALUES ('kim', '위드시티호텔', '2023-04-25', '2023-04-27', 'Y');
+INSERT INTO Hreservation (MID, HNAME, INDATE, OUTDATE, RWHETHER) VALUES ('bbb', '그라벨호텔', '2023-04-20', '2023-04-22', 'Y');
+INSERT INTO Hreservation (MID, HNAME, INDATE, OUTDATE, RWHETHER) VALUES ('ccc', '그라벨호텔', '2023-05-20', '2023-05-22', 'Y');
 
 -- SCHEDULE --
 INSERT INTO Schedule (scheduleNo, mId, scheduleTitle, startDate, endDate, scheduleContent, hName, rName, sName)

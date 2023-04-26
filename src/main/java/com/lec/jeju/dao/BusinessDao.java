@@ -66,6 +66,7 @@ public interface BusinessDao {
     
     // Hotel 댓글 조회
 	public List<HotelComment> selectMyHotelComments(String bid);
+<<<<<<< HEAD
     
 	/*
 	 * // Restaurant 댓글 조회 List<RestaurantComment> selectMyRestaurantComments(String
@@ -74,6 +75,11 @@ public interface BusinessDao {
     // 로그아웃
 	public void logout(HttpSession httpSession);
 
+=======
+//	public List<RestaurantComment> selectMyRestaurantComments(String bid);
+	public String selectHotelApprovalStatus(String name);
+	public String selectRestaurantApprovalStatus(String name);
+>>>>>>> d2f874b36148d43bf36234955440c9386daa6566
 }
 
 

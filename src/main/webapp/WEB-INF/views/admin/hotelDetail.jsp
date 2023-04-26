@@ -1,12 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="conPath" value="${pageContext.request.contextPath }"/>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>호텔 등록 요청 상세보기</title>
+	<link href="${conPath }/css/admin/detail.css" rel=stylesheet>
 </head>
 <body>
+	<jsp:include page="../main/header.jsp"/>
     <h2>${hotel.hname} 등록 요청 상세보기</h2>
 	<table>
         <tr>
@@ -74,5 +78,6 @@
             <td>${hotel.hprice}</td>
         </tr>
     </table>
+    <jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

@@ -2,7 +2,6 @@ package com.lec.jeju.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lec.jeju.service.AdminService;
-import com.lec.jeju.vo.Admin;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.Restaurant;
 
@@ -28,7 +26,7 @@ public class AdminController {
 	    return "admin/login";
 	}
 
-	@RequestMapping(params = "method=logout", method = RequestMethod.GET) // 로그아웃 처리
+	@RequestMapping(value = "/logout", method = RequestMethod.GET) // 로그아웃 처리
 	public String logout(HttpSession httpSession) {
 	    adminService.logout(httpSession);
 	    return "redirect:/main.do";

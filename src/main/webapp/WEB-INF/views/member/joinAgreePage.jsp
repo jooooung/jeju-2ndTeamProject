@@ -208,7 +208,10 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
 						<tr>
 							<td colspan="2" class="btn">
 								<input type="button" value="비동의" onclick="nochk()" /> 
-								<input type="button" value="동의" onclick="chk()" />&nbsp;&nbsp;&nbsp;</td>
+								<input type="button" value="동의" onclick="chk()" />&nbsp;&nbsp;&nbsp;
+								<br><br>
+								<input type="button" value="기업회원일 경우 여기를 클릭해주세요" onclick="location.href='${conPath}/business/joinAgreePage.do';" /> 
+							</td>
 						</tr>
 				</table>
 			</form>

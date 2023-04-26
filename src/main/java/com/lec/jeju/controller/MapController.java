@@ -19,6 +19,9 @@ public class MapController {
 		model.addAttribute("spot", mservice.mapSpotList());
 		model.addAttribute("res", mservice.mapRestaurantList());
 		model.addAttribute("hotel", mservice.mapHotelList());
+<<<<<<< HEAD
+		return "map/map";
+=======
 		if(category == null) {
 			category = "all";
 		}
@@ -36,5 +39,6 @@ public class MapController {
 			model.addAttribute("hotelList", mservice.mapHotelList());
 		}
 		return "map/mapSchCategory";
+>>>>>>> d2f874b36148d43bf36234955440c9386daa6566
 	}
 }

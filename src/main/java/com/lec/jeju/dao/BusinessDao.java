@@ -75,8 +75,6 @@ public interface BusinessDao {
     // 로그아웃
 	public void logout(HttpSession httpSession);
 //	public List<RestaurantComment> selectMyRestaurantComments(String bid);
-	public String selectHotelApprovalStatus(String name);
-	public String selectRestaurantApprovalStatus(String name);
 }
 
 

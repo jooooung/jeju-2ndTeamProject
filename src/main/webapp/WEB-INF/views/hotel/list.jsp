@@ -135,12 +135,19 @@
 		.paging{
 			text-align: center;
 		}
+		.paging a{
+			text-decoration: none;
+			color: black;
+		}
+		.paging a:hover {
+			font-weight: bold;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<script>
 		$(document).ready(function(){
 			
-		};
+		});
 	</script>
 	
 </head>
@@ -160,26 +167,29 @@
 		</div>
 		<div class="spot_tag">
 			<ul>
-				<div onclick="location.href='${conPath}/hotel/list.do'">
+				<div onclick="location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }&schItem=${param.schItem }'">
 					<p>전체</p>
 				</div>
-				<div onclick="location.href=''">
+				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=11&12&15'">
 					<p>한경&한림&추자도</p>
 				</div>
-				<div onclick="location.href=''">
+				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=1&3&13'">
 					<p>애월&제주시&조천</p>
 				</div>
-				<div onclick="location.href=''">
+				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=4&5&14'">
 					<p>구좌&우도&성산</p>
 				</div>
-				<div onclick="location.href=''">
+				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=6&7&2'">
 					<p>표선&남원&서귀포시</p>
 				</div>
-				<div onclick="location.href=''">
+				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=8&9&10'">
 					<p>중문&안덕&대정</p>
 				</div>
 			</ul>
 		</div>
+		<c:if test="${empty list }">
+			<h2 align="center">해당 지역의 숙소가 없습니다</h2>
+		</c:if>
 			<ul class="item_list">
 			<c:forEach var="list" items="${list }">
 				<li>

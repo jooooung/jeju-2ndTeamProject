@@ -13,7 +13,7 @@
 <body>
 	<jsp:include page="../main/header.jsp"/>
     <h1>호텔 등록</h1>
-    <form action="/insertHotel.do" method="post">
+    <form action="business/insertHotel.do" method="post">
         <label for="hname">호텔 이름:</label>
         <input type="text" id="hname" name="hname" required><br><br>
 

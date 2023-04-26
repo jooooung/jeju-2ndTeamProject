@@ -87,7 +87,7 @@
 							<li><a href="">나의일정</a></li>
 							<li><a href="">나의리뷰</a></li>
 							<li><a href="">예약내역</a></li>
-							<li><a href="">즐겨찾기</a></li>
+							<li><a href="${conPath }/bookmark/MyAll.do">즐겨찾기</a></li>
 							<li><a href="${conPath }/member.do?method=modify">정보수정</a></li>
 						</ol>
 					</li>

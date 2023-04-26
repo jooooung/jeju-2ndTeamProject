@@ -29,13 +29,6 @@ public class HotelServiceImpl implements HotelService {
 		hotel.setEndrow(paging.getEndRow());
 		return hotelDao.hotelList(hotel);
 	}
-	@Override
-	public List<Hotel> hotelList2(String pageNum, Hotel hotel) {
-		Paging paging = new Paging(hotelDao.totCntHotel(hotel), pageNum, 5, 5);
-		hotel.setStartrow(paging.getStartRow());
-		hotel.setEndrow(paging.getEndRow());
-		return hotelDao.hotelList2(hotel);
-	}
 
 	@Override
 	public int totCntHotel(Hotel hotel) {
@@ -153,10 +146,5 @@ public class HotelServiceImpl implements HotelService {
 			}
 		}
 		return isCopy;
-	}
-
-	@Override
-	public List<Location> locList() {
-		return hotelDao.locList();
 	}
 }

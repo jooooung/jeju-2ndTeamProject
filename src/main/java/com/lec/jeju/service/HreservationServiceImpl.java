@@ -27,8 +27,4 @@ public class HreservationServiceImpl implements HreservationService {
 		return hreservationDao.deleteHreservation(hreservation);
 	}
 
-	@Override
-	public int doHreservation(Hreservation hreservation) {
-		return hreservationDao.doHreservation(hreservation);
-	}
 }

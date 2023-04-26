@@ -9,11 +9,8 @@ import com.lec.jeju.vo.Location;
 
 @Mapper
 public interface HotelDao {
-	// 지역 목록
-	public List<Location> locList();
 	// 호텔 목록
 	public List<Hotel> hotelList(Hotel hotel);
-	public List<Hotel> hotelList2(Hotel hotel);
 	// 호텔 총 개수
 	public int totCntHotel(Hotel hotel);
 	// 호텔 상세보기

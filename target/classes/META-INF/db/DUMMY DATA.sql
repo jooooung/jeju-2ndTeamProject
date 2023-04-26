@@ -28,15 +28,20 @@ insert into RestauranTtype values (RestauranTtypeNo_seq.nextval, '카페');
 insert into admin (aId, aPw, aName) values('admin', '1', '관리자');
 INSERT INTO ADMIN (aID, aPW, aNAME) VALUES ('admin2', '111', '강영자');
 
--- BUSINESS hotel / restaurant --
-INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
-    VALUES ('bid1', 'bpw', '하얏트', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
-INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
-    VALUES ('bid2', 'bpw', '반얀트리', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
-INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
-    VALUES ('bid3', 'bpw', '마쉴랭미슐랭', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
-INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
-    VALUES ('bid4', 'bpw', '드쉴랭미슐랭', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+-- BUSINESS restaurant --
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('su', '123', '제주만복집', 'su@naver.com');
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('guk', '123', '올래국수', 'guk@naver.com'); 
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('park', '123', '올레칠돈', 'park@naver.com');
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('jin', '123', '명진전복', 'jin@naver.com'); 
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('bang', '123', '가시아방', 'bang@naver.com'); 
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('don', '123', '돈사돈', 'don@naver.com'); 
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('bom', '123', '봄날카페', 'bom@naver.com'); 
+
+-- BUSINESS hotel --
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('withCITY', '123', '위드시티호텔', 'withcity@naver.com'); 
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('grabel', '123', '그라벨호텔', 'grabel@naver.com'); 
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('theOne', '123', '호텔더원', 'theOne@naver.com'); 
+INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('hotel', '123', '호텔', 'hotel@naver.com'); 
 
 -- MEMBER -- 
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
@@ -51,7 +56,7 @@ insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
     VALUES ('zico', '123', '지아코', '010-6666-666', 'zico@naver.com', '서울시 강북구', '강북아파트', '54524', '1992-09-14','gico.png', SYSDATE);
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
-    VALUES ('mid', '123', '강성빈',  '010-5555-4343', 'kang@naver.com', '서울시 강서구', '미주아파트', '12345', '1994-08-25','kang.png', SYSDATE);
+    VALUES ('kang', '123', '강성빈',  '010-5555-4343', 'kang@naver.com', '서울시 강서구', '미주아파트', '12345', '1994-08-25','kang.png', SYSDATE);
 
 -- SPOT --
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
@@ -60,7 +65,7 @@ insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, s
     '한라산국립공원m.jpg', '한라산국립공원s.jpg', 33.37856425194726, 126.5431717373512, '무료');
     
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
-    values('성산일출봉', 'admin', 2, '제주특별자치도 서귀포시 성산읍 일출로 284-12', '064-783-0959', 
+    values('성산일출봉(UNESCO 세계자연유산)', 'admin', 2, '제주특별자치도 서귀포시 성산읍 일출로 284-12', '064-783-0959', 
     'http://www.jeju.go.kr/dorip/seongsan.htm', '매일 07:00 - 20:00 (18:50분매표마감) 3~9월 / 매월 첫째 월요일 휴관 (단, 등하산교차로, 우뭇개 전망대, 우뭇개 해안은 무료개방) 매일 07:30 - 19:00 (17:50분매표마감) 10~2월 / 매월 첫째 월요일 휴관', 
     '성산일출봉m.jpg', '성산일출봉s.jpg', 33.45917466716145, 126.94059127727817, 
     '유료,개인 (성인 5,000원 / 청소년, 군인 2,500원 / 어린이 2,500원), 단체 (성인 4,000원 / 청소년, 군인 2,000원 / 어린이 2,000원)');
@@ -79,7 +84,7 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, R
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('올래국수', 'guk', 1, 4, '제주특별자치도 제주시 귀아랑길 24 (연동)', '064-742-7355', 'LINK', 
     '너 올래 안올래? 올래국수!', '해물국수',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img', 33.49151973703596, 126.49729949767276, '국수 7000원 부터');
+            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.49710002092335, 126.5089619090469, '국수 7000원 부터');
             
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('올레칠돈', 'park', 2, 1, '제주특별자치도 서귀포시 월평하원로 20', '064-739-5533', 'LINK', 
@@ -149,11 +154,11 @@ VALUES (scheduleNo_seq.NEXTVAL, 'kim', '드라이브여행', TO_TIMESTAMP('2023-
     
 -- BOOKMARK --
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME) 
-    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', '호텔', NULL, NULL);
+    VALUES (bookmarkNo_seq.NEXTVAL, 'aaa', '호텔더원', NULL, NULL);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', null, '올래국수', null);
+    VALUES (bookmarkNo_seq.NEXTVAL, 'kang', null, '올래국수', null);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', null, NULL, '한라산국립공원');
+    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', null, NULL, '한라산국립공원');
 
     
 -- SPOTCOMMENT --

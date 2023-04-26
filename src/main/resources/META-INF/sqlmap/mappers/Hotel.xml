@@ -26,19 +26,7 @@
 		<result property="hprice" column="hprice"/>
 		<collection property="location" resultMap="Location"/>
 	</resultMap>
-	<select id="locList" resultType="Location">
-		SELECT * FROM LOCATION
-	</select>
-	<select id="hotelList2" parameterType="Hotel" resultMap="HotelResult"><!-- 지역 선택 시 목록 -->
-		SELECT * 
-		    FROM (SELECT ROWNUM RN, A.* 
-		        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
-		                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-		                    WHERE H.HNAME = B.HNAME(+)  AND H.LOCATIONNO = L.LOCATIONNO 
-		                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = #{locationno} ORDER BY bCnt DESC) A)
-		    WHERE RN BETWEEN #{startrow} AND #{endrow}
-	</select>
-	<select id="hotelList" parameterType="Hotel" resultMap="HotelResult">
+	<select id="hotelList" parameterType="Hotel" resultMap="HotelResult"><!-- 승인받은 업체만 출력 -->
 		<if test="schitem == null or schitem== ''"><!-- 호텔명 미검색, 지역 미선택-->
 			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
@@ -55,6 +43,15 @@
 			                    WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
 			                    AND REQUESTSTATUS = 'A' AND H.HNAME LIKE '%'||#{schword}||'%' ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+		<if test="schitem == 'locaionno'"><!-- 호텔명 미검색, 지역 선택 -->
+			SELECT * 
+			    FROM (SELECT ROWNUM RN, A.* 
+			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
+			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+			                    WHERE H.HNAME = B.HNAME(+)  AND H.LOCATIONNO = L.LOCATIONNO 
+			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = #{locationno} ORDER BY bCnt DESC) A)
+			    WHERE RN BETWEEN 1 AND 3
 		</if>
 		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 선택 -->
 			SELECT * 

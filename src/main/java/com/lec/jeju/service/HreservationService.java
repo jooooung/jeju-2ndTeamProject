@@ -5,9 +5,6 @@ import java.util.List;
 import com.lec.jeju.vo.Hreservation;
 
 public interface HreservationService {
-	// 예약하기
-	public int doHreservation(Hreservation hreservation);
-	
 	// 특정 호텔 예약 목록
 	public List<Hreservation> hreservationList_Hotel(String hname);
 	

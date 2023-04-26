@@ -8,11 +8,8 @@ import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.Location;
 
 public interface HotelService {
-	// 지역 목록
-	public List<Location> locList();
 	// 호텔 목록
 	public List<Hotel> hotelList(String pageNum, Hotel hotel);
-	public List<Hotel> hotelList2(String pageNum, Hotel hotel);
 	// 호텔 총 개수
 	public int totCntHotel(Hotel hotel);
 	// 호텔 상세보기

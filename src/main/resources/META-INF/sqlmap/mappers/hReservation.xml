@@ -10,11 +10,7 @@
 		<result property="outdate" column="outdate"/>
 		<result property="rwhether" column="rwhether"/>
 	</resultMap>
-	<!-- 예약하기 -->
-	<select id="doHreservation" parameterType="Hreservation">
-		INSERT INTO HRESERVATION (mID, hNAME, INDATE, OUTDATE)
-    		VALUES (#{mid}, #{hname}, #{indate}, #{outdate})
-	</select>
+	
 	<!-- 호텔별 예약 목록 -->
 	<select id="hreservationList_Hotel" parameterType="String" resultMap="HreservationResult">
 		SELECT * 

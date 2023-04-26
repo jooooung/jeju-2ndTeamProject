@@ -39,23 +39,6 @@ SELECT * FROM restaurantComment WHERE mID = 'pham'; -- getResComment
 SELECT * FROM hotelComment WHERE mID = 'kim'; -- getHotelComment
 SELECT * FROM spotComment WHERE mID = 'aaa'; -- getSoptComment
 
--- (10) 북마크한 리스트 중 관광지만 보기 - bookmarkSpot
-SELECT * 
-    FROM SPOT, BOOKMARK
-    WHERE SPOT.SNAME = BOOKMARK.SNAME
-    AND BOOKMARK.MID = 'kim';
-
--- (11) 북마크한 리스트 중 식당만 보기 - bookmarkRes
-SELECT *
-    FROM RESTAURANT, BOOKMARK
-    WHERE RESTAURANT.RNAME = BOOKMARK.RNAME
-    AND BOOKMARK.MID = 'kim';
-    
--- (12) 북마크한 리스트 중 호텔만 보기 - bookmarkHotel
-SELECT *
-    FROM HOTEL, BOOKMARK
-    WHERE HOTEL.HNAME = BOOKMARK.HNAME
-    AND BOOKMARK.MID = 'kim';
 
 SELECT * FROM HOTEL;
 SELECT * FROM RESTAURANT;

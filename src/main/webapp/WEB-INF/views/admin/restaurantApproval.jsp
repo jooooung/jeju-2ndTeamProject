@@ -39,8 +39,8 @@
         </table>
       </main>
       <div class="btn-wrapper">
-        <a href='${conPath}/admin/approvedRestaurnats.do' class="my-button">식당 승인 목록</a>
-        <a href='${conPath}/admin/rejectedRestaurnats.do' class="my-button">식당 거절 목록</a>
+        <a href='${conPath}/admin/approvedRestaurants.do' class="my-button">식당 승인 목록</a>
+        <a href='${conPath}/admin/rejectedRestaurants.do' class="my-button">식당 거절 목록</a>
         <a href='${conPath}/main.do' class="my-button">메인으로 돌아가기</a>
       </div>
     </div>

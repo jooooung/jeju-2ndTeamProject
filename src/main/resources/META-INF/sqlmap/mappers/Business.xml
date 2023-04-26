@@ -3,18 +3,57 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.BusinessDao">
-	<!-- 업체 회원가입 -->
-    <insert id="insertBusiness" parameterType="Business">
-        INSERT INTO Business (bId, bPw, bName, bEmail)
-        VALUES (#{bid}, #{bpw}, #{bname}, #{bemail})
-    </insert>
+	<resultMap type="Business" id="BusinessResult">
+		<result property="bid" column="bid" />
+		<result property="bpw" column="bpw" />
+		<result property="bname" column="bname" />
+		<result property="btel" column="btel" />
+		<result property="bemail" column="bemail" />
+		<result property="baddr" column="baddr" />
+		<result property="bdeaddr" column="bdeaddr" />
+		<result property="bpost" column="bpost" />
+		<result property="bphoto" column="bphoto" />
+		<result property="brdate" column="brdate" />
+	</resultMap>
+	<!-- ID 중복체크 -->
+	<select id="idConfirm" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM Business WHERE bid = #{bid, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 이메일 중복체크 -->
+	<select id="emailConfirm" parameterType="String" resultType="int">
+	    SELECT COUNT(*) FROM Business WHERE bemail = #{bemail, jdbcType=VARCHAR}
+	</select>
 
-    <!-- 업체 정보수정 -->
-    <update id="updateBusiness" parameterType="Business">
-        UPDATE Business
-        SET bPw = #{bpw}, bName = #{bname}, bEmail = #{bemail}
-        WHERE bId = #{bid}
-    </update>
+	
+	<!-- 회원가입 -->
+	<insert id="joinBusiness" parameterType="Business">
+	insert into Business (bid, bpw, bname, btel, bemail, baddr, bdeaddr, bpost, bphoto)
+    values(#{bid}, #{bpw}, #{bname}, #{btel}, #{bemail}, #{baddr}, #{bdeaddr}, #{bpost}, #{bphoto, jdbcType=VARCHAR})
+	</insert>
+
+	<!-- 로그인 -->
+	<select id="loginCheck" parameterType="Business" resultType="Business">
+		SELECT * FROM Business WHERE bid=#{bid} AND bpw=#{bpw}
+	</select>
+
+	<!-- 상세보기 -->
+	<select id="getDetailBusiness" parameterType="String" resultType="Business">
+		SELECT * FROM Business WHERE bid = #{bid}
+	</select>
+
+	<!-- 정보수정 -->
+	<update id="modifyBusiness" parameterType="Business"> 
+	UPDATE Business SET 
+        bpw = #{bpw},
+        bname = #{bname},
+        bemail = #{bemail},
+        baddr = #{baddr},
+        bdeaddr = #{bdeaddr},
+        bpost = #{bpost},
+		bphoto = #{bphoto}
+    WHERE bid = #{bid, jdbcType=VARCHAR}
+	</update>
 
     <!-- 업체 등록요청 (등록글 작성) -->
     <!-- Hotel 등록 -->
@@ -45,16 +84,6 @@
 	    WHERE rName = #{rname}
 	</update>
 	
-	<!-- Hotel 삭제 매퍼 -->
-	<delete id="deleteHotel" parameterType="String">
-	    DELETE FROM Hotel WHERE hName=#{hname}
-	</delete>
-	
-	<!-- Restaurant 삭제 매퍼 -->
-	<delete id="deleteRestaurant" parameterType="String">
-	    DELETE FROM Restaurant WHERE rName=#{rname}
-	</delete>
-	
 	<!-- Hotel 나의 글 조회 매퍼 -->
 	<select id="selectMyHotelPosts" resultType="Hotel">
 	    SELECT * FROM Hotel WHERE bId=#{bid}
@@ -71,10 +100,10 @@
 	</select>
 	
 	<!-- Restaurant 나의 댓글 조회 매퍼 -->
-	<select id="selectMyRestaurantComments" resultType="RestaurantComment">
+<!-- 	<select id="selectMyRestaurantComments" resultType="RestaurantComment">
 	    SELECT * FROM restaurantComment WHERE bId=#{bid}
 	</select>
-	
+	 -->
 	<!-- Hotel 등록 승인 여부 확인 매퍼 -->
 	<select id="selectHotelApprovalStatus" resultType="Hotel">
 	    SELECT requestStatus FROM Hotel WHERE hName=#{hname}

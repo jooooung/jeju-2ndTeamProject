@@ -51,7 +51,10 @@
 			<label for="mpw" id="pw">비밀번호</label>
 			<input type="password" name="mpw" id="mpw">
 		</p>
+		<p>	
 			<button class="submit-btn" onclick="confirmWithdrawal()">회원탈퇴</button>
+			<button class="submit-btn" onclick="history.back()">이전으로</button>
+		</p>
 	</form>
 	<jsp:include page="../main/footer.jsp" />
 

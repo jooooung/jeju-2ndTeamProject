@@ -25,7 +25,7 @@
 			FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
 		WHERE S.SNAME = B.SNAME(+)
 	</select>
-	<select id="spotList" parameterType="MapSpot" resultMap="SpotResult">
+	<select id="schSpotList" parameterType="MapSpot" resultMap="SpotResult">
 		SELECT * 
     		FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
         		WHERE S.SNAME = B.SNAME(+) ORDER BY bCnt DESC)A)

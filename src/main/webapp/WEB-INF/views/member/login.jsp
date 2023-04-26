@@ -56,6 +56,7 @@
 					<td colspan="2" style="text-align: center;">
 					<input type="submit" value="로그인">
 					<input type="button" value="회원가입" class="submit-btn" onclick="location='${conPath}/member.do?method=joinAgreePage'">
+					<input type="button" value="업체회원 로그인" class="submit-btn" onclick="location='${conPath}/business.do?method=login'">
 					</td>
 				</tr>
 			</table>

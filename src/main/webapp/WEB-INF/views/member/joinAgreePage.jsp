@@ -13,6 +13,11 @@
 	href="https://fonts.googleapis.com/css2?family=Domine:wght@500&family=IBM+Plex+Sans+KR:wght@300;400&family=Libre+Baskerville&family=Nanum+Gothic&family=Satisfy&family=The+Nautigal:wght@400;700&display=swap"
 	rel="stylesheet">
 <style>
+input[type="radio"] {
+	width: 15px;
+	height: 15px;
+	border: 1px;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -185,9 +190,9 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
 제 13 조 (사업자 정보 및 위치정보 관리책임자)
 ① 회사의 상호, 주소 및 연락처는 다음과 같습니다.
 
-- 상호: 주식회사
-- 주소: 경기도 성남시 분당구 정자일로 95, NAVER 1784 (우)13561
-- 전화번호: 1588-3820
+- 상호: 제주관광공사 
+- 주소: (00000) 제주특별자치도 제주시
+- 전화번호:  064-740-6000
 ② 회사는 다음과 같이 위치정보 관리책임자를 지정하여 이용자들이 서비스 이용과정에서 발생한 민원사항 처리를 비롯하여 개인위치정보주체의 권리 보호를 위해 힘쓰고 있습니다.
 
 - 위치정보 관리책임자 : 이진규 CPO / DPO (개인정보 보호책임자 겸직)
@@ -203,7 +208,10 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
 						<tr>
 							<td colspan="2" class="btn">
 								<input type="button" value="비동의" onclick="nochk()" /> 
-								<input type="button" value="동의" onclick="chk()" />&nbsp;&nbsp;&nbsp;</td>
+								<input type="button" value="동의" onclick="chk()" />&nbsp;&nbsp;&nbsp;
+								<br><br>
+								<input type="button" value="기업회원일 경우 여기를 클릭해주세요" onclick="location.href='${conPath}/business/joinAgreePage.do';" /> 
+							</td>
 						</tr>
 				</table>
 			</form>

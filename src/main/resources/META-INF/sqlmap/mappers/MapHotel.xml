@@ -25,8 +25,8 @@
     		FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME)B 
 		WHERE H.HNAME = B.HNAME(+)
 	</select>
-	<!-- restaurant -->
-	<select id="hotelList" parameterType="MapHotel" resultMap="HotelResult">
+	<!-- hotel -->
+	<select id="schHotelList" parameterType="MapHotel" resultMap="HotelResult">
 		SELECT * 
     		FROM (SELECT ROWNUM RN, A.* 
         		FROM (SELECT H.*, NVL(bCnt, 0) bCnt 

@@ -1,6 +1,5 @@
 package com.lec.jeju.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +32,7 @@ public class MemberController {
 		model.addAttribute("memailConfirmResult", memberService.emailConfirm(memail));
 		return "member/memailConfirm";
 	}
-  
+
 	// 회원가입 약관
 	@RequestMapping(params = "method=joinAgreePage", method = RequestMethod.GET)
 	public String joinAgreePage() {

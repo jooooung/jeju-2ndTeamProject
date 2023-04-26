@@ -1,14 +1,14 @@
 -- ★★★★★★★ 업체 ★★★★★★★ --
 -- 1. 업체 회원가입
-INSERT INTO Business (bId, bPw, bName, bEmail)
-    VALUES ('bid', 'bpw', 'bname', 'business@naver.com');
-
-INSERT INTO Business (bId, bPw, bName, bEmail)
-    VALUES ('id', 'password', 'Business Name', 'business@example.com');
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('bid', 'bpw', 'bname', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+    
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('id', 'password', 'Business Name', '010-1111-1234', 'business@example.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
 
 -- 2. 업체 정보수정
 UPDATE Business
-    SET bPw = 'bpw', bName = 'bname', bEmail = 'update@naver.com'
+    SET bPw = 'bpw', bName = 'bname', bTel = '010-2580-2580', bEmail = 'update@naver.com', bAddr = '제주시 서귀포구', bDeAddr = '감귤동', bPost = '125863', bPhoto = 'null'
     WHERE bId = 'bid';
 
 -- 3. 업체 등록요청 (등록글 작성)

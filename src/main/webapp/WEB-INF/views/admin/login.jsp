@@ -23,7 +23,12 @@
 	</c:if>
 	<c:if test="${not empty admin }">
 		<script>
-			location.href='${conPath}/main/main.do';
+			var logoutConfirm = confirm("로그인 상태입니다, 다른 계정으로 접속하기 위해 로그아웃 하시겠습니까?");
+			if (logoutConfirm) {
+				window.location.href = "${conPath}/admin/logout.do";
+			} else {
+				window.location.href = "${conPath}/main.do";
+			}
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>

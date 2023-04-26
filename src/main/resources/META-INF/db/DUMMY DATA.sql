@@ -28,20 +28,15 @@ insert into RestauranTtype values (RestauranTtypeNo_seq.nextval, '카페');
 insert into admin (aId, aPw, aName) values('admin', '1', '관리자');
 INSERT INTO ADMIN (aID, aPW, aNAME) VALUES ('admin2', '111', '강영자');
 
--- BUSINESS restaurant --
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('su', '123', '제주만복집', 'su@naver.com');
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('guk', '123', '올래국수', 'guk@naver.com'); 
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('park', '123', '올레칠돈', 'park@naver.com');
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('jin', '123', '명진전복', 'jin@naver.com'); 
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('bang', '123', '가시아방', 'bang@naver.com'); 
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('don', '123', '돈사돈', 'don@naver.com'); 
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('bom', '123', '봄날카페', 'bom@naver.com'); 
-
--- BUSINESS hotel --
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('withCITY', '123', '위드시티호텔', 'withcity@naver.com'); 
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('grabel', '123', '그라벨호텔', 'grabel@naver.com'); 
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('theOne', '123', '호텔더원', 'theOne@naver.com'); 
-INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('hotel', '123', '호텔', 'hotel@naver.com'); 
+-- BUSINESS hotel / restaurant --
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('bid1', 'bpw', '하얏트', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('bid2', 'bpw', '반얀트리', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('bid3', 'bpw', '마쉴랭미슐랭', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('bid4', 'bpw', '드쉴랭미슐랭', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
 
 -- MEMBER -- 
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)

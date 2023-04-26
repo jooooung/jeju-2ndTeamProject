@@ -52,7 +52,12 @@ CREATE TABLE Business (
     bId VARCHAR2(50) PRIMARY KEY,
     bPw VARCHAR2(50) NOT NULL,
     bName VARCHAR2(100) NOT NULL,
+    bTel VARCHAR2(50) NOT NULL,
     bEmail VARCHAR2(100) NOT NULL,
+    bAddr VARCHAR2(200),
+    BDeAddr VARCHAR2(200),
+    bPost VARCHAR2(50),
+    mPhoto VARCHAR2(255),
     bRdate DATE DEFAULT SYSDATE NOT NULL
 ); -- 업체 테이블 
 

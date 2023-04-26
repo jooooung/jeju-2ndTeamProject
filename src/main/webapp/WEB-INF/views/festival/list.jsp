@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/festivalList.css" rel="stylesheet">
+<link href="${conPath }/css/festival/festivalList.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <style>
 #right {
@@ -59,6 +59,11 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
+	<br>
+	<br>
+	<br>
+	<br>
+	
 	<c:set var="SUCCESS" value="1" />
 	<c:set var="FAIL" value="0" />
 	<c:if test="${writeResult eq SUCCESS}">
@@ -66,7 +71,6 @@
 			alert('글쓰기 성공');
 		</script>
 	</c:if>
-	-
 	<c:if test="${writeResult eq FAIL}">
 		<script>
 			alert('글쓰기 실패');
@@ -90,7 +94,6 @@
 		</script>
 	</c:if>
 	<div id="wrap">
-		<br>
 		<h2 style="color: black;">축제정보</h2>
 		<hr>
 		<br> <br>
@@ -109,7 +112,7 @@
 			</c:if>
 			<c:if test="${totCnt != 0 }">
 				<c:forEach items="${FestivalList}" var="festival">
-					<tr onclick="trClicked(${festival.festivalno})">
+				<tr onclick="trClicked(${festival.festivalno})">
 						<td>${festival.festivalno }</td>
 						<td>${festival.ftitle }</td>
 						<td>${festival.aid }</td>

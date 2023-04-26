@@ -56,7 +56,7 @@ insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
     VALUES ('zico', '123', '지아코', '010-6666-666', 'zico@naver.com', '서울시 강북구', '강북아파트', '54524', '1992-09-14','gico.png', SYSDATE);
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
-    VALUES ('kang', '123', '강성빈',  '010-5555-4343', 'kang@naver.com', '서울시 강서구', '미주아파트', '12345', '1994-08-25','kang.png', SYSDATE);
+    VALUES ('mid', '123', '강성빈',  '010-5555-4343', 'kang@naver.com', '서울시 강서구', '미주아파트', '12345', '1994-08-25','kang.png', SYSDATE);
 
 -- SPOT --
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
@@ -154,11 +154,11 @@ VALUES (scheduleNo_seq.NEXTVAL, 'kim', '드라이브여행', TO_TIMESTAMP('2023-
     
 -- BOOKMARK --
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME) 
-    VALUES (bookmarkNo_seq.NEXTVAL, 'aaa', '호텔더원', NULL, NULL);
+    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', '호텔', NULL, NULL);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'kang', null, '올래국수', null);
+    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', null, '올래국수', null);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', null, NULL, '한라산국립공원');
+    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', null, NULL, '한라산국립공원');
 
     
 -- SPOTCOMMENT --

@@ -44,13 +44,13 @@ INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('theOne', '123', '호텔�
 INSERT INTO Business (bid, bpw, bname, bemail) VALUES ('hotel', '123', '호텔', 'hotel@naver.com'); 
 
 -- MEMBER -- 
-insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
-    values('aaa', '1', '홍길동','010-1234-1234',  'hong@hong.com', '서울시 중랑구', 'xx아파트', '12345', '1995-12-12');
-insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
-    values('bbb', '1', '김길동', '010-4321-4321', 'kim@kim.com', '서울시 서대문구', '이젠빌라', '12345', '1997-04-28');
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto)
+    values('aaa', '1', '홍길동','010-1234-1234',  'hong@hong.com', '서울시 중랑구', 'xx아파트', '12345', '1995-12-12', 'NOIMG.JPG');
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto)
+    values('ccc', '1', '김길동', '010-4321-4321', 'kim@kim.com', '서울시 서대문구', '이젠빌라', '12345', '1997-04-28', 'NOIMG.JPG');
     
-insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
-    VALUES ('kim', '123', '김민지', '010-1234-4321', 'kim@naver.com', '강원도 춘천시', '춘천아파트',' 12345', '2004-05-07','민지.png', SYSDATE);
+insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto)
+    VALUES ('kim2', '123', '김민지', '010-1234-4321', 'kim@naver.com', '강원도 춘천시', '춘천아파트',' 12345', '2004-05-07','민지.png');
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
     VALUES ('pham', '123', '팜하니',  '010-4321-1234', 'hani@naver.com', '서울시 강서구', '염창아파트', '45678', '2004-10-06','하니.png', SYSDATE);
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)

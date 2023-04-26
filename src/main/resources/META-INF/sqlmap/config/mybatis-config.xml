@@ -15,7 +15,7 @@
 		<typeAlias type="com.lec.jeju.vo.Hreservation" alias="Hreservation"/>
 		<typeAlias type="com.lec.jeju.vo.HotelComment" alias="HotelComment"/>
 		<typeAlias type="com.lec.jeju.vo.Member" alias="Member" />
-		<!-- <typeAlias type="com.lec.jeju.vo.Member" alias="BookMark" /> -->
+		<typeAlias type="com.lec.jeju.vo.BookMark" alias="BookMark" />
 		
 	</typeAliases>
 	
@@ -29,6 +29,6 @@
 		<mapper resource="META-INF/sqlmap/mappers/hReservation.xml"/>
 		<mapper resource="META-INF/sqlmap/mappers/hotelComment.xml"/>
 		<mapper resource="META-INF/sqlmap/mappers/Member.xml" />
-		<!-- <mapper resource="META-INF/sqlmap/mappers/BookMark.xml" /> -->
+		<mapper resource="META-INF/sqlmap/mappers/BookMark.xml" />
 	</mappers>
 </configuration>

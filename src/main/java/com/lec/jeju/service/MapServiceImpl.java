@@ -27,7 +27,7 @@ public class MapServiceImpl implements MapService {
 	}
 
 	@Override
-	public List<MapSpot> spotList(MapSpot spot) {
+	public List<MapSpot> schSpotList(MapSpot spot) {
 		return null;
 	}
 
@@ -43,7 +43,7 @@ public class MapServiceImpl implements MapService {
 	}
 
 	@Override
-	public List<MapRestaurant> restaurantList(MapRestaurant restaurant) {
+	public List<MapRestaurant> schRestaurantList(MapRestaurant restaurant) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -61,7 +61,7 @@ public class MapServiceImpl implements MapService {
 	}
 
 	@Override
-	public List<MapHotel> hotelList(MapHotel hotel) {
+	public List<MapHotel> schHotelList(MapHotel hotel) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -71,5 +71,4 @@ public class MapServiceImpl implements MapService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

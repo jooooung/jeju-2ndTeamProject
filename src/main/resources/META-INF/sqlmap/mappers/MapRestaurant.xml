@@ -27,7 +27,7 @@
 		WHERE R.RNAME = B.RNAME(+)
 	</select>
 	<!-- restaurant -->
-	<select id="restaurantList" parameterType="MapRestaurant" resultMap="MapResResult">
+	<select id="schRestaurantList" parameterType="MapRestaurant" resultMap="MapResResult">
 		SELECT * 
     		FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*, NVL(bCnt, 0) bCnt FROM RESTAURANT R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
         	WHERE R.RNAME = B.RNAME(+) ORDER BY bCnt DESC)A)

@@ -14,8 +14,7 @@ public interface BusinessDao {
 	public List<Hotel> selectMyHotelPosts(String bid);
 	public List<Restaurant> selectMyRestaurantPosts(String bid);
 	public List<HotelComment> selectMyHotelComments(String bid);
-
-	/* public List<RestaurantComment> selectMyRestaurantComments(String bid); */
+//	public List<RestaurantComment> selectMyRestaurantComments(String bid);
 	public String selectHotelApprovalStatus(String name);
 	public String selectRestaurantApprovalStatus(String name);
 }

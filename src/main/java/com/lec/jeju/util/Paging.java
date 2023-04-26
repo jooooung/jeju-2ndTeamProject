@@ -14,7 +14,7 @@ public class Paging {
 	private int startPage;
 	private int endPage;
 
-	// Paging pagine = new Pageing(14, pageNum, 10 , 5)
+	// Paging paging = new Pageing(14, pageNum, 10 , 5)
 	public Paging(int totCnt, String pageNum, int pageSize, int blockSize) {
 		if (pageNum != null) {
 			// pageNum이 널이 아니면

@@ -6,56 +6,114 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>다양한 이미지 마커 표시하기</title>
+    <title>지도</title>
     <link href="${conPath }/css/map.css" rel=stylesheet>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <style>
+		#placesList span{font-size: 1.2em;}
+	</style>
 </head>
 <body>
 <jsp:include page="../main/header.jsp"/>
-<div id="mapwrap" class="map_wrap"> 
-    <!-- 지도가 표시될 div -->
-    <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-    <!-- 지도 위에 표시될 마커 카테고리 -->
-    <div class="category">
-        <ul>
-            <li id="spotMenu" onclick="changeMarker('spot')">
-                <span class="ico_comm ico_spot"></span>
-                관광지
-            </li>
-            <li id="resMenu" onclick="changeMarker('res')">
-                <span class="ico_comm ico_res"></span>
-                음식점
-            </li>
-            <li id="hotelMenu" onclick="changeMarker('hotel')">
-                <span class="ico_comm ico_hotel"></span>
-                숙박
-            </li>
-        </ul>
-    </div>
+<div class="map_wrap"> 
+    <!-- 지도가 표시 될 div -->
+    <div id="map" style="width:100%; height:850px; position:relative;overflow:hidden;"></div>
+    
+    <!-- 지도 위에 표시 될 검색창 -->
     <div id="menu_wrap" class="bg_white">
         <div class="option">
             <div>
                 <form onsubmit="searchPlaces(); return false;">
-                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-                    <button type="submit">검색하기</button> 
+                <input type="text" value="${schName }" id="keyword" name="schName" size="20" placeholder="검색어 입력"> 
+                <input type="button" id="btn" value="검색">
                 </form>
             </div>
         </div>
         <hr>
-        <ul id="placesList"></ul>
+        <div id="placesList"></div>
         <div id="pagination"></div>
     </div>
+    
+    <!-- 지도 위에 표시 될 마커 카테고리 -->
+    <div class="category">
+    	<form action="" id="categoryFrm">
+	        <ul>
+	            <li id="spotMenu" onclick="changeMarker('spot')">
+	            <input type="hidden" id="spotKeyword" name="schName" value="관광지"> 
+	                <span class="ico_comm ico_spot"></span>
+	                관광지
+	            </li>
+        
+	            <li id="resMenu" onclick="changeMarker('res')">
+	            <input type="hidden" id="resKeyword" name="schName" value="음식점"> 
+	                <span class="ico_comm ico_res"></span>
+	                음식점
+	            </li>
+	            <li id="hotelMenu" onclick="changeMarker('hotel')">
+	            <input type="hidden" id="hotelKeyword" name="schName" value="숙박"> 
+	                <span class="ico_comm ico_hotel"></span>
+	                숙박
+            	</li>
+        	</ul>
+        </form>
+    </div>
 </div>
-
+<script>
+$(document).ready(function(){
+	
+	// 관광지 카테고리 클릭 시 검색창에 관광지 목록 리스트 출력
+	$('#spotMenu').click(function(){
+		var spotSch = $('#spotKeyword').val();
+		$('#keyword').attr('value', spotSch);
+		$.ajax({
+			url : '${conPath}/map/mapSchCategory.do',
+			datatype : 'html',
+			data : "schCategory=" + $('#keyword').val(),
+			success : function(data, status){
+				$('#placesList').html(data);
+			}
+		});
+	});
+	
+	// 음식점 카테고리 클릭 시 검색창에 음식점 목록 리스트 출력
+	$('#resMenu').click(function(){
+		var resSch = $('#resKeyword').val();
+		$('#keyword').attr('value', resSch);
+		$.ajax({
+			url : '${conPath}/map/mapSchCategory.do',
+			datatype : 'html',
+			data : "schCategory=" + $('#keyword').val(),
+			success : function(data, status){
+				$('#placesList').html(data);
+			}
+		});
+		
+	});
+	
+	// 숙박 카테고리 클릭 시 검색창에 숙박 목록 리스트 출력
+	$('#hotelMenu').click(function(){
+		var hotelSch = $('#hotelKeyword').val();
+		$('#keyword').attr('value', hotelSch);
+		$.ajax({
+			url : '${conPath}/map/mapSchCategory.do',
+			datatype : 'html',
+			data : "schCategory=" + $('#keyword').val(),
+			success : function(data, status){
+				$('#placesList').html(data);
+			}
+		});
+	});
+});
+</script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=21cedbfdcfb60dc62330e49e8c4f4a19"></script>
 <script>
 	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
 		mapOption = { 
-	        center: new kakao.maps.LatLng(33.35011815587967, 126.34393085440018), // 지도의 중심좌표
-	        level: 10 // 지도의 확대 레벨
+	        center: new kakao.maps.LatLng(33.36942371693019, 126.39397924190384), // 지도의 중심좌표
+	        level: 9 // 지도의 확대 레벨
 	    };
 	
 	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-	
 	var spot = ${spot};
 	var spotList = [];
 	var res = ${res};
@@ -75,7 +133,7 @@
 	        '           </div>' + 
 	        '            <div class="desc">' + 
 	        '                <div class="addr">'+spot[i].saddr.substring(spot[i].saddr.indexOf('도')+2) +'</div>' + 
-	        '            <div class="esc">' + 
+	        '            <div>' + 
 	        '                <div class="ellipsis">'+spot[i].sinfo+'</div>' + 
 	        '            </div>' + 
 	        '                <div class="jibun">' + spot[i].stel + '</div>' + 
@@ -104,7 +162,7 @@
 	        '           </div>' + 
 	        '            <div class="desc">' + 
 	        '                <div class="addr">'+res[i].raddr.substring(res[i].raddr.indexOf('도')+2) +'</div>' + 
-	        '            <div class="esc">' + 
+	        '            <div>' + 
 	        '                <div class="ellipsis">'+res[i].rinfo+'</div>' + 
 	        '            </div>' + 
 	        '                <div class="jibun">' + res[i].rtel + '</div>' + 
@@ -132,7 +190,7 @@
 	        '           </div>' + 
 	        '            <div class="desc">' + 
 	        '                <div class="addr">'+hotel[i].haddr.substring(hotel[i].haddr.indexOf('도')+2) +'</div>' + 
-	        '            <div class="esc">' + 
+	        '            <div>' + 
 	        '                <div class="ellipsis">'+hotel[i].hinfo+'</div>' + 
 	        '            </div>' + 
 	        '                <div class="jibun">' + hotel[i].htel + '</div>' + 
@@ -157,8 +215,7 @@
 	createResMarkers(); // res 마커를 생성하고 res 마커 배열에 추가합니다
 	createHotelMarkers(); // hotel 마커를 생성하고 hotel 마커 배열에 추가합니다
 	
-	changeMarker('spot'); // 지도에 spot 마커가 보이도록 설정합니다    
-	
+	changeMarker('all'); // 지도페이지 onload시 모두 표시
 	
 	// 마커이미지의 주소와, 크기, 옵션으로 마커 이미지를 생성하여 리턴하는 함수입니다
 	function createMarkerImage(src, size, options) {
@@ -194,7 +251,7 @@
 	    	var overlay = new kakao.maps.CustomOverlay({
 	   			content: spotList[i].content,
 	   			map: map,
-	   			position: spotList[i].latlng   
+	   			position: spotList[i].latlng,
 			});
 		    
 	    	// 지도 onload시 커스텀 오버레이 비활성화
@@ -313,11 +370,15 @@
 	    var spotMenu = document.getElementById('spotMenu');
 	    var resMenu = document.getElementById('resMenu');
 	    var hotelMenu = document.getElementById('hotelMenu');
+	    var spotKeyword = document.getElementById('spotKeyword');
+	    var resKeyword = document.getElementById('resKeyword');
+	    var hotelKeyword = document.getElementById('hotelKeyword');
+	    var form = document.getElementById("categoryFrm");
 	    
 	    // spot 카테고리가 클릭됐을 때
 	    if (type === 'spot') {
 	    	
-	        // spot 카테고리를 선택된 스타일로 변경하고
+	    	 // spot 카테고리를 선택된 스타일로 변경하고
 	        spotMenu.className = 'menu_selected';
 	        
 	        // res과 hotel 카테고리는 선택되지 않은 스타일로 바꿉니다
@@ -331,7 +392,6 @@
 	        
 	    } else if (type === 'res') { // res 카테고리가 클릭됐을 때
 
-	    
 	        // res 카테고리를 선택된 스타일로 변경하고
 	        spotMenu.className = '';
 	        resMenu.className = 'menu_selected';
@@ -353,7 +413,17 @@
 	        setSpotMarkers(null);
 	        setResMarkers(null);
 	        setHotelMarkers(map);
-	    }    
+	        
+	 	} else if (type === 'all') { // 기본출력
+	    	
+	        spotMenu.className = '';
+	        resMenu.className = '';
+	        hotelMenu.className = '';
+	        
+	        setSpotMarkers(map);
+	        setResMarkers(map);
+	        setHotelMarkers(map);
+	    }
 	} 
 </script>
 <jsp:include page="../main/footer.jsp"/>

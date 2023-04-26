@@ -19,9 +19,7 @@ public class MapController {
 		model.addAttribute("spot", mservice.mapSpotList());
 		model.addAttribute("res", mservice.mapRestaurantList());
 		model.addAttribute("hotel", mservice.mapHotelList());
-<<<<<<< HEAD
 		return "map/map";
-=======
 		if(category == null) {
 			category = "all";
 		}

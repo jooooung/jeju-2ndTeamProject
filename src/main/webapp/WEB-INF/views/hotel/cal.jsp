@@ -15,6 +15,7 @@
 </head>
 <body>
 	<div class="calendar-wrap">
+	<!-- 좌측 달력 -->
     <div class="calendar-middle-wrap">
       <div class="cal_nav">
         <a href="javascript:;" class="nav-btn go-prev"></a>
@@ -35,6 +36,7 @@
       </div>
     </div>
 
+	<!-- 우측 달력 -->
     <div class="calendar-middle-wrap">
       <div class="cal_nav">
         <a href="javascript:;" class="nav-btn go-prev"></a>
@@ -54,7 +56,8 @@
         <div class="dates last-calendar"></div>
       </div>
     </div>
-
+	
+	<!-- 체크인,아웃 표시 -->
     <div class="checkInOutInfo">
       <div>
         <p>

@@ -15,6 +15,19 @@
 		INSERT INTO HRESERVATION (mID, hNAME, INDATE, OUTDATE)
     		VALUES (#{mid}, #{hname}, #{indate}, #{outdate})
 	</select>
+	
+	<!-- 예약 가능 날짜 조회(결과가 있다면 예약 불가능) -->
+	<select id="checkReserv" parameterType="Hreservation" resultMap="HreservationResult">
+		<![CDATA[
+			SELECT INDATE, OUTDATE FROM HRESERVATION
+			    WHERE ((INDATE <= #{indate} AND OUTDATE >= #{outdate})      
+			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate})      
+			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate})      
+			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate}))     
+			     AND HNAME = #{hname}
+		]]> 
+	</select>
+	
 	<!-- 호텔별 예약 목록 -->
 	<select id="hreservationList_Hotel" parameterType="String" resultMap="HreservationResult">
 		SELECT * 

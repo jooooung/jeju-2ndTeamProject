@@ -32,14 +32,20 @@
 	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div class="wrap">
-		<h1>예약</h1>
+		<h1>예약 </h1>
 		<h2>${param.hname }</h2>
 		<form action="reserv.do" method="post">
 			<jsp:include page="cal.jsp"/>
-			<p>
+			<p align="right">
 				1박  <fmt:formatNumber value="${hotelVo.hprice }" pattern="###,###"/>원
 			</p>
+			<input type="text" name="indate">
+			<input type="text" name="outdate">
 		</form>
+		<c:forEach var="list" items="${list }">
+			<span class="indateData">${list.indate }</span>
+			<span class="outdateData">${list.outdate }</span>
+		</c:forEach>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>
 </body>

@@ -7,7 +7,7 @@ SELECT *
                 WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' ORDER BY bCnt DESC) A)
     WHERE RN BETWEEN 1 AND 5;
     -- schword 존재할 때(호텔명 검색, 지역 미선택)
-SELECT * 
+SELECT *    
     FROM (SELECT ROWNUM RN, A.* 
         FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
                 FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
@@ -77,14 +77,29 @@ UPDATE HOTEL SET LOCATIONNO = '1',
 
 -- 숙소 등록 승인 여부                 
     -- 관리자가 숙소 등록 승인 hrequest
-UPDATE HOTEL SET requestStatus = 'A';
+UPDATE HOTEL SET requestStatus = 'A' WHERE HNAME = '호텔더원';
     -- 관리자가 숙소 등록 거절
-UPDATE HOTEL SET requestStatus = 'R';
+UPDATE HOTEL SET requestStatus = 'R' WHERE HNAME = 'DUMMY';
 
 -- 숙소 삭제 deleteHotel
 DELETE FROM HOTEL WHERE HNAME = '삭제';
 
 ------------------------ HRESERVATION ------------------------
+-- 예약하기 doHreservation
+INSERT INTO HRESERVATION (mID, hNAME, INDATE, OUTDATE)
+    VALUES ('ccc', '그라벨호텔', '23/05/01', '23/05/03');
+INSERT INTO HRESERVATION (mID, hNAME, INDATE, OUTDATE)
+    VALUES ('mid', '그라벨호텔', '23/05/10', '23/05/16');
+    
+-- 예약 가능 날짜 조회  
+SELECT INDATE, OUTDATE FROM HRESERVATION
+    WHERE ((INDATE <= '23/05/11' AND OUTDATE >= '23/05/15')     -- 선택이 기존 예약 내역 내 
+        OR (INDATE <= '23/05/11' AND OUTDATE >= '23/05/18')     -- 선택 입실일이 기존 예약 내역 내 
+        OR (INDATE <= '23/05/08' AND OUTDATE >= '23/05/15')     -- 선택 퇴실일이 기존 예약 내역 내 
+        OR (INDATE <= '23/05/08' AND OUTDATE >= '23/05/18'))    -- 선택이 기존 예약 내역을 감싸는 
+     AND HNAME = '그라벨호텔';
+-- 결과가 1이상이면 예약 불가 
+
 -- 호텔 별 예약 목록
 SELECT * 
     FROM (SELECT R.MID, R.HNAME, INDATE, OUTDATE, HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE FROM HRESERVATION R, HOTEL H 

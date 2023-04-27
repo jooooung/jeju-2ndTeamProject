@@ -70,7 +70,7 @@ function calendarInit(thisMonth) {
 
     // start_calendar
     function makeStartCalendar() {
-        // 이전 달의 마지막 날 날짜와 요일 구하기
+        // 전 달의 마지막 날 날짜와 요일 구하기
         const startDay = new Date(currentYear, currentMonth, 0);
         const prevDate = startDay.getDate();
         const prevDay = startDay.getDay();
@@ -84,6 +84,15 @@ function calendarInit(thisMonth) {
         for (let i = prevDate - prevDay; i <= prevDate; i++) {
             start_calendar += pervDisableDay(i);
         }
+        
+        ///////////////////////////////////////////////////////////////////////////////////////////////////
+        let indateData = $('.indateData').html();
+        indateData = indateData.toString();
+        let i = indateData.substring('0', '4') + indateData.substring('5', '7') + indateData.substring('8', '10');
+        let outdateData = $('.outdateData').html();
+        // for (let i = indateData ; i<=outdateData  ; i++){
+	    //     start_calendar += pervDisableDay(i);
+        // }
 
         // 이번달
         for (let i = 1; i <= nextDate; i++) {
@@ -104,6 +113,10 @@ function calendarInit(thisMonth) {
         for (let i = 1; i <= (6 - nextDay); i++) {
             start_calendar += nextDisableDay(i);
         }
+        ///////////////////////////////////////////////////////////////
+        // for (let i = indateData ; i<=outdateData  ; i++){
+	       //  start_calendar += pervDisableDay(i);
+        // }
 
         $('.start-calendar').html(start_calendar);
         // 월 표기
@@ -137,6 +150,7 @@ function calendarInit(thisMonth) {
 
         // 이번달
         for (let i = 1; i <= nextDate; i++) {
+        	let indateData = $('.indateData').html();
             // 이번달이 현재 년도와 월이 같을경우
             if (tempCurrentYear === today.getFullYear() && tempCurrentMonth === today.getMonth()) {
                 // 지난 날짜는 disable 처리
@@ -148,7 +162,6 @@ function calendarInit(thisMonth) {
             } else {
                 last_calendar += dailyDay(tempCurrentYear, tempCurrentMonth, i);
             }
-
         }
 
         // 다음달 7 일 표시
@@ -169,12 +182,22 @@ function calendarInit(thisMonth) {
 
     // 이번달
     function dailyDay(currentYear, currentMonth, day) {
+    	let indateData = $('.indateData').html();
+        indateData = indateData.toString();
+        let i = indateData.substring('0', '4') + indateData.substring('5', '7') + indateData.substring('8', '10');
+    	let outdateData = $('.outdateData').html();
+        outdateData = outdateData.toString();
+        let o = outdateData.substring('0', '4') + outdateData.substring('5', '7') + outdateData.substring('8', '10');
         const date = currentYear + '' + zf((currentMonth + 1)) + '' + zf(day);
 
         if (checkInDate === date) {
             return '<div class="day current checkIn" data-day="' + date + '" onclick="selectDay(this)"><span>' + day + '</span><p class="check_in_out_p"></p><p>' + '</div>';
         } else if (checkOutDate === date) {
             return '<div class="day current checkOut" data-day="' + date + '" onclick="selectDay(this)"><span>' + day + '</span><p class="check_in_out_p"></p><p>' + '</div>';
+        } else if (i == date || o == date) {
+        	for(let p = i ; p <= o ; p++){
+            	return '<div class="day disable" data-day="' + date + '"><span>' + day + '</span><p class="check_in_out_p"></p><p>' + '</div>';
+			}        	
         } else {
             return '<div class="day current" data-day="' + date + '" onclick="selectDay(this)"><span>' + day + '</span><p class="check_in_out_p"></p><p>' + '</div>';
         }
@@ -193,10 +216,10 @@ function addClassSelectDay() {
     if (checkInDate !== "" && checkOutDate != "") {
         $('.day').each(function () {
             const data_day = $(this).data('day');
-
+            
             if (data_day !== undefined && data_day >= checkInDate && data_day <= checkOutDate) {
                 $(this).addClass('selectDay');
-            }
+            };
         });
 
         $('.checkIn').find('.check_in_out_p').html('체크인');
@@ -213,8 +236,10 @@ function selectDay(obj) {
         checkInDate = $(obj).data('day');
 
         $('#check_in_day').html(getCheckIndateHtml());
-
+        $('input[name=indate]').attr('value', getCheckIndateHtml_input());
+		
         lastCheckInDate();
+        
     } else {
         // 체크인 날짜를 한번더 클릭했을때 아무 동작 하지 않기
         if (parseInt(checkInDate) === $(obj).data('day')) {
@@ -238,7 +263,10 @@ function selectDay(obj) {
 
             $('#check_in_day').html(getCheckIndateHtml());
             $('#check_out_day').html(getCheckOutdateHtml());
-
+			
+			$('input[name=indate]').attr('value', getCheckIndateHtml_input());
+			$('input[name=outdate]').attr('value', getCheckOutdateHtml_input());
+			
             addClassSelectDay();
 
             return;
@@ -252,6 +280,7 @@ function selectDay(obj) {
             checkOutDate = $(obj).data('day');
 
             $('#check_out_day').html(getCheckOutdateHtml());
+            $('input[name=outdate]').attr('value', getCheckOutdateHtml_input());
 
             addClassSelectDay();
         } else {
@@ -272,6 +301,8 @@ function selectDay(obj) {
 
                 $('#check_in_day').html(getCheckIndateHtml());
                 $('#check_out_day').html("");
+                $('input[name=indate]').attr('value', getCheckIndateHtml_input());
+                $('input[name=outdate]').attr('value', '');
 
                 lastCheckInDate();
             // }
@@ -284,11 +315,19 @@ function getCheckIndateHtml() {
     checkInDate = checkInDate.toString();
     return checkInDate.substring('0', '4') + "-" + checkInDate.substring('4', '6') + "-" + checkInDate.substring('6', '8') + " ( " + strWeekDay(weekday(checkInDate)) + " )";
 }
+// 데이터 저장용 체크인 날짜 
+function getCheckIndateHtml_input() {
+    return checkInDate;
+}
 
 // 체크아웃 날짜 표기
 function getCheckOutdateHtml() {
     checkOutDate = checkOutDate.toString();
     return checkOutDate.substring('0', '4') + "-" + checkOutDate.substring('4', '6') + "-" + checkOutDate.substring('6', '8') + " ( " + strWeekDay(weekday(checkOutDate)) + " )";
+}
+// 데이터 저장용 체크아웃 날짜
+function getCheckOutdateHtml_input() {
+    return checkOutDate;
 }
 
 // 체크인 날짜 클릭시 예약 가능한 마지막 날인지 체크 마지막날 일경우 체크아웃 날짜 자동 선택

@@ -2,6 +2,7 @@ package com.lec.jeju.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -56,13 +57,20 @@ public class HotelController {
 		model.addAttribute("hotelComments", hotelComments);
 		return "hotel/detail";
 	}
-
+	
+	
+	// 예약
+	
 	// 숙소 예약 페이지
 	@RequestMapping(value = "reserv", method = RequestMethod.GET)
 	public String reserv(String hname, Model model) {
 		model.addAttribute("hotelVo", hotelService.detailHotel(hname));
+		model.addAttribute("list", hreservService.hreservationList_Hotel(hname));
 		return "hotel/reservation";
 	}
+	
+	
+	// 댓글
 	
 	// 댓글 작성
 	@RequestMapping(value = "writeComment", method = RequestMethod.POST)

@@ -27,14 +27,11 @@
 	</select>
 	<!-- hotel -->
 	<select id="schHotelList" parameterType="MapHotel" resultMap="HotelResult">
-		SELECT * 
-    		FROM (SELECT ROWNUM RN, A.* 
-        		FROM (SELECT H.*, NVL(bCnt, 0) bCnt 
-                	FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-            WHERE H.HNAME = B.HNAME(+) ORDER BY bCnt DESC) A)
-    	WHERE RN BETWEEN #{startRow} AND #{endRow}
+		SELECT H.*, NVL(bCnt, 0) bCnt 
+                FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+             WHERE H.HNAME = B.HNAME(+) AND H.HNAME LIKE '%' || #{schName} || '%' ORDER BY bCnt DESC
 	</select>
 	<select id="hotelPlaceSchList" resultMap="HotelResult">
-		SELECT H.*, LNAME FROM HOTEL H, LOCATION L WHERE LNAME =  '#{lname} AND H.LOCATIONNO = L.LOCATIONNO
+		SELECT H.*, LNAME FROM HOTEL H, LOCATION L WHERE LNAME =  #{lname} AND H.LOCATIONNO = L.LOCATIONNO
 	</select>
 </mapper>

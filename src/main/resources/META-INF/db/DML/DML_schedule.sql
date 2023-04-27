@@ -8,12 +8,12 @@ SELECT * FROM Schedule
 
 -- 3. 특정 일정 조회
 SELECT * FROM Schedule
-    WHERE scheduleNo = 1;
+    WHERE scheduleNo = 36;
 
 -- 4. 일정 수정
 UPDATE Schedule
     SET hName = '위드시티호텔', rName = '제주김만복', sName = '한라산국립공원', scheduleTitle = '제주 여행', startDate = TO_TIMESTAMP('2023-05-02 00:00:00','YYYY-MM-DD HH24:MI:SS'), endDate = TO_TIMESTAMP('2023-05-05 00:00:00','YYYY-MM-DD HH24:MI:SS'), ScheduleContent = 'aa'
-    WHERE mId = 'aaa' AND scheduleNo = 1;
+    WHERE mId = 'aaa' AND scheduleNo = 36;
 
 -- 5. 일정 삭제
 DELETE FROM Schedule

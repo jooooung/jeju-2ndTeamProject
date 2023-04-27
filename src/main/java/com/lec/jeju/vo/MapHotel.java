@@ -20,6 +20,7 @@ public class MapHotel {
 	private double hlatitude;
 	private double hlongitude;
 	private String hprice;
+	private String schName;
 	@Override
 	public String toString() {
 		return "{'hname':'" + hname + "', 'bid':'" + bid + "', 'locationno':" + locationno + ", 'haddr':'" + haddr + "', 'htel':'" + htel + "', 'hlink':'"

@@ -151,7 +151,6 @@
 				
 			</div>
 		</div>
-	<jsp:include page="hotelComment.jsp"/>
 	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

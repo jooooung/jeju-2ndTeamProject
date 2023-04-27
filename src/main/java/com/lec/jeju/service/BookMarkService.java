@@ -2,14 +2,16 @@ package com.lec.jeju.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import com.lec.jeju.vo.BookMark;
 
 public interface BookMarkService {
-	List<BookMark> getBookmarkHotelList(String mid);
+	List<BookMark> getBookmarkHotelList(String mid, HttpSession session);
 
-	List<BookMark> getBookmarkResList(String mid);
+	List<BookMark> getBookmarkResList(String mid, HttpSession session);
 
-	List<BookMark> getBookmarkSpotList(String mid);
+	List<BookMark> getBookmarkSpotList(String mid, HttpSession session);
 
 	int addHotelBookmark(BookMark bookmark);
 

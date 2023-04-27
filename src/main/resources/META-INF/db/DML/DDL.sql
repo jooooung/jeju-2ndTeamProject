@@ -52,12 +52,12 @@ CREATE TABLE Business (
     bId VARCHAR2(50) PRIMARY KEY,
     bPw VARCHAR2(50) NOT NULL,
     bName VARCHAR2(100) NOT NULL,
-    bTel VARCHAR2(50) NOT NULL, --
+    bTel VARCHAR2(50) NOT NULL,
     bEmail VARCHAR2(100) NOT NULL,
-    bAddr VARCHAR2(200), -- 일반주소
-    bDeAddr VARCHAR2(200), -- 상세주소
-    bPost VARCHAR2(50),  -- 우편번호
-    bPhoto VARCHAR2(255),  -- 업체사진
+    bAddr VARCHAR2(200),
+    BDeAddr VARCHAR2(200),
+    bPost VARCHAR2(50),
+    bPhoto VARCHAR2(255),
     bRdate DATE DEFAULT SYSDATE NOT NULL
 ); -- 업체 테이블 
 
@@ -116,8 +116,9 @@ CREATE TABLE hotel (
 CREATE TABLE Hreservation (
     mID VARCHAR2(50) PRIMARY KEY,
     hNAME VARCHAR2(50) REFERENCES HOTEL(hNAME),
-    inDate DATE NOT NULL,  
-    outDate DATE NOT NULL
+    inDate DATE NOT NULL UNIQUE,  
+    outDate DATE NOT NULL UNIQUE,   
+    rWhether VARCHAR(1) DEFAULT 'N' NOT NULL    -- 예약여부 Y, N
 ); -- 호텔 예약 테이블
 
                       

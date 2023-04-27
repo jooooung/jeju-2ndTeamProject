@@ -19,6 +19,7 @@
 		<result property="slatitude" column="slatitude"/>
 		<result property="slongitude" column="slongitude"/>
 		<result property="sprice" column="sprice"/>
+		<result property="bcnt" column="bcnt"/>
 	</resultMap>
 	<select id="mapSpotList" resultMap="SpotResult">
 		SELECT S.*, NVL(bCnt, 0) bCnt 
@@ -26,10 +27,8 @@
 		WHERE S.SNAME = B.SNAME(+)
 	</select>
 	<select id="schSpotList" parameterType="MapSpot" resultMap="SpotResult">
-		SELECT * 
-    		FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
-        		WHERE S.SNAME = B.SNAME(+) ORDER BY bCnt DESC)A)
-			WHERE RN BETWEEN #{startRow} AND #{endRow}
+		SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        	WHERE S.SNAME = B.SNAME(+) AND S.SNAME LIKE '%' || #{schName} || '%' ORDER BY bCnt DESC
 	</select>
 	<select id="spotPlaceSchList" resultMap="SpotResult">
 		SELECT S.*, LNAME FROM SPOT S, LOCATION L WHERE LNAME = #{lname} AND S.LOCATIONNO = L.LOCATIONNO

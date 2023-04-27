@@ -130,7 +130,7 @@ color: blue;
 					<td>우편번호</td>
 					<td>
 						<input type="text" id="sample4_postcode" name="bpost" class="text_box" size="3" value="${business.bpost }"> 
-						<input type="button" onclick="sample4_execDaubpostcode()" value="우편번호 찾기">
+						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 					</td>
 				</tr>
 				<tr>

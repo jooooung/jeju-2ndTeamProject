@@ -28,15 +28,31 @@ insert into RestauranTtype values (RestauranTtypeNo_seq.nextval, '카페');
 insert into admin (aId, aPw, aName) values('admin', '1', '관리자');
 INSERT INTO ADMIN (aID, aPW, aNAME) VALUES ('admin2', '111', '강영자');
 
--- BUSINESS hotel / restaurant --
+-- BUSINESS restaurant --
 INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
-    VALUES ('bid1', 'bpw', '하얏트', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+    VALUES ('su', 'bpw', '제주만복집', '010-1234-1234', 'su@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
 INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
-    VALUES ('bid2', 'bpw', '반얀트리', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+    VALUES ('guk', 'bpw', '올래국수', '010-1234-1234', 'guk@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
 INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
-    VALUES ('bid3', 'bpw', '마쉴랭미슐랭', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+    VALUES ('park', 'bpw', '올레칠돈', '010-1234-1234', 'park@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
 INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
-    VALUES ('bid4', 'bpw', '드쉴랭미슐랭', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+    VALUES ('jin', 'bpw', '명진전복', '010-1234-1234', 'jin@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('bang', 'bpw', '가시아방', '010-1234-1234', 'bang@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('don', 'bpw', '돈사돈', '010-1234-1234', 'don@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('bom', 'bpw', '봄날카페', '010-1234-1234', 'bom@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
+
+-- BUSINESS hotel --
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('withCITY', 'bpw', '위드시티호텔', '010-1234-1234', 'withcity@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('grabel', 'bpw', '그라벨호텔', '010-1234-1234', 'grabel@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('theOne', 'bpw', '호텔더원', '010-1234-1234', 'theOne@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('hotel', 'bpw', '호텔', '010-1234-1234', 'hotel@naver.com', '제주특별자치도 서귀포구', '감귤동', '125863', null, sysdate);
 
 -- MEMBER -- 
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
@@ -114,16 +130,15 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, R
 
 -- HOTEL --
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.48582927685537', '126.48379663399649', 80000, 'A');
+              VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.48582927685537', '126.48379663399649', 80000, 'A');
               
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.492437097713896', '126.42864471233102', 1350000, 'A');
+              VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.492437097713896', '126.42864471233102', 1350000, 'A');
               
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('호텔더원', 'theOne', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 특별자치도, 연동 사장3길 33 KR', '064-798-0001', 'http://www.hoteltheone.com/', '제주 시내에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 성산일출봉을 방문해 보세요.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.483523318292406', '126.49084698890063', 85000, 'A');
+              VALUES ('호텔더원', 'theOne', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 특별자치도, 연동 사장3길 33 KR', '064-798-0001', 'http://www.hoteltheone.com/', '제주 시내에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 성산일출봉을 방문해 보세요.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.483523318292406', '126.49084698890063', 85000, 'A');
 INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
-    VALUES ('호텔', 'hotel', 
-        (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), 
+            VALUES ('호텔', 'hotel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), 
     '제주', '010-1234-1324', 'www.naver.com', '정보', '14:00', '11:00','main.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 50.5, 50.5, '40000', 'P');              
 
 -- Hreservation --
@@ -136,10 +151,10 @@ INSERT INTO Schedule (scheduleNo, mId, scheduleTitle, startDate, endDate, schedu
 VALUES (scheduleNo_seq.NEXTVAL, 'kim', '제주여행', TO_TIMESTAMP('2023-05-01 10:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2023-05-03 20:00:00', 'YYYY-MM-DD HH24:MI:SS'), '제주에서의 즐거운 여행', '호텔더원', '제주김만복', '한라산국립공원');
 
 INSERT INTO Schedule (scheduleNo, mId, scheduleTitle, startDate, endDate, scheduleContent, hName, rName, sName)
-VALUES (scheduleNo_seq.NEXTVAL, 'kim', '가족여행', TO_TIMESTAMP('2023-07-01 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2023-07-10 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), '제주에서의 가족과 함께하는 여행', '그라벨호텔', '제주김만복', '성산일출봉(UNESCO 세계자연유산)');
+VALUES (scheduleNo_seq.NEXTVAL, 'kim', '가족여행', TO_TIMESTAMP('2023-07-01 09:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2023-07-10 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), '제주에서의 가족과 함께하는 여행', '그라벨호텔', '제주김만복', '성산일출봉');
 
 INSERT INTO Schedule (scheduleNo, mId, scheduleTitle, startDate, endDate, scheduleContent, hName, rName, sName)
-VALUES (scheduleNo_seq.NEXTVAL, 'kim', '축제여행', TO_TIMESTAMP('2023-08-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2023-08-05 22:00:00', 'YYYY-MM-DD HH24:MI:SS'), '제주의 다양한 축제를 즐길 수 있는 여행', NULL, '올래국수', '성산일출봉(UNESCO 세계자연유산)');
+VALUES (scheduleNo_seq.NEXTVAL, 'kim', '축제여행', TO_TIMESTAMP('2023-08-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2023-08-05 22:00:00', 'YYYY-MM-DD HH24:MI:SS'), '제주의 다양한 축제를 즐길 수 있는 여행', NULL, '올래국수', '성산일출봉');
 
 INSERT INTO Schedule (scheduleNo, mId, scheduleTitle, startDate, endDate, scheduleContent, hName, rName, sName)
 VALUES (scheduleNo_seq.NEXTVAL, 'kim', '산책여행', TO_TIMESTAMP('2023-09-01 11:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2023-09-02 17:00:00', 'YYYY-MM-DD HH24:MI:SS'), '제주의 아름다운 자연과 함께하는 산책 여행', NULL, '올레칠돈', '협재해수욕장');
@@ -159,9 +174,9 @@ INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
 -- SPOTCOMMENT --
 insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '한라산국립공원', 'aaa', '높아서 오르지는 못했지만, 겨울에 가면 눈꽃으로 특히나 아름다운 산', sCommentNo_seq.CURRVAL, 0, 0);
 
-insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '성산일출봉(UNESCO 세계자연유산)', 'bbb', '아침 일찍 일출보러온 보람이 있습니다... 제주도 필수코스라고 생각해요', sCommentNo_seq.CURRVAL, 0, 0);
+insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '성산일출봉', 'bbb', '아침 일찍 일출보러온 보람이 있습니다... 제주도 필수코스라고 생각해요', sCommentNo_seq.CURRVAL, 0, 0);
 
-insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '성산일출봉(UNESCO 세계자연유산)', 'aaa', '날씨 좋은날 일출 보러가면 너무 예뻐요', sCommentNo_seq.CURRVAL, 0, 0);
+insert into spotComment (sCommentNo, sName, mId, sContent, sGroup, sStep, sIndent) values (sCommentNo_seq.nextval, '성산일출봉', 'aaa', '날씨 좋은날 일출 보러가면 너무 예뻐요', sCommentNo_seq.CURRVAL, 0, 0);
 
 -- RESTAURANTCOMMENT --
 insert into restaurantComment (rCommentNo, rName, mId, bID, RContent, RGroup, RStep, RIndent) -- 원 댓글

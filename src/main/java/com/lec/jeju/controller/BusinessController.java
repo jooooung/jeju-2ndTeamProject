@@ -2,13 +2,13 @@ package com.lec.jeju.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -132,91 +132,122 @@ public class BusinessController {
 	}
 	
 	// 호텔 등록
-	@RequestMapping(value = "/insertHotel", method = RequestMethod.GET)
-	public String showInsertHotel() {
-	    return "business/insertHotel";
+	@RequestMapping(value = "/registerHotel", method = RequestMethod.GET)
+	public String registerHotel() {
+		return "business/registerHotel";
 	}
-	
-	@RequestMapping(value = "/insertHotel", method = RequestMethod.POST)
-	public String insertHotel(Hotel hotel) {
+
+	@RequestMapping(value = "/registerHotel", method = RequestMethod.POST)
+	public String registerHotel(HttpServletRequest request, Model model) {
+	    Hotel hotel = new Hotel();
+	    hotel.setHname(request.getParameter("hname"));
+	    hotel.setBid(request.getParameter("bid"));
+	    hotel.setLocationno(Integer.parseInt(request.getParameter("locationno")));
+	    hotel.setHaddr(request.getParameter("haddr"));
+	    hotel.setHtel(request.getParameter("htel"));
+	    hotel.setHlink(request.getParameter("hlink"));
+	    hotel.setHinfo(request.getParameter("hinfo"));
+	    hotel.setIntime(request.getParameter("intime"));
+	    hotel.setOuttime(request.getParameter("outtime"));
+	    hotel.setHmainimg(request.getParameter("hmainimg"));
+	    hotel.setHsubimg_1(request.getParameter("hsubimg_1"));
+	    hotel.setHsubimg_2(request.getParameter("hsubimg_2"));
+	    hotel.setHsubimg_3(request.getParameter("hsubimg_3"));
+	    hotel.setHlatitude(Double.parseDouble(request.getParameter("hlatitude")));
+	    hotel.setHlongitude(Double.parseDouble(request.getParameter("hlongitude")));
+	    hotel.setHprice(Integer.parseInt(request.getParameter("hprice")));
 	    hotel.setRequeststatus("P");
-	    businessService.insertHotel(hotel);
-	    return "redirect:/myHotelPosts";
+	    
+	    businessService.registerHotel(hotel, request);
+	    model.addAttribute("hotel", hotel);
+	    return "forward:myHotelPosts.do";
 	}
 
-    // 호텔 수정
-    @RequestMapping(value = "/updateHotel", method = RequestMethod.PUT)
-    public String updateHotel(Hotel hotel) {
-        businessService.updateHotel(hotel);
-        return "redirect:/myHotelPosts";
-    }
+	// 호텔 수정
+	@RequestMapping(value = "/modifyHotel", method = RequestMethod.PUT)
+	public String modifyHotel(Hotel hotel, Model model) {
+		businessService.modifyHotel(hotel);
+		String bid = hotel.getBid();
+		List<Hotel> hotels = businessService.myHotelPosts(bid);
+		model.addAttribute("hotels", hotels);
+		return "business/myHotelPosts";
+	}
 
-    // 내 호텔 게시글 검색
-    @RequestMapping(value = "/selectMyHotelPosts/{bid}", method = RequestMethod.GET)
-    public String selectMyHotelPosts(@PathVariable String bid, Model model) {
-        List<Hotel> hotels = businessService.selectMyHotelPosts(bid);
-        model.addAttribute("hotels", hotels);
-        return "myHotelPosts";
-    }
+	@RequestMapping(value = "/myHotelPosts", method = RequestMethod.GET)
+	public String selectMyHotelPosts(HttpSession session, Model model) {
+	    String bid = (String) session.getAttribute("bid");
+	    if (bid == null) {
+	        bid = "default";
+	    }
+	    List<Hotel> hotels = businessService.myHotelPosts(bid);
+	    model.addAttribute("hotels", hotels);
+	    return "business/myHotelPosts";
+	}
 
-    // 호텔 등록 승인 여부 확인
-    @RequestMapping(value = "/selectHotelApprovalStatus/{hname}", method = RequestMethod.GET)
-    public String selectHotelApprovalStatus(@PathVariable String hname, Model model) {
-        String status = businessService.selectHotelApprovalStatus(hname);
-        model.addAttribute("status", status);
-        return "business/hotelApprovalStatus";
-    }
+	// 호텔 등록 승인 여부 확인
+	@RequestMapping(value = "/hotelApprovalStatus", method = RequestMethod.GET)
+	public String selectHotelApprovalStatus(String hname, Model model) {
+		String status = businessService.hotelApprovalStatus(hname);
+		model.addAttribute("status", status);
+		return "business/hotelApprovalStatus";
+	}
 
 	// 식당 등록
-    @RequestMapping(value = "/insertRestaurant", method = RequestMethod.GET)
-    public String showInsertRestaurant() {
-        return "business/insertRestaurant";
-    }
-    
-	@RequestMapping(value = "/insertRestaurant", method = RequestMethod.POST)
-	public String insertRestaurant(Restaurant restaurant) {
-	    restaurant.setRequeststatus("P");
-	    businessService.insertRestaurant(restaurant);
-	    return "redirect:/myRestaurantPosts";
+	@RequestMapping(value = "/registerRestaurant", method = RequestMethod.GET)
+		public String showregisterRestaurant() {
+		return "business/registerRestaurant";
 	}
 
-    // 레스토랑 수정
-    @RequestMapping(value = "/updateRestaurant", method = RequestMethod.PUT)
-    public String updateRestaurant(Restaurant restaurant) {
-        businessService.updateRestaurant(restaurant);
-        return "redirect:/myRestaurantPosts";
-    }
+	@RequestMapping(value = "/registerRestaurant", method = RequestMethod.POST)
+	public String registerRestaurant(Restaurant restaurant, Model model) {
+		restaurant.setRequeststatus("P");
+		businessService.registerRestaurant(restaurant);
+		String bid = restaurant.getBid();
+		List<Restaurant> restaurants = businessService.myRestaurantPosts(bid);
+		model.addAttribute("restaurants", restaurants);
+		return "business/myRestaurantPosts";
+	}
 
-    // 레스토랑 내 게시글 검색
-    @RequestMapping(value = "/selectMyRestaurantPosts/{bid}", method = RequestMethod.GET)
-    public String selectMyRestaurantPosts(@PathVariable String bid, Model model) {
-        List<Restaurant> restaurants = businessService.selectMyRestaurantPosts(bid);
-        model.addAttribute("restaurants", restaurants);
-        return "business/myRestaurantPosts";
-    }
+	// 레스토랑 수정
+	@RequestMapping(value = "/modifyRestaurant", method = RequestMethod.PUT)
+	public String modifyRestaurant(Restaurant restaurant, Model model) {
+		businessService.modifyRestaurant(restaurant);
+		String bid = restaurant.getBid();
+		List<Restaurant> restaurants = businessService.myRestaurantPosts(bid);
+		model.addAttribute("restaurants", restaurants);
+		return "business/myRestaurantPosts";
+	}
 
-    // 레스토랑 등록 승인 여부 확인
-    @RequestMapping(value = "/selectRestaurantApprovalStatus/{rname}", method = RequestMethod.GET)
-    public String selectRestaurantApprovalStatus(@PathVariable String rname, Model model) {
-        String status = businessService.selectRestaurantApprovalStatus(rname);
-        model.addAttribute("status", status);
-        return "business/restaurantApprovalStatus";
-    }
+	// 레스토랑 내 게시글 검색
+	@RequestMapping(value = "/myRestaurantPosts", method = RequestMethod.GET)
+	public String selectMyRestaurantPosts(String bid, Model model) {
+		List<Restaurant> restaurants = businessService.myRestaurantPosts(bid);
+		model.addAttribute("restaurants", restaurants);
+		return "business/myRestaurantPosts";
+	}
+
+	// 레스토랑 등록 승인 여부 확인
+	@RequestMapping(value = "/restaurantApprovalStatus", method = RequestMethod.GET)
+	public String selectRestaurantApprovalStatus(String rname, Model model) {
+		String status = businessService.restaurantApprovalStatus(rname);
+		model.addAttribute("status", status);
+		return "business/restaurantApprovalStatus";
+	}
     
-    // 호텔 댓글 조회
-    @RequestMapping(value = "/selectMyHotelComments/{bid}", method = RequestMethod.GET)
-    public String selectMyHotelComments(@PathVariable String bid, Model model) {
-        List<HotelComment> comments = businessService.selectMyHotelComments(bid);
-        model.addAttribute("comments", comments);
-        return "business/myHotelComments";
-    }
+	// 호텔 댓글 조회
+	@RequestMapping(value = "/myHotelComments", method = RequestMethod.GET)
+	public String selectMyHotelComments(String bid, Model model) {
+		List<HotelComment> comments = businessService.myHotelComments(bid);
+		model.addAttribute("comments", comments);
+		return "business/myHotelComments";
+	}
 
-    // @RequestMapping(value = "/selectMyRestaurantComments/{bid}", method = RequestMethod.GET)
-    // public String selectMyRestaurantComments(@PathVariable String bid, Model model) {
-    //     List<RestaurantComment> comments = businessDao.selectMyRestaurantComments(bid);
-    //     model.addAttribute("comments", comments);
-    //     return "business/myRestaurantComments";
-    // }
+   // @RequestMapping(value = "/myRestaurantComments", method = RequestMethod.GET)
+   // public String selectMyRestaurantComments(String bid, Model model) {
+   //     List<RestaurantComment> comments = businessService.myRestaurantComments(bid);
+   //      model.addAttribute("comments", comments);
+   //     return "business/myRestaurantComments";
+   // }
 }
 	
 	

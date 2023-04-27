@@ -55,9 +55,9 @@ CREATE TABLE Business (
     bTel VARCHAR2(50) NOT NULL,
     bEmail VARCHAR2(100) NOT NULL,
     bAddr VARCHAR2(200),
-    BDeAddr VARCHAR2(200),
+    bDeAddr VARCHAR2(200),
     bPost VARCHAR2(50),
-    mPhoto VARCHAR2(255),
+    bPhoto VARCHAR2(255),
     bRdate DATE DEFAULT SYSDATE NOT NULL
 ); -- 업체 테이블 
 

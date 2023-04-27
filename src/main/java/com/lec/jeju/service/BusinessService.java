@@ -2,6 +2,7 @@ package com.lec.jeju.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
@@ -31,35 +32,34 @@ public interface BusinessService {
 	public void logout(HttpSession httpSession);
 
 	// 호텔 등록
-	public void insertHotel(Hotel hotel);
+	public void registerHotel(Hotel hotel, HttpServletRequest request);
 
     // 호텔 수정
-	public void updateHotel(Hotel hotel);
+	public void modifyHotel(Hotel hotel);
 
     // 나의 호텔 글 조회
-	public List<Hotel> selectMyHotelPosts(String bid);
+	public List<Hotel> myHotelPosts(String bid);
 
     // 호텔 등록 승인 여부 확인
-	public String selectHotelApprovalStatus(String hname);
+	public String hotelApprovalStatus(String hname);
 
     // 레스토랑 등록
-	public void insertRestaurant(Restaurant restaurant);
+	public void registerRestaurant(Restaurant restaurant);
 
     // 레스토랑 수정
-	public void updateRestaurant(Restaurant restaurant);
+	public void modifyRestaurant(Restaurant restaurant);
 
     // 나의 레스토랑 글 조회
-	public List<Restaurant> selectMyRestaurantPosts(String bid);
+	public List<Restaurant> myRestaurantPosts(String bid);
 
     // 레스토랑 등록 승인 여부 확인
-	public String selectRestaurantApprovalStatus(String rname);
+	public String restaurantApprovalStatus(String rname);
 
     // 호텔 댓글 조회
-	public List<HotelComment> selectMyHotelComments(String bid);
+	public List<HotelComment> myHotelComments(String bid);
 
-    /*
-     * // 레스토랑 댓글 조회
-     * public List<RestaurantComment> selectMyRestaurantComments(String bid);
-     */
+
+    // 레스토랑 댓글 조회
+    //public List<RestaurantComment> myRestaurantComments(String bid);
 
 }

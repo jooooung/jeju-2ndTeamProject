@@ -9,4 +9,5 @@ public class BookMark {
 	private String hname;
 	private String rname;
 	private String sname;
+	private String imgPath; // 각 대표이미지
 }

@@ -117,8 +117,8 @@
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
-							<li><a href="${conPath }/business/insertHotel.do">호텔 등록 요청</a></li>
-							<li><a href="${conPath }/business/insertRestaurant.do">식당 등록 요청</a></li>
+							<li><a href="${conPath }/business/registerHotel.do">호텔 등록 요청</a></li>
+							<li><a href="${conPath }/business/registerRestaurant.do">식당 등록 요청</a></li>
 						</ol>
 					</li>
 					<li>게시판

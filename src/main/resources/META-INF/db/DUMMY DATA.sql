@@ -73,73 +73,76 @@ insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('한라산국립공원', 'admin', 2, '제주특별자치도 제주시 오등동 산 182', '064-713-9950', 
     'https://jeju.go.kr/hallasan/index.htm', '계절과 기후변화에 따른 입산 통제구간은 홈페이지 참고', 
-    '한라산국립공원m.jpg', '한라산국립공원s.jpg', 33.37856425194726, 126.5431717373512, '무료');
+    '한라산국립공원m.jpg', '한라산국립공원s1.jpg', 33.37856425194726, 126.5431717373512, '무료');
     
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('성산일출봉', 'admin', 2, '제주특별자치도 서귀포시 성산읍 일출로 284-12', '064-783-0959', 
     'http://www.jeju.go.kr/dorip/seongsan.htm', '매일 07:00 - 20:00 (18:50분매표마감) 3~9월 / 매월 첫째 월요일 휴관 (단, 등하산교차로, 우뭇개 전망대, 우뭇개 해안은 무료개방) 매일 07:30 - 19:00 (17:50분매표마감) 10~2월 / 매월 첫째 월요일 휴관', 
-    '성산일출봉m.jpg', '성산일출봉s.jpg', 33.45917466716145, 126.94059127727817, 
+    '성산일출봉m.jpg', '성산일출봉s1.jpg', 33.45917466716145, 126.94059127727817, 
     '유료,개인 (성인 5,000원 / 청소년, 군인 2,500원 / 어린이 2,500원), 단체 (성인 4,000원 / 청소년, 군인 2,000원 / 어린이 2,000원)');
     
 insert into spot (sName, aId, locationNo, sAddr, sTel, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('협재해수욕장', 'admin', 1, '제주특별자치도 제주시 한림읍 한림로 329-10', '064-728-3981', 
     '협재 종합상황실: 064-728-3981(해수욕장 개장기간 동안 운영)', '협재해수욕장m.jpg', 
-    '협재해수욕장s.jpg', 33.39396920901713, 126.23921468065957, '무료');
+    '협재해수욕장s1.jpg', 33.39396920901713, 126.23921468065957, '무료');
 
 -- RESTAURANT --
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('제주김만복', 'su', 1, 3, '제주특별자치도 제주시 오라로 41', '064-759-8582', 'LINK', 
     '매일매일 신선한 재료로 정성스레 만드는 만복이네 김밥입니다!', '만복김밥', 
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.497066158681676, 126.50894864880289, '세트가 단돈 만원!');
+            '제주김만복m.jpg', '제주김만복s1.jpg', '제주김만복s2.jpg', '제주김만복s3.jpg',  33.497066158681676, 126.50894864880289, '세트가 단돈 만원!');
             
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('올래국수', 'guk', 1, 4, '제주특별자치도 제주시 귀아랑길 24 (연동)', '064-742-7355', 'LINK', 
     '너 올래 안올래? 올래국수!', '해물국수',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img', 33.49151973703596, 126.49729949767276, '국수 7000원 부터');
+            '올래국수m.jpg', '올래국수s1.jpg', '올래국수s2.jpg', '올래국수s3.jpg', 33.49151973703596, 126.49729949767276, '국수 7000원 부터');
             
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('올레칠돈', 'park', 2, 1, '제주특별자치도 서귀포시 월평하원로 20', '064-739-5533', 'LINK', 
     'A급 돼지들만 사용하는 진짜들의 고기집 입니다.', '제주흑돼지',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.243687142086976, 126.45959335549377, '1인분 15,000원');
+            '올레칠돈m.jpg', '올레칠돈s1.jpg', '올레칠돈s2.jpg', '올레칠돈s3.jpg',  33.243687142086976, 126.45959335549377, '1인분 15,000원');
             
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('명진전복', 'jin', 1, 2, '제주특별자치도 제주시 구좌읍 해맞이해안로 1282', '064-782-9944', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020047', 
     '명진전복은 전복돌솥밥, 전복구이, 전복죽 등을 판매하는 인기 맛집 입니다!', '전복구이',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.53246865592159, 126.8501903577186, '12,000원');     
+            '명진전복m.jpg', '명진전복s1.jpg', '명진전복s2.jpg', '명진전복s3.jpg',  33.53246865592159, 126.8501903577186, '12,000원');     
 
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('가시아방', 'bang', 5, 4, '제주특별자치도 서귀포시 성산읍 섭지코지로 10', '064-783-0987', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000018307', 
     '국수가 먹고싶을땐? 가시아방', '고기국수, 비빔국수',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.43858028658235, 126.9180594306653, '8,000원');
+            '가시아방m.jpg', '가시아방s1.jpg', '가시아방s2.jpg', '가시아방s3.jpg',  33.43858028658235, 126.9180594306653, '8,000원');
 
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('돈사돈', 'don', 1, 1, '제주특별자치도 제주시 우평로 19', '064-746-8989', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020104', 
     '진정한 흑돼지 달인', '흑돼지 오겹살',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.478845919157024, 126.46402562151444, '30,000원');
+            '돈사돈m.jpg', '돈사돈s1.jpg', '돈사돈s2.jpg', '돈사돈s3.jpg',  33.478845919157024, 126.46402562151444, '30,000원');
             
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
     VALUES ('봄날카페', 'bom', 1, 5, '제주특별자치도 제주시 애월읍 애월로1길 25', '064-799-4999', 
     'link', 
     '드라마 맨도롱 또똣의 주인공이 일하던 카페', '아메리카노',
-            'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.46242809443207, 126.30958428618032 , '3,000원');
+            '봄날카페m.jpg', '봄날카페s1.jpg', '봄날카페s2.jpg', '봄날카페s3.jpg',  33.46242809443207, 126.30958428618032 , '3,000원');
+
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+    VALUES ('델문도', 'bom', 1, 3, '제주특별자치도 제주시 조천읍 조함해안로 519-10', '064-702-0007', 
+    'https://delmoondo.com/', 
+    '일출과 일몰, 바람, 그리고 델문도 커피가 선사하는 특별하고 몽환적인 순간.', '선라이즈 블렌드',
+            '델문도m.jpg', '델문도s1.jpg', '델문도s2.jpg', '델문도s3.jpg',  33.54369039106334, 126.66871972286157 , '19,000원');
 
 
 
 -- HOTEL --
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.48582927685537', '126.48379663399649', 80000, 'A');
+              VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', '위드시티호텔m.jpg', '위드시티호텔s1.jpg', '위드시티호텔s2.jpg', '위드시티호텔s3.jpg', '33.48582927685537', '126.48379663399649', 80000, 'A');
               
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.492437097713896', '126.42864471233102', 1350000, 'A');
+              VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', '그라벨호텔m.jpg', '그라벨호텔s1.jpg', '그라벨호텔s2.jpg', '그라벨호텔s2.jpg', '33.492437097713896', '126.42864471233102', 1350000, 'A');
               
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('호텔더원', 'theOne', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 특별자치도, 연동 사장3길 33 KR', '064-798-0001', 'http://www.hoteltheone.com/', '제주 시내에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 성산일출봉을 방문해 보세요.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.483523318292406', '126.49084698890063', 85000, 'A');
-INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
-            VALUES ('호텔', 'hotel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), 
-    '제주', '010-1234-1324', 'www.naver.com', '정보', '14:00', '11:00','main.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 50.5, 50.5, '40000', 'P');              
+              VALUES ('호텔더원', 'theOne', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 연동 사장3길 33 KR', '064-798-0001', 'http://www.hoteltheone.com/', '제주 시내에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 성산일출봉을 방문해 보세요.', '15:00', '11:00', '호텔더원m.jpg', '호텔더원s1.jpg', '호텔더원s2.jpg', '호텔더원s3.jpg', '33.483523318292406', '126.49084698890063', 85000, 'A');              
 
 -- Hreservation --
 INSERT INTO Hreservation (MID, HNAME, INDATE, OUTDATE, RWHETHER) VALUES ('aaa', '위드시티호텔', '2023-04-20', '2023-04-22', 'Y');

@@ -20,6 +20,7 @@ public class MapRestaurant {
 	private double rlatitude;
 	private double rlongitude;
 	private String rprice;
+	private String schName;
 	@Override
 	public String toString() {
 		return "{'rname':'" + rname + "', 'bid':'" + bid + "', 'locationno':" + locationno + ", 'restauranttypeno':"

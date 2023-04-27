@@ -12,6 +12,7 @@ import java.util.List;
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -197,48 +198,53 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-	public void insertHotel(Hotel hotel) {
-		businessDao.insertHotel(hotel);
+	public void registerHotel(Hotel hotel, HttpServletRequest request) {
+		businessDao.registerHotel(hotel, request);
 	}
 
 	@Override
-	public void updateHotel(Hotel hotel) {
-		businessDao.updateHotel(hotel);
+	public void modifyHotel(Hotel hotel) {
+		businessDao.modifyHotel(hotel);
 	}
 
 	@Override
-	public List<Hotel> selectMyHotelPosts(String bid) {
-	    return businessDao.selectMyHotelPosts(bid);
+	public List<Hotel> myHotelPosts(String bid) {
+	    return businessDao.myHotelPosts(bid);
 	}
 
 	@Override
-	public String selectHotelApprovalStatus(String hname) {
-	    return businessDao.selectHotelApprovalStatus(hname);
+	public String hotelApprovalStatus(String hname) {
+	    return businessDao.hotelApprovalStatus(hname);
 	}
 
 	@Override
-	public void insertRestaurant(Restaurant restaurant) {
-		businessDao.insertRestaurant(restaurant);
+	public void registerRestaurant(Restaurant restaurant) {
+		businessDao.registerRestaurant(restaurant);
 	}
 
 	@Override
-	public void updateRestaurant(Restaurant restaurant) {
-		businessDao.updateRestaurant(restaurant);
+	public void modifyRestaurant(Restaurant restaurant) {
+		businessDao.modifyRestaurant(restaurant);
 	}
 
 	@Override
-	public List<Restaurant> selectMyRestaurantPosts(String bid) {
-	    return businessDao.selectMyRestaurantPosts(bid);
+	public List<Restaurant> myRestaurantPosts(String bid) {
+	    return businessDao.myRestaurantPosts(bid);
 	}
 
 	@Override
-	public String selectRestaurantApprovalStatus(String rname) {
-	    return businessDao.selectRestaurantApprovalStatus(rname);
+	public String restaurantApprovalStatus(String rname) {
+	    return businessDao.restaurantApprovalStatus(rname);
 	}
 
 	@Override
-	public List<HotelComment> selectMyHotelComments(String bid) {
-	    return businessDao.selectMyHotelComments(bid);
+	public List<HotelComment> myHotelComments(String bid) {
+	    return businessDao.myHotelComments(bid);
 	}
+	
+	//@Override
+	//public List<RestaurntComment> selectMyRestaurntComments(String bid) {
+	//    return businessDao.selectMyRestaurntComments(bid);
+	//}
 
 }

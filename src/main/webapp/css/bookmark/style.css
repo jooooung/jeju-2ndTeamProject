@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/* 전체 body */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+}
+
+/* 박스 */
+.box {
+	width: 70%;
+	margin: 0 auto;
+	background-color: #f5f5f5;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* 제목 */
+h2 {
+	text-align: center;
+	margin-top: 0;
+}
+
+/* 이미지 */
+.box img {
+	display: block;
+	margin: 0 auto;
+}
+
+/* 숙소 이름 */
+.box p {
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+/* 링크 */
+.box a {
+	width : 250px;
+	display: block;
+	text-align: center;
+	margin-top: 10px;
+	text-decoration: none;
+	color: #333;
+	font-weight: bold;
+	border: 2px solid #333;
+	border-radius: 5px;
+	padding: 0px;
+	transition: all 0.3s ease;
+	text-align: center;
+}
+
+.box a:hover {
+	background-color: #333;
+	color: #fff;
+}

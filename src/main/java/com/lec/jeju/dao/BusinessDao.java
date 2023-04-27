@@ -2,6 +2,7 @@ package com.lec.jeju.dao;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -9,6 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
+//import com.lec.jeju.vo.RestaurantComment;
 import com.lec.jeju.vo.Restaurant;
 
 @Mapper
@@ -35,46 +37,39 @@ public interface BusinessDao {
 	public int deleteBusiness(String bid);
 	
 	// Hotel 등록
-	public void insertHotel(Hotel hotel);
+	public void registerHotel(Hotel hotel, HttpServletRequest request);
     
     // Hotel 수정
-	public void updateHotel(Hotel hotel);
-    
-    // Hotel 삭제
-	public void deleteHotel(String hname);
+	public void modifyHotel(Hotel hotel);
     
     // Hotel 나의 글 조회
-	public List<Hotel> selectMyHotelPosts(String bid);
+	public List<Hotel> myHotelPosts(String bid);
     
     // Hotel 등록 승인 여부 확인
-	public String selectHotelApprovalStatus(String hname);
+	public String hotelApprovalStatus(String hname);
     
     // Restaurant 등록
-	public void insertRestaurant(Restaurant restaurant);
+	public void registerRestaurant(Restaurant restaurant);
     
     // Restaurant 수정
-	public void updateRestaurant(Restaurant restaurant);
-    
-    // Restaurant 삭제
-	public void deleteRestaurant(String rname);
+	public void modifyRestaurant(Restaurant restaurant);
     
     // Restaurant 나의 글 조회
-	public List<Restaurant> selectMyRestaurantPosts(String bid);
+	public List<Restaurant> myRestaurantPosts(String bid);
     
     // Restaurant 등록 승인 여부 확인
-	public String selectRestaurantApprovalStatus(String rname);
+	public String restaurantApprovalStatus(String rname);
     
     // Hotel 댓글 조회
-	public List<HotelComment> selectMyHotelComments(String bid);
-
+	public List<HotelComment> myHotelComments(String bid);
     
-	/*
-	 * // Restaurant 댓글 조회 List<RestaurantComment> selectMyRestaurantComments(String
-	 * bid);
-	 */
-    // 로그아웃
+	 // Restaurant 댓글 조회
+	//public List<RestaurantComment> myRestaurantComments(String bid);
+
+	// 로그아웃
 	public void logout(HttpSession httpSession);
-//	public List<RestaurantComment> selectMyRestaurantComments(String bid);
+
+
 }
 
 

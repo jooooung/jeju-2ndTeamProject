@@ -27,8 +27,8 @@ public class MapServiceImpl implements MapService {
 	}
 
 	@Override
-	public List<MapSpot> schSpotList(MapSpot spot) {
-		return null;
+	public List<MapSpot> schSpotList(String schName) {
+		return spotDao.schSpotList(schName);
 	}
 
 	@Override
@@ -43,9 +43,8 @@ public class MapServiceImpl implements MapService {
 	}
 
 	@Override
-	public List<MapRestaurant> schRestaurantList(MapRestaurant restaurant) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MapRestaurant> schRestaurantList(String schName) {
+		return resDao.schRestaurantList(schName);
 	}
 
 	@Override
@@ -61,9 +60,8 @@ public class MapServiceImpl implements MapService {
 	}
 
 	@Override
-	public List<MapHotel> schHotelList(MapHotel hotel) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MapHotel> schHotelList(String schName) {
+		return hotelDao.schHotelList(schName);
 	}
 
 	@Override

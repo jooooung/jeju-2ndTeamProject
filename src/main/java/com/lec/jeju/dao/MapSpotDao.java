@@ -9,6 +9,6 @@ import com.lec.jeju.vo.MapSpot;
 @Mapper
 public interface MapSpotDao {
 	public List<MapSpot> mapSpotList(); 
-	public List<MapSpot> spotList(MapSpot spot);
+	public List<MapSpot> schSpotList(String schName);
 	public List<MapSpot> spotPlaceSchList(MapSpot spot);
 }

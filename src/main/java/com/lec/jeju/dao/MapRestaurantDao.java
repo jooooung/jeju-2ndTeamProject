@@ -9,6 +9,6 @@ import com.lec.jeju.vo.MapRestaurant;
 @Mapper
 public interface MapRestaurantDao {
 	public List<MapRestaurant> mapRestaurantList(); 
-	public List<MapRestaurant> restaurantList(MapRestaurant restaurant);
+	public List<MapRestaurant> schRestaurantList(String schName);
 	public List<MapRestaurant> resPlaceSchList(MapRestaurant restaurant);
 }

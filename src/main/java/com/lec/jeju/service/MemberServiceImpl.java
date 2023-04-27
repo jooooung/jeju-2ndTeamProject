@@ -70,13 +70,16 @@ public class MemberServiceImpl implements MemberService {
 		} // if
 			// 메일전송
 		MimeMessagePreparator message = new MimeMessagePreparator() {
-			String content = "<div style=\"width:500px; margin: 0 auto\">\n" + " <h1>" + member.getMname()
-					+ "님의 회원가입 감사합니다</h1>\n" + " 아무개 사이트에서만 쓰실 수 있는 감사쿠폰을 드립니다<br>\n"
-					+ " <img src=\"https://t1.daumcdn.net/daumtop_chanel/op/20200723055344399.png\" alt=\"다음 로고\">\n"
-					+ " <hr color=\"red\">\n" + " <span style=\"color:red;\">빨간 글씨 부분</span><br>\n"
-					+ " <span style=\"color:blue;\">파란 글씨 부분</span><br>\n"
-					+ " <img src=\"http://localhost:8090/jeju/img/coupon.jpg\" alt=\"쿠폰\"><br>\n"
-					+ " <p align=\"center\">서울시 어떤구 몰라17길 51 어떤빌딩 2층</p>\n" + " </div>";
+			String content = 
+				    "<div style=\"width:500px; margin: 0 auto\">\n" + 
+				    " <h1>" + member.getMname() + "님 회원가입 감사합니다!</h1>\n" + 
+				    " <img src=\"https://api.cdn.visitjeju.net/photomng/imgpath/202304/05/cb6172ca-26be-4877-bccf-1ed66c4ac683.jpg\" "
+				    + "alt=\"제주도가즈아\" style=\"width: 100%; max-width: 500px;\">\n" +
+				    " <p align=\"center\">저희 JEJU 종합관광정보 사이트에 오신걸 환영합니다.</p>\n" + 
+				    " <p align=\"center\">부디 편안하고 안전한 여행 되시길 바랍니다.</p>\n" + 
+				    " <p align=\"center\">(00000) 제주특별자치도 제주시 JEJU</p>\n" + 
+				    " <p align=\"center\">관광불편신고 : 제주안내 120콜센터(국번없이 120번)</p>\n" + 
+				    "</div>";
 
 			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception {
@@ -85,7 +88,7 @@ public class MemberServiceImpl implements MemberService {
 				// 보낼 메일
 				mimeMessage.setFrom(new InternetAddress("dnvk8888@gmail.com"));
 				// 메일 제목
-				mimeMessage.setSubject("[HTML 가입인사]" + member.getMname() + "님 가입 감사합니다");
+				mimeMessage.setSubject("[JEJU] " + member.getMname() + "님 제주도에 오신걸 환영합니다 !");
 				// 메일 본문
 				mimeMessage.setText(content, "utf-8", "html");
 			}

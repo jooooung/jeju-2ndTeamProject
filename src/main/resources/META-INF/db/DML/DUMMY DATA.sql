@@ -130,15 +130,16 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, R
 
 -- HOTEL --
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.48582927685537', '126.48379663399649', 80000, 'A');
+              VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.48582927685537', '126.48379663399649', 80000, 'A');
               
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.492437097713896', '126.42864471233102', 1350000, 'A');
+              VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.492437097713896', '126.42864471233102', 1350000, 'A');
               
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('호텔더원', 'theOne', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주특별자치도 제주시 특별자치도, 연동 사장3길 33 KR', '064-798-0001', 'http://www.hoteltheone.com/', '제주 시내에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 성산일출봉을 방문해 보세요.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.483523318292406', '126.49084698890063', 85000, 'A');
+              VALUES ('호텔더원', 'theOne', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 특별자치도, 연동 사장3길 33 KR', '064-798-0001', 'http://www.hoteltheone.com/', '제주 시내에 위치해 있어 현지 명소 및 관광지와 인접해 있습니다. 떠나기 전 유명한 성산일출봉을 방문해 보세요.', '15:00', '11:00', 'sample.jpg', NULL, NULL, NULL, '33.483523318292406', '126.49084698890063', 85000, 'A');
 INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
-            VALUES ('호텔', 'hotel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), 
+    VALUES ('호텔', 'hotel', 
+        (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), 
     '제주', '010-1234-1324', 'www.naver.com', '정보', '14:00', '11:00','main.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 50.5, 50.5, '40000', 'P');              
 
 -- Hreservation --

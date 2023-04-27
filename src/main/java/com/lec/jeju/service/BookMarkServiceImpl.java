@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lec.jeju.dao.BookMarkDao;
+import com.lec.jeju.dao.MemberDao;
 import com.lec.jeju.vo.BookMark;
+import com.lec.jeju.vo.Member;
 
 @Service
 public class BookMarkServiceImpl implements BookMarkService {
@@ -16,17 +18,20 @@ public class BookMarkServiceImpl implements BookMarkService {
 	private BookMarkDao bookMarkDao;
 
 	@Override
-	public List<BookMark> getBookmarkHotelList(String mid) {
+	public List<BookMark> getBookmarkHotelList(String mid, HttpSession session) {
+		Member sessionMember = (Member) session.getAttribute("member");
 		return bookMarkDao.bookmarkHotel(mid);
 	}
 
 	@Override
-	public List<BookMark> getBookmarkResList(String mid) {
+	public List<BookMark> getBookmarkResList(String mid, HttpSession session) {
+		Member sessionMember = (Member) session.getAttribute("member");
 		return bookMarkDao.bookmarkRes(mid);
 	}
 
 	@Override
-	public List<BookMark> getBookmarkSpotList(String mid) {
+	public List<BookMark> getBookmarkSpotList(String mid, HttpSession session) {
+		Member sessionMember = (Member) session.getAttribute("member");
 		return bookMarkDao.bookmarkSpot(mid);
 	}
 
@@ -62,19 +67,16 @@ public class BookMarkServiceImpl implements BookMarkService {
 
 	@Override
 	public Integer getHotelCount(String mid) {
-		Integer count = bookMarkDao.HotelCount(mid);
-		return count == null ? 0 : count;
+		return bookMarkDao.HotelCount(mid);
 	}
 
 	@Override
 	public Integer getSpotCount(String mid) {
-		Integer count = bookMarkDao.SpotCount(mid);
-		return count == null ? 0 : count;
+		return bookMarkDao.SpotCount(mid);
 	}
 
 	@Override
 	public Integer getResCount(String mid) {
-		Integer count = bookMarkDao.ResCount(mid);
-		return count == null ? 0 : count;
+		return bookMarkDao.ResCount(mid);
 	}
 }

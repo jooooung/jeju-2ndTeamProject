@@ -47,29 +47,33 @@ color: blue;
             });
         }
         $('form').submit(function() {
-        	  var oldMpw = $('input[name="oldMpw"]').val();
-        	  var memailConfirmResult = $('#memailConfirmResult').text().trim();
-        	  
-        	  // 중복 확인 결과가 나타나지 않은 경우
-        	  if (!memailConfirmResult) {
-        	    alert('이메일 중복 여부를 확인하세요.');
-        	    return false;
-        	  }
-        	  
-        	  // 현재 비밀번호가 일치하지 않는 경우
-        	  if (oldMpw !== '${member.mpw}') {
-        	    alert('현재 비밀번호가 틀렸습니다.');
-        	    $('input[name="oldMpw"]').focus();
-        	    return false;
-        	  }
+            var oldMpw = $('input[name="oldMpw"]').val();
+            var memailConfirmResult = $('#memailConfirmResult').text().trim();
+            var memail = $('input[name="memail"]').val();
 
-        	  // 이메일이 중복된 경우
-        	  if (memailConfirmResult !== '사용 가능한 이메일 입니다.') {
-        	    alert('이미 등록된 이메일입니다.');
-        	    $('input[name="memail"]').focus();
-        	    return false;
-        	  }
-        	});
+            // 현재 비밀번호가 일치하지 않는 경우
+            if (oldMpw !== '${member.mpw}') {
+                alert('현재 비밀번호가 틀렸습니다.');
+                $('input[name="oldMpw"]').focus();
+                return false;
+            }
+
+            // 이메일이 변경되었을 경우에만 중복 체크 수행
+            if (memail !== '${member.memail}') {
+                // 중복 확인 결과가 나타나지 않은 경우
+                if (!memailConfirmResult) {
+                    alert('이메일 중복 여부를 확인하세요.');
+                    return false;
+                }
+
+                // 이메일이 중복된 경우
+                if (memailConfirmResult !== '사용 가능한 이메일 입니다.') {
+                    alert('이미 등록된 이메일입니다.');
+                    $('input[name="memail"]').focus();
+                    return false;
+                }
+            }
+        });
     });
 </script>
 </head>
@@ -81,8 +85,7 @@ color: blue;
 	</c:if>
 	<jsp:include page="../main/header.jsp" />
 	<div id="content">
-		<form action="${conPath }/member.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="method" value="modify">
+		<form action="${conPath }/member/modify.do" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>아이디</td>
@@ -161,11 +164,9 @@ color: blue;
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: center;">
-						<input type="submit" value="수정"> 
-						<input type="button" value="취소" onclick="location.href='${conPath}/main.do'">
-						<input type="button" value="회원탈퇴" onclick="location.href='${pageContext.request.contextPath}/member/delete.do'">
-					</td>
-				</tr>
+						<input type="submit" value="정보수정"> 
+						<input type="button" value="돌아가기" onclick="location.href='${conPath}/main.do'">
+						<input type="button" value="회원탈퇴" onclick="location.href='${conPath}/member/delete.do'">
 			</table>
 		</form>
 	</div>

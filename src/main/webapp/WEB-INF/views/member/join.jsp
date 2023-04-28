@@ -10,9 +10,7 @@
 <link href="${conPath }/css/member/join.css" rel=stylesheet>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="${conPath }/js/address.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
 <script>
 	// ID 중복검사
 	$(function() {
@@ -22,9 +20,9 @@
 				$('#midConfirmResult').html('<p style=color:red;>아이디는 2글자 이상 입니다');
 			} else {
 				$.ajax({
-				url : '${conPath}/member.do',
+				url : '${conPath}/member/idConfirm.do',
 				type : 'get',
-				data : "method=idConfirm&mid=" + $('#mid').val(),
+				data : "mid=" + $('#mid').val(),
 				dataType : 'html',
 				success : function(data) {
 					$('#midConfirmResult').html(data);
@@ -51,9 +49,9 @@
 		        $('#memailConfirmResult').html('<p style="color:red;">메일 형식을 지켜 주세요.</p>');
 		    } else {
 		        $.ajax({
-		            url: '${conPath}/member.do',
+		            url: '${conPath}/member/memailConfirm.do',
 		            type: 'get',
-		            data: "method=memailConfirm&memail=" + $('#memail').val(),
+		            data: "memail=" + $('#memail').val(),
 		            dataType: 'html',
 		            success: function(data) {
 		            	$('#memailConfirmResult').html(data);
@@ -81,41 +79,18 @@
 		});
 	});
 </script>
-<!-- 	<script>
-	$(function() {
-		$("#datepicker").datepicker(
-				{
-					dateFormat : "yy-mm-dd",
-					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
-							'7월', '8월', '9월', '10월', '11월', '12월' ],
-					dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
-					changeMonth : true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
-					changeYear : true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
-					showMonthAfterYear : true,
-					showOtherMonths : true, // 현재 달이 아닌 달의 날짜도 회색으로 표시
-					yearSuffix : '년',
-					// minDate: '-100y',	 // 현재날짜로부터 100년이전까지 년을 표시한다.
-					minDate : new Date(1950, 1 - 1, 1), // 1950년 1월 1일을 최소날짜로 세팅
-					maxDate : 'y', // 현재 날짜 이전만 선택가능
-					yearRange : 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 
-				});
-	});
-</script> -->
 <title>Insert title here</title>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<br>
 	<div id="content">
-		<form action="${conPath }/member.do" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="method" value="join">
+		<form action="${conPath }/member/join.do" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>아이디</td>
 					<td>
 						<input type="text" name="mid" id="mid" required="required">
-						<!-- <input type="button" class="idconfirm" value="중복확인"> <br> -->
-						<!-- <span id="idConfirmMsg"></span> -->
 						<div id="midConfirmResult">&nbsp; &nbsp; &nbsp;</div>
 					</td>
 				</tr>
@@ -129,7 +104,6 @@
 					<td>비밀번호확인</td>
 					<td>
 						<input type="password" name="pwChk" required="required" id="mpwChk">
-						<!-- <span id="pwChkResult"></span> -->
 						<div id="pwChkResult">&nbsp; &nbsp; &nbsp;</div>
 					</td>
 				</tr>
@@ -150,7 +124,6 @@
 					<td>
 						<input type="text" name="memail" id="memail" required="required" placeholder="you@example.com">
 						<div id="memailConfirmResult">&nbsp; &nbsp; &nbsp;</div>
-						<!-- <span id="memailConfirmResult"></span> -->
 					</td>
 					
 				</tr>
@@ -197,4 +170,28 @@
 	</div>
 	<jsp:include page="../main/footer.jsp" />
 </body>
+<!-- 데이터피커 API 스크립트 추가 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<script>
+	$(function() {
+		$("#datepicker").datepicker(
+				{
+					dateFormat : "yy-mm-dd",
+					monthNamesShort : [ '1월', '2월', '3월', '4월', '5월', '6월',
+							'7월', '8월', '9월', '10월', '11월', '12월' ],
+					dayNamesMin : [ "일", "월", "화", "수", "목", "금", "토" ],
+					changeMonth : true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+					changeYear : true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+					showMonthAfterYear : true,
+					showOtherMonths : true, // 현재 달이 아닌 달의 날짜도 회색으로 표시
+					yearSuffix : '년',
+					// minDate: '-100y',	 // 현재날짜로부터 100년이전까지 년을 표시한다.
+					minDate : new Date(1950, 1 - 1, 1), // 1950년 1월 1일을 최소날짜로 세팅
+					maxDate : 'y', // 현재 날짜 이전만 선택가능
+					yearRange : 'c-100:c+10', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 
+				});
+	});
+</script>
 </html>

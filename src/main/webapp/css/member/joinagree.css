@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 #joinMessage {
+	width: 70%;
+	margin: 0 auto;
 	background-color: #f5f5f5;
 	padding: 20px;
 	border: 1px solid #ccc;
@@ -50,4 +52,14 @@
 
 #joinMessage table td.btn input[type="button"]:hover {
 	background-color: orange;
+}
+
+#ppp {
+	text-align: center;
+	margin: 25px;
+	padding: 10px;
+}
+
+#ppp a {
+	color: #6b6b6b;
 }

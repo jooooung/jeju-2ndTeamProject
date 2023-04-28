@@ -329,7 +329,6 @@ $(document).ready(function(){
 	        setHotelMarkers(null);
 	        
 	    } else if (type == 'res') { // res 카테고리가 클릭됐을 때
-
 	        // res 카테고리를 선택된 스타일로 변경하고
 	        spotMenu.className = '';
 	        resMenu.className = 'menu_selected';
@@ -394,8 +393,7 @@ $(document).ready(function(){
 		    
 	    	// 지도 onload시 커스텀 오버레이 비활성화
 	    	overlay.setMap(null);
-
-	    	// spot 마커 이벤트
+	    	// 마커 클릭 시 커스텀 오버레이 활성화
 			kakao.maps.event.addListener(spotMarker, 'mouseover', makeOpenListener(map, overlay));
 			kakao.maps.event.addListener(spotMarker, 'mouseout', makeCLoseListener(overlay));
 	    }
@@ -435,8 +433,7 @@ $(document).ready(function(){
 		    
 	    	// 지도 onload시 커스텀 오버레이 비활성화
 	    	overlay.setMap(null);
-
-	    	// res 마커 이벤트
+	    	// 마커 클릭 시 커스텀 오버레이 활성화
 			kakao.maps.event.addListener(resMarker, 'mouseover', makeOpenListener(map, overlay));
 			kakao.maps.event.addListener(resMarker, 'mouseout', makeCLoseListener(overlay));
 	        
@@ -476,8 +473,7 @@ $(document).ready(function(){
 		    
 	     	// 지도 onload시 커스텀 오버레이 비활성화
 	    	overlay.setMap(null);
-
-	    	// hotel 마커 이벤트
+	    	// 마커 클릭 시 커스텀 오버레이 활성화
 			kakao.maps.event.addListener(hotelMarker, 'mouseover', makeOpenListener(map, overlay));
 			kakao.maps.event.addListener(hotelMarker, 'mouseout', makeCLoseListener(overlay));
 			kakao.maps.event.addListener(hotelMarker, 'click', hotelDetail(hotelTitle));

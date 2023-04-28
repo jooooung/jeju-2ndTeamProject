@@ -318,7 +318,6 @@ JEJU는 귀하가 좋은 정보를 안전하게 이용할 수 있도록 최선�
 - 시행일자 : 2017년 11월 08 일
       
 </textarea> 
-						<br> 
         					<input type="radio" name="agree1" value="1"> 동의합니다. 
         					<input type="radio" name="agree1" value="0"> 동의하지 않습니다.
 						</td>
@@ -326,16 +325,15 @@ JEJU는 귀하가 좋은 정보를 안전하게 이용할 수 있도록 최선�
 							<td colspan="2" class="btn">
 								<input type="button" value="비동의" onclick="nochk()" /> 
 								<input type="button" value="동의" onclick="chk()" />&nbsp;&nbsp;&nbsp;
-								<br><br>
-								<input type="button" value="일반회원일 경우 여기를 클릭해주세요" onclick="history.back();" /> 
 							</td>
 						</tr>
 				</table>
 			</form>
 		</div>
 		<br>
-		<br>
-		<br>
+		<p id="ppp">
+			 나만의 아이디가 필요하세요? <a href="${conPath}/member/joinAgreePage.do">개인 회원가입</a>
+		</p>
 	<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

@@ -40,19 +40,19 @@
 					</li>
 					<li>마이페이지
 						<ol class="subMenu">
-							<li><a href="">나의일정</a></li>
-							<li><a href="">나의리뷰</a></li>
-							<li><a href="">예약내역</a></li>
-							<li><a href="">즐겨찾기</a></li>
-							<li><a href="">정보수정</a></li>
+							<li><a href="${conPath }/member/login.do">나의일정</a></li>
+							<li><a href="${conPath }/member/login.do">나의리뷰</a></li>
+							<li><a href="${conPath }/member/login.do">예약내역</a></li>
+							<li><a href="${conPath }/member/login.do">즐겨찾기</a></li>
+							<li><a href="${conPath }/member/login.do">정보수정</a></li>
 						</ol>
 					</li>
 				</ul>
 			</div>
 			<div class="log">
 				<ul>
-					<li><a href="${conPath }/member.do?method=joinAgreePage">회원가입</a></li>
-					<li><a href="${conPath }/member.do?method=login">로그인</a></li>
+					<li><a href="${conPath }/member/joinAgreePage.do">회원가입</a></li>
+					<li><a href="${conPath }/member/login.do">로그인</a></li>
 				</ul>
 			</div>
 		</div>
@@ -88,7 +88,7 @@
 							<li><a href="">나의리뷰</a></li>
 							<li><a href="">예약내역</a></li>
 							<li><a href="${conPath }/bookmark/MyAll.do">즐겨찾기</a></li>
-							<li><a href="${conPath }/member.do?method=modify">정보수정</a></li>
+							<li><a href="${conPath }/member/modify.do">정보수정</a></li>
 						</ol>
 					</li>
 				</ul>
@@ -96,7 +96,7 @@
 			<div class="log">
 				<ul>
 					<li><a>${member.mname }님 &nbsp;</a></li>
-					<li><a href="${conPath }/member.do?method=logout">로그아웃</a></li>
+					<li><a href="${conPath }/member/logout.do">로그아웃</a></li>
 				</ul>
 			</div>
 		</div>

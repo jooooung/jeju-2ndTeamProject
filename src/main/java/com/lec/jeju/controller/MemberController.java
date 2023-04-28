@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,32 +22,32 @@ public class MemberController {
 	private MemberService memberService;
 
 	// 아이디 중복체크
-	@RequestMapping(params = "method=idConfirm", method = RequestMethod.GET)
+	@RequestMapping(value = "idConfirm", method = RequestMethod.GET)
 	public String idConfirm(String mid, Model model) {
 		model.addAttribute("idConfirmResult", memberService.idConfirm(mid));
 		return "member/idConfirm";
 	}
 
-	@RequestMapping(params = "method=memailConfirm", method = RequestMethod.GET)
+	@RequestMapping(value = "memailConfirm", method = RequestMethod.GET)
 	public String mailConfirm(String memail, Model model) {
 		model.addAttribute("memailConfirmResult", memberService.emailConfirm(memail));
 		return "member/memailConfirm";
 	}
 
 	// 회원가입 약관
-	@RequestMapping(params = "method=joinAgreePage", method = RequestMethod.GET)
+	@RequestMapping(value = "joinAgreePage", method = RequestMethod.GET)
 	public String joinAgreePage() {
 		return "member/joinAgreePage";
 	}
 
 	// 회원가입 View
-	@RequestMapping(params = "method=join", method = RequestMethod.GET)
-	public String join() {
+	@RequestMapping(value = "join", method = RequestMethod.GET)
+	public String joinView() {
 		return "member/join";
 	}
 
 	// 회원가입 처리
-	@RequestMapping(params = "method=join", method = RequestMethod.POST)
+	@RequestMapping(value = "join", method = RequestMethod.POST)
 	public String join(@ModelAttribute("mDto") Member member, Model model, HttpSession httpSession,
 			MultipartHttpServletRequest mRequest) {
 		model.addAttribute("joinResult", memberService.joinMember(member, httpSession, mRequest));
@@ -54,61 +55,56 @@ public class MemberController {
 	}
 
 	// 로그인 뷰
-	@RequestMapping(params = "method=login", method = RequestMethod.GET)
-	public String login() {
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String loginView() {
 		return "member/login";
 	}
 
 	// 로그인 처리
-	@RequestMapping(params = "method=login", method = RequestMethod.POST)
-	public String login(String mid, String mpw, String after, HttpSession httpSession, Model model) {
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String login(String mid, String mpw, HttpSession httpSession, Model model) {
 		String loginResult = memberService.loginCheck(mid, mpw, httpSession);
 		if (loginResult.equals("로그인 성공")) {
-			return "redirect:" + after;
+			model.addAttribute("loginResult", loginResult);
+			return "forward:/main.do";
 		} else {
-			model.addAttribute("loginResult", loginResult); // redirect 사용불가
+			model.addAttribute("loginResult", loginResult);
 			model.addAttribute("mid", mid);
 			model.addAttribute("mpw", mpw);
 			return "member/login";
 		}
 	}
 
-	// 로그아웃
-	@RequestMapping(params = "method=logout", method = RequestMethod.GET)
-	public String logout(HttpSession httpSession) {
-		httpSession.invalidate();
-		return "redirect:main.do";
-	}
-
-	// 로그인 후 정보수정으로 갈때
-	@RequestMapping(value = "method=modify", method = RequestMethod.GET)
-	public String modify1() {
-		return "member/modify";
-	}
-
 	// 정보수정 뷰
-	@RequestMapping(params = "method=modify", method = RequestMethod.GET)
-	public String modify() {
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
+	public String modifyView() {
 		return "member/modify";
 	}
 
 	// 정보수정 처리
-	@RequestMapping(params = "method=modify", method = RequestMethod.POST)
+	@RequestMapping(value = "modify", method = RequestMethod.POST)
 	public String modify(@ModelAttribute("mDto") Member member, HttpSession httpSession, Model model,
 			MultipartHttpServletRequest mRequest) {
 		model.addAttribute("modifyResult", memberService.modifyMember(member, httpSession, mRequest));
-		return "forward:main.do";
+		return "forward:/main.do";
+	}
+
+	// 로그아웃
+	@RequestMapping(value = "logout", method = RequestMethod.GET)
+	public String logout(HttpSession httpSession) {
+		httpSession.invalidate();
+		return "forward:/main.do";
 	}
 
 	// 회원탈퇴
 
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
-	public String delete() {
+	public String deleteView() {
 		return "member/delete";
 	}
 
 	// 회원탈퇴 처리
-	@RequestMapping(params = "method=delete", method = RequestMethod.POST)
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public String deleteMember(HttpSession session, String mpw, Model model, RedirectAttributes redirectAttributes) {
 		Member member = (Member) session.getAttribute("member");
 		String msg = null;
@@ -117,7 +113,7 @@ public class MemberController {
 			if (result > 0) {
 				session.invalidate();
 				redirectAttributes.addFlashAttribute("msg", "회원탈퇴가 완료되었습니다.");
-				return "redirect:main.do";
+				return "redirect:/main.do";
 			} else {
 				msg = "회원탈퇴 처리가 실패 했습니다.";
 			}

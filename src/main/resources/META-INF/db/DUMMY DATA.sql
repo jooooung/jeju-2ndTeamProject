@@ -44,6 +44,7 @@ INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPho
 INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
     VALUES ('bom', 'bpw', '봄날카페', '010-1234-1234', 'bom@naver.com', '제주시 서귀포구', '감귤동', '125863', null, sysdate);
 
+select * from Business;
 -- BUSINESS hotel --
 INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
     VALUES ('withCITY', 'bpw', '위드시티호텔', '010-1234-1234', 'withcity@naver.com', '제주시 서귀포구', '감귤동', '125863', null, sysdate);
@@ -59,7 +60,6 @@ insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth
     values('aaa', '1', '홍길동','010-1234-1234',  'hong@hong.com', '서울시 중랑구', 'xx아파트', '12345', '1995-12-12');
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
     values('bbb', '1', '김길동', '010-4321-4321', 'kim@kim.com', '서울시 서대문구', '이젠빌라', '12345', '1997-04-28');
-    
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
     VALUES ('kim', '123', '김민지', '010-1234-4321', 'kim@naver.com', '강원도 춘천시', '춘천아파트',' 12345', '2004-05-07','민지.png', SYSDATE);
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto, mrDate)
@@ -132,8 +132,6 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, R
     '일출과 일몰, 바람, 그리고 델문도 커피가 선사하는 특별하고 몽환적인 순간.', '선라이즈 블렌드',
             '델문도m.jpg', '델문도s1.jpg', '델문도s2.jpg', '델문도s3.jpg',  33.54369039106334, 126.66871972286157 , '19,000원', 'A');
 
-
-
 -- HOTEL --
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
               VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', '위드시티호텔m.jpg', '위드시티호텔s1.jpg', '위드시티호텔s2.jpg', '위드시티호텔s3.jpg', '33.48582927685537', '126.48379663399649', 80000, 'A');
@@ -166,12 +164,12 @@ INSERT INTO Schedule (scheduleNo, mId, scheduleTitle, startDate, endDate, schedu
 VALUES (scheduleNo_seq.NEXTVAL, 'kim', '드라이브여행', TO_TIMESTAMP('2023-10-01 13:00:00', 'YYYY-MM-DD HH24:MI:SS'), TO_TIMESTAMP('2023-10-04 18:00:00', 'YYYY-MM-DD HH24:MI:SS'), '제주에서의 시원한 바닷바람과 함께하는 드라이브 여행', '위드시티호텔', '올레칠돈', '협재해수욕장');
     
 -- BOOKMARK --
-INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME) 
-    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', '호텔', NULL, NULL);
-INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', null, '올래국수', null);
-INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', null, NULL, '한라산국립공원');
+INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
+    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', '호텔더원', null, null, '호텔더원m.jpg', null, null);
+INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
+    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', null, '올래국수', null, null, '올래국수m.jpg', null);
+INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
+    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', null, NULL, '한라산국립공원', null, null, '한라산국립공원m');
 
     
 -- SPOTCOMMENT --

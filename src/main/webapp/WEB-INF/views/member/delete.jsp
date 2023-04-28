@@ -34,11 +34,10 @@
 	</c:if>
 	<jsp:include page="../main/header.jsp" />
 	<h3>회원탈퇴</h3>
-	<form action="${conPath }/member.do" method="post">
-		<input type="hidden" name="method" value="delete">
+	<form action="${conPath }/member/delete.do" method="post">
 		<p>
 			<input type="text" class="text-field" readonly="readonly" size="10"
-				placeholder="이름 : ${member.mname }님">
+				placeholder="이름 : ${member.mname }">
 		</p>
 		<p>
 			<input type="text" class="text-field" readonly="readonly" size="10"

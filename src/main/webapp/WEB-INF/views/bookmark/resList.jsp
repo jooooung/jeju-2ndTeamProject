@@ -7,27 +7,33 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>즐겨찾기한 숙소 목록</title>
 <link href="${conPath }/css/bookmark/style.css" rel="stylesheet">
+<style>
+img {
+	width: 400px;
+	height: 250px;
+}
+</style>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<br>
 	<br>
-	<h2 align="center">${member.mname}님이 즐겨찾기 한 식당 LIST</h2>
+	<h2 align="center">${member.mname}님이 즐겨찾기 한 맛집 LIST</h2>
 	<br>
 	<br>
 	<div class="box">
 		<c:if test="${empty resList }">
 			<h2 align="center">즐겨찾기한 식당이 없어요</h2>
 		</c:if>
-		<c:forEach var="Res" items="${resList}">
+		<c:forEach var="res" items="${resList}">
 			<div>
-				<img src="${conPath}/hotelImgFileUpload/${Res.imgPath}"
-					alt="${Res.rname}" width="150" height="150">
-				<p>${Res.rname}</p>
-				<a href="${conPath}/hotel/detail.do?hname=${hotel.hname}">상세보기</a>
+				<img alt="" src="${conPath }/resImgFileUpload/${res.rmainimg}">
+				<p>${res.rname}</p>
+				<br>
+				<a style="text-align: center; display: block; margin: 0 auto;" href="${conPath}/hotel/detail.do?hname=${hotel.hname}">상세보기</a>
+				<br>
 			</div>
 		</c:forEach>
 	</div>

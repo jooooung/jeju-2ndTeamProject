@@ -23,13 +23,13 @@
 	<select id="mapHotelList" resultMap="HotelResult">
 		SELECT H.*, NVL(bCnt, 0) bCnt 
     		FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME)B 
-		WHERE H.HNAME = B.HNAME(+)
+		WHERE H.HNAME = B.HNAME(+) AND REQUESTSTATUS = 'A'
 	</select>
 	<!-- hotel -->
 	<select id="schHotelList" parameterType="MapHotel" resultMap="HotelResult">
 		SELECT H.*, NVL(bCnt, 0) bCnt 
                 FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-             WHERE H.HNAME = B.HNAME(+) AND H.HNAME LIKE '%' || #{schName} || '%' ORDER BY bCnt DESC
+             WHERE H.HNAME = B.HNAME(+) AND H.HNAME LIKE '%' || #{schName} || '%' AND REQUESTSTATUS = 'A' ORDER BY bCnt DESC
 	</select>
 	<select id="hotelPlaceSchList" resultMap="HotelResult">
 		SELECT H.*, LNAME FROM HOTEL H, LOCATION L WHERE LNAME =  #{lname} AND H.LOCATIONNO = L.LOCATIONNO

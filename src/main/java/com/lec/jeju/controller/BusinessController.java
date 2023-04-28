@@ -1,8 +1,8 @@
 package com.lec.jeju.controller;
 
+import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +69,7 @@ public class BusinessController {
 	public String login(String bid, String bpw, String after, HttpSession httpSession, Model model) {
 		String loginResult = businessService.loginCheck(bid, bpw, httpSession);
 		if (loginResult.equals("로그인 성공")) {
+			httpSession.setAttribute("bid", bid);
 			return "redirect:" + after;
 		} else {
 			model.addAttribute("loginResult", loginResult); // redirect 사용불가
@@ -138,31 +139,13 @@ public class BusinessController {
 	}
 
 	@RequestMapping(value = "/registerHotel", method = RequestMethod.POST)
-	public String registerHotel(HttpServletRequest request, Model model) {
-	    Hotel hotel = new Hotel();
-	    hotel.setHname(request.getParameter("hname"));
-	    hotel.setBid(request.getParameter("bid"));
-	    hotel.setLocationno(Integer.parseInt(request.getParameter("locationno")));
-	    hotel.setHaddr(request.getParameter("haddr"));
-	    hotel.setHtel(request.getParameter("htel"));
-	    hotel.setHlink(request.getParameter("hlink"));
-	    hotel.setHinfo(request.getParameter("hinfo"));
-	    hotel.setIntime(request.getParameter("intime"));
-	    hotel.setOuttime(request.getParameter("outtime"));
-	    hotel.setHmainimg(request.getParameter("hmainimg"));
-	    hotel.setHsubimg_1(request.getParameter("hsubimg_1"));
-	    hotel.setHsubimg_2(request.getParameter("hsubimg_2"));
-	    hotel.setHsubimg_3(request.getParameter("hsubimg_3"));
-	    hotel.setHlatitude(Double.parseDouble(request.getParameter("hlatitude")));
-	    hotel.setHlongitude(Double.parseDouble(request.getParameter("hlongitude")));
-	    hotel.setHprice(Integer.parseInt(request.getParameter("hprice")));
-	    hotel.setRequeststatus("P");
-	    
-	    businessService.registerHotel(hotel, request);
-	    model.addAttribute("hotel", hotel);
-	    return "forward:myHotelPosts.do";
+	public String registerHotel(Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest) {
+	    String bid = (String) session.getAttribute("bid");
+	    hotel.setBid(bid);
+	    businessService.registerHotel(hotel, session, mRequest);
+	    return "redirect:/business/myHotelPosts.do";
 	}
-
+	
 	// 호텔 수정
 	@RequestMapping(value = "/modifyHotel", method = RequestMethod.PUT)
 	public String modifyHotel(Hotel hotel, Model model) {
@@ -172,18 +155,16 @@ public class BusinessController {
 		model.addAttribute("hotels", hotels);
 		return "business/myHotelPosts";
 	}
-
+	
+	// 호텔 등록 요청 목록
 	@RequestMapping(value = "/myHotelPosts", method = RequestMethod.GET)
-	public String selectMyHotelPosts(HttpSession session, Model model) {
+	public String myHotelPosts(Model model, HttpSession session) {
 	    String bid = (String) session.getAttribute("bid");
-	    if (bid == null) {
-	        bid = "default";
-	    }
-	    List<Hotel> hotels = businessService.myHotelPosts(bid);
-	    model.addAttribute("hotels", hotels);
+	    List<Hotel> hotelList = businessService.myHotelPosts(bid);
+	    model.addAttribute("hotelList", hotelList);
 	    return "business/myHotelPosts";
 	}
-
+	
 	// 호텔 등록 승인 여부 확인
 	@RequestMapping(value = "/hotelApprovalStatus", method = RequestMethod.GET)
 	public String selectHotelApprovalStatus(String hname, Model model) {

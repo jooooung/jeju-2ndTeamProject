@@ -2,9 +2,9 @@ package com.lec.jeju.service;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -32,8 +32,8 @@ public interface BusinessService {
 	public void logout(HttpSession httpSession);
 
 	// 호텔 등록
-	public void registerHotel(Hotel hotel, HttpServletRequest request);
-
+	public int registerHotel(Hotel hotel, HttpSession httpSession, MultipartHttpServletRequest mRequest);
+	
     // 호텔 수정
 	public void modifyHotel(Hotel hotel);
 
@@ -57,7 +57,6 @@ public interface BusinessService {
 
     // 호텔 댓글 조회
 	public List<HotelComment> myHotelComments(String bid);
-
 
     // 레스토랑 댓글 조회
     //public List<RestaurantComment> myRestaurantComments(String bid);

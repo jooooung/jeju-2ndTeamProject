@@ -4,18 +4,16 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
@@ -27,18 +25,18 @@ import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
 import com.lec.jeju.vo.Restaurant;
-
 @Service
 public class BusinessServiceImpl implements BusinessService {
 	
 	@Autowired
 	private BusinessDao businessDao;
-
+	String backupPath = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/businessPhoto/";
+	
+	String backupPath1 = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/hotelImgFileUpload/";
+	
 	@Autowired
 	private JavaMailSender mailSender;
-
-	String backupPath = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/businessPhoto/";
-
+	
 	@Override
 	public int idConfirm(String bid) {
 		return businessDao.idConfirm(bid);
@@ -66,8 +64,8 @@ public class BusinessServiceImpl implements BusinessService {
 				bFile.transferTo(new File(uploadPath + bphoto)); // 서버에 저장
 				System.out.println("서버파일 : " + uploadPath + bphoto);
 				System.out.println("백업파일 : " + backupPath + bphoto);
-				boolean result = fileCopy(uploadPath + bphoto, backupPath + bphoto);
-				System.out.println(result ? "백업성공" : "백업실패");
+				int result = fileCopy(uploadPath + bphoto, backupPath + bphoto);
+				System.out.println(result == 1? "백업성공" : "백업실패");
 			} catch (IOException e) {
 				System.out.println(e.getMessage());
 			}
@@ -139,8 +137,8 @@ public class BusinessServiceImpl implements BusinessService {
 				bfile.transferTo(new File(uploadPath + saveFileName));
 				System.out.println("서버파일 : " + uploadPath + saveFileName);
 				System.out.println("백업파일 : " + backupPath + saveFileName);
-				boolean result = fileCopy(uploadPath + saveFileName, backupPath + saveFileName);
-				System.out.println(result ? "백업성공" : "백업실패");
+				int result = fileCopy(uploadPath + saveFileName, backupPath + saveFileName);
+				System.out.println(result == 1? "백업 성공" : "백업 실패");
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -166,31 +164,28 @@ public class BusinessServiceImpl implements BusinessService {
 
 	}
 
-	private boolean fileCopy(String serverFile, String backupFile) {
-		boolean isCopy = false;
-		InputStream is = null;
-		OutputStream os = null;
+	private int fileCopy(String serverFile, String backupFile) {
+		int isCopy = 0;
+		FileInputStream is = null;
+		FileOutputStream os = null;
 		try {
 			File file = new File(serverFile);
-			is = new FileInputStream(file);
+			is = new FileInputStream(serverFile);
 			os = new FileOutputStream(backupFile);
 			byte[] buff = new byte[(int) file.length()];
-			while (true) {
+			while(true) {
 				int nReadByte = is.read(buff);
-				if (nReadByte == -1)
-					break;
+				if(nReadByte == -1) break;
 				os.write(buff, 0, nReadByte);
 			}
-			isCopy = true;
-		} catch (Exception e) {
+			isCopy = 1;
+		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		} finally {
 			try {
-				if (os != null)
-					os.close();
-				if (is != null)
-					is.close();
-			} catch (IOException e) {
+				if(os!=null) os.close();
+				if(is!=null) is.close();
+			} catch (Exception e) {
 				System.out.println(e.getMessage());
 			}
 		}
@@ -198,9 +193,46 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 	
 	@Override
-	public void registerHotel(Hotel hotel, HttpServletRequest request) {
-		businessDao.registerHotel(hotel, request);
+	public int registerHotel(Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest) {
+	    String uploadPath = mRequest.getRealPath("businessPhoto/");
+	    Iterator<String> params = mRequest.getFileNames();
+	    MultipartFile[] himg = new MultipartFile[4];
+	    int i = 0;
+	    while(params.hasNext()) {
+	        String param = params.next();
+	        MultipartFile bFile = mRequest.getFile(param);
+	        if(bFile != null) {
+	            himg[i] = bFile;
+	            // 파일 첨부 함
+	            if(himg[i].getOriginalFilename() != null && !himg[i].getOriginalFilename().equals("")) {
+	                String fileName = himg[i].getOriginalFilename();
+	                if(new File(uploadPath+fileName).exists()) {
+	                    // 서버에 동일 파일명 있을 시 파일명 교체
+	                    fileName = System.currentTimeMillis() + fileName;
+	                }
+	                try {
+	                    himg[i].transferTo(new File(uploadPath+fileName));
+	                    System.out.println("서버파일 : "+uploadPath+fileName);
+	                    System.out.println("백업파일 : "+backupPath1+fileName);
+	                    int result = fileCopy(uploadPath + fileName, backupPath1 + fileName);    // 파일카피
+	                    System.out.println(result == 1? i + "번째 백업 성공" : i + "번째 백업 실패");
+	                } catch (IOException e) {
+	                    System.out.println(e.getMessage());
+	                }
+	            } else {
+	                // 첨부 안 함
+	                System.out.println(i + "번째 첨부 안함 : 빈 파일 이름");
+	            }
+	        }
+	        i++;
+	    }
+	    hotel.setHmainimg(himg[0].getOriginalFilename());
+	    hotel.setHsubimg_1(himg[1].getOriginalFilename());
+	    hotel.setHsubimg_2(himg[2].getOriginalFilename());
+	    hotel.setHsubimg_3(himg[3].getOriginalFilename());
+	    return businessDao.registerHotel(hotel);
 	}
+
 
 	@Override
 	public void modifyHotel(Hotel hotel) {

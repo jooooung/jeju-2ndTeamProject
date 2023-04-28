@@ -97,7 +97,7 @@
 			</c:if>
 			<c:if test="${category eq hotelTemp && not empty hotel }">
 				<c:forEach var="list" items="${hotel }"> 
-					<table class="listTable">
+					<table class="listTable" onclick="location.href='${conPath}/hotel/detail.do?hname=${list.hname }'">
 						<tr>
 							<td>
 								<span>${list.hname }</span>
@@ -232,7 +232,6 @@ $(document).ready(function(){
 	        '        </div>' + 
 	        '    </div>' +    
 	        '</div>';
-	        
         spotList.push({
         	title: spot[i].sname,
 			content: spotContent,
@@ -305,7 +304,7 @@ $(document).ready(function(){
 	createResMarkers(); // res 마커를 생성하고 res 마커 배열에 추가합니다
 	createHotelMarkers(); // hotel 마커를 생성하고 hotel 마커 배열에 추가합니다
 	// 카테고리를 클릭했을 때 type에 따라 카테고리의 스타일과 지도에 표시되는 마커를 변경합니다
-	changeMarker(category); // 지도페이지 onload시 모두 표시
+	changeMarker(category); // 지도페이지 onload시 카테고리 받아오기
 	function changeMarker(type){
 	    var spotMenu = document.getElementById('spotMenu');
 	    var resMenu = document.getElementById('resMenu');
@@ -371,6 +370,8 @@ $(document).ready(function(){
 	// spot 마커를 생성하고 spot 마커 배열에 추가하는 함수입니다
 	function createSpotMarkers() {
 	    for (var i = 0; i < spotList.length; i++) {  
+	    	
+	    	var spotTitle = spotList[i].title;
 	        var imageSize = new kakao.maps.Size(35, 33),
 	            imageOptions = {  
 	                spriteOrigin: new kakao.maps.Point(0, 66),    
@@ -409,6 +410,7 @@ $(document).ready(function(){
 	function createResMarkers() {
 	    for (var i = 0; i < resList.length; i++) {
 	        
+	    	var resTitle = resList[i].title;
 	        var imageSize = new kakao.maps.Size(35, 33),
 	            imageOptions = {   
 	                spriteOrigin: new kakao.maps.Point(0, 32),    
@@ -449,6 +451,7 @@ $(document).ready(function(){
 	function createHotelMarkers() {
 	    for (var i = 0; i < hotelList.length; i++) {
 	        
+	    	var hotelTitle = hotelList[i].title;
 	        var imageSize = new kakao.maps.Size(35, 33),
 	            imageOptions = {   
 	                spriteOrigin: new kakao.maps.Point(0, 0),    
@@ -473,6 +476,7 @@ $(document).ready(function(){
 	    	// 마커 클릭 시 커스텀 오버레이 활성화
 			kakao.maps.event.addListener(hotelMarker, 'mouseover', makeOpenListener(map, overlay));
 			kakao.maps.event.addListener(hotelMarker, 'mouseout', makeCLoseListener(overlay));
+			kakao.maps.event.addListener(hotelMarker, 'click', hotelDetail(hotelTitle));
 	    }                
 	}
 	
@@ -495,6 +499,13 @@ $(document).ready(function(){
 	    return function() {
 	    	overlay.setMap(null);
 	    };
+	}
+	
+	// 호텔 상세보기 페이지로 가는 함수입니다
+	function hotelDetail(hotelTitle) {
+		return function() {
+			location.href='${conPath}/hotel/detail.do?hname=' + hotelTitle;
+		};
 	}
 </script>
 <jsp:include page="../main/footer.jsp"/>

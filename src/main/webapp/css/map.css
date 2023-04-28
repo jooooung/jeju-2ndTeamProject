@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-.category, .category *{margin:0;padding:0;color:#000;}   
-.category {position:absolute;overflow:hidden; top: 10px; left:400px; width:150px;height:65px;z-index:10;border:none;font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background:rgba(255, 255, 255, 0.7); border-radius: 10px;}
+
+.category {position:absolute;overflow:hidden; top: 10px; left:400px; width:150px; height:65px; z-index:10; border:none; font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:12px;text-align:center;background:rgba(255, 255, 255, 0.7); border-radius: 10px;}
 .category .menu_selected {background:#FF5F4A;color:#fff;border-left:1px solid #915B2F;border-right:1px solid #915B2F;margin:0 -1px;} 
-.category li{list-style:none;float:left;width:50px;height:65px;padding-top:5px;cursor:pointer;} 
+.category li{list-style:none;float:left;width:33%;height:65px;padding-top:5px;cursor:pointer;} 
 .category .ico_comm {display:block;margin:0 auto 2px;width:40px;height:38px;} 
 .category .ico_spot {background:url('../icon/spot.png') no-repeat;}  
 .category .ico_res {background:url('../icon/res.png') no-repeat;}   
@@ -24,7 +24,7 @@
 #menu_wrap .option p {margin:10px 0;}  
 #menu_wrap .option button {margin-left:5px;}
 
-#menu_wrap #placesList tr{cursor: pointer;}
+#menu_wrap #placesList table{cursor: pointer;}
 #menu_wrap #placesList img { width: 80px; height: 80px; border-radius: 5px; border:none;}
 #menu_wrap #placesList span{font-size: 1.4em; color: #1850ab; font-weight: bold;}
 #menu_wrap #placesList .listInfo{width:100%;}

@@ -24,7 +24,7 @@
 	<select id="mapSpotList" resultMap="SpotResult">
 		SELECT S.*, NVL(bCnt, 0) bCnt 
 			FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
-		WHERE S.SNAME = B.SNAME(+)
+		WHERE S.SNAME = B.SNAME(+) 
 	</select>
 	<select id="schSpotList" parameterType="MapSpot" resultMap="SpotResult">
 		SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 

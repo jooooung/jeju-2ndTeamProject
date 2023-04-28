@@ -21,8 +21,6 @@ public class MapSpot {
 	private String sprice;
 	private String schPlace;
 	private int bcnt;
-	private int startRow;
-	private int endRow;
 	private String schName;
 	
 	@Override

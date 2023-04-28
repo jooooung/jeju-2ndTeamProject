@@ -17,19 +17,19 @@
 	</resultMap>
 	<!-- ID 중복체크 -->
 	<select id="idConfirm" parameterType="String" resultType="int">
-	SELECT COUNT(*) FROM Business WHERE bid = #{bid}
+		SELECT COUNT(*) FROM Business WHERE bid = #{bid}
 	</select>
 	
 	<!-- 이메일 중복체크 -->
 	<select id="emailConfirm" parameterType="String" resultType="int">
-	SELECT COUNT(*) FROM Business WHERE bemail = #{bemail}
+		SELECT COUNT(*) FROM Business WHERE bemail = #{bemail}
 	</select>
 
 	
 	<!-- 회원가입 -->
 	<insert id="joinBusiness" parameterType="Business">
-	INSERT into Business (bid, bpw, bname, btel, bemail, baddr, bdeaddr, bpost, bphoto)
-	    values(#{bid}, #{bpw}, #{bname}, #{btel}, #{bemail}, #{baddr}, #{bdeaddr}, #{bpost}, #{bphoto})
+		INSERT into Business (bid, bpw, bname, btel, bemail, baddr, bdeaddr, bpost, bphoto)
+		    values(#{bid}, #{bpw}, #{bname}, #{btel}, #{bemail}, #{baddr}, #{bdeaddr}, #{bpost}, #{bphoto})
 	</insert>
 
 	<!-- 로그인 -->
@@ -44,22 +44,22 @@
 
 	<!-- 정보수정 -->
 	<update id="modifyBusiness" parameterType="Business"> 
-	UPDATE Business SET 
-        bpw = #{bpw},
-        bname = #{bname},
-        bemail = #{bemail},
-        baddr = #{baddr},
-        bdeaddr = #{bdeaddr},
-        bpost = #{bpost},
-		bphoto = #{bphoto}
-    WHERE bid = #{bid}
+		UPDATE Business SET 
+	        bpw = #{bpw},
+	        bname = #{bname},
+	        bemail = #{bemail},
+	        baddr = #{baddr},
+	        bdeaddr = #{bdeaddr},
+	        bpost = #{bpost},
+			bphoto = #{bphoto}
+	    WHERE bid = #{bid}
 	</update>
 
     <!-- 업체 등록요청 (등록글 작성) -->
 	<!-- Hotel 등록 -->
 	<insert id="registerHotel" parameterType="com.lec.jeju.vo.Hotel">
 	    INSERT INTO Hotel (hname, bid, locationno, haddr, htel, hlink, hinfo, intime, outtime, hmainimg, hsubimg_1, hsubimg_2, hsubimg_3, hlatitude, hlongitude, hprice, requeststatus)
-	    VALUES (#{hname}, #{bid}, #{locationno}, #{haddr}, #{htel}, #{hlink}, #{hinfo}, #{intime}, #{outtime}, #{hmainimg}, #{hsubimg_1}, #{hsubimg_2}, #{hsubimg_3}, #{hlatitude}, #{hlongitude}, #{hprice}, #{requeststatus})
+	    VALUES (#{hname}, #{bid, jdbcType=VARCHAR}, #{locationno}, #{haddr}, #{htel}, #{hlink}, #{hinfo}, #{intime}, #{outtime}, #{hmainimg}, #{hsubimg_1}, #{hsubimg_2}, #{hsubimg_3}, #{hlatitude}, #{hlongitude}, #{hprice}, #{requeststatus})
 	</insert>
 	
 	
@@ -79,7 +79,7 @@
 	
 	<!-- Hotel 나의 글 조회 매퍼 -->
 	<select id="myHotelPosts" resultType="com.lec.jeju.vo.Hotel">
-	    SELECT * FROM Hotel WHERE bid=#{bid}
+	    SELECT * FROM Hotel WHERE bid=#{bid, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 업체 등록요청 (등록글 작성) -->

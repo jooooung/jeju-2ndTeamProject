@@ -32,6 +32,18 @@
 		<script>
 			location.href = '${conPath}/main/main.do';
 		</script>
+	<c:if test="${not empty member }">
+		<script>
+			alert("업체회원 외에는 접속이 통제된 구역입니다, 업체회원이라면 일반회원 로그아웃 후 로그인 시도해주세요");
+			location.href = '${conPath}/main.do';
+		</script>
+	</c:if>
+	<c:if test="${not empty admin }">
+		<script>
+			alert("업체회원 외에는 접속이 통제된 구역입니다, 관리자 페이지를 이용해주세요");
+			location.href = '${conPath}/main.do';
+		</script>
+	</c:if>
 	</c:if>
 	<jsp:include page="../main/header.jsp" />
 	<div id="content">

@@ -29,6 +29,7 @@ td {
 	width: 80%;
 	padding: 8px;
 	text-align: center;
+	text-decoration: none;
 }
 
 th {
@@ -38,10 +39,11 @@ th {
 
 td a{
 	color: black;
+	text-decoration: none;
 }
 
 th:nth-child(1) {
-	width: 30%;
+	width: 20%;
 }
 th:nth-child(2) {
 	width: 35%;
@@ -50,11 +52,11 @@ th:nth-child(3) {
 	width: 20%;
 }
 th:nth-child(4) {
-	width: 15%;
+	width: 20%;
 }
 
 td:nth-child(1) {
-	width: 30%;
+	width: 20%;
 }
 td:nth-child(2) {
 	width: 35%;
@@ -63,7 +65,7 @@ td:nth-child(3) {
 	width: 20%;
 }
 td:nth-child(4) {
-	width: 15%;
+	width: 20%;
 }
 tr:nth-child(even) {
 	background-color: #f2f2f2;

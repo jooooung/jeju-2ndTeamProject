@@ -117,8 +117,6 @@
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
-							<li><a href="${conPath }/business/registerHotel.do">호텔 등록 요청</a></li>
-							<li><a href="${conPath }/business/registerRestaurant.do">식당 등록 요청</a></li>
 						</ol>
 					</li>
 					<li>게시판
@@ -131,6 +129,9 @@
 					<li>내업체관리
 						<ol class="subMenu">
 							<li><a href="${conPath }/business.do?method=modify">정보수정</a></li>
+							<li><a href="${conPath }/business/registerHotel.do">호텔 등록 요청</a></li>
+							<li><a href="${conPath }/business/registerRestaurant.do">식당 등록 요청</a></li>
+							<li><a href="${conPath }/business/myHotelPosts.do">호텔 등록 요청 목록</a></li>
 						</ol>
 					</li>
 				</ul>

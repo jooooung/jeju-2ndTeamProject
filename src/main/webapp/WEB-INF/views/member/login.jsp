@@ -34,12 +34,12 @@
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp" />
+	<br>
 	<div id="content">
-		<form action="${conPath }/member.do" method="post">
-			<input type="hidden" name="method" value="login"> 
-			<input type="hidden" name="after" value="${empty param.after ? 'main.do':param.after}">
+		<form action="${conPath }/member/login.do" method="post">
+			<input type="hidden" name="after" value="${empty param.after ? 'main.do' : param.after}" />
 			<table>
-				<caption>로그인</caption>
+				<caption>일반회원</caption>
 				<tr>
 					<th>아이디</th>
 					<td>
@@ -54,14 +54,18 @@
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: center;">
-					<input type="submit" value="로그인">
-					<input type="button" value="회원가입" class="submit-btn" onclick="location='${conPath}/member.do?method=joinAgreePage'">
-					<input type="button" value="업체회원 로그인" class="submit-btn" onclick="location='${conPath}/business.do?method=login'">
+					<input type="submit" value="로그인" style="width: 100%;">
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
+	<p>
+		<a href="#">아이디 찾기 |</a>
+		<a href="#">비밀번호 찾기 |</a>
+		<a href="${conPath}/member/joinAgreePage.do">회원가입 |</a>
+		<a href="${conPath}/business.do?method=login">업체회원</a>
+	</p>
 	<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>즐겨찾기한 숙소 목록</title>
 <link href="${conPath }/css/bookmark/style.css" rel="stylesheet">
 <style>
 img {
@@ -30,10 +29,11 @@ img {
 		</c:if>
 		<c:forEach var="hotel" items="${hotelList}">
 			<div>
-<%-- 				<img src="${conPath}/hotelImgFileUpload/${hotel.imgPath}" alt="${hotel.hname}"> --%>
-				<img alt="" src="${conPath }/hotelImgFileUpload/${list.hmainimg}">
+				<img alt="" src="${conPath }/hotelImgFileUpload/${hotel.hmainimg}">
 				<p>${hotel.hname}</p>
-				<a href="${conPath}/hotel/detail.do?hname=${hotel.hname}">상세보기</a>
+				<br>
+				<a style="text-align: center; display: block; margin: 0 auto;" href="${conPath}/hotel/detail.do?hname=${hotel.hname}">상세보기</a>
+				<br>
 			</div>
 		</c:forEach>
 	</div>

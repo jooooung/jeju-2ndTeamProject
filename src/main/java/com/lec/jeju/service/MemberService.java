@@ -19,7 +19,7 @@ public interface MemberService {
 
 	public int modifyMember(Member member, HttpSession httpSession, MultipartHttpServletRequest mRequest);
 
-	public int deleteMember( String mid);
+	public int deleteMember(String mid);
 
 	public void logout(HttpSession httpSession);
 

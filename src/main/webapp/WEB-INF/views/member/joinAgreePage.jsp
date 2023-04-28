@@ -18,6 +18,7 @@ input[type="radio"] {
 	height: 15px;
 	border: 1px;
 }
+
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -49,11 +50,10 @@ input[type="radio"] {
 	<br>
 	<br>
 	<div id="joinMessage">
-		<form action="${conPath }/member.do" method="get">
-			<input type="hidden" name="method" value="join">
+		<form action="${conPath }/member/join.do" method="get">
 			<table>
 				<caption>
-					<b>"JEJU"</b> 약관동의
+					<b>"JEJU"</b> 일반회원 약관동의
 				</caption>
 				<tr>
 					<td class="message">
@@ -209,16 +209,15 @@ eXpert 서비스 및 eXpert 센터 가입 등록정보 : 신청일로부터 6개
 							<td colspan="2" class="btn">
 								<input type="button" value="비동의" onclick="nochk()" /> 
 								<input type="button" value="동의" onclick="chk()" />&nbsp;&nbsp;&nbsp;
-								<br><br>
-								<input type="button" value="기업회원일 경우 여기를 클릭해주세요" onclick="location.href='${conPath}/business/joinAgreePage.do';" /> 
 							</td>
 						</tr>
 				</table>
 			</form>
 		</div>
 		<br>
-		<br>
-		<br>
+		<p id="ppp">
+			업체 사장님이신가요? <a href="${conPath}/business/joinAgreePage.do">업체 회원가입</a>
+		</p>
 	<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

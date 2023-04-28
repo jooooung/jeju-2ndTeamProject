@@ -14,6 +14,7 @@ DROP TABLE Business;
 DROP TABLE Admin;
 DROP TABLE location;
 DROP TABLE RestauranTtype;
+DROP TABLE MYREVIEW;
 
 DROP SEQUENCE FestivalNo_seq;
 DROP SEQUENCE bookmarkNo_seq;
@@ -24,7 +25,7 @@ DROP SEQUENCE hCommentNo_seq;
 DROP SEQUENCE rCommentNo_seq;
 DROP SEQUENCE locationNo_seq;
 DROP SEQUENCE RestauranTtypeNo_seq;
-
+DROP SEQUENCE MYREVIEWNO_SEQ;
 
 CREATE TABLE Member (
     mId VARCHAR2(50) PRIMARY KEY,
@@ -32,9 +33,9 @@ CREATE TABLE Member (
     mName VARCHAR2(50) NOT NULL,
     mTel VARCHAR2(50) NOT NULL,
     mEmail VARCHAR2(100) NOT NULL,
-    mAddr VARCHAR2(200),
-    mDeAddr VARCHAR2(200),
-    mPost VARCHAR2(50),
+    mAddr VARCHAR2(200) NOT NULL,
+    mDeAddr VARCHAR2(200) NOT NULL,
+    mPost VARCHAR2(50) NOT NULL,
     mBirth DATE NOT NULL,
     mPhoto VARCHAR2(255),
     mRdate DATE DEFAULT SYSDATE NOT NULL
@@ -54,9 +55,9 @@ CREATE TABLE Business (
     bName VARCHAR2(100) NOT NULL,
     bTel VARCHAR2(50) NOT NULL, --
     bEmail VARCHAR2(100) NOT NULL,
-    bAddr VARCHAR2(200), -- 일반주소
-    bDeAddr VARCHAR2(200), -- 상세주소
-    bPost VARCHAR2(50),  -- 우편번호
+    bAddr VARCHAR2(200) NOT NULL, -- 일반주소
+    bDeAddr VARCHAR2(200) NOT NULL, -- 상세주소
+    bPost VARCHAR2(50) NOT NULL,  -- 우편번호
     bPhoto VARCHAR2(255),  -- 업체사진
     bRdate DATE DEFAULT SYSDATE NOT NULL
 ); -- 업체 테이블 
@@ -179,7 +180,11 @@ CREATE TABLE Bookmark (
     mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
     hName VARCHAR2(50) REFERENCES hotel(hName) UNIQUE,
     rName VARCHAR2(50) REFERENCES restaurant(rName) UNIQUE,
-    sName VARCHAR2(50) REFERENCES spot(sName) UNIQUE
+    sName VARCHAR2(50) REFERENCES spot(sName) UNIQUE,
+    hMainImg VARCHAR2(255),
+    RMainImg VARCHAR2(255),
+    SMainImg VARCHAR2(255),
+    bookmarkdate DATE DEFAULT SYSDATE
 ); -- 즐겨찾기 테이블
 
 CREATE SEQUENCE hCommentNo_seq MAXVALUE 99999 NOCACHE NOCYCLE;
@@ -220,6 +225,19 @@ CREATE TABLE spotComment (
     sCrdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -- 관광지 댓글 테이블
 
+CREATE SEQUENCE MYREVIEWNO_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
+CREATE TABLE MYREVIEW (
+    MYREVIEWNO NUMBER(5) PRIMARY KEY,
+    mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
+    sCommentNo NUMBER(5) REFERENCES spotComment(sCommentNo), -- 관광지 댓글 번호
+    rCommentNo NUMBER(5) REFERENCES restaurantComment(rCommentNo), -- 식당 댓글 번호
+    hCommentNo NUMBER(5) REFERENCES hotelComment(hCommentNo), -- 호텔 댓글 번호
+    reviewNO NUMBER(5) REFERENCES Review(reviewNO) -- 후기 게시판 글 번호
+); -- 마이페이지 리뷰테이블
+
+
+
+select * from myreview;
 SELECT * FROM restaurant;
 SELECT * FROM restaurantComment;
 SELECT * FROM Festival;

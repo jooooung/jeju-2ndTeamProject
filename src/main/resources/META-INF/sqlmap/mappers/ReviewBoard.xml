@@ -1,0 +1,56 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.ReviewDao">
+	<resultMap type="Review" id="ReviewResult">
+		<result property="reviewno" column="reviewno"/>
+		<result property="mid" column="mid"/>
+		<result property="rtitle" column="rtitle"/>
+		<result property="rcontent" column="rcontent"/>
+		<result property="rrdate" column="rrdate"/>
+		<result property="rhit" column="rhit"/>
+		<result property="mname" column="mname"/>
+	</resultMap>
+	
+	<!-- 리뷰게시판 페이징 출력 -->
+	<select id="ReviewList" parameterType="Review" resultMap="ReviewResult">
+		SELECT * 
+    		FROM (SELECT ROWNUM RN, A.*
+        	FROM (SELECT R.*, M.MNAME, M.MPHOTO FROM REVIEW R, MEMBER M  WHERE R.MID = M.MID ORDER BY REVIEWNO DESC) A)
+    	WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<!-- 등록된 글 갯수 -->
+	<select id="totCntReview" resultType="int">
+		SELECT COUNT(*) FROM REVIEW	
+	</select>
+	
+	<!-- 글 등록 -->
+	<insert id="writeReview" parameterType="Review">
+		INSERT INTO REVIEW (REVIEWNO, MID, RTITLE, RCONTENT)
+    	VALUES (REVIEWNO_SEQ.NEXTVAL, #{mid}, #{rtitle}, #{rcontent})
+	</insert>
+	
+	<!-- 상세보기 -->
+	<select id="contentReview" parameterType="int" resultType="Review">
+		SELECT R.*, M.MNAME, M.MPHOTO FROM REVIEW R, MEMBER M WHERE R.MID = M.MID AND REVIEWNO = #{reviewno}
+	</select>
+	
+	<!-- 상세보기시 조회수 올리기 -->
+	<update id="hitUpReview" parameterType="int">
+		UPDATE REVIEW SET RHIT = RHIT + 1
+    	WHERE REVIEWNO = #{reviewno}
+	</update>
+	
+	<!-- 글 수정 -->
+	<update id="modifyReview" parameterType="Review">
+		UPDATE REVIEW SET RTITLE = #{rtitle},
+                  RCONTENT = #{rcontent}
+    	WHERE REVIEWNO = #{reviewno}
+	</update>
+	
+	<!-- 글 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM REVIEW WHERE REVIEWNO = #{reviewno}
+	</delete>
+</mapper>

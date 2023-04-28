@@ -24,12 +24,12 @@
 	<select id="mapRestaurantList" resultMap="MapResResult">
 		SELECT R.*, NVL(bCnt, 0) bCnt 
     		FROM RESTAURANT R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
-		WHERE R.RNAME = B.RNAME(+)
+		WHERE R.RNAME = B.RNAME(+) AND REQUESTSTATUS = 'A'
 	</select>
 	<!-- restaurant -->
 	<select id="schRestaurantList" parameterType="MapRestaurant" resultMap="MapResResult">
 		SELECT R.*, NVL(bCnt, 0) bCnt FROM RESTAURANT R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
-        WHERE R.RNAME = B.RNAME(+) AND R.RNAME LIKE '%' || #{schName} || '%' ORDER BY bCnt DESC
+        WHERE R.RNAME = B.RNAME(+) AND R.RNAME LIKE '%' || #{schName} || '%' AND REQUESTSTATUS = 'A' ORDER BY bCnt DESC
 	</select>
 	<select id="resPlaceSchList" resultMap="MapResResult">
 		SELECT R.*, LNAME FROM RESTAURANT R, LOCATION L WHERE LNAME =  #{lname} AND R.LOCATIONNO = L.LOCATIONNO

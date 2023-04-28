@@ -70,7 +70,7 @@
 </c:if>
 <c:if test="${not empty hotelList }">
 	<c:forEach var="list" items="${hotelList }"> 
-		<table class="listTable">
+		<table class="listTable" onclick="location.href='${conPath}/hotel/detail.do?hname=${list.hname }'">
 			<tr>
 				<td>
 					<span>${list.hname }</span>

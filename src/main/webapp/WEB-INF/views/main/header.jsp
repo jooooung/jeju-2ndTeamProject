@@ -34,7 +34,7 @@
 					<li>게시판
 						<ol class="subMenu">
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
-							<li><a href="">여행리뷰</a></li>
+							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
 							<li><a href="">공지사항</a></li>
 						</ol>
 					</li>
@@ -78,7 +78,7 @@
 					<li>게시판
 						<ol class="subMenu">
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
-							<li><a href="">여행리뷰</a></li>
+							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
 							<li><a href="">공지사항</a></li>
 						</ol>
 					</li>
@@ -124,7 +124,7 @@
 					<li>게시판
 						<ol class="subMenu">
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
-							<li><a href="">여행리뷰</a></li>
+							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
 							<li><a href="">공지사항</a></li>
 						</ol>
 					</li>
@@ -164,7 +164,7 @@
 					<li>게시판
 						<ol class="subMenu">
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
-							<li><a href="">여행리뷰</a></li>
+							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
 							<li><a href="">공지사항</a></li>
 						</ol>
 					</li>

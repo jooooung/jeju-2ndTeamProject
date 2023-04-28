@@ -87,50 +87,50 @@ insert into spot (sName, aId, locationNo, sAddr, sTel, sInfo, sMainImg, sSubImg_
     '협재해수욕장s1.jpg', 33.39396920901713, 126.23921468065957, '무료');
 
 -- RESTAURANT --
-INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE, REQUESTSTATUS)
     VALUES ('제주김만복', 'su', 1, 3, '제주특별자치도 제주시 오라로 41', '064-759-8582', 'LINK', 
     '매일매일 신선한 재료로 정성스레 만드는 만복이네 김밥입니다!', '만복김밥', 
-            '제주김만복m.jpg', '제주김만복s1.jpg', '제주김만복s2.jpg', '제주김만복s3.jpg',  33.497066158681676, 126.50894864880289, '세트가 단돈 만원!');
+            '제주김만복m.jpg', '제주김만복s1.jpg', '제주김만복s2.jpg', '제주김만복s3.jpg',  33.497066158681676, 126.50894864880289, '세트가 단돈 만원!', 'A');
             
-INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE, REQUESTSTATUS)
     VALUES ('올래국수', 'guk', 1, 4, '제주특별자치도 제주시 귀아랑길 24 (연동)', '064-742-7355', 'LINK', 
     '너 올래 안올래? 올래국수!', '해물국수',
-            '올래국수m.jpg', '올래국수s1.jpg', '올래국수s2.jpg', '올래국수s3.jpg', 33.49151973703596, 126.49729949767276, '국수 7000원 부터');
+            '올래국수m.jpg', '올래국수s1.jpg', '올래국수s2.jpg', '올래국수s3.jpg', 33.49151973703596, 126.49729949767276, '국수 7000원 부터', 'A');
             
-INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE, REQUESTSTATUS)
     VALUES ('올레칠돈', 'park', 2, 1, '제주특별자치도 서귀포시 월평하원로 20', '064-739-5533', 'LINK', 
     'A급 돼지들만 사용하는 진짜들의 고기집 입니다.', '제주흑돼지',
-            '올레칠돈m.jpg', '올레칠돈s1.jpg', '올레칠돈s2.jpg', '올레칠돈s3.jpg',  33.243687142086976, 126.45959335549377, '1인분 15,000원');
+            '올레칠돈m.jpg', '올레칠돈s1.jpg', '올레칠돈s2.jpg', '올레칠돈s3.jpg',  33.243687142086976, 126.45959335549377, '1인분 15,000원', 'A');
             
-INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE, REQUESTSTATUS)
     VALUES ('명진전복', 'jin', 1, 2, '제주특별자치도 제주시 구좌읍 해맞이해안로 1282', '064-782-9944', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020047', 
     '명진전복은 전복돌솥밥, 전복구이, 전복죽 등을 판매하는 인기 맛집 입니다!', '전복구이',
-            '명진전복m.jpg', '명진전복s1.jpg', '명진전복s2.jpg', '명진전복s3.jpg',  33.53246865592159, 126.8501903577186, '12,000원');     
+            '명진전복m.jpg', '명진전복s1.jpg', '명진전복s2.jpg', '명진전복s3.jpg',  33.53246865592159, 126.8501903577186, '12,000원', 'A');     
 
-INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE, REQUESTSTATUS)
     VALUES ('가시아방', 'bang', 5, 4, '제주특별자치도 서귀포시 성산읍 섭지코지로 10', '064-783-0987', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000018307', 
     '국수가 먹고싶을땐? 가시아방', '고기국수, 비빔국수',
-            '가시아방m.jpg', '가시아방s1.jpg', '가시아방s2.jpg', '가시아방s3.jpg',  33.43858028658235, 126.9180594306653, '8,000원');
+            '가시아방m.jpg', '가시아방s1.jpg', '가시아방s2.jpg', '가시아방s3.jpg',  33.43858028658235, 126.9180594306653, '8,000원', 'A');
 
-INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE, REQUESTSTATUS)
     VALUES ('돈사돈', 'don', 1, 1, '제주특별자치도 제주시 우평로 19', '064-746-8989', 
     'https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_000000000020104', 
     '진정한 흑돼지 달인', '흑돼지 오겹살',
-            '돈사돈m.jpg', '돈사돈s1.jpg', '돈사돈s2.jpg', '돈사돈s3.jpg',  33.478845919157024, 126.46402562151444, '30,000원');
+            '돈사돈m.jpg', '돈사돈s1.jpg', '돈사돈s2.jpg', '돈사돈s3.jpg',  33.478845919157024, 126.46402562151444, '30,000원', 'A');
             
-INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE, REQUESTSTATUS)
     VALUES ('봄날카페', 'bom', 1, 5, '제주특별자치도 제주시 애월읍 애월로1길 25', '064-799-4999', 
     'link', 
     '드라마 맨도롱 또똣의 주인공이 일하던 카페', '아메리카노',
-            '봄날카페m.jpg', '봄날카페s1.jpg', '봄날카페s2.jpg', '봄날카페s3.jpg',  33.46242809443207, 126.30958428618032 , '3,000원');
+            '봄날카페m.jpg', '봄날카페s1.jpg', '봄날카페s2.jpg', '봄날카페s3.jpg',  33.46242809443207, 126.30958428618032 , '3,000원', 'A');
 
-INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
+INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE, REQUESTSTATUS)
     VALUES ('델문도', 'bom', 1, 3, '제주특별자치도 제주시 조천읍 조함해안로 519-10', '064-702-0007', 
     'https://delmoondo.com/', 
     '일출과 일몰, 바람, 그리고 델문도 커피가 선사하는 특별하고 몽환적인 순간.', '선라이즈 블렌드',
-            '델문도m.jpg', '델문도s1.jpg', '델문도s2.jpg', '델문도s3.jpg',  33.54369039106334, 126.66871972286157 , '19,000원');
+            '델문도m.jpg', '델문도s1.jpg', '델문도s2.jpg', '델문도s3.jpg',  33.54369039106334, 126.66871972286157 , '19,000원', 'A');
 
 
 
@@ -227,7 +227,7 @@ INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)
     VALUES (festivalNo_seq.NEXTVAL, 'admin', '한라산 청정 고사리축제', '2023.04.29. ~ 2023.04.30.');
 INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)
     VALUES (festivalNo_seq.NEXTVAL, 'admin', '제주 반려동물 문화축제', '2023.05.06. ~ 2023.05.07.');
-
+    select * from restaurant;
 -- REVIEW --
 insert into Review (reviewNo, mId, rTitle, rContent) 
 values (reviewNo_seq.nextval, 'aaa', '성산일출봉 다녀왔습니다~', 

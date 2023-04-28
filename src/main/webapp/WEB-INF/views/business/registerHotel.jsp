@@ -40,17 +40,17 @@
         <label for="outtime">체크아웃 시간:</label>
         <input type="time" id="outtime" name="outtime" required><br><br>
 
-        <label for="hmainimg">호텔 메인 이미지 URL:</label>
-        <input type="url" id="hmainimg" name="hmainimg" required><br><br>
+        <label for="hmainimg">호텔 메인 이미지:</label>
+        <input type="file" id="hmainimg" name="hmainimg" required><br><br>
 
-        <label for="hsubimg_1">호텔 서브 이미지1 URL:</label>
-        <input type="url" id="hsubimg_1" name="hsubimg_1" required><br><br>
+        <label for="hsubimg_1">호텔 서브 이미지1:</label>
+        <input type="file" id="hsubimg_1" name="hsubimg_1" required><br><br>
+        
+        <label for="hsubimg_2">호텔 서브 이미지2:</label>
+        <input type="file" id="hsubimg_2" name="hsubimg_2" required><br><br>
 
-        <label for="hsubimg_2">호텔 서브 이미지2 URL:</label>
-        <input type="url" id="hsubimg_2" name="hsubimg_2" required><br><br>
-
-        <label for="hsubimg_3">호텔 서브 이미지3 URL:</label>
-        <input type="url" id="hsubimg_3" name="hsubimg_3" required><br><br>
+        <label for="hsubimg_1">호텔 서브 이미지3:</label>
+        <input type="file" id="hsubimg_3" name="hsubimg_3" required><br><br>
 
         <label for="hlatitude">호텔 위도:</label>
         <input type="number" id="hlatitude" name="hlatitude" step="any" required><br><br>

@@ -23,7 +23,7 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${hotel}" var="hotel">
+            <c:forEach items="${hotelList }" var="hotel">
                 <tr>
                     <td>${hotel.hname}</td>
                     <td>${hotel.haddr}</td>

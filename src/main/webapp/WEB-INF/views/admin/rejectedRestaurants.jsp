@@ -14,7 +14,7 @@
 	<jsp:include page="../main/header.jsp"/>
 		<div class="container">
 		<h2>거절된 식당 목록</h2>
-		<c:if test="${not empty approvedList}">
+		<c:if test="${not empty rejectedList}">
 			<main>
 			<table>
 				<thead>

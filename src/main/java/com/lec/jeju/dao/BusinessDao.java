@@ -2,10 +2,10 @@ package com.lec.jeju.dao;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
@@ -37,8 +37,8 @@ public interface BusinessDao {
 	public int deleteBusiness(String bid);
 	
 	// Hotel 등록
-	public void registerHotel(Hotel hotel, HttpServletRequest request);
-    
+	public int registerHotel(Hotel hotel);
+	
     // Hotel 수정
 	public void modifyHotel(Hotel hotel);
     
@@ -68,7 +68,6 @@ public interface BusinessDao {
 
 	// 로그아웃
 	public void logout(HttpSession httpSession);
-
 
 }
 

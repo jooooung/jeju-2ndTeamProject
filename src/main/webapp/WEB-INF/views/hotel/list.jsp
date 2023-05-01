@@ -8,7 +8,7 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<!-- CSS only -->
-	<link href="${conPath }/css/style.css" rel=stylesheet>
+	<%-- <link href="${conPath }/css/style.css" rel=stylesheet> --%>
 	<style>
 		.wrap{
 			width: 80%;
@@ -160,14 +160,14 @@
 			<a class="title_link" href="${conPath }/hotel/list.do">숙박</a>
 		</div>
 		<div class="search">
-			<form action="${conPath }/hotel/list.do">
+			<form action="${conPath }/hotel/list2.do">
 				<input type="text" name="schWord" value="${param.schWord }">
 				<input type="submit" value="검색" >
 			</form>
 		</div>
 		<div class="spot_tag">
 			<ul>
-				<div onclick="location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }&schItem=${param.schItem }'">
+				<div onclick="location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }&locationno=0'">
 					<p>전체</p>
 				</div>
 				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=11&12&15'">

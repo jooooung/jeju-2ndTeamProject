@@ -52,75 +52,43 @@
 	<script>
 		$(document).ready(function(){
 			$('.modifyComment').click(function(){
-				var id = $(this).attr('id');
-				var txt = $('.hcontent'+id).text().trim();
-				$('.hcontent'+id).html(
+				var hcommentno = $(this).attr('id');	
+				var hcontent = $('.hcontent'+hcommentno).text().trim();
+				$('.hcontent'+hcommentno).html(
 						"<form action='modifyComment.do' method='post'>"
-						+"<input type='hidden' name='hcommentno'  value='"+ id +"'>"
-						+"<input type='hidden' name='hname'  value='${hotelVo.hname }'>"
-						+"<input type='text' name='hcontent' value='"+ txt +"' id='tt_" + id + "required='required'>"
-			         	+"<input type='button' value='취소' class='commentBtn modifyBtn' onclick='location.href="+"'detail.do?hname=${hotelVo.hname}'>"
+						+"<input type='hidden' id='hcommentno' name='hcommentno'  value='"+ hcommentno +"'>"
+						+"<input type='hidden' id='hname' name='hname' value='${hotelVo.hname }'>"
+						+"<input type='text' name='hcontent' id='hcontent' value='"+ hcontent + "'>"
+			         	+"<input type='button' value='취소' class='commentBtn modifyBtn' onclick='cancle()'>"
 						+"<input type='submit' value='수정' class='commentBtn modifyBtn'> "
 			         	+"</form>"
 			    );
-			});			
+			});
 		});
 	</script>
 </head>
 <body>
 	<div class="comment">
-			<div class="write">
-				<form action="writeComment.do" method="post">
-				<c:if test="${empty member and empty buisness }">
-					<input type="text" name="hcontent" placeholder="로그인 후 이용해주세요." readonly="readonly">
-				</c:if>
-				<c:if test="${not empty member}">
-					<input type="hidden" name="hname"  value="${hotelVo.hname }">
-					<input type="hidden" name="mid" value="${member.mid }">
-					<input type="text" name="hcontent" required="required" i>
-					<input type="submit" value="작성"> 
-				</c:if>
-				<c:if test="${not empty buisness}">
-					<input type="hidden" name="hname" value="${hotelVo.hname }">
-					<input type="hidden" name="bid" value="${buisness.bid }">
-					<input type="text" name="hcontent" required="required">
-					<input type="submit" value="작성"> 
-				</c:if>
-				</form>
-			</div>
-		</div>
-		<div class="comment_list">
-			<ol>
-			<c:forEach var="hotelComments" items="${hotelComments }">
-				<div class="comment">
-				<c:if test="${not empty hotelComments.mid }">
-					<li class="id">작성자 : ${hotelComments.mid }</li>
-				</c:if>
-				<c:if test="${not empty hotelComments.bid }">
-					<li class="id">작성자 : ${hotelComments.bid }</li>
-				</c:if>
-				<li>내용</li>
-				<li class="hcontent${hotelComments.hcommentno }">
-					${hotelComments.hcontent }
-				</li>
-				<li>작성일 : <fmt:formatDate value="${hotelComments.hcrdate }" pattern="yy.MM.dd HH:mm"/></li>
-				<li>
-					<c:if test="${not empty member || not empty buisness }">
-						<button class="commentBtn replyComment" id="reply${hotelComments.hcommentno }">
-							답글
-						</button>
-					</c:if>
-				</li>
-					<c:if test="${not empty member.mid and hotelComments.mid eq member.mid || not empty buisness.bid and hotelComments.bid eq buisness.bid || not empty admin}">
-						<button class="commentBtn modifyComment" id="${hotelComments.hcommentno }">수정</button>
-						<button class="commentBtn deleteComment" onclick="location.href='deleteComment.do?hname=${hotelVo.hname }&hcommentno=${hotelComments.hcommentno }'">
-							삭제
-						</button>
-					</c:if>
-				</div>
-			</c:forEach>
-			</ol>
+		<div class="write">
+			<form action="writeComment.do" method="post">
+			<c:if test="${empty member and empty buisness }">
+				<input type="text" name="hcontent" placeholder="로그인 후 이용해주세요." readonly="readonly">
+			</c:if>
+			<c:if test="${not empty member}">
+				<input type="hidden" name="hname"  value="${hotelVo.hname }">
+				<input type="hidden" name="mid" value="${member.mid }">
+				<input type="text" name="hcontent" required="required">
+				<input type="submit" value="작성"> 
+			</c:if>
+			<c:if test="${not empty buisness}">
+				<input type="hidden" name="hname" value="${hotelVo.hname }">
+				<input type="hidden" name="bid" value="${buisness.bid }">
+				<input type="text" name="hcontent" required="required">
+				<input type="submit" value="작성"> 
+			</c:if>
+			</form>
 		</div>
 	</div>
+	<jsp:include page="commentList.jsp"/>
 </body>
 </html>

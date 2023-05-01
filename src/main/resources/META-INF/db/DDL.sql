@@ -115,7 +115,7 @@ CREATE TABLE hotel (
 ); -- 숙소 테이블
 
 CREATE TABLE Hreservation (
-    mID VARCHAR2(50) PRIMARY KEY,
+    mID VARCHAR2(50),
     hNAME VARCHAR2(50) REFERENCES HOTEL(hNAME),
     inDate DATE NOT NULL,  
     outDate DATE NOT NULL

@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,7 @@ import com.lec.jeju.util.Paging;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
 import com.lec.jeju.vo.Hreservation;
+import com.lec.jeju.vo.Member;
 
 @Controller
 @RequestMapping("hotel")
@@ -39,7 +41,7 @@ public class HotelController {
 		return "hotel/list";
 	}
 	
-	// 숙소목록2
+	// 숙소목록 지역 선택
 	@RequestMapping(value = "list2", method = RequestMethod.GET)
 	public String list2(String pageNum, Model model, Hotel hotel) {
 		model.addAttribute("locList", hotelService.locList());
@@ -68,8 +70,26 @@ public class HotelController {
 		model.addAttribute("list", hreservService.hreservationList_Hotel(hname));
 		return "hotel/reservation";
 	}
+	// 숙소 예약 db 저장 후 내 예약 목록으로 가기
+	@RequestMapping(value = "reserv", method = RequestMethod.POST)
+	public String reserv_post(Hreservation hreservation, Model model) {
+		model.addAttribute("hotelReservResult", hreservService.doHreservation(hreservation));
+		return "forward:reservList.do";
+	}
 	
-	
+	// 내 예약 리스트
+	@RequestMapping(value = "reservList", method = RequestMethod.GET)
+	public String reservList(Hreservation hreservation, Model model, HttpSession session, String mid) {
+		Member member = (Member) session.getAttribute("member");
+		if (member == null) {
+			return "redirect:/main.do";
+		}else {
+			mid = member.getMid();
+			List<Hreservation> reservList = hreservService.hreservationList_Member(mid);
+			model.addAttribute("reservList", reservList);
+		}
+		return "hotel/reservList.jsp?mid="+mid;
+	}
 	// 댓글
 	
 	// 댓글 작성

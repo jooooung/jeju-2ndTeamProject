@@ -8,7 +8,6 @@
 		<result property="hname" column="hname"/>
 		<result property="indate" column="indate"/>
 		<result property="outdate" column="outdate"/>
-		<result property="rwhether" column="rwhether"/>
 	</resultMap>
 	<!-- 예약하기 -->
 	<select id="doHreservation" parameterType="Hreservation">
@@ -23,7 +22,7 @@
 			    WHERE ((INDATE <= #{indate} AND OUTDATE >= #{outdate})      
 			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate})      
 			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate})      
-			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate}))     
+			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate}))
 			     AND HNAME = #{hname}
 		]]> 
 	</select>
@@ -32,7 +31,7 @@
 	<select id="hreservationList_Hotel" parameterType="String" resultMap="HreservationResult">
 		SELECT * 
 		    FROM (SELECT R.MID, R.HNAME, INDATE, OUTDATE, HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE FROM HRESERVATION R, HOTEL H 
-		            WHERE H.HNAME = R.HNAME)
+		            WHERE H.HNAME = R.HNAME ORDER BY INDATE DESC)
 		    WHERE HNAME = #{hname}
 	</select>
 	
@@ -41,7 +40,7 @@
 		SELECT R.HNAME, R.INDATE, R.OUTDATE, H.HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE 
 		    FROM HRESERVATION R, HOTEL H 
 		    WHERE H.HNAME = R.HNAME 
-		    AND MID = #{mid}
+		    AND MID = #{mid} ORDER BY INDATE DESC 
 	</select>
 	
 	<!-- 예약 취소(사용자) -->

@@ -28,7 +28,7 @@
 						<ol class="subMenu">
 							<li><a href="">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판
@@ -86,7 +86,7 @@
 						<ol class="subMenu">
 							<li><a href="">나의일정</a></li>
 							<li><a href="">나의리뷰</a></li>
-							<li><a href="">예약내역</a></li>
+							<li><a href="${conPath }/hotel/reservList.do?mid=${param.mid}">예약내역</a></li>
 							<li><a href="${conPath }/bookmark/MyAll.do">즐겨찾기</a></li>
 							<li><a href="${conPath }/member/modify.do">정보수정</a></li>
 						</ol>

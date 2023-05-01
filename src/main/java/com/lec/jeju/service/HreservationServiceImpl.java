@@ -29,6 +29,12 @@ public class HreservationServiceImpl implements HreservationService {
 	
 	@Override
 	public int doHreservation(Hreservation hreservation) {
+		
 		return hreservationDao.doHreservation(hreservation);
+	}
+
+	@Override
+	public List<Hreservation> checkReserv(Hreservation hreservation) {
+		return hreservationDao.checkReserv(hreservation);
 	}
 }

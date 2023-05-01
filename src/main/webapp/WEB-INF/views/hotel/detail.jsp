@@ -8,7 +8,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link href="${conPath }/css/style.css" rel=stylesheet>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 	<style>
 		a{
@@ -146,11 +145,16 @@
 					가격
 				</div>
 				<p>1박 : ${hotelVo.hprice}원
-					<button class="reserv" onclick="location.href='reserv.do?hname=${hotelVo.hname}&mid=${member.mid }'">예약하기</button>
+					<c:if test="${not empty member }">
+						<button class="reserv" onclick="location.href='reserv.do?hname=${hotelVo.hname}&mid=${member.mid }&pageNum=${param.pageNum }&lname=${param.lname }'">
+							예약하기
+						</button>
+					</c:if>
 				</p>
 				
 			</div>
 		</div>
+	<jsp:include page="../hotel/hotelComment.jsp"/>
 	<jsp:include page="../main/footer.jsp"/>
 </body>
 </html>
@@ -160,10 +164,6 @@
     var swiper = new Swiper(".mySwiper", {
       slidesPerView: 1,
       loop: true,
-      autoplay: {
-          delay: 3500,
-          disableOnInteraction: false,
-        },
       pagination: {
         el: ".swiper-pagination",
         clickable: true,

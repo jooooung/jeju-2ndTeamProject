@@ -1,5 +1,7 @@
 package com.lec.jeju.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -143,6 +145,7 @@ public class BusinessController {
 	    String bid = (String) session.getAttribute("bid");
 	    hotel.setBid(bid);
 	    hotel.setRequeststatus("P");
+	    
 	    boolean registerHotel = businessService.registerHotel(hotel, mRequest);
 	    if (registerHotel) {
 	        return "redirect:/business/myHotelPosts.do";
@@ -181,18 +184,23 @@ public class BusinessController {
 
 	// 식당 등록
 	@RequestMapping(value = "/registerRestaurant", method = RequestMethod.GET)
-		public String showregisterRestaurant() {
-		return "business/registerRestaurant";
+	public String registerRestaurant() {
+	    return "business/registerRestaurant";
 	}
 
 	@RequestMapping(value = "/registerRestaurant", method = RequestMethod.POST)
-	public String registerRestaurant(Restaurant restaurant, Model model) {
-		restaurant.setRequeststatus("P");
-		businessService.registerRestaurant(restaurant);
-		String bid = restaurant.getBid();
-		List<Restaurant> restaurants = businessService.myRestaurantPosts(bid);
-		model.addAttribute("restaurants", restaurants);
-		return "business/myRestaurantPosts";
+	public String registerHotel(@ModelAttribute("restaurant") Restaurant restaurant, HttpSession session, MultipartHttpServletRequest mRequest, Model model) {
+	    String bid = (String) session.getAttribute("bid");
+	    restaurant.setBid(bid);
+	    restaurant.setRequeststatus("P");
+	    
+	    boolean registerRestaurant = businessService.registerRestaurant(restaurant, mRequest);
+	    if (registerRestaurant) {
+	        return "redirect:/business/myRestaurantPosts.do";
+	    } else {
+	        model.addAttribute("errorMessage", "호텔 등록에 실패하였습니다.");
+	        return "error";
+	    }
 	}
 
 	// 레스토랑 수정
@@ -221,20 +229,55 @@ public class BusinessController {
 		return "business/restaurantApprovalStatus";
 	}
     
-	// 호텔 댓글 조회
-	@RequestMapping(value = "/myHotelComments", method = RequestMethod.GET)
-	public String selectMyHotelComments(String bid, Model model) {
-		List<HotelComment> comments = businessService.myHotelComments(bid);
-		model.addAttribute("comments", comments);
-		return "business/myHotelComments";
-	}
-
-   // @RequestMapping(value = "/myRestaurantComments", method = RequestMethod.GET)
-   // public String selectMyRestaurantComments(String bid, Model model) {
-   //     List<RestaurantComment> comments = businessService.myRestaurantComments(bid);
-   //      model.addAttribute("comments", comments);
-   //     return "business/myRestaurantComments";
-   // }
+		// 숙소 댓글 작성
+		@RequestMapping(value = "writeComment", method = RequestMethod.POST)
+		public String writeComment(HotelComment hotelComment) throws UnsupportedEncodingException {
+			businessService.registerHcomment(hotelComment);
+			String hname = 	URLEncoder.encode(hotelComment.getHname(), "utf-8");
+			return "redirect:myHotelComments.jsp.do?hname="+hname;
+		}
+		
+		// 숙소 댓글 수정
+		@RequestMapping(value = "modifyComment", method = RequestMethod.POST)
+		public String modifyComment(HotelComment hotelComment) throws UnsupportedEncodingException {
+			String hname = 	URLEncoder.encode(hotelComment.getHname(), "utf-8");
+			businessService.modifyHotelComment(hotelComment);
+			return "redirect:myHotelComments.jsp.do?hname="+hname;
+		}
+		
+		// 숙소 댓글 삭제
+		@RequestMapping(value = "deleteComment", method = RequestMethod.GET)
+		public String deleteComment(HotelComment hotelComment, Model model) throws UnsupportedEncodingException {
+			int hcommentno = hotelComment.getHcommentno();
+			businessService.deleteHotelComment(hcommentno);
+			String hname = 	URLEncoder.encode(hotelComment.getHname(), "utf-8");
+			return "redirect:myHotelComments.jsp.do?hname="+hname;
+		}
+		
+		/**식당 댓글 작성
+		@RequestMapping(value = "writeComment", method = RequestMethod.POST)
+		public String writeComment(RestaurantComment restaurantComment) throws UnsupportedEncodingException {
+			businessService.registerRcomment(restaurantComment);
+			String rname = 	URLEncoder.encode(restaurantComment.getRname(), "utf-8");
+			return "redirect:myRestaurantComments.do?rname="+rname;
+		}
+		
+		// 식당 댓글 수정
+		@RequestMapping(value = "modifyComment", method = RequestMethod.POST)
+		public String modifyComment(RestaurantComment RestaurantComment) throws UnsupportedEncodingException {
+			String rname = 	URLEncoder.encode(restaurantComment.getRname(), "utf-8");
+			businessService.modifyHotelComment(restaurantComment);
+			return "redirect:myRestaurantComments.do?rname="+rname;
+		}
+		
+		// 식당 댓글 삭제
+		@RequestMapping(value = "deleteComment", method = RequestMethod.GET)
+		public String deleteComment(RestaurantComment RestaurantComment, Model model) throws UnsupportedEncodingException {
+			int rcommentno = restaurantComment.getRcommentno();
+			businessService.deleteRestaurantCommentComment(rcommentno);
+			String hname = 	URLEncoder.encode(hotelComment.getRname(), "utf-8");
+			return "redirect:myRestaurantComments.do?rname="+rname;
+		}**/
 }
 	
 	

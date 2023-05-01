@@ -133,8 +133,8 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo, RADDR, RTEL, R
             '델문도m.jpg', '델문도s1.jpg', '델문도s2.jpg', '델문도s3.jpg',  33.54369039106334, 126.66871972286157 , '19,000원', 'A');
 
 -- HOTEL --
-INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
-              VALUES ('위드시티호텔', 'withCITY', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', '위드시티호텔m.jpg', '위드시티호텔s1.jpg', '위드시티호텔s2.jpg', '위드시티호텔s3.jpg', '33.48582927685537', '126.48379663399649', 80000, 'A');
+INSERT INTO HOTEL (HNAME, BID, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
+              VALUES ('위드시티호텔', 'withCITY', '제주특별자치도 제주시 노연로 34', '064-902-3275', 'http://www.withcityhotel.com/', '호텔위드시티는 공항에서 10분거리에 있으며 주변에 다양한 맛집이 있습니다.', '15:00', '11:00', '위드시티호텔m.jpg', '위드시티호텔s1.jpg', '위드시티호텔s2.jpg', '위드시티호텔s3.jpg', '33.48582927685537', '126.48379663399649', 80000, 'A');
               
 INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE, requestStatus)
               VALUES ('그라벨호텔', 'grabel', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시')), '제주특별자치도 제주시 일주서로 7316', '064-740-8000', 'https://grabelhotel.com/', '제주 유일하게 자갈로 이루어진 역빈해안이 눈 앞에 펼쳐지는 곳 그라벨 호텔입니다.', '15:00', '11:00', '그라벨호텔m.jpg', '그라벨호텔s1.jpg', '그라벨호텔s2.jpg', '그라벨호텔s2.jpg', '33.492437097713896', '126.42864471233102', 1350000, 'A');

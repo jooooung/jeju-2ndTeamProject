@@ -45,7 +45,7 @@ public interface BusinessService {
 	public String hotelApprovalStatus(String hname);
 
     // 레스토랑 등록
-	public void registerRestaurant(Restaurant restaurant);
+	public boolean registerRestaurant(Restaurant restaurant, MultipartHttpServletRequest mRequest);
 
     // 레스토랑 수정
 	public void modifyRestaurant(Restaurant restaurant);
@@ -56,10 +56,42 @@ public interface BusinessService {
     // 레스토랑 등록 승인 여부 확인
 	public String restaurantApprovalStatus(String rname);
 
-    // 호텔 댓글 조회
-	public List<HotelComment> myHotelComments(String bid);
-
-    // 레스토랑 댓글 조회
-    //public List<RestaurantComment> myRestaurantComments(String bid);
-
+	// 특정 숙소 댓글 목록
+	public List<HotelComment> hCommentList(HotelComment hotelComment, String pageNum);	
+	
+	// 특정 숙소 댓글수
+	public int totCntHcomment(String hname, HotelComment hotelComment);
+	
+	// 숙소 원 댓글 달기
+	public int registerHcomment(HotelComment hotelComment);
+	
+	// 숙소 답 댓글 달기
+	public int replyHotelComment(HotelComment hotelComment);
+	
+	// 숙소 댓글 수정
+	public int modifyHotelComment(HotelComment hotelComment);
+	
+	// 숙소 댓글 삭제
+	public int deleteHotelComment(int hcommentno);
+	
+	// 특정 식당 댓글 목록
+	/**public List<RestaurantComment> rCommentList(RestaurantComment restaurantComment);
+	
+	// 특정 식당 댓글수
+	public int totCntRcomment(RestaurantComment restaurantComment);
+	
+	// 식당 원 댓글 달기
+	public int registerRcomment(RestaurantComment restaurantComment);
+	
+	// 식당 답 댓글 전 작업
+	public int preReplyRcomment(RestaurantComment restaurantComment);
+	
+	// 식당 답 댓글 달기
+	public int replyRestaurantComment(RestaurantComment restaurantComment);
+	
+	// 식당 댓글 수정
+	public int modifyRestaurantComment(RestaurantComment restaurantComment);
+	
+	// 식당 댓글 삭제
+	public int deleteRestaurantComment(int restaurantComment);**/
 }

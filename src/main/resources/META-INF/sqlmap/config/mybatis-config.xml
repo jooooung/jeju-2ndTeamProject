@@ -18,6 +18,7 @@
 		<typeAlias type="com.lec.jeju.vo.Business" alias="Business" />
 		<typeAlias type="com.lec.jeju.vo.BookMark" alias="BookMark" />
 		<typeAlias type="com.lec.jeju.vo.ReviewBoard" alias="Review" />
+		<typeAlias type="com.lec.jeju.vo.MyReview" alias="MyReview" />
 	</typeAliases>
 	
 	<mappers>
@@ -33,5 +34,6 @@
 		<mapper resource="META-INF/sqlmap/mappers/Business.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/BookMark.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/ReviewBoard.xml" />
+		<mapper resource="META-INF/sqlmap/mappers/MyReview.xml" />
 	</mappers>
 </configuration>

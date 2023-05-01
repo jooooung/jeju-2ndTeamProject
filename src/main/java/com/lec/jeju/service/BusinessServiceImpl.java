@@ -13,7 +13,6 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
@@ -32,7 +31,7 @@ public class BusinessServiceImpl implements BusinessService {
 	private BusinessDao businessDao;
 	String backupPath = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/businessPhoto/";
 	
-	String backupPath1 = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/hotelImgFileUpload/";
+	String backupPath1 = "D:/las/jeju-2ndTeamProject/src/main/webapp/hotelImgFileUpload/";
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -129,8 +128,8 @@ public class BusinessServiceImpl implements BusinessService {
 			business.setBpw(sessionBusiness.getBpw());
 		}
 		while (params.hasNext()) {
-			String paramName = params.next();
-			MultipartFile bfile = mRequest.getFile(paramName);
+			String param = params.next();
+			MultipartFile bfile = mRequest.getFile(param);
 			String originalFileName = bfile.getOriginalFilename();
 			String saveFileName = System.currentTimeMillis() + originalFileName;
 			try {
@@ -163,7 +162,7 @@ public class BusinessServiceImpl implements BusinessService {
 		httpSession.invalidate();
 
 	}
-
+	
 	private int fileCopy(String serverFile, String backupFile) {
 		int isCopy = 0;
 		FileInputStream is = null;
@@ -191,52 +190,86 @@ public class BusinessServiceImpl implements BusinessService {
 		}
 		return isCopy;
 	}
+
+	private boolean filecopy(String serverFile, String backupFile) {
+		boolean isCopy = false;
+		FileInputStream is = null;
+		FileOutputStream os = null;
+		try {
+			File file = new File(serverFile);
+			is = new FileInputStream(file);
+			os = new FileOutputStream(backupFile);
+			byte[] buff = new byte[(int) file.length()];
+			while(true) {
+				int nReadByte = is.read(buff);
+				if(nReadByte == -1) break;
+				os.write(buff, 0, nReadByte);
+			}
+			isCopy = true;
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}finally {
+			try {
+				if(os!=null) os.close();
+				if(is!=null) is.close();
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return isCopy;
+	}
 	
 	@Override
-	public int registerHotel(Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest) {
-	    String uploadPath = mRequest.getRealPath("businessPhoto/");
-	    Iterator<String> params = mRequest.getFileNames();
-	    MultipartFile[] himg = new MultipartFile[4];
+	public boolean registerHotel(Hotel hotel, MultipartHttpServletRequest mRequest) {
+	    boolean isSuccess = false;
+
+	    String hname = mRequest.getParameter("hname");
+	    hotel.setHname(hname);
+	    String uploadPath = mRequest.getRealPath("hotelImgFileUpload/");
+	    String backupPath1 = "D:/las/jeju-2ndTeamProject/src/main/webapp/hotelImgFileUpload/";
+	    String[] himg = new String[4];
 	    int i = 0;
-	    while(params.hasNext()) {
+
+	    Iterator<String> params = mRequest.getFileNames();
+	    while (params.hasNext()) {
 	        String param = params.next();
-	        MultipartFile bFile = mRequest.getFile(param);
-	        if(bFile != null) {
-	            himg[i] = bFile;
-	            // 파일 첨부 함
-	            if(himg[i].getOriginalFilename() != null && !himg[i].getOriginalFilename().equals("")) {
-	                String fileName = himg[i].getOriginalFilename();
-	                if(new File(uploadPath+fileName).exists()) {
-	                    // 서버에 동일 파일명 있을 시 파일명 교체
-	                    fileName = System.currentTimeMillis() + fileName;
-	                }
-	                try {
-	                    himg[i].transferTo(new File(uploadPath+fileName));
-	                    System.out.println("서버파일 : "+uploadPath+fileName);
-	                    System.out.println("백업파일 : "+backupPath1+fileName);
-	                    int result = fileCopy(uploadPath + fileName, backupPath1 + fileName);    // 파일카피
-	                    System.out.println(result == 1? i + "번째 백업 성공" : i + "번째 백업 실패");
-	                } catch (IOException e) {
-	                    System.out.println(e.getMessage());
-	                }
-	            } else {
-	                // 첨부 안 함
-	                System.out.println(i + "번째 첨부 안함 : 빈 파일 이름");
+	        MultipartFile mFile = mRequest.getFile(param);
+	        String originalFileName = mFile.getOriginalFilename(); // 업로드한 파일이름
+	        himg[i] = originalFileName;
+
+	        if (himg[i] != null && !himg[i].equals("")) {
+	            if (new File(uploadPath + himg[i]).exists()) {
+	                himg[i] = System.currentTimeMillis() + himg[i];
 	            }
+
+	            try {
+	                mFile.transferTo(new File(uploadPath + himg[i]));
+	                System.out.println("서버에 저장된 파일 : " + uploadPath + himg[i]);
+	                System.out.println("복사될 파일 : " + backupPath1 + himg[i]);
+	                isSuccess = filecopy(uploadPath + himg[i], backupPath1 + himg[i]);
+	            } catch (IOException e) {
+	                System.out.println(e.getMessage());
+	            }
+	        } else {
+	            System.out.println(i + "번째 첨부 안 함 : " + (himg[i].equals("") ? "빈스트링" : "빈스트링 아님"));
 	        }
 	        i++;
 	    }
-	    hotel.setHmainimg(himg[0].getOriginalFilename());
-	    hotel.setHsubimg_1(himg[1].getOriginalFilename());
-	    hotel.setHsubimg_2(himg[2].getOriginalFilename());
-	    hotel.setHsubimg_3(himg[3].getOriginalFilename());
-	    return businessDao.registerHotel(hotel);
+	    hotel.setHmainimg(himg[0]);
+	    hotel.setHsubimg_1(himg[1]);
+	    hotel.setHsubimg_2(himg[2]);
+	    hotel.setHsubimg_3(himg[3]);
+
+	    boolean result = businessDao.registerHotel(hotel, mRequest);
+	    if (result) {
+	        isSuccess = true;
+	    }
+	    return isSuccess;
 	}
-
-
+	
 	@Override
-	public void modifyHotel(Hotel hotel) {
-		businessDao.modifyHotel(hotel);
+	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest) {
+		businessDao.modifyHotel(hotel, mRequest);
 	}
 
 	@Override

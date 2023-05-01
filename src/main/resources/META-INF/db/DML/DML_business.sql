@@ -13,8 +13,9 @@ UPDATE Business
 
 -- 3. 업체 등록요청 (등록글 작성)
 -- Hotel 등록
-INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
-    VALUES ('라마다', 'bid', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주', '010-1234-1324', 'www.naver.com', '정보', '14:00', '11:00', 'main.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 50.5, 50.5, 40000, 'P');
+INSERT INTO Hotel (hName, bId, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('라마다', 'bid', '제주', '010-1234-1324', 'www.naver.com', '정보', '14:00', '11:00', 'main.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+
 INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
     VALUES ('라다', 'bid', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주특별자치도')), '제주', '010-1234-1324', 'www.naver.com', '정보', '14:00', '11:00', 'main.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 50.5, 50.5, 40000, 'P');
 -- Restaurant 등록

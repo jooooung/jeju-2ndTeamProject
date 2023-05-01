@@ -8,6 +8,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<link href="${conPath }/css/business/register.css" rel=stylesheet>
     <title>나의 호텔 게시글</title>
 </head>
 <body>

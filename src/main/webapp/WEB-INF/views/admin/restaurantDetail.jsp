@@ -22,10 +22,6 @@
             <td>${restaurant.bid}</td>
         </tr>
         <tr>
-            <td>지역:</td>
-            <td>${restaurant.locationno}</td>
-        </tr>
-        <tr>
             <td>종류:</td>
             <td>${restaurant.restauranttypeno}</td>
         </tr>
@@ -49,30 +45,22 @@
             <td>메뉴:</td>
             <td>${restaurant.rmenu}</td>
         </tr>
-        <tr>
-            <td>메인 사진:</td>
-            <td>${restaurant.rmainimg}</td>
-        </tr>
-        <tr>
-            <td>서브 사진 1:</td>
-            <td>${restaurant.rsubimg_1}</td>
-        </tr>
-        <tr>
-            <td>서브 사진 2:</td>
-            <td>${restaurant.rsubimg_2}</td>
-        </tr>
-        <tr>
-            <td>서브 사진 3:</td>
-            <td>${restaurant.rsubimg_3}</td>
-        </tr>
-        <tr>
-            <td>위도:</td>
-            <td>${restaurant.rlatitude}</td>
-        </tr>
-        <tr>
-            <td>경도:</td>
-            <td>${restaurant.rlongitude}</td>
-        </tr>
+		<tr>
+		    <td>메인 사진:</td>
+		    <td><img src="${conPath}/resImgFileUpload/${restautant.rmainimg}" width="150px" height="150px"></td>
+		</tr>
+		<tr>
+		    <td>서브사진 1:</td>
+		    <td><img src="${conPath}/resImgFileUpload/${restautant.rsubimg_1}" width="150px" height="150px"></td>
+		</tr>
+		<tr>
+		    <td>서브사진 2:</td>
+		    <td><img src="${conPath}/resImgFileUpload/${restautant.rsubimg_2}" width="150px" height="150px"></td>
+		</tr>
+		<tr>
+		    <td>서브사진 3:</td>
+		    <td><img src="${conPath}/resImgFileUpload/${restautant.rsubimg_3}" width="150px" height="150px"></td>
+		</tr>
         <tr>
             <td>가격:</td>
             <td>${restaurant.rprice}</td>

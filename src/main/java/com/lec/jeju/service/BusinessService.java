@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -27,15 +28,15 @@ public interface BusinessService {
 
 	public int modifyBusiness (Business business, HttpSession httpSession, MultipartHttpServletRequest mRequest);
 
-	public int deleteBusiness( String bid);
+	public int deleteBusiness(String bid);
 
 	public void logout(HttpSession httpSession);
 
 	// 호텔 등록
-	public int registerHotel(Hotel hotel, HttpSession httpSession, MultipartHttpServletRequest mRequest);
-	
+	public boolean registerHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
+
     // 호텔 수정
-	public void modifyHotel(Hotel hotel);
+	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
 
     // 나의 호텔 글 조회
 	public List<Hotel> myHotelPosts(String bid);

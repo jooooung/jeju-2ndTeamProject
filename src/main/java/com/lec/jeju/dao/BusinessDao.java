@@ -37,10 +37,10 @@ public interface BusinessDao {
 	public int deleteBusiness(String bid);
 	
 	// Hotel 등록
-	public int registerHotel(Hotel hotel);
+	public boolean registerHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
 	
     // Hotel 수정
-	public void modifyHotel(Hotel hotel);
+	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
     
     // Hotel 나의 글 조회
 	public List<Hotel> myHotelPosts(String bid);

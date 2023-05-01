@@ -108,8 +108,8 @@ CREATE TABLE hotel (
   hSubImg_1 VARCHAR2(255),
   hSubImg_2 VARCHAR2(255),
   hSubImg_3 VARCHAR2(255),
-  hLatitude NUMBER(10, 6) NOT NULL, -- 위도
-  hLongitude NUMBER(10, 6) NOT NULL , -- 경도
+  hLatitude NUMBER(10, 6), -- 위도
+  hLongitude NUMBER(10, 6), -- 경도
   hPrice NUMBER(8),
   requestStatus VARCHAR(1) DEFAULT 'P'  -- P:대기, A:승인, R:거절
 ); -- 숙소 테이블

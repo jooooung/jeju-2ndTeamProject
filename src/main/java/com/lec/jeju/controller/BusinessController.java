@@ -1,6 +1,5 @@
 package com.lec.jeju.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -25,7 +25,7 @@ import com.lec.jeju.vo.Restaurant;
 public class BusinessController {
 	@Autowired
 	private BusinessService businessService;
-
+	
 	// 아이디 중복체크
 	@RequestMapping(params = "method=idConfirm", method = RequestMethod.GET)
 	public String idConfirm(String bid, Model model) {
@@ -135,21 +135,27 @@ public class BusinessController {
 	// 호텔 등록
 	@RequestMapping(value = "/registerHotel", method = RequestMethod.GET)
 	public String registerHotel() {
-		return "business/registerHotel";
+	    return "business/registerHotel";
 	}
 
 	@RequestMapping(value = "/registerHotel", method = RequestMethod.POST)
-	public String registerHotel(Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest) {
+	public String registerHotel(@ModelAttribute("hotel") Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest, Model model) {
 	    String bid = (String) session.getAttribute("bid");
 	    hotel.setBid(bid);
-	    businessService.registerHotel(hotel, session, mRequest);
-	    return "redirect:/business/myHotelPosts.do";
+	    hotel.setRequeststatus("P");
+	    boolean registerHotel = businessService.registerHotel(hotel, mRequest);
+	    if (registerHotel) {
+	        return "redirect:/business/myHotelPosts.do";
+	    } else {
+	        model.addAttribute("errorMessage", "호텔 등록에 실패하였습니다.");
+	        return "error";
+	    }
 	}
 	
 	// 호텔 수정
 	@RequestMapping(value = "/modifyHotel", method = RequestMethod.PUT)
-	public String modifyHotel(Hotel hotel, Model model) {
-		businessService.modifyHotel(hotel);
+	public String modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest, Model model) {
+		businessService.modifyHotel(hotel, mRequest);
 		String bid = hotel.getBid();
 		List<Hotel> hotels = businessService.myHotelPosts(bid);
 		model.addAttribute("hotels", hotels);

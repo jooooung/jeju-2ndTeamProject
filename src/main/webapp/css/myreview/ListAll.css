@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/* 전체 페이지 스타일 */
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	background-color: #f7f7f7;
+	margin: 0px auto;
+}
+
+/* 탭 버튼 스타일 */
+.tab button {
+	background-color: inherit;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 14px 16px;
+	transition: 0.3s;
+	font-size: 17px;
+}
+
+/* 활성 탭 버튼 스타일 */
+.tab button.active {
+	background-color: #ccc;
+}
+
+/* 탭 내용 스타일 */
+.tabcontent {
+	display: none;
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+	text-align: center;
+}
+
+.tab {
+	overflow: hidden;
+	border: 1px solid #ccc;
+	background-color: #f1f1f1;
+	text-align: center;
+}

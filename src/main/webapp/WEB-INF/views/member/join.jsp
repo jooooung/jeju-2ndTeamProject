@@ -151,7 +151,7 @@
 				<tr>
 					<td>생년월일</td>
 					<td>
-						<input type="date" name="mbirth" id="datepicker" required="required">
+						<input type="text" name="mbirth" id="datepicker" required="required">
 					</td>
 				</tr>
 				<tr>

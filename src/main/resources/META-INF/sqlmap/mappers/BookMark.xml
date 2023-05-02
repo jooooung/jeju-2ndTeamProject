@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.BookMarkDao">
+	<resultMap type="BookMark" id="BookmarkResult">
+		<result property="bookmarkno" column="bookmarkno" />
+		<result property="mid" column="mid" />
+		<result property="hname" column="hname" />
+		<result property="rname" column="rname" />
+		<result property="sname" column="sname" />
+		<result property="hmainimg" column="hmainimg" />
+		<result property="rmainimg" column="rmainimg" />
+		<result property="smainimg" column="smainimg" />
+	</resultMap>
+	
+	<!-- 북마크한 관광지 목록 출력 -->
+	<select id="bookmarkSpot" parameterType="String" resultMap="BookmarkResult">
+		SELECT * 
+    	FROM SPOT, BOOKMARK
+    	WHERE SPOT.SNAME = BOOKMARK.SNAME
+   		AND BOOKMARK.MID = #{mid, jdbcType=VARCHAR} ORDER BY BOOKMARKDATE DESC
+	</select>
+	
+	<!-- 북마크한 식당 목록 출력 -->
+	<select id="bookmarkRes" parameterType="String" resultMap="BookmarkResult">
+		SELECT *
+    	FROM RESTAURANT, BOOKMARK
+    	WHERE RESTAURANT.RNAME = BOOKMARK.RNAME
+    	AND BOOKMARK.MID = #{mid, jdbcType=VARCHAR} ORDER BY BOOKMARKDATE DESC
+	</select>
+	
+	<!-- 북마크한 호텔 목록 출력 -->
+	<select id="bookmarkHotel" parameterType="String" resultMap="BookmarkResult">
+    	SELECT *
+    	FROM HOTEL, BOOKMARK
+    	WHERE HOTEL.HNAME = BOOKMARK.HNAME
+    	AND BOOKMARK.MID = #{mid, jdbcType=VARCHAR} ORDER BY BOOKMARKDATE DESC
+	</select>
+	
+	<!-- 호텔 북마크 -->
+	<insert id="addHotel">
+    	INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
+    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, #{hname, jdbcType=VARCHAR}, null, null, #{hmainimg, jdbcType=VARCHAR}, null, null);
+	</insert>
+	
+	<!-- 식당 북마크 -->
+	<insert id="addRes">
+		INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
+    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, null, #{rname, jdbcType=VARCHAR}, null, null, #{rmainimg, jdbcType=VARCHAR}, null);
+	</insert>
+	
+	<!-- 관광지 북마크 -->
+	<insert id="addSpot">
+		INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
+    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, null, null, #{sname, jdbcType=VARCHAR}, null, null, #{smainimg, jdbcType=VARCHAR});
+	</insert>
+	
+	<!-- 호텔 북마크 삭제 -->
+	<delete id="deleteHotelMark">
+		DELETE FROM BOOKMARK
+    	WHERE MID = #{mid} AND HNAME = #{hname}
+	</delete>
+	
+	<!-- 식당 북마크 삭제 -->
+	<delete id="deleteResMark">
+		DELETE FROM BOOKMARK
+    	WHERE MID = #{mid} AND RNAME = #{rname}
+	</delete>
+	
+	<!-- 관광지 북마크 삭제 -->
+	<delete id="deleteSpotMark">
+		DELETE FROM BOOKMARK
+    	WHERE MID = #{mid} AND SNAME = #{sname}
+	</delete>
+	
+	<!-- 북마크한 호텔 갯수 -->
+	<select id="HotelCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+    	FROM HOTEL, BOOKMARK
+    	WHERE HOTEL.HNAME = BOOKMARK.HNAME
+    	AND BOOKMARK.MID = #{mid, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 북마크한 식당 갯수 -->
+	<select id="ResCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+    	FROM RESTAURANT, BOOKMARK
+    	WHERE RESTAURANT.RNAME = BOOKMARK.RNAME
+    	AND BOOKMARK.MID = #{mid, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 북마크한 관광지 갯수 -->
+	<select id="SpotCount" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+    	FROM SPOT, BOOKMARK
+    	WHERE SPOT.SNAME = BOOKMARK.SNAME
+    	AND BOOKMARK.MID = #{mid, jdbcType=VARCHAR}
+	</select>
+</mapper>

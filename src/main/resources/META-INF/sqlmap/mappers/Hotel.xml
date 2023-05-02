@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.HotelDao">
+	<resultMap type="Location" id="Location">
+		<result property="locationno" column="locationno"/>
+		<result property="lname" column="lname"/>
+	</resultMap>
+	<resultMap type="Hotel" id="HotelResult">
+		<result property="hname" column="hname"/>
+		<result property="bid" column="bid"/>
+		<result property="locationno" column="locationno"/>
+		<result property="haddr" column="haddr"/>
+		<result property="htel" column="htel"/>
+		<result property="hlink" column="hlink"/>
+		<result property="hinfo" column="hinfo"/>
+		<result property="intime" column="intime"/>
+		<result property="outtime" column="outtime"/>
+		<result property="hmainimg" column="hmainimg"/>
+		<result property="hsubimg_1" column="hsubimg_1"/>
+		<result property="hsubimg_2" column="hsubimg_2"/>
+		<result property="hsubimg_3" column="hsubimg_3"/>
+		<result property="hlatitude" column="hlatitude"/>
+		<result property="hlongitude" column="hlongitude"/>
+		<result property="hprice" column="hprice"/>
+		<collection property="location" resultMap="Location"/>
+	</resultMap>
+	<select id="locList" resultType="Location">
+		SELECT * FROM LOCATION
+	</select>
+	<select id="hotelList2" parameterType="Hotel" resultMap="HotelResult"><!-- 지역 선택 시 목록 -->
+		SELECT * 
+		    FROM (SELECT ROWNUM RN, A.* 
+		        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
+		                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+		                    WHERE H.HNAME = B.HNAME(+)  AND H.LOCATIONNO = L.LOCATIONNO 
+		                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = #{locationno} ORDER BY bCnt DESC) A)
+		    WHERE RN BETWEEN #{startrow} AND #{endrow}
+	</select>
+	<select id="hotelList" parameterType="Hotel" resultMap="HotelResult">
+		<if test="schitem == null or schitem== ''"><!-- 호텔명 미검색, 지역 미선택-->
+			SELECT * 
+			    FROM (SELECT ROWNUM RN, A.* 
+			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
+			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' ORDER BY bCnt DESC) A)
+			    WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+		<if test="schitem == 'all'"><!-- 호텔명 검색, 지역 미선택 -->
+			SELECT * 
+			    FROM (SELECT ROWNUM RN, A.* 
+			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
+			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+			                    WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
+			                    AND REQUESTSTATUS = 'A' AND H.HNAME LIKE '%'||#{schword}||'%' ORDER BY bCnt DESC) A)
+			    WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 선택 -->
+			SELECT * 
+			    FROM (SELECT ROWNUM RN, A.* 
+			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
+			                FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+			                WHERE H.HNAME = B.HNAME(+) AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = #{locationno}
+			                    AND H.HNAME LIKE '%'||#{schword}||'%' ORDER BY bCnt DESC) A)
+			    WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+	</select>
+	<!-- 전체 숙소 개수 -->
+	<select id="totCntHotel" parameterType="Hotel" resultType="int">
+		<if test="schitem == null or schitem== ''"><!-- 호텔명 미검색, 지역 미선택-->
+			SELECT COUNT(*) FROM HOTEL	
+		</if>
+		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 미선택 -->
+			SELECT COUNT(*) FROM HOTEL WHERE HNAME LIKE '%'||#{schword||'%'
+		</if>
+		<if test="schitem == 'locaionno'"><!-- 호텔명 미검색, 지역 선택 -->
+			SELECT COUNT(*) FROM HOTEL WHERE LOCATIONNO = #{locationno}
+		</if>
+		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 선택 -->
+			SELECT COUNT(*) FROM HOTEL WHERE HNAME LIKE '%'||#{schword}||'%' AND LOCATIONNO = #{locationno}
+		</if>
+	</select>
+	
+	<!-- 숙소 상세보기 -->
+	<select id="detailHotel" parameterType="String" resultType="Hotel">
+		SELECT (SELECT COUNT(*) FROM BOOKMARK WHERE HNAME = #{hname}) bCnt, lName, H.*
+		    FROM HOTEL H, LOCATION L WHERE H.LOCATIONNO = L.LOCATIONNO 
+		    AND HNAME = #{hname}
+	</select>
+	
+	<!-- 숙소 등록 -->
+	<insert id="registerHotel" parameterType="Hotel">
+		INSERT INTO HOTEL (HNAME, BID, LOCATIONNO, HADDR, HTEL, HLINK, HINFO, INTIME, OUTTIME, 
+                    HMAINIMG, HSUBIMG_1, HSUBIMG_2, HSUBIMG_3, HLATITUDE, HLONGITUDE, HPRICE)
+              VALUES (#{hname}, #{bid}, #{locationno}, #{haddr}, #{htel}, #{hlink}, #{hinfo}, #{intime}, #{outtime}, 
+                     #{hmainimg}, #{hsubimg_1}, #{hsubimg_2}, #{hsubimg_3}, #{hlatitude}, #{hlongitude}, #{hprice})
+	</insert>
+	
+	<!-- 숙소 정보 수정 -->
+	<update id="modifyHotel" parameterType="Hotel">
+		UPDATE HOTEL SET LOCATIONNO = #{locationno},
+                 HADDR = #{haddr},
+                 HTEL = #{htel},
+                 HLINK = #{hlink},
+                 HINFO = #{hinfo},
+                 INTIME = #{intime},
+                 OUTTIME = #{outtime},
+                 HMAINIMG = #{hmainimg}, 
+                 HSUBIMG_1 = #{hsubimg_1}, 
+                 HSUBIMG_2 = #{hsubimg_2}, 
+                 HSUBIMG_3 = #{hsubimg_3}, 
+                 HLATITUDE = #{hlatitude}, 
+                 HLONGITUDE = #{hlongitude}, 
+                 HPRICE = #{hprice}
+        WHERE HNAME = #{hname}
+	</update>
+	
+	<!-- 숙소 삭제 -->
+	<delete id="deleteHotel" parameterType="String">
+		DELETE FROM HOTEL WHERE HNAME = #{hname}
+	</delete>
+</mapper>

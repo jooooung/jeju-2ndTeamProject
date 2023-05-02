@@ -14,6 +14,7 @@ DROP TABLE Business;
 DROP TABLE Admin;
 DROP TABLE location;
 DROP TABLE RestauranTtype;
+DROP TABLE MYREVIEW;
 
 DROP SEQUENCE FestivalNo_seq;
 DROP SEQUENCE bookmarkNo_seq;
@@ -24,7 +25,7 @@ DROP SEQUENCE hCommentNo_seq;
 DROP SEQUENCE rCommentNo_seq;
 DROP SEQUENCE locationNo_seq;
 DROP SEQUENCE RestauranTtypeNo_seq;
-
+DROP SEQUENCE MYREVIEWNO_SEQ;
 
 CREATE TABLE Member (
     mId VARCHAR2(50) PRIMARY KEY,
@@ -32,9 +33,9 @@ CREATE TABLE Member (
     mName VARCHAR2(50) NOT NULL,
     mTel VARCHAR2(50) NOT NULL,
     mEmail VARCHAR2(100) NOT NULL,
-    mAddr VARCHAR2(200),
-    mDeAddr VARCHAR2(200),
-    mPost VARCHAR2(50),
+    mAddr VARCHAR2(200) NOT NULL,
+    mDeAddr VARCHAR2(200) NOT NULL,
+    mPost VARCHAR2(50) NOT NULL,
     mBirth DATE NOT NULL,
     mPhoto VARCHAR2(255),
     mRdate DATE DEFAULT SYSDATE NOT NULL
@@ -52,7 +53,12 @@ CREATE TABLE Business (
     bId VARCHAR2(50) PRIMARY KEY,
     bPw VARCHAR2(50) NOT NULL,
     bName VARCHAR2(100) NOT NULL,
+    bTel VARCHAR2(50) NOT NULL, --
     bEmail VARCHAR2(100) NOT NULL,
+    bAddr VARCHAR2(200) NOT NULL, -- 일반주소
+    bDeAddr VARCHAR2(200) NOT NULL, -- 상세주소
+    bPost VARCHAR2(50) NOT NULL,  -- 우편번호
+    bPhoto VARCHAR2(255),  -- 업체사진
     bRdate DATE DEFAULT SYSDATE NOT NULL
 ); -- 업체 테이블 
 
@@ -102,8 +108,8 @@ CREATE TABLE hotel (
   hSubImg_1 VARCHAR2(255),
   hSubImg_2 VARCHAR2(255),
   hSubImg_3 VARCHAR2(255),
-  hLatitude NUMBER(10, 6) NOT NULL, -- 위도
-  hLongitude NUMBER(10, 6) NOT NULL , -- 경도
+  hLatitude NUMBER(10, 6), -- 위도
+  hLongitude NUMBER(10, 6), -- 경도
   hPrice NUMBER(8),
   requestStatus VARCHAR(1) DEFAULT 'P'  -- P:대기, A:승인, R:거절
 ); -- 숙소 테이블
@@ -111,9 +117,8 @@ CREATE TABLE hotel (
 CREATE TABLE Hreservation (
     mID VARCHAR2(50) PRIMARY KEY,
     hNAME VARCHAR2(50) REFERENCES HOTEL(hNAME),
-    inDate DATE NOT NULL UNIQUE,  
-    outDate DATE NOT NULL UNIQUE,   
-    rWhether VARCHAR(1) DEFAULT 'N' NOT NULL    -- 예약여부 Y, N
+    inDate DATE NOT NULL,  
+    outDate DATE NOT NULL
 ); -- 호텔 예약 테이블
 
                       
@@ -173,9 +178,13 @@ CREATE SEQUENCE bookmarkNo_seq MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE Bookmark (
     bookmark_no NUMBER(5) PRIMARY KEY,
     mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
-    hName VARCHAR2(50) REFERENCES hotel(hName),
-    rName VARCHAR2(50) REFERENCES restaurant(rName),
-    sName VARCHAR2(50) REFERENCES spot(sName)
+    hName VARCHAR2(50) REFERENCES hotel(hName) UNIQUE,
+    rName VARCHAR2(50) REFERENCES restaurant(rName) UNIQUE,
+    sName VARCHAR2(50) REFERENCES spot(sName) UNIQUE,
+    hMainImg VARCHAR2(255),
+    RMainImg VARCHAR2(255),
+    SMainImg VARCHAR2(255),
+    bookmarkdate DATE DEFAULT SYSDATE
 ); -- 즐겨찾기 테이블
 
 CREATE SEQUENCE hCommentNo_seq MAXVALUE 99999 NOCACHE NOCYCLE;
@@ -186,8 +195,8 @@ CREATE TABLE hotelComment (
     bId VARCHAR2(50) REFERENCES BUSINESS(bId) ON DELETE CASCADE,
     hContent CLOB NOT NULL,
     hGroup NUMBER(5) NOT NULL,
-    hStep NUMBER(5) NOT NULL,
-    hIndent NUMBER(5) NOT NULL,
+    hStep NUMBER(5) NOT NULL,       -- 출력순서
+    hIndent NUMBER(5) NOT NULL,     -- 들여쓰기
     hCrdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -- 숙소댓글 테이블
 
@@ -216,6 +225,19 @@ CREATE TABLE spotComment (
     sCrdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -- 관광지 댓글 테이블
 
+CREATE SEQUENCE MYREVIEWNO_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
+CREATE TABLE MYREVIEW (
+    MYREVIEWNO NUMBER(5) PRIMARY KEY,
+    mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
+    sCommentNo NUMBER(5) REFERENCES spotComment(sCommentNo), -- 관광지 댓글 번호
+    rCommentNo NUMBER(5) REFERENCES restaurantComment(rCommentNo), -- 식당 댓글 번호
+    hCommentNo NUMBER(5) REFERENCES hotelComment(hCommentNo), -- 호텔 댓글 번호
+    reviewNO NUMBER(5) REFERENCES Review(reviewNO) -- 후기 게시판 글 번호
+); -- 마이페이지 리뷰테이블
+
+
+
+select * from myreview;
 SELECT * FROM restaurant;
 SELECT * FROM restaurantComment;
 SELECT * FROM Festival;

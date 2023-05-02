@@ -1,20 +1,29 @@
 -- ★★★★★★★ 업체 ★★★★★★★ --
 -- 1. 업체 회원가입
-INSERT INTO Business (bId, bPw, bName, bEmail)
-    VALUES ('bid', 'bpw', 'bname', 'business@naver.com');
-
-INSERT INTO Business (bId, bPw, bName, bEmail)
-    VALUES ('id', 'password', 'Business Name', 'business@example.com');
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('bid', 'bpw', 'bname', '010-1234-1234', 'business@naver.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
+    
+select * from location;
+    
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('id', 'password', 'Business Name', '010-1111-1234', 'business@example.com', '제주시 서귀포구', '감귤동', '125863', 'null', sysdate);
 
 -- 2. 업체 정보수정
 UPDATE Business
-    SET bPw = 'bpw', bName = 'bname', bEmail = 'update@naver.com'
+    SET bPw = 'a', bName = 'bname', bTel = '010-2580-2580', bEmail = 'update@naver.com', bAddr = '제주시 서귀포구', bDeAddr = '감귤동', bPost = '125863', bPhoto = 'null'
     WHERE bId = 'bid';
+SELECT *
+FROM all_constraints
+WHERE constraint_name = 'SYS_C0010412';
 
 -- 3. 업체 등록요청 (등록글 작성)
 -- Hotel 등록
-INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, inDate, outDate, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hLatitude, hLongitude, hPrice, requestStatus)
-    VALUES ('호텔', 'bid', (SELECT locationNo FROM (SELECT * FROM location WHERE lName = '제주시') WHERE ROWNUM = 1), '제주', '010-1234-1324', 'www.naver.com', '정보', '14:00', '11:00', TO_DATE('2023-05-01', 'YYYY-MM-DD'), TO_DATE('2023-05-03', 'YYYY-MM-DD'), 'main.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 50.5, 50.5, '40,000', 'P');
+INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada55', 'bid', 1, '제주시', '010-1234-1324', 'www.naver.com', '정보', '14:00', '11:00', 'main.jpg ', 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada50', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+
 -- Restaurant 등록
 INSERT INTO Restaurant (rName, bId, locationNo, rAddr, rTel, rLink, rInfo, rMenu, rMainImg, rSubImg_1, rSubImg_2, rSubImg_3, rLatitude, rLongitude, rPrice, requestStatus)
 SELECT '식당', 'bid', locationNo, '제주', '02-1234-1234', 'www.naver.com', '정보', '올래국수', 'main_img.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 50.5, 50.5, '40,000', 'P'
@@ -24,8 +33,8 @@ SELECT '식당', 'bid', locationNo, '제주', '02-1234-1234', 'www.naver.com', '
 -- 4. 업체 등록요청 (등록글 수정)
 -- Hotel 수정
 UPDATE Hotel
-SET hName = '호텔', locationNo = (SELECT locationNo FROM location WHERE lName = '제주시' AND ROWNUM = 1), hAddr = '제주시', hTel = '010-1234-1324', hLink = 'www.naver.com', hInfo = '정보', inTime = '14:00', outTime = '11:00', inDate = TO_DATE('2023-05-01', 'YYYY-MM-DD'), outDate = TO_DATE('2023-05-04', 'YYYY-MM-DD'),
-        hMainImg = 'new_main.jpg', hSubImg_1 = 'new_sub_img_1', hSubImg_2 = 'new_sub_img_2', hSubImg_3 = 'new_sub_img_3', hLatitude = 50.5, hLongitude = 50.5, hPrice = '50,000'
+SET hName = '호텔', hAddr = '제주시', hTel = '010-1234-1324', hLink = 'www.naver.com', hInfo = '정보', inTime = '14:00', outTime = '11:00',
+        hMainImg = 'new_main.jpg', hSubImg_1 = 'new_sub_img_1', hSubImg_2 = 'new_sub_img_2', hSubImg_3 = 'new_sub_img_3', hLatitude = 50.5, hLongitude = 50.5, hPrice = 50000
 WHERE bId = 'bid';
 
 -- Restaurant 수정
@@ -76,3 +85,5 @@ SELECT rName, requestStatus
 -- 9. 업체 탈퇴
 DELETE FROM Business
     WHERE bId = 'bid';
+
+COMMIT;

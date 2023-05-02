@@ -1,0 +1,133 @@
+/* 게시판 스타일 */
+#wrap {
+	margin: 0 auto;
+	width: 80%;
+	text-align: center;
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+	padding: 20px;
+	border-radius: 5px;
+}
+
+#wrap h2 {
+	font-size: 30px;
+	font-weight: bold;
+	color: #0078b4;
+}
+
+hr {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid #ddd;
+}
+
+table {
+	margin: 0 auto;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	padding: 10px;
+	text-align: center;
+	border: 1px solid #ddd;
+	cursor: pointer;
+	
+}
+td:hover {
+	background-color: #f5f5f5;
+}
+
+th {
+	background-color: #f5f5f5;
+}
+
+tr:hover {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+	background-color: #fff;
+}
+
+.paging {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.paging a, .paging b {
+	display: inline-block;
+	padding: 5px 10px;
+	margin-right: 5px;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	color: #333;
+	text-decoration: none;
+}
+
+.paging a:hover {
+	background-color: #0078b4;
+	color: #fff;
+}
+
+.paging b {
+	background-color: #0078b4;
+	color: #fff;
+}
+
+.btn {
+	display: inline-block;
+	padding: 10px 20px;
+	background-color: #0078b4;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
+	margin-top: 20px;
+}
+
+.btn:hover {
+	background-color: #005c8b;
+	cursor: pointer;
+}
+
+#right {
+	text-align: right;
+	margin: 20px;
+}
+
+.btn {
+	box-shadow: inset 0px 1px 0px 0px #ffffff;
+	background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
+	background-color: #ffffff;
+	border-radius: 6px;
+	border: 1px solid #dcdcdc;
+	display: inline-block;
+	cursor: pointer;
+	color: #666666;
+	font-family: Arial;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 6px 24px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #ffffff;
+}
+
+.btn:hover {
+	background: linear-gradient(to bottom, #f6f6f6 5%, #ffffff 100%);
+	background-color: #f6f6f6;
+}
+
+.btn:active {
+	position: relative;
+	top: 1px;
+}

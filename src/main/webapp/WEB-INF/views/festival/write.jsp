@@ -8,12 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/festivalList.css" rel="stylesheet">
+<link href="${conPath }/css/festival/festivalWrite.css" rel="stylesheet">
 <style>
-#wrap {
-	height: 800px;
-}
-
 .btn {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -35,10 +31,16 @@
 	cursor: pointer;
 	transition: 0.5s;
 }
+#editor {
+  height: 1000px;
+}
 </style>
 </head>
 <body>
 <jsp:include page="../main/header.jsp" />
+<br>
+<br>
+<br>
 <%-- 	<c:if test="${empty admin }">
 		<script>
 			location.href = '${conPath}/adminLoginView.do?next=noticeWriteView.do';
@@ -47,6 +49,7 @@
 	<div id="wrap">
 		<div id="content_form">
 			<form action="${conPath }/festival/write.do" method="post">
+			<input type="hidden" name="aid" value="${admin.aid }">
 				<table>
 					<tr>
 						<td>제목</td>
@@ -57,17 +60,11 @@
 					<tr>
 						<td>본문</td>
 						<td>
-							<textarea id="summernote" name="fcontent"></textarea>
+							<textarea id="editor" name="fcontent"></textarea>
 						</td>
 					</tr>
 					<tr>
-						<td>작성자</td>
-						<td>
-							<input type="text" name="aid" required="required">
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
+						<td colspan="2" style="text-align: center;">
 							<button class="btn">저장하기</button>
 							<button class="btn" onclick="location.href='${conPath}/festival/list.do'">돌아가기</button>
 						</td>
@@ -76,25 +73,14 @@
 			</form>
 		</div>
 	</div>
+	<br>
 	<jsp:include page="../main/footer.jsp" />
 </body>
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.0/standard-all/ckeditor.js"></script>
 <script>
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			height : 400,
-			minHeight : null,
-			maxHeight : null,
-			lang : 'ko-KR',
-			onImageUpload : function(files, editor, welEditable) {
-				sendFile(files[0], editor, welEditable);
-			}
-		});
-	});
+    $(document).ready(function() {
+        CKEDITOR.replace('editor');
+    });
 </script>
 </html>

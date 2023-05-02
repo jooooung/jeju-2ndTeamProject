@@ -8,12 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="${conPath }/css/festivalList.css" rel="stylesheet">
+<link href="${conPath }/css//festival/festivalContent.css" rel="stylesheet">
 <style>
-#wrap {
-	height: 800px;
-}
-
 .btn {
 	-webkit-appearance: none;
 	-moz-appearance: none;
@@ -35,6 +31,9 @@
 	cursor: pointer;
 	transition: 0.5s;
 }
+#editor {
+    height: 1000px;
+}
 </style>
 <script>
 	function delete1(no) {
@@ -49,8 +48,10 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
-	<div>
-</div>
+	<br>
+	<br>
+	<br>
+	<br>
 	<div id="wrap">
 		<div id="content_form">
 			<br>
@@ -66,18 +67,22 @@
 				<tr>
 					<th>본문</th>
 					<td>
-						<textarea id="summernote">${contentFestival.fcontent}</textarea>
+						<textarea id="editor">${contentFestival.fcontent}</textarea>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="2" style="text-align: center;">
+						<c:if test="${empty member and not empty admin}">
+							<button class="btn" 
+								onclick="location.href='${conPath}/festival/modifyView.do?festivalno=${param.festivalno }&pageNum=${param.pageNum }'">
+								수정
+							</button>
+							</c:if>
+						<c:if test="${empty member and not empty admin}"> 
 						<button class="btn"
-							onclick="location.href='${conPath}/festival/modifyView.do?festivalno=${param.festivalno }&pageNum=${param.pageNum }'">
-							수정</button> <!--<c:if test="${empty member and not empty admin}"></c:if> -->
-						<button class="btn"
-							onclick="delete1('${contentFestival.festivalno}')">삭제</button>
-						<button class="btn"
-							onclick="location.href='${conPath}/festival/list.do?pageNum=${param.pageNum }'">목록</button>
+								onclick="delete1('${contentFestival.festivalno}')">삭제</button>
+						</c:if>
+						<button class="btn" onclick="location.href='${conPath}/festival/list.do?pageNum=${param.pageNum }'">목록</button>
 					</td>
 				</tr>
 			</table>
@@ -85,32 +90,12 @@
 	</div>
 	<jsp:include page="../main/footer.jsp" />
 </body>
-<link
-	href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css"
-	rel="stylesheet">
-<link
-	href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-	rel="stylesheet">
-
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script
-	src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-<script
-	src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.16.0/standard-all/ckeditor.js"></script>
 <script>
-	$(document).ready(function() {
-		$('#summernote').summernote({
-			height : 400,
-			minHeight : null,
-			maxHeight : null,
-			lang : 'ko-KR',
-			onImageUpload : function(files, editor, welEditable) {
-				sendFile(files[0], editor, welEditable);
-			}
-		});
-	});
+    $(document).ready(function() {
+        CKEDITOR.replace('editor');
+    });
 </script>
+
 </html>

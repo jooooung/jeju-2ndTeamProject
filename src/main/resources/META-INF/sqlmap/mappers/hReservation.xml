@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.HreservationDao">
+	<resultMap type="Hreservation" id="HreservationResult">
+		<result property="mid" column="mid"/>
+		<result property="hname" column="hname"/>
+		<result property="indate" column="indate"/>
+		<result property="outdate" column="outdate"/>
+		<result property="rwhether" column="rwhether"/>
+	</resultMap>
+	<!-- 예약하기 -->
+	<select id="doHreservation" parameterType="Hreservation">
+		INSERT INTO HRESERVATION (mID, hNAME, INDATE, OUTDATE)
+    		VALUES (#{mid}, #{hname}, #{indate}, #{outdate})
+	</select>
+	
+	<!-- 예약 가능 날짜 조회(결과가 있다면 예약 불가능) -->
+	<select id="checkReserv" parameterType="Hreservation" resultMap="HreservationResult">
+		<![CDATA[
+			SELECT INDATE, OUTDATE FROM HRESERVATION
+			    WHERE ((INDATE <= #{indate} AND OUTDATE >= #{outdate})      
+			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate})      
+			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate})      
+			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate}))     
+			     AND HNAME = #{hname}
+		]]> 
+	</select>
+	
+	<!-- 호텔별 예약 목록 -->
+	<select id="hreservationList_Hotel" parameterType="String" resultMap="HreservationResult">
+		SELECT * 
+		    FROM (SELECT R.MID, R.HNAME, INDATE, OUTDATE, HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE FROM HRESERVATION R, HOTEL H 
+		            WHERE H.HNAME = R.HNAME)
+		    WHERE HNAME = #{hname}
+	</select>
+	
+	<!-- 사용자별 예약 목록 -->
+	<select id="hreservationList_Member" parameterType="String" resultMap="HreservationResult">
+		SELECT R.HNAME, R.INDATE, R.OUTDATE, H.HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE 
+		    FROM HRESERVATION R, HOTEL H 
+		    WHERE H.HNAME = R.HNAME 
+		    AND MID = #{mid}
+	</select>
+	
+	<!-- 예약 취소(사용자) -->
+	<delete id="deleteHreservation" parameterType="Hreservation">
+		DELETE FROM HRESERVATION WHERE MID = #{mid} AND HNAME = #{hname} AND INDATE = #{indate}
+	</delete>
+</mapper>

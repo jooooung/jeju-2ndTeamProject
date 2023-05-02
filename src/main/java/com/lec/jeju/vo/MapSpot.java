@@ -20,14 +20,14 @@ public class MapSpot {
 	private double slongitude;
 	private String sprice;
 	private String schPlace;
-	private int startRow;
-	private int endRow;
+	private int bcnt;
+	private String schName;
 	
 	@Override
 	public String toString() {
 		return "{'sname':'" + sname + "', 'aid':'" + aid + "', 'locationno':" + locationno + ", 'saddr':'" + saddr + "', 'stel':'"
 				+ stel + "', 'slink':'" + slink + "', 'sinfo':'" + sinfo + "', 'stime':'" + stime + "', 'smainimg':'" + smainimg
 				+ "', 'ssubimg_1':'" + ssubimg_1 + "', 'ssubimg_2':'" + ssubimg_2 + "', 'ssubimg_3':'" + ssubimg_3 + "', 'slatitude':"
-				+ slatitude + ", 'slongitude':" + slongitude + ", 'sprice':'" + sprice + "'}";
+				+ slatitude + ", 'slongitude':" + slongitude + ", 'sprice':'" + sprice + "', 'bcnt':" + bcnt + "}";
 	}
 }

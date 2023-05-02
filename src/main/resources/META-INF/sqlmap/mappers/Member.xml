@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.MemberDao">
+	<resultMap type="Member" id="MemberResult">
+		<result property="mid" column="mid" />
+		<result property="mpw" column="mpw" />
+		<result property="mname" column="mname" />
+		<result property="mtel" column="mtel" />
+		<result property="memail" column="memail" />
+		<result property="maddr" column="maddr" />
+		<result property="mdeaddr" column="mdeaddr" />
+		<result property="mpost" column="mpost" />
+		<result property="mbirth" column="mbirth" />
+		<result property="mphoto" column="mphoto" />
+		<result property="mrdate" column="mrdate" />
+	</resultMap>
+	<!-- ID 중복체크 -->
+	<select id="idConfirm" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM MEMBER WHERE MID = #{mid, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 이메일 중복체크 -->
+	<select id="emailConfirm" parameterType="String" resultType="int">
+	    SELECT COUNT(*) FROM MEMBER WHERE MEMAIL = #{memail, jdbcType=VARCHAR}
+	</select>
+
+	
+	<!-- 회원가입 -->
+	<insert id="joinMember" parameterType="Member">
+	insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth, mphoto)
+    values(#{mid}, #{mpw}, #{mname}, #{mtel}, #{memail}, #{maddr}, #{mdeaddr}, #{mpost}, #{mbirth}, #{mphoto, jdbcType=VARCHAR})
+	</insert>
+
+	<!-- 로그인 -->
+	<select id="loginCheck" parameterType="Member" resultType="Member">
+		SELECT * FROM MEMBER WHERE mID=#{mid} AND mPW=#{mpw}
+	</select>
+
+	<!-- 상세보기 -->
+	<select id="getDetailMember" parameterType="String" resultType="Member">
+		SELECT * FROM MEMBER WHERE MID = #{mid}
+	</select>
+
+	<!-- 정보수정 -->
+	<update id="modifyMember" parameterType="Member"> 
+	UPDATE MEMBER SET 
+        mPW = #{mpw},
+        mNAME = #{mname},
+        mEMAIL = #{memail},
+        mADDR = #{maddr},
+        mDEADDR = #{mdeaddr},
+        mPOST = #{mpost},
+        mBIRTH = #{mbirth, jdbcType=TIMESTAMP},
+		mPHOTO = #{mphoto}
+    WHERE mID = #{mid, jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 회원탈퇴 -->
+	<delete id="deleteMember" parameterType="String"> 
+		DELETE FROM MEMBER WHERE mID = #{mid}
+	</delete>
+</mapper>

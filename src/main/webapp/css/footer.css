@@ -20,16 +20,16 @@ footer .middle {
 }
 
 footer .middle .list {
-	overflow: hidden;
 	margin-bottom: 20px;
 }
 
 footer .middle .list li {
 	position: relative;
-	float: right;
+	text-align: center;
 	padding-right: 12px;
 	margin-right: 12px;
 	color: #6b6b6b;
+	display: inline;
 }
 
 footer .middle .list_addr {

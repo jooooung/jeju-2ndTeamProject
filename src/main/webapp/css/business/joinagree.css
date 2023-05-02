@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+#joinMessage {
+	width: 70%;
+	margin: 0 auto;
+	background-color: #f5f5f5;
+	padding: 20px;
+	border: 1px solid #ccc;
+	font-family: Arial, sans-serif;
+}
+
+#joinMessage table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#joinMessage table caption {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+#joinMessage table td.message {
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+#joinMessage table td.message textarea {
+	width: 100%;
+	height: 300px;
+	border: 1px solid #ccc;
+	padding: 5px;
+}
+
+#joinMessage table td.message input[type="radio"] {
+	margin-right: 10px;
+}
+
+#joinMessage table td.btn {
+	text-align: center;
+	padding-top: 20px;
+}
+
+#joinMessage table td.btn input[type="button"] {
+	background-color: #4CAF50;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+#joinMessage table td.btn input[type="button"]:hover {
+	background-color: orange;
+}
+
+#ppp {
+	text-align: center;
+	margin: 25px;
+	padding: 10px;
+}
+
+#ppp a {
+	color: #6b6b6b;
+}

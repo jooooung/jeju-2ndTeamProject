@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.HotelCommentDao">
+	<resultMap type="HotelComment" id="HcommentResult">
+		<result property="hcommentno" column="hcommentno"/>
+		<result property="hname" column="hname"/>
+		<result property="mid" column="mid"/>
+		<result property="bid" column="bid"/>
+		<result property="hcontent" column="hcontent"/>
+		<result property="hgroup" column="hgroup"/>
+		<result property="hindent" column="hindent"/>
+		<result property="hstep" column="hstep"/>
+		<result property="hcrdate" column="hcrdate"/>
+	</resultMap>
+	<!-- 특정숙소 댓글 목록 -->
+	<select id="hCommentList" parameterType="HotelComment" resultMap="HcommentResult">
+		SELECT * 
+		    FROM (SELECT H.*, ROWNUM RN 
+		        FROM (SELECT * FROM HOTELCOMMENT WHERE HNAME = #{hname} ORDER BY HGROUP DESC, HSTEP) H)
+		    WHERE RN BETWEEN #{startrow} AND #{endrow}
+	</select>
+	
+	<!-- 특정 숙소 댓글수 -->
+	<select id="totCntHcomment" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM HOTELCOMMENT WHERE HNAME = #{hname}
+	</select>
+	
+	<!-- 원 댓글 달기 -->
+	<insert id="registerHcomment" parameterType="HotelComment">
+		INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
+	    	VALUES (hCommentNo_seq.NEXTVAL, #{hname}, #{mid, jdbcType=VARCHAR}, #{bid, jdbcType=VARCHAR}, #{hcontent}, hCommentNo_seq.CURRVAL, 0, 0, SYSDATE)
+    </insert>
+    
+    <!-- 답 댓글 달기 전 작업 -->
+    <update id="preReplyHcomment" parameterType="HotelComment">
+    <![CDATA[
+    	UPDATE HOTELCOMMENT SET HSTEP = HSTEP + 1
+    		WHERE HGROUP = #{hgroup} AND HSTEP > #{hstep}
+    ]]>
+    </update>
+    
+    <!-- 답댓글 달기 -->
+    <insert id="replyHotelComment" parameterType="HotelComment">
+    	INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
+    		VALUES (hCommentNo_seq.NEXTVAL, #{hname}, #{mid}, #{bid}, #{hcontent}, #{hgroup}, #{hindent}+1, #{hstep}+1, SYSDATE)
+    </insert>
+    
+    <!-- 댓글 수정 -->
+    <update id="modifyHotelComment" parameterType="HotelComment">
+	 	UPDATE HOTELCOMMENT SET HCONTENT = #{hcontent} 
+	 		WHERE HCOMMENTNO = #{hcommentno}
+    </update>
+    
+    <!-- 댓글 삭제 -->
+    <delete id="deleteHotelComment" parameterType="int">
+    	DELETE FROM HOTELCOMMENT WHERE HCOMMENTNO = #{hcommentno}
+    </delete>
+</mapper>

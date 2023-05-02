@@ -10,7 +10,7 @@
 <link href="${conPath }/css/member/join.css" rel=stylesheet>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="${conPath }/js/address.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
 	// ID 중복검사
 	$(function() {
@@ -101,7 +101,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>비밀번호확인</td>
+					<td>비밀번호 확인</td>
 					<td>
 						<input type="password" name="pwChk" required="required" id="mpwChk">
 						<div id="pwChkResult">&nbsp; &nbsp; &nbsp;</div>

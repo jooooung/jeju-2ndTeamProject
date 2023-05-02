@@ -25,13 +25,13 @@
         <label for="hname">호텔 이름:</label>
         <input type="text" id="hname" name="hname" required>
 
-        <label for="hname">호텔 주소:</label><br>
+        <label for="haddr">호텔 주소:</label><br>
         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 		<input type="text" id="sample4_postcode" name="haddr" class="text_box" required="required" placeholder="우편번호"> 
 		<input type="text" id="sample4_roadAddress" name="haddr" required="required" placeholder="도로명주소"> 
 		<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"> 
 		<span id="guide"></span>
-		<input type="text" name="bdeaddr" required="required">
+		<input type="text" name="haddr" required="required" placeholder="상세주소">
 
         <label for="htel">호텔 전화번호:</label>
         <input type="text" id="htel" name="htel" required>
@@ -41,7 +41,7 @@
 
         <label for="hinfo">호텔 정보:</label>
         <textarea id="hinfo" name="hinfo" required></textarea>
-
+        
         <label for="intime">체크인 시간:</label>
         <input type="time" id="intime" name="intime" required>
 

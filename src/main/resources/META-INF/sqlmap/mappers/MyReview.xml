@@ -18,21 +18,21 @@
 	
 	<!-- 작성한 리뷰게시판 글 조회 -->
 	<select id="ReadReview" parameterType="String" resultMap="MyReviewResult">
-		SELECT rTitle FROM Review WHERE mId = #{mid, jdbcType=VARCHAR}
+		SELECT * FROM Review WHERE mId = #{mid, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 작성한 관광지 댓글 조회 -->
 	<select id="ReadSpotcomment" parameterType="String" resultMap="MyReviewResult">
-		SELECT sContent, sName FROM spotComment WHERE mId = #{mid, jdbcType=VARCHAR}
+		SELECT * FROM spotComment WHERE mId = #{mid, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 작성한 식당 댓글 조회 -->
 	<select id="ReadRescomment" parameterType="String" resultMap="MyReviewResult">
-		SELECT rContent, rName FROM restaurantComment WHERE mId = #{mid, jdbcType=VARCHAR}
+		SELECT * FROM restaurantComment WHERE mId = #{mid, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 작성한 숙소 댓글 조회 -->
 	<select id="ReadHotelcomment" parameterType="String" resultMap="MyReviewResult">
-		SELECT hContent, hName FROM hotelComment WHERE mId = #{mid, jdbcType=VARCHAR}
+		SELECT * FROM hotelComment WHERE mId = #{mid, jdbcType=VARCHAR}
 	</select>
 </mapper>

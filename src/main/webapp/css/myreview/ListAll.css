@@ -37,3 +37,57 @@ body {
 	background-color: #f1f1f1;
 	text-align: center;
 }
+
+#tab1, #tab2, #tab3, #tab4 {
+	margin: 0px auto;
+	border-radius: 15px;
+	box-sizing: border-box;
+	border: 5px solid #ccc;
+	padding: 10px;
+	width: 50%;
+	vertical-align: top;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+	background-color: #f5f5f5;
+}
+
+.box {
+	background-color: #f9f9f9;
+	border-radius: 10px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	margin: 25px 0;
+	padding: 50px;
+	text-align: center;
+}
+
+.box {
+	color: #333;
+	font-size: 18px;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+box a:hover {
+	color: #666;
+}
+
+box:hover {
+	background-color: #EAEAEA;
+	cursor: pointer;
+}
+
+h2 {
+	font-family: Verdana, Geneva, Arial, sans-serif;
+	color: black;
+}

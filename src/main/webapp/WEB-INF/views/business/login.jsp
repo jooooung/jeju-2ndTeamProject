@@ -21,6 +21,11 @@ p a {
 	color: #6b6b6b;
 	font-size: 12px;
 }
+
+img {
+	margin: 0 auto;
+	width: 500px;
+}
 </style>
 </head>
 <body>
@@ -43,51 +48,52 @@ p a {
 		<script>
 			location.href = '${conPath}/main/main.do';
 		</script>
-	<c:if test="${not empty member }">
-		<script>
-			alert("업체회원 외에는 접속이 통제된 구역입니다, 업체회원이라면 일반회원 로그아웃 후 로그인 시도해주세요");
-			location.href = '${conPath}/main.do';
-		</script>
+		<c:if test="${not empty member }">
+			<script>
+				alert("업체회원 외에는 접속이 통제된 구역입니다, 업체회원이라면 일반회원 로그아웃 후 로그인 시도해주세요");
+				location.href = '${conPath}/main.do';
+			</script>
+		</c:if>
+		<c:if test="${not empty admin }">
+			<script>
+				alert("업체회원 외에는 접속이 통제된 구역입니다, 관리자 페이지를 이용해주세요");
+				location.href = '${conPath}/main.do';
+			</script>
+		</c:if>
 	</c:if>
-	<c:if test="${not empty admin }">
-		<script>
-			alert("업체회원 외에는 접속이 통제된 구역입니다, 관리자 페이지를 이용해주세요");
-			location.href = '${conPath}/main.do';
-		</script>
-	</c:if>
-	</c:if>
-	<jsp:include page="../main/header.jsp" />
+	<%-- <jsp:include page="../main/header.jsp" /> --%>
 	<br>
 	<div id="content">
 		<form action="${conPath }/business.do" method="post">
-			<input type="hidden" name="method" value="login"> 
-			<input type="hidden" name="after" value="${empty param.after ? 'main.do':param.after}">
+			<input type="hidden" name="method" value="login"> <input
+				type="hidden" name="after"
+				value="${empty param.after ? 'main.do':param.after}"> <a
+				href="${conPath }/main.do"> 
+				<img alt="로고" src="${conPath }/img/logo_jeju.png">
+			</a>
 			<table>
 				<caption>업체회원</caption>
 				<tr>
 					<th>아이디</th>
-					<td>
-						<input type="text" name="bid" required="required" value="${bid }">
-					</td>
+					<td><input type="text" name="bid" required="required"
+						value="${bid }"></td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td>
-						<input type="password" name="bpw" required="required" value="${bpw }">
-					</td>
+					<td><input type="password" name="bpw" required="required"
+						value="${bpw }"></td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;">
-					<input type="submit" value="로그인" style="width: 100%;">
-					</td>
+					<td colspan="2" style="text-align: center;"><input
+						type="submit" value="로그인" style="width: 100%;"></td>
 				</tr>
 			</table>
 		</form>
 	</div>
 	<p>
-		<a href="#">아이디 찾기 |</a>
-		<a href="#">비밀번호 찾기 |</a>
-		<a href="${conPath}/member/joinAgreePage.do">회원가입 |</a>
+		<a href="#">아이디 찾기 |</a> 
+		<a href="#">비밀번호 찾기 |</a> 
+		<a href="${conPath}/business/joinAgreePage.do">회원가입 |</a> 
 		<a href="${conPath}/member/login.do">일반회원</a>
 	</p>
 	<jsp:include page="../main/footer.jsp" />

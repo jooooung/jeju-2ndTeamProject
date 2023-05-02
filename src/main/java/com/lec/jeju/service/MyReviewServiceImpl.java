@@ -18,25 +18,21 @@ public class MyReviewServiceImpl implements MyReviewService {
 
 	@Override
 	public List<MyReview> ReadReview(String mid) {
-		System.out.println("서비스");
 		return reviewDao.ReadReview(mid);
 	}
 
 	@Override
 	public List<MyReview> ReadSpotcomment(String mid) {
-		System.out.println("서비스 관광지");
 		return reviewDao.ReadSpotcomment(mid);
 	}
 
 	@Override
 	public List<MyReview> ReadRescomment(String mid) {
-		System.out.println("서비스 식당");
 		return reviewDao.ReadRescomment(mid);
 	}
 
 	@Override
 	public List<MyReview> ReadHotelcomment(String mid) {
-		System.out.println("서비스 호텔");
 		return reviewDao.ReadHotelcomment(mid);
 	}
 

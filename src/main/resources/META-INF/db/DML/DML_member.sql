@@ -40,6 +40,10 @@ SELECT * FROM hotelComment WHERE mID = 'kim'; -- getHotelComment
 SELECT * FROM spotComment WHERE mID = 'aaa'; -- getSoptComment
 
 
+-- (10) 아이디 찾기 (이메일인증) - 
+SELECT MID FROM MEMBER
+    WHERE MEMAIL = 'dnvk3535@naver.com';
+
 SELECT * FROM HOTEL;
 SELECT * FROM RESTAURANT;
 SELECT * FROM SPOT;

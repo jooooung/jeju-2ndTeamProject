@@ -20,7 +20,7 @@ img {
 	<jsp:include page="../main/header.jsp" />
 	<br>
 	<br>
-	<h2 align="center">${member.mname}님이 즐겨찾기 한 관광지 LIST</h2>
+	<h2 align="center">${member.mname}님이 즐겨찾기 한 관광지</h2>
 	<br>
 	<br>
 	<div class="box">

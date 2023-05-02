@@ -3,7 +3,7 @@
 ------------------------------------------------------
 -- (1) 북마크 (호텔) - addHotel
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', '그라벨호텔', null, null, '그라벨호텔m.jpg', null, null);
+    VALUES (bookmarkNo_seq.NEXTVAL, 'bbb', '위드시티호텔', null, null, '위드시티호텔m.jpg', null, null);
 
 -- (2) 북마크 (식당) - addRes
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
@@ -59,6 +59,13 @@ SELECT COUNT(*)
     FROM HOTEL, BOOKMARK
     WHERE HOTEL.HNAME = BOOKMARK.HNAME
     AND BOOKMARK.MID = 'test';
+    
+-- 특정 숙소 북마크 여부 - checkBookmark
+SELECT COUNT(*) FROM BOOKMARK WHERE MID = 'bbb' AND HNAME = '위드시티호텔';
+
+-- 특정 숙소 북마크 개수 - cntBmarkHotel
+SELECT COUNT(*) FROM BOOKMARK WHERE HNAME = '위드시티호텔';
+-- delete from bookmark where HNAME = '위드시티호텔';
 
 SELECT * FROM BOOKMARK;
 SELECT * FROM MEMBER;

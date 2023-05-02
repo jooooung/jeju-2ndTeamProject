@@ -41,23 +41,23 @@
 	<!-- 호텔 북마크 -->
 	<insert id="addHotel">
     	INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
-    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, #{hname, jdbcType=VARCHAR}, null, null, #{hmainimg, jdbcType=VARCHAR}, null, null);
+    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, #{hname, jdbcType=VARCHAR}, null, null, #{hmainimg, jdbcType=VARCHAR}, null, null)
 	</insert>
 	
 	<!-- 식당 북마크 -->
 	<insert id="addRes">
 		INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
-    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, null, #{rname, jdbcType=VARCHAR}, null, null, #{rmainimg, jdbcType=VARCHAR}, null);
+    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, null, #{rname, jdbcType=VARCHAR}, null, null, #{rmainimg, jdbcType=VARCHAR}, null)
 	</insert>
 	
 	<!-- 관광지 북마크 -->
 	<insert id="addSpot">
 		INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
-    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, null, null, #{sname, jdbcType=VARCHAR}, null, null, #{smainimg, jdbcType=VARCHAR});
+    	VALUES (bookmarkNo_seq.NEXTVAL, #{mid, jdbcType=VARCHAR}, null, null, #{sname, jdbcType=VARCHAR}, null, null, #{smainimg, jdbcType=VARCHAR})
 	</insert>
 	
 	<!-- 호텔 북마크 삭제 -->
-	<delete id="deleteHotelMark">
+	<delete id="deleteHotelMark" parameterType="BookMark">
 		DELETE FROM BOOKMARK
     	WHERE MID = #{mid} AND HNAME = #{hname}
 	</delete>
@@ -96,5 +96,15 @@
     	FROM SPOT, BOOKMARK
     	WHERE SPOT.SNAME = BOOKMARK.SNAME
     	AND BOOKMARK.MID = #{mid, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 특정 사용자 특정 숙소 북마크 여부 확인(0 or 1) -->
+	<select id="checkBookmarkHotel" parameterType="Bookmark" resultType="int">
+		SELECT COUNT(*) FROM BOOKMARK WHERE MID = #{mid} AND HNAME = #{hname}
+	</select>
+	
+	<!-- 특정 숙소 북마크 개수 -->
+	<select id="cntBmarkHotel" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM BOOKMARK WHERE HNAME = #{hname}
 	</select>
 </mapper>

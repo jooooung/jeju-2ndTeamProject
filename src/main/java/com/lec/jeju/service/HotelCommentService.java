@@ -6,7 +6,7 @@ import com.lec.jeju.vo.HotelComment;
 
 public interface HotelCommentService {
 	// 특정 숙소 댓글 목록
-	public List<HotelComment> hCommentList(HotelComment hotelComment, String pageNum);	
+	public List<HotelComment> hCommentList(HotelComment hotelComment, String CpageNum);	
 	
 	// 특정 숙소 댓글수
 	public int totCntHcomment(String hname, HotelComment hotelComment);

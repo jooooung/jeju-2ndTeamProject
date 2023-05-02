@@ -6,7 +6,7 @@
     font-style: normal;
 }
 
-*{margin:0; padding: 0;}
+*{margin:0; padding: 0;} 
 #spot_wrap{width:900px; height: 100%; margin: 0 auto;}
 #spot_wrap #title{font-family:'KCC-Ganpan';width:100%; height:60px; text-align: center;}
 #spot_wrap #title ul{overflow: hidden;}

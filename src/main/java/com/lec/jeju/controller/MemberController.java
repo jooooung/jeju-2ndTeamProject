@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lec.jeju.service.MemberService;
@@ -124,4 +125,28 @@ public class MemberController {
 		return "member/delete";
 	}
 
+	// 아이디 찾기
+	@RequestMapping(value = "findID", method = RequestMethod.GET)
+	public String findID() {
+		return "member/findID";
+	}
+
+	@RequestMapping(value = "findID", method = RequestMethod.POST)
+	public ModelAndView findID(ModelAndView mav, @RequestParam("memail") String memail, HttpSession session) {
+		try {
+			String mid = memberService.findID(memail, session);
+			mav.addObject("mid", mid);
+			mav.setViewName("/member/findID");
+		} catch (RuntimeException e) {
+			mav.addObject("errorMsg", e.getMessage());
+			mav.setViewName("/member/findID");
+		}
+		return mav;
+	}
+
+	// 비밀번호 찾기
+	@RequestMapping(value = "findPW", method = RequestMethod.GET)
+	public String findPW() {
+		return "member/findpwform";
+	}
 }

@@ -23,7 +23,7 @@ public interface AdminDao {
 
 	public List<Restaurant> restaurantApproval(String requeststatus);
 	
-	public void approveHotel(@Param("hname") String hname, @Param("approval") String approval, @Param("requeststatus") String requeststatus);
+	public void approveHotel(@Param("hname") String hname, @Param("approval") String approval, @Param("requeststatus") String requeststatus, @Param("hlatitude") double hlatitude, @Param("hlongitude") double hlongitude);
 
 	public void approveRestaurant(@Param("rname") String rname, @Param("approval") String approval, @Param("requeststatus") String requeststatus);
 

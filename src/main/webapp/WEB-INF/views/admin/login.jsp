@@ -49,7 +49,7 @@
 		<input type="hidden" name="method" value="login">
 		<input type="hidden" name="after" value="${empty param.after ?  'main.do':param.after}">
 		<table>
-			<caption>로그인 화면</caption>
+			<caption>관리자 로그인 화면</caption>
 			<tr><th>아이디</th><td><input type="text" name="aid" required="required" value="${aid }"></td></tr>
 			<tr><th>비밀번호</th><td><input type="password" name="apw" required="required" value="${apw }"></td></tr>
 			<tr><td colspan="2">

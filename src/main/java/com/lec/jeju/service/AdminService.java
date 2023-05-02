@@ -18,7 +18,7 @@ public interface AdminService {
     
     public List<Hotel> hotelApproval(String requeststatus); // 호텔 등록 요청 목록
     
-    public void approveHotel(String hname, String approval, String requeststatus); // 호텔 승인
+    public void approveHotel(String hname, String approval, String requeststatus, double hlatitude, double hlongitude); // 호텔 승인
     
     public void rejectHotel(String hname, String approval, String requeststatus); // 호텔 거절
     
@@ -41,4 +41,5 @@ public interface AdminService {
     public Restaurant getRestaurantByName(String rname);
 	
     public void logout(HttpSession httpSession);
+
 }

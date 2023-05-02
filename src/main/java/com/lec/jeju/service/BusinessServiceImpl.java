@@ -261,43 +261,6 @@ public class BusinessServiceImpl implements BusinessService {
 	    hotel.setHsubimg_2(himg[2]);
 	    hotel.setHsubimg_3(himg[3]);
 	    
-	    String haddr = hotel.getHaddr();
-	    int locationno = 0;
-	    haddr.substring(haddr.indexOf('도')+2, 14);
-	    if (haddr.equals("제주")) {
-	    	locationno = 1;
-	    } else if (haddr.equals("서귀")) {
-	    	locationno = 2;
-	    } else if (haddr.equals("대정")) {
-	    	locationno = 3;
-	    } else if (haddr.equals("애월")) {
-	    	locationno = 4;
-	    } else if (haddr.equals("한림")) {
-	    	locationno = 5;
-	    } else if (haddr.equals("조천")) {
-	    	locationno = 6;
-	    } else if (haddr.equals("구좌")) {
-	    	locationno = 7;
-	    } else if (haddr.equals("성산")) {
-	    	locationno = 8;
-	    } else if (haddr.equals("남원")) {
-	    	locationno = 9;
-	    } else if (haddr.equals("표선")) {
-	    	locationno = 10;
-	    } else if (haddr.equals("성읍")) {
-	    	locationno = 11;
-	    } else if (haddr.equals("안덕")) {
-	    	locationno = 12;
-	    } else if (haddr.equals("우도")) {
-	    	locationno = 13;
-	    } else if (haddr.equals("한경")) {
-	    	locationno = 14;
-	    } else if (haddr.equals("추자")) {
-	    	locationno = 15;
-	    }
-	    
-	    hotel.setLocationno(locationno);
-	    
 	    boolean result = businessDao.registerHotel(hotel, mRequest);
 	    if (result) {
 	        isSuccess = true;

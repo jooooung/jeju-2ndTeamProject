@@ -30,11 +30,6 @@ public class MapServiceImpl implements MapService {
 	public List<MapSpot> schSpotList(String schName) {
 		return spotDao.schSpotList(schName);
 	}
-
-	@Override
-	public List<MapSpot> spotPlaceSchList(String lname, MapSpot spot) {
-		return null;
-	}
 	
 	// restaurant
 	@Override
@@ -47,11 +42,6 @@ public class MapServiceImpl implements MapService {
 		return resDao.schRestaurantList(schName);
 	}
 
-	@Override
-	public List<MapRestaurant> resPlaceSchList(String lname, MapRestaurant restaurant) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	// hotel
 	@Override
@@ -64,9 +54,4 @@ public class MapServiceImpl implements MapService {
 		return hotelDao.schHotelList(schName);
 	}
 
-	@Override
-	public List<MapHotel> hotelPlaceSchList(String lname, MapHotel hotel) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

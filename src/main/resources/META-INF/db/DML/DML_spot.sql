@@ -25,7 +25,7 @@ WHERE S.SNAME = B.SNAME ORDER BY bCnt DESC)A;
 
 SELECT * 
     FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
-        WHERE S.SNAME = B.SNAME(+) ORDER BY bCnt DESC)A)
+        WHERE S.SNAME = B.SNAME(+) AND LOCATIONNO = '1' AND S.SNAME LIKE '%' || '협재' || '%' ORDER BY bCnt DESC)A)
 WHERE RN BETWEEN 1 AND 3;
 
 -- 1-4. (가격이 무료인 순)
@@ -37,7 +37,7 @@ WHERE RN BETWEEN 1 AND 3;
 -- 2. 관광지 등록
 INSERT INTO SPOT (SNAME, AID, LOCATIONNO, SADDR, STEL, SINFO, SMAINIMG, SSUBIMG_1, SLATITUDE, SLONGITUDE, SPRICE) 
     VALUES('협재해수욕장1', 'admin', 1, '제주특별자치도 제주시 한림읍 한림로 329-10', '064-728-3981', '협재 종합상황실: 064-728-3981(해수욕장 개장기간 동안 운영)', '협재해수욕장m.jpg', '협재해수욕장s.jpg', 33.39906165536689, 126.1241478664344, '무료');
-    
+
 -- 3. 관광지 삭제
 DELETE FROM SPOT WHERE SNAME = '협재해수욕장1';
 

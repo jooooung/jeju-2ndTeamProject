@@ -149,6 +149,7 @@ public class BusinessController {
 	    String bid = (String) session.getAttribute("bid");
 	    hotel.setBid(bid);
 	    hotel.setRequeststatus("P");
+	    
 	    boolean registerHotel = businessService.registerHotel(hotel, mRequest);
 	    if (registerHotel) {
 	        return "redirect:/business/myHotelPosts.do";
@@ -184,7 +185,8 @@ public class BusinessController {
 	    model.addAttribute("status", status);
 	    return "business/hotelApprovalStatus";
 	}
-
+	
+	
 	// 식당 등록
 	@RequestMapping(value = "/registerRestaurant", method = RequestMethod.GET)
 	public String registerRestaurant() {
@@ -201,7 +203,7 @@ public class BusinessController {
 	    if (registerRestaurant) {
 	        return "redirect:/business/myRestaurantPosts.do";
 	    } else {
-	        model.addAttribute("errorMessage", "호텔 등록에 실패하였습니다.");
+	        model.addAttribute("errorMessage", "식당 등록에 실패하였습니다.");
 	        return "error";
 	    }
 	}
@@ -216,11 +218,12 @@ public class BusinessController {
 		return "business/myRestaurantPosts";
 	}
 
-	// 레스토랑 내 게시글 검색
+	// 레스토랑 등록 요청 목록
 	@RequestMapping(value = "/myRestaurantPosts", method = RequestMethod.GET)
-	public String myRestaurantPosts(String bid, Model model) {
-		List<Restaurant> restaurants = businessService.myRestaurantPosts(bid);
-		model.addAttribute("restaurants", restaurants);
+	public String myRestaurantPosts(Model model, HttpSession session) {
+		String bid = (String) session.getAttribute("bid");
+		List<Restaurant> restaurantList = businessService.myRestaurantPosts(bid);
+		model.addAttribute("restaurantList", restaurantList);
 		return "business/myRestaurantPosts";
 	}
 

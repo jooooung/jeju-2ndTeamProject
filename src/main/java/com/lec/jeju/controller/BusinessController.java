@@ -29,6 +29,9 @@ public class BusinessController {
 	@Autowired
 	private BusinessService businessService;
 	
+	@Autowired
+	private HotelService hotelService;
+	
 	// 아이디 중복체크
 	@RequestMapping(params = "method=idConfirm", method = RequestMethod.GET)
 	public String idConfirm(String bid, Model model) {
@@ -174,12 +177,12 @@ public class BusinessController {
 	    return "business/myHotelPosts";
 	}
 	
-	// 호텔 등록 승인 여부 확인
 	@RequestMapping(value = "/hotelApprovalStatus", method = RequestMethod.GET)
-	public String selectHotelApprovalStatus(String hname, Model model) {
-		String status = businessService.hotelApprovalStatus(hname);
-		model.addAttribute("status", status);
-		return "business/hotelApprovalStatus";
+	public String hotelApprovalStatus(String hname, Model model) {
+	    String status = businessService.hotelApprovalStatus(hname);
+	    model.addAttribute("hname", hname);
+	    model.addAttribute("status", status);
+	    return "business/hotelApprovalStatus";
 	}
 
 	// 식당 등록
@@ -215,7 +218,7 @@ public class BusinessController {
 
 	// 레스토랑 내 게시글 검색
 	@RequestMapping(value = "/myRestaurantPosts", method = RequestMethod.GET)
-	public String selectMyRestaurantPosts(String bid, Model model) {
+	public String myRestaurantPosts(String bid, Model model) {
 		List<Restaurant> restaurants = businessService.myRestaurantPosts(bid);
 		model.addAttribute("restaurants", restaurants);
 		return "business/myRestaurantPosts";
@@ -223,7 +226,7 @@ public class BusinessController {
 
 	// 레스토랑 등록 승인 여부 확인
 	@RequestMapping(value = "/restaurantApprovalStatus", method = RequestMethod.GET)
-	public String selectRestaurantApprovalStatus(String rname, Model model) {
+	public String restaurantApprovalStatus(String rname, Model model) {
 		String status = businessService.restaurantApprovalStatus(rname);
 		model.addAttribute("status", status);
 		return "business/restaurantApprovalStatus";

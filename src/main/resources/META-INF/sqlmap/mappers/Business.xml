@@ -58,7 +58,13 @@
 			bphoto = #{bphoto}
 	    WHERE bid = #{bid}
 	</update>
-
+	
+	<!-- 등록된 글 갯수 -->
+	<select id="totCntHotel" resultType="int">
+		SELECT COUNT(*) FROM
+		HOTEL
+	</select>
+	
     <!-- 업체 등록요청 (등록글 작성) -->
 	<!-- Hotel 등록 -->
    <insert id="registerHotel" parameterType="com.lec.jeju.vo.Hotel">
@@ -82,7 +88,7 @@
 	
 	<!-- Hotel 나의 글 조회 매퍼 -->
 	<select id="myHotelPosts" resultType="com.lec.jeju.vo.Hotel">
-	    SELECT * FROM Hotel WHERE bid=#{bid, jdbcType=VARCHAR}
+	    SELECT * FROM Hotel WHERE bid=#{param1.bid, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 업체 등록요청 (등록글 작성) -->
@@ -103,7 +109,7 @@
 	
 	<!-- Restaurant 나의 글 조회 매퍼 -->
 	<select id="myRestaurantPosts" resultType="Business">
-	    SELECT * FROM Restaurant WHERE bid=#{bid, jdbcType=VARCHAR}
+	    SELECT * FROM Restaurant WHERE bid=#{param1.bid, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- Restaurant 등록 승인 여부 확인 매퍼 -->

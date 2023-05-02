@@ -45,7 +45,7 @@
           <option value="15">추자도</option>
       	</select>
      	 주소와 동일하게 시,읍,면을 선택하셔야합니다.<br><br>
-
+       
         <label for="haddr">호텔 주소:</label><br>
         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 		<input type="text" id="sample4_postcode" name="haddr" class="text_box" required="required" placeholder="우편번호"> 

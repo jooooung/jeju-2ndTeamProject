@@ -36,14 +36,15 @@
 	text-align: left;
 }
 
-#content table td:first-child {
+#content table td:nth-child(1) {
 	width: 20%;
 }
-
-#content table td:last-child {
-	width: 80%;
+#content table td:nth-child(2) {
+	width: 60%;
 }
-
+#content table td:nth-child(3) {
+	width: 20%;
+}
 #content input[type="text"], #content input[type="password"], #content input[type="email"],
 	#content input[type="date"] {
 	width: 100%;

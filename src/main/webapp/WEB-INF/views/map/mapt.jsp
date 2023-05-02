@@ -7,43 +7,31 @@
     <title>주소로 장소 표시하기</title>
 </head>
 <body>
-<p style="margin-top:-12px">
-    <em class="link">
-        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
-        </a>
-    </em>
-</p>
-<div id="map" style="width:100%;height:350px;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=21cedbfdcfb60dc62330e49e8c4f4a19&libraries=services"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
+<script>  
 
 // 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+var spot = ${spot};
 
 // 주소-좌표 변환 객체를 생성합니다
-var spot = ${spot};
-for ()
-var spotAdddr = spot[0].saddr; 
 var geocoder = new kakao.maps.services.Geocoder();
+for(var i = 0 ; i < spot.length ; i++){
+	var spotAddr = spot[i].saddr; 
 	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch(spotAdddr, function(result, status) {
+	geocoder.addressSearch(spotAddr, function(result, status) {
+	
 	    // 정상적으로 검색이 완료됐으면 
-	    if (status === kakao.maps.services.Status.OK) {
-	       var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-	       var coordx = coords.getLat();
-	       var coordy = coords.getLng();
-	    } 
+	     if (status === kakao.maps.services.Status.OK) {
+	
+	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			var x = coords.getLat();
+			var y = coords.getLng();
+	     } 
+	     alert(x);
+	     alert(y);
 	});
-	alert(coordx);
-	alert(coordy);
-});    
+}
 </script>
 </body>
 </html>

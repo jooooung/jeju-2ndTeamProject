@@ -75,9 +75,9 @@ insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, s
     'https://jeju.go.kr/hallasan/index.htm', '계절과 기후변화에 따른 입산 통제구간은 홈페이지 참고', 
     '한라산국립공원m.jpg', '한라산국립공원s1.jpg', 33.37856425194726, 126.5431717373512, '무료');
     
-insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
+insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sTime, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('성산일출봉', 'admin', 2, '제주특별자치도 서귀포시 성산읍 일출로 284-12', '064-783-0959', 
-    'http://www.jeju.go.kr/dorip/seongsan.htm', '매일 07:00 - 20:00 (18:50분매표마감) 3~9월 / 매월 첫째 월요일 휴관 (단, 등하산교차로, 우뭇개 전망대, 우뭇개 해안은 무료개방) 매일 07:30 - 19:00 (17:50분매표마감) 10~2월 / 매월 첫째 월요일 휴관', 
+    'http://www.jeju.go.kr/dorip/seongsan.htm', '매일 07:00 - 20:00 (18:50분매표마감) 3~9월 / 매월 첫째 월요일 휴관 (단, 등하산교차로, 우뭇개 전망대, 우뭇개 해안은 무료개방) 매일 07:30 - 19:00 (17:50분매표마감) 10~2월 / 매월 첫째 월요일 휴관', '평일 : 07:30 ~ 20:00 , 주말 : 07:30 ~ 20:00',
     '성산일출봉m.jpg', '성산일출봉s1.jpg', 33.45917466716145, 126.94059127727817, 
     '유료,개인 (성인 5,000원 / 청소년, 군인 2,500원 / 어린이 2,500원), 단체 (성인 4,000원 / 청소년, 군인 2,000원 / 어린이 2,000원)');
     

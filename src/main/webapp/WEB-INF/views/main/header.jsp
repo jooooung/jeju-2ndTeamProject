@@ -26,7 +26,7 @@
 					<li>
 						여행지
 						<ol class="subMenu">
-							<li><a href="">관광</a></li>
+							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
@@ -70,7 +70,7 @@
 					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
-							<li><a href="">관광</a></li>
+							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
@@ -114,7 +114,7 @@
 					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
-							<li><a href="">관광</a></li>
+							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
@@ -157,7 +157,7 @@
 					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
-							<li><a href="">관광</a></li>
+							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>

@@ -14,4 +14,6 @@ public class Hreservation {
 	private String hname;
 	private Date indate;
 	private Date outdate;
+	
+	private Hotel Hotel;
 }

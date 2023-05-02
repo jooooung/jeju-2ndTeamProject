@@ -113,6 +113,7 @@
 		    height: 220px;
 			float: left;
 			margin-right: 30px;
+			max-width: 300px;
 		}
 		.wrap .item_list li .item_section h2{
 			margin-top: 20px;
@@ -131,6 +132,9 @@
 		    line-height: 22px;
 		    text-overflow: ellipsis;
 		    margin-bottom: 20px;
+		    overflow: hidden;
+		    white-space: nowrap;
+		    width: auto;
 		} 
 		.paging{
 			text-align: center;
@@ -146,7 +150,11 @@
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<script>
 		$(document).ready(function(){
-			
+			$('.list').click(function(){
+				var schitem = $(this).attr('id');
+				var schword = $('input[name="schword"]').val();
+				location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }&schitem='+schitem+"&schword="+schword;
+			});
 		});
 	</script>
 	
@@ -155,34 +163,34 @@
 	<jsp:include page="../main/header.jsp"/>
 	<div class="wrap">
 		<div class="title">
-			<a class="title_link" href="#1">관광</a>
+			<a class="title_link" href="#1">관광${locationno }</a>
 			<a class="title_link" href="#2">맛집</a>
 			<a class="title_link" href="${conPath }/hotel/list.do">숙박</a>
 		</div>
 		<div class="search">
-			<form action="${conPath }/hotel/list2.do">
-				<input type="text" name="schWord" value="${param.schWord }">
+			<form action="${conPath }/hotel/list.do">
+				<input type="text" name="schword" value="${param.schword }">
 				<input type="submit" value="검색" >
 			</form>
 		</div>
 		<div class="spot_tag">
 			<ul>
-				<div onclick="location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }&locationno=0'">
+				<div onclick="location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }'">
 					<p>전체</p>
 				</div>
-				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=11&12&15'">
+				<div class="list" id="11,12,15">
 					<p>한경&한림&추자도</p>
 				</div>
-				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=1&3&13'">
+				<div class="list" id="1,3,13">
 					<p>애월&제주시&조천</p>
 				</div>
-				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=4&5&14'">
+				<div class="list" id="4,5,14">
 					<p>구좌&우도&성산</p>
 				</div>
-				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=6&7&2'">
+				<div class="list" id="2,6,7">
 					<p>표선&남원&서귀포시</p>
 				</div>
-				<div onclick="location.href='${conPath}/hotel/list2.do?pageNum=${paging.currentPage }&locationno=8&9&10'">
+				<div class="list" id="8,9,10">
 					<p>중문&안덕&대정</p>
 				</div>
 			</ul>
@@ -204,9 +212,6 @@
 			</c:forEach>
 			</ul>
 		</div>
-		<c:if test="${not empty buisness }">
-			<button></button>
-		</c:if>
 		<div class="paging">
 			<c:if test="${paging.startPage > paging.blockSize }">
 			[ <a

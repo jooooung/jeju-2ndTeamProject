@@ -11,13 +11,12 @@
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<script>
 		$(document).ready(function(){
-			
+			$('.replyComment').click(function(){
+				const _this = $(this);
+				alert(_this);
+				
+			});
 		});
-		function cancle(){
-			var hcommentno = $(this);				
-			var hcontent = $('.hcontent'+hcommentno).text();
-			$('.hcontent'+hcommentno).html(hcontent);
-		}
 	</script>
 </head>
 <body>
@@ -33,7 +32,7 @@
 			</c:if>
 			<li>내용</li>
 			<li class="list_content hcontent${hotelComments.hcommentno }">
-				<span class="commentText">${hotelComments.hcontent }</span>
+				${hotelComments.hcontent }
 			</li>
 			<li>작성일 : <fmt:formatDate value="${hotelComments.hcrdate }" pattern="yy.MM.dd HH:mm"/></li>
 			<li>
@@ -44,7 +43,9 @@
 				</c:if>
 			</li>
 				<c:if test="${not empty member.mid and hotelComments.mid eq member.mid || not empty buisness.bid and hotelComments.bid eq buisness.bid || not empty admin}">
-					<button class="commentBtn modifyComment" id="${hotelComments.hcommentno }">수정</button>
+					<button class="commentBtn modifyComment" id="${hotelComments.hcommentno }">
+						수정
+					</button>
 					<button class="commentBtn deleteComment" onclick="location.href='deleteComment.do?hname=${hotelVo.hname }&hcommentno=${hotelComments.hcommentno }'">
 						삭제
 					</button>

@@ -144,7 +144,9 @@
 				<div class="content_title">
 					가격
 				</div>
-				<p>1박 : ${hotelVo.hprice}원
+				<p>1박 : 
+					<fmt:formatNumber value="${hotelVo.hprice}" pattern="###,###"/>
+					원
 					<c:if test="${not empty member }">
 						<button class="reserv" onclick="location.href='reserv.do?hname=${hotelVo.hname}&mid=${member.mid }&pageNum=${param.pageNum }&lname=${param.lname }'">
 							예약하기

@@ -17,7 +17,7 @@
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">	
 					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
-					<span>JEJU</span>
+					<span>제주어때</span>
 				</a>
 			</div>
 			<div class="navbar_menu">

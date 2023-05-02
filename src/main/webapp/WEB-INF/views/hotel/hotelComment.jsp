@@ -52,7 +52,9 @@
 	<script>
 		$(document).ready(function(){
 			$('.modifyComment').click(function(){
-				var hcommentno = $(this).attr('id');	
+				// 수정 버튼 숨기기
+				$(this).attr('class', 'modifyComment').hide();
+				var hcommentno = $(this).attr('id');
 				var hcontent = $('.hcontent'+hcommentno).text().trim();
 				$('.hcontent'+hcommentno).html(
 						"<form action='modifyComment.do' method='post'>"
@@ -65,6 +67,14 @@
 			    );
 			});
 		});
+		function cancle(){
+			// 수정 취소 시 수정버튼 보이게 하기
+			$('.modifyComment').addClass('commentBtn').show();
+			var hcommentno = $('#hcommentno').val();
+			var hcontent = $('.hcontent'+hcommentno).text().trim();
+			$('.hcontent'+hcommentno).html(hcontent);
+			
+		}
 	</script>
 </head>
 <body>

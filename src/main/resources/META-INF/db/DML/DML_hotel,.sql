@@ -1,12 +1,14 @@
 ------------------- HOTEL ---------------
 -- 숙소 목록 (즐겨찾기 많은 순) hotelList  (승인된 업체만)
+    -- 전체목록
 SELECT * 
     FROM (SELECT ROWNUM RN, A.* 
         FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
                 FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' ORDER BY bCnt DESC) A)
+                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' 
+                 AND H.HNAME LIKE '%'||'호텔더원'||'%' ORDER BY bCnt DESC) A)
     WHERE RN BETWEEN 1 AND 5;
-    -- schword 존재할 때(호텔명 검색, 지역 미선택)
+    -- 지역 미선택
 SELECT *    
     FROM (SELECT ROWNUM RN, A.* 
         FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
@@ -15,33 +17,23 @@ SELECT *
                     AND REQUESTSTATUS = 'A' AND H.HNAME LIKE '%'||'호텔더원'||'%' ORDER BY bCnt DESC) A)
     WHERE RN BETWEEN 1 AND 3;
 
--- 지역별 숙소 목록(호텔명 미검색, 지역 선택)
-SELECT * 
-    FROM (SELECT ROWNUM RN, A.* 
-        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
-                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-                    WHERE H.HNAME = B.HNAME(+)  AND H.LOCATIONNO = L.LOCATIONNO 
-                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = 1 ORDER BY bCnt DESC) A)
-    WHERE RN BETWEEN 1 AND 3;
-    -- 지역별 목록 schHName 이 존재(호텔명 검색, 지역 선택)
+
+    -- 지역선택
 SELECT * 
     FROM (SELECT ROWNUM RN, A.* 
         FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
                 FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
                 WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
-                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = 1
-                    AND H.HNAME LIKE '%'||'더원'||'%' ORDER BY bCnt DESC) A)
-    WHERE RN BETWEEN 1 AND 3;
+                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (11, 12, 15)
+                    AND H.HNAME LIKE '%'||''||'%'  ORDER BY bCnt DESC) A)
+    WHERE RN BETWEEN 1 AND 5;
     
     
 -- 숙소 개수 totCntHotel
-SELECT COUNT(*) FROM HOTEL;
-    -- schword 존재할 때(호텔명 검색, 지역 미선택)
+    -- 지역 미선택
 SELECT COUNT(*) FROM HOTEL WHERE HNAME LIKE '%'||'더원'||'%';
-    -- 지역별 숙소 목록(호텔명 미검색, 지역 선택)
-SELECT COUNT(*) FROM HOTEL WHERE LOCATIONNO = 1;
-    -- 지역별 목록 schHName 이 존재(호텔명 검색, 지역 선택)
-SELECT COUNT(*) FROM HOTEL WHERE HNAME LIKE '%'||'더원'||'%' AND LOCATIONNO = 1;
+    -- 지역 선택
+SELECT COUNT(*) FROM HOTEL WHERE HNAME LIKE '%'||'더원'||'%' AND LOCATIONNO =ANY (1, 3, 13);
 
 -- 숙소 상세보기 detailHotel
 SELECT (SELECT COUNT(*) FROM BOOKMARK WHERE HNAME = '호텔더원') bCnt, lName, H.*
@@ -100,17 +92,16 @@ SELECT INDATE, OUTDATE FROM HRESERVATION
 
 -- 호텔 별 예약 목록
 SELECT * 
-    FROM (SELECT R.MID, R.HNAME, INDATE, OUTDATE, HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE FROM HRESERVATION R, HOTEL H 
+    FROM (SELECT R.MID, R.HNAME, INDATE, OUTDATE FROM HRESERVATION R, HOTEL H 
             WHERE H.HNAME = R.HNAME ORDER BY INDATE DESC)
     WHERE HNAME = '그라벨호텔';
     DELETE FROM HRESERVATION WHERE INDATE = '230523';
     COMMIT;
 
 -- ID 별 예약 목록
-SELECT R.HNAME, R.INDATE, R.OUTDATE, H.HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE 
-    FROM HRESERVATION R, HOTEL H 
-    WHERE H.HNAME = R.HNAME 
-    AND MID = 'aaa' ORDER BY INDATE DESC;
+SELECT HNAME, INDATE, OUTDATE FROM HRESERVATION WHERE MID = 'aaa' ORDER BY INDATE DESC;
+SELECT H.*, R.* FROM HRESERVATION R, HOTEL H 
+    WHERE H.HNAME = R.HNAME AND MID = 'bbb' ORDER BY INDATE DESC;
     
 -- 예약 취소    (같은 호텔의 예약이 여러개일 경우 입실일 기준으로 삭제)
 DELETE FROM HRESERVATION WHERE MID = 'aaa' AND HNAME = '위드시티호텔' AND INDATE = '23/04/20';

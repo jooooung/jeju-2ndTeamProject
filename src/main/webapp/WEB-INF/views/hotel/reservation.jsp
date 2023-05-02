@@ -27,6 +27,12 @@
 					alert('체크인/아웃을 선택해주세요');
 					return false;
 				}
+				var result = confirm("예약하시겠습니까?");
+				if(result == true){
+					alert("예약되었습니다.");
+				}else{
+					return false;
+				}
 			});
 		});
 		
@@ -40,10 +46,10 @@
 		<form action="reserv.do" method="post">
 			<input type="hidden" name="mid" value="${param.mid }">
 			<input type="hidden" name="hname" value="${param.hname }">
-			<input type="text" name="indate" id="indate">
-			<input type="text" name="outdate" id="outdate">
-			<input type="text" name="pageNum" value="${param.pageNum }">
-			<input type="text" name="lname" value="${param.lname}">
+			<input type="hidden" name="indate" id="indate">
+			<input type="hidden" name="outdate" id="outdate">
+			<input type="hidden" name="pageNum" value="${param.pageNum }">
+			<input type="hidden" name="lname" value="${param.lname}">
 			<jsp:include page="cal.jsp"/>
 			<p align="right">
 				1박  <fmt:formatNumber value="${hotelVo.hprice }" pattern="###,###"/>원

@@ -20,6 +20,16 @@ public class MyReviewController {
 	@Autowired
 	private MyReviewService myReviewService;
 
+	// 마이페이지 내글
+	@RequestMapping(value = "mypage", method = RequestMethod.GET)
+	public String mypage(HttpSession session, Model model) {
+		Member sessionMember = (Member) session.getAttribute("member");
+		String mid = sessionMember.getMid();
+		List<MyReview> mypage = myReviewService.ReadReview(mid);
+		model.addAttribute("mypage", mypage);
+		return "myreview/getAll";
+	}
+
 	// 작성한 글 조회
 	@RequestMapping(value = "getReview", method = RequestMethod.GET)
 	public String getReview(HttpSession session, Model model) {
@@ -27,7 +37,7 @@ public class MyReviewController {
 		String mid = sessionMember.getMid();
 		List<MyReview> getReview = myReviewService.ReadReview(mid);
 		model.addAttribute("getReview", getReview);
-		return "myreview/getAll";
+		return "myreview/getReview";
 	}
 
 	// 작성한 댓글 호텔
@@ -36,9 +46,8 @@ public class MyReviewController {
 		Member sessionMember = (Member) session.getAttribute("member");
 		String mid = sessionMember.getMid();
 		List<MyReview> getHotel = myReviewService.ReadHotelcomment(mid);
-		System.out.println("컨트롤러 호텔");
 		model.addAttribute("getHotel", getHotel);
-		return "myreview/getAll";
+		return "myreview/getHotel";
 	}
 
 	// 작성한 댓글 식당
@@ -47,9 +56,8 @@ public class MyReviewController {
 		Member sessionMember = (Member) session.getAttribute("member");
 		String mid = sessionMember.getMid();
 		List<MyReview> getRes = myReviewService.ReadRescomment(mid);
-		System.out.println("컨트롤러 식당");
 		model.addAttribute("getRes", getRes);
-		return "myreview/getAll";
+		return "myreview/getRes";
 	}
 
 	// 작성한 댓글 관광지
@@ -58,8 +66,7 @@ public class MyReviewController {
 		Member sessionMember = (Member) session.getAttribute("member");
 		String mid = sessionMember.getMid();
 		List<MyReview> getSpot = myReviewService.ReadSpotcomment(mid);
-		System.out.println("컨트롤러 스팟");
 		model.addAttribute("getSpot", getSpot);
-		return "myreview/getAll";
+		return "myreview/getSpot";
 	}
 }

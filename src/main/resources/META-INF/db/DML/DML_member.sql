@@ -39,13 +39,17 @@ SELECT * FROM restaurantComment WHERE mID = 'pham'; -- getResComment
 SELECT * FROM hotelComment WHERE mID = 'kim'; -- getHotelComment
 SELECT * FROM spotComment WHERE mID = 'aaa'; -- getSoptComment
 
-
--- (10) 아이디 찾기 (이메일인증) - 
+-- (10) 아이디 찾기
 SELECT MID FROM MEMBER
     WHERE MEMAIL = 'dnvk3535@naver.com';
 
-SELECT * FROM HOTEL;
-SELECT * FROM RESTAURANT;
-SELECT * FROM SPOT;
+-- (11) 비밀번호 찾기 
+SELECT MPW FROM MEMBER
+    WHERE MID = 'kang' and MEMAIL = 'dnvk3535@naver.com'; 
+-- (12) 비번 업데이트
+UPDATE MEMBER SET MPW = '123' WHERE MID ='kang';
+
+delete from member where mid ='sungbin2';
+
 SELECT * FROM MEMBER;
 COMMIT;

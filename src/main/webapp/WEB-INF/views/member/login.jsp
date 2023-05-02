@@ -9,10 +9,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="${conPath }/css/member/login.css" rel=stylesheet>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <style>
 img {
 	margin: 0 auto;
-	width: 500px;
+	width: 400px;
+	height: auto;
 }
 </style>
 </head>
@@ -67,8 +70,8 @@ img {
 		</form>
 	</div>
 	<p>
-		<a href="#">아이디 찾기 |</a>
-		<a href="#">비밀번호 찾기 |</a>
+		<a href="${conPath }/member/findID.do">아이디 찾기 |</a>
+		<a href="${conPath }/member/findPW.do">비밀번호 찾기 |</a>
 		<a href="${conPath}/member/joinAgreePage.do">회원가입 |</a>
 		<a href="${conPath}/business.do?method=login">업체회원</a>
 	</p>

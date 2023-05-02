@@ -61,4 +61,21 @@
 	<delete id="deleteMember" parameterType="String"> 
 		DELETE FROM MEMBER WHERE mID = #{mid}
 	</delete>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findID" parameterType="String" resultType="String">
+		SELECT MID FROM MEMBER
+    	WHERE MEMAIL = #{memail}
+	</select>
+	
+	<!-- 비번찾기 -->
+	<select id="findPW" parameterType="String" resultType="String">
+		SELECT MPW FROM MEMBER
+    	WHERE MID = #{mid} and MEMAIL = #{memail}
+	</select>
+	
+	<!-- 비번업데이트 -->
+	<update id="updatePW" parameterType="Member"> 
+		UPDATE MEMBER SET MPW = #{mpw} WHERE MID = #{mid}
+	</update>
 </mapper>

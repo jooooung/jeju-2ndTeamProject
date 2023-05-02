@@ -5,10 +5,12 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -16,9 +18,11 @@ import com.lec.jeju.service.HotelCommentService;
 import com.lec.jeju.service.HotelService;
 import com.lec.jeju.service.HreservationService;
 import com.lec.jeju.util.Paging;
+import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
 import com.lec.jeju.vo.Hreservation;
+import com.lec.jeju.vo.Member;
 
 @Controller
 @RequestMapping("hotel")
@@ -33,18 +37,8 @@ public class HotelController {
 	// 숙소목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(String pageNum, Model model, Hotel hotel) {
-		model.addAttribute("locList", hotelService.locList());
-		model.addAttribute("list", hotelService.hotelList(pageNum, hotel));
-		model.addAttribute("paging", new Paging(hotelService.totCntHotel(hotel), pageNum, 2, 2));
-		return "hotel/list";
-	}
-	
-	// 숙소목록2
-	@RequestMapping(value = "list2", method = RequestMethod.GET)
-	public String list2(String pageNum, Model model, Hotel hotel) {
-		model.addAttribute("locList", hotelService.locList());
-		model.addAttribute("list", hotelService.hotelList2(pageNum, hotel));
-		model.addAttribute("paging", new Paging(hotelService.totCntHotel(hotel), pageNum, 5, 5));
+		// model.addAttribute("locList", hotelService.locList());
+		model.addAttribute("list", hotelService.hotelList(pageNum, hotel, model));
 		return "hotel/list";
 	}
 	
@@ -68,10 +62,49 @@ public class HotelController {
 		model.addAttribute("list", hreservService.hreservationList_Hotel(hname));
 		return "hotel/reservation";
 	}
+	// 숙소 예약 db 저장 후 내 예약 목록으로 가기
+	@RequestMapping(value = "reserv", method = RequestMethod.POST)
+	public String reserv_post(Hreservation hreservation, Model model) {
+		model.addAttribute("hotelReservResult", hreservService.doHreservation(hreservation));
+		return "forward:reservList.do?mid="+hreservation.getMid();
+	}
+	
+	// 내 예약 리스트(사용자)
+	@RequestMapping(value = "reservList", method = {RequestMethod.GET, RequestMethod.POST})
+	public String reservList(Hreservation hreservation, Model model, HttpSession session, String mid) {
+		Member member = (Member) session.getAttribute("member");
+		if (member == null) {
+			return "redirect:/main.do";
+		}else {
+			mid = member.getMid();
+			List<Hreservation> reservList = hreservService.hreservationList_Member(mid);
+			model.addAttribute("reservList", reservList);
+		}
+		return "hotel/reservList";
+	}
+	// 내 예약 리스트(업체)
+	@RequestMapping(value = "reservList_buisness", method = {RequestMethod.GET, RequestMethod.POST})
+	public String reservList_buisness(Hreservation hreservation, Model model, HttpSession session, String bid) {
+		Business buisness = (Business) session.getAttribute("business");
+		if (buisness == null) {
+			return "redirect:/main.do";
+		}else { 
+			String hname = buisness.getBname();
+			List<Hreservation> reservList = hreservService.hreservationList_Hotel(hname);
+			model.addAttribute("reservList", reservList);
+		}
+		return "hotel/reservList";
+	}
+	
+	// 내 예약 취소(사용자)
+	@RequestMapping(value = "deleteReserv", method = RequestMethod.GET)
+	public String deleteReserv(Model model, Hreservation hreservation) {
+		model.addAttribute("deleteReservResult", hreservService.deleteHreservation(hreservation));
+		return "forward:reservList.do?mid="+hreservation.getMid();
+	}
 	
 	
 	// 댓글
-	
 	// 댓글 작성
 	@RequestMapping(value = "writeComment", method = RequestMethod.POST)
 	public String writeComment(HotelComment hotelComment) throws UnsupportedEncodingException {
@@ -96,6 +129,4 @@ public class HotelController {
 		String hname = 	URLEncoder.encode(hotelComment.getHname(), "utf-8");
 		return "redirect:detail.do?hname="+hname;
 	}
-	
-
 }

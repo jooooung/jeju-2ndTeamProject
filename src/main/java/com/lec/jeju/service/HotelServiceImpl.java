@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -20,23 +21,17 @@ import com.lec.jeju.vo.Location;
 public class HotelServiceImpl implements HotelService {
 	@Autowired
 	private HotelDao hotelDao;
-	String backupPath = "C:/Full-stack/sourse/09_Spring/ch19_bookUPMember_sch/src/main/webapp/hotelImgFileUpload/";
+	String backupPath = "C:/Full-stack/sourse/10_jejuProject/jeju/src/main/webapp/hotelImgFileUpload/";
 	
 	@Override
-	public List<Hotel> hotelList(String pageNum, Hotel hotel) {
+	public List<Hotel> hotelList(String pageNum, Hotel hotel, Model model) {
 		Paging paging = new Paging(hotelDao.totCntHotel(hotel), pageNum, 5, 5);
+		model.addAttribute("paging", paging);
 		hotel.setStartrow(paging.getStartRow());
 		hotel.setEndrow(paging.getEndRow());
 		return hotelDao.hotelList(hotel);
 	}
-	@Override
-	public List<Hotel> hotelList2(String pageNum, Hotel hotel) {
-		Paging paging = new Paging(hotelDao.totCntHotel(hotel), pageNum, 5, 5);
-		hotel.setStartrow(paging.getStartRow());
-		hotel.setEndrow(paging.getEndRow());
-		return hotelDao.hotelList2(hotel);
-	}
-
+	
 	@Override
 	public int totCntHotel(Hotel hotel) {
 		return hotelDao.totCntHotel(hotel);

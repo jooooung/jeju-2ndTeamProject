@@ -3,18 +3,36 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.HreservationDao">
+	<resultMap type="Hotel" id="Hotel">
+		<result property="hname" column="hname"/>
+		<result property="bid" column="bid"/>
+		<result property="locationno" column="locationno"/>
+		<result property="haddr" column="haddr"/>
+		<result property="htel" column="htel"/>
+		<result property="hlink" column="hlink"/>
+		<result property="hinfo" column="hinfo"/>
+		<result property="intime" column="intime"/>
+		<result property="outtime" column="outtime"/>
+		<result property="hmainimg" column="hmainimg"/>
+		<result property="hsubimg_1" column="hsubimg_1"/>
+		<result property="hsubimg_2" column="hsubimg_2"/>
+		<result property="hsubimg_3" column="hsubimg_3"/>
+		<result property="hlatitude" column="hlatitude"/>
+		<result property="hlongitude" column="hlongitude"/>
+		<result property="hprice" column="hprice"/>
+	</resultMap>
 	<resultMap type="Hreservation" id="HreservationResult">
 		<result property="mid" column="mid"/>
 		<result property="hname" column="hname"/>
 		<result property="indate" column="indate"/>
 		<result property="outdate" column="outdate"/>
-		<result property="rwhether" column="rwhether"/>
+		<collection property="Hotel" resultMap="Hotel"/>
 	</resultMap>
 	<!-- 예약하기 -->
-	<select id="doHreservation" parameterType="Hreservation">
+	<insert id="doHreservation" parameterType="Hreservation">
 		INSERT INTO HRESERVATION (mID, hNAME, INDATE, OUTDATE)
     		VALUES (#{mid}, #{hname}, #{indate}, #{outdate})
-	</select>
+	</insert>
 	
 	<!-- 예약 가능 날짜 조회(결과가 있다면 예약 불가능) -->
 	<select id="checkReserv" parameterType="Hreservation" resultMap="HreservationResult">
@@ -23,7 +41,7 @@
 			    WHERE ((INDATE <= #{indate} AND OUTDATE >= #{outdate})      
 			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate})      
 			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate})      
-			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate}))     
+			        OR (INDATE <= #{indate} AND OUTDATE >= #{outdate}))
 			     AND HNAME = #{hname}
 		]]> 
 	</select>
@@ -32,16 +50,14 @@
 	<select id="hreservationList_Hotel" parameterType="String" resultMap="HreservationResult">
 		SELECT * 
 		    FROM (SELECT R.MID, R.HNAME, INDATE, OUTDATE, HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE FROM HRESERVATION R, HOTEL H 
-		            WHERE H.HNAME = R.HNAME)
+		            WHERE H.HNAME = R.HNAME ORDER BY INDATE DESC)
 		    WHERE HNAME = #{hname}
 	</select>
 	
 	<!-- 사용자별 예약 목록 -->
 	<select id="hreservationList_Member" parameterType="String" resultMap="HreservationResult">
-		SELECT R.HNAME, R.INDATE, R.OUTDATE, H.HPRICE, (H.HPRICE * (OUTDATE - INDATE)) PRICE 
-		    FROM HRESERVATION R, HOTEL H 
-		    WHERE H.HNAME = R.HNAME 
-		    AND MID = #{mid}
+		SELECT H.*, R.* FROM HRESERVATION R, HOTEL H 
+    		WHERE H.HNAME = R.HNAME AND MID = #{mid} ORDER BY INDATE DESC
 	</select>
 	
 	<!-- 예약 취소(사용자) -->

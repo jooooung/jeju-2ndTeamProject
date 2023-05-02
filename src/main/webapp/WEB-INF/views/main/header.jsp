@@ -17,7 +17,7 @@
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">	
 					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
-					<span>JEJU</span>
+					<span>제주어때</span>
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -28,7 +28,7 @@
 						<ol class="subMenu">
 							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판
@@ -86,7 +86,7 @@
 						<ol class="subMenu">
 							<li><a href="">나의일정</a></li>
 							<li><a href="${conPath }/myreview/mypage.do">나의리뷰</a></li>
-							<li><a href="">예약내역</a></li>
+							<li><a href="${conPath }/hotel/reservList.do?mid=${param.mid}">예약내역</a></li>
 							<li><a href="${conPath }/bookmark/MyAll.do">즐겨찾기</a></li>
 							<li><a href="${conPath }/member/modify.do">정보수정</a></li>
 						</ol>

@@ -29,56 +29,94 @@
 	<select id="locList" resultType="Location">
 		SELECT * FROM LOCATION
 	</select>
-	<select id="hotelList2" parameterType="Hotel" resultMap="HotelResult"><!-- 지역 선택 시 목록 -->
-		SELECT * 
-		    FROM (SELECT ROWNUM RN, A.* 
-		        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
-		                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-		                    WHERE H.HNAME = B.HNAME(+)  AND H.LOCATIONNO = L.LOCATIONNO 
-		                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = #{locationno} ORDER BY bCnt DESC) A)
-		    WHERE RN BETWEEN #{startrow} AND #{endrow}
-	</select>
+	
+	<!-- 숙소 목록 -->
 	<select id="hotelList" parameterType="Hotel" resultMap="HotelResult">
-		<if test="schitem == null or schitem== ''"><!-- 호텔명 미검색, 지역 미선택-->
+		<!-- 지역 미선택 -->
+		<if test="schitem == null or schitem== ''">
 			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' ORDER BY bCnt DESC) A)
+			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' 
+			                 AND H.HNAME LIKE '%'||#{schword}||'%' ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
-		<if test="schitem == 'all'"><!-- 호텔명 검색, 지역 미선택 -->
+		
+		<!-- 지역 선택 -->
+		<if test="schitem == '11,12,15'">
 			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-			                    WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
-			                    AND REQUESTSTATUS = 'A' AND H.HNAME LIKE '%'||#{schword}||'%' ORDER BY bCnt DESC) A)
+			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
+			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (11, 12, 15)
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
-		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 선택 -->
+		<if test="schitem == '1,3,13'">
 			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
-			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
-			                FROM HOTEL H, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
-			                WHERE H.HNAME = B.HNAME(+) AND REQUESTSTATUS = 'A' AND H.LOCATIONNO = #{locationno}
-			                    AND H.HNAME LIKE '%'||#{schword}||'%' ORDER BY bCnt DESC) A)
+			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
+			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
+			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (1,3,13)
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
+			    WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+		<if test="schitem == '4,5,14'">
+			SELECT * 
+			    FROM (SELECT ROWNUM RN, A.* 
+			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
+			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
+			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (4,5,14)
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
+			    WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+		<if test="schitem == '2,6,7'">
+			SELECT * 
+			    FROM (SELECT ROWNUM RN, A.* 
+			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
+			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
+			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (2,6,7)
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
+			    WHERE RN BETWEEN #{startrow} AND #{endrow}
+		</if>
+		<if test="schitem == '8,9,10'">
+			SELECT * 
+			    FROM (SELECT ROWNUM RN, A.* 
+			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
+			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
+			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
+			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (8,9,10)
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
 	</select>
 	<!-- 전체 숙소 개수 -->
 	<select id="totCntHotel" parameterType="Hotel" resultType="int">
-		<if test="schitem == null or schitem== ''"><!-- 호텔명 미검색, 지역 미선택-->
-			SELECT COUNT(*) FROM HOTEL	
+		<!-- 지역 미선택-->
+		<if test="schitem == null or schitem== ''">
+			SELECT COUNT(*) FROM HOTEL WHERE HNAME LIKE '%'||#{schword}||'%'
 		</if>
-		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 미선택 -->
-			SELECT COUNT(*) FROM HOTEL WHERE HNAME LIKE '%'||#{schword||'%'
+		
+		<!-- 지역 선택 -->
+		<if test="schitem == '11,12,15'">
+			SELECT COUNT(*) FROM HOTEL WHERE LOCATIONNO IN (11,12,15) AND HNAME LIKE '%'||#{schword}||'%' 
 		</if>
-		<if test="schitem == 'locaionno'"><!-- 호텔명 미검색, 지역 선택 -->
-			SELECT COUNT(*) FROM HOTEL WHERE LOCATIONNO = #{locationno}
+		<if test="schitem == '1,3,13'">
+			SELECT COUNT(*) FROM HOTEL WHERE LOCATIONNO IN (1,3,13) AND HNAME LIKE '%'||#{schword}||'%'
 		</if>
-		<if test="schitem == 'hname'"><!-- 호텔명 검색, 지역 선택 -->
-			SELECT COUNT(*) FROM HOTEL WHERE HNAME LIKE '%'||#{schword}||'%' AND LOCATIONNO = #{locationno}
+		<if test="schitem == '4,5,14'">
+			SELECT COUNT(*) FROM HOTEL WHERE LOCATIONNO IN (4,5,14) AND HNAME LIKE '%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '2,6,7'">
+			SELECT COUNT(*) FROM HOTEL WHERE LOCATIONNO IN (2,6,7) AND HNAME LIKE '%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '8,9,10'">
+			SELECT COUNT(*) FROM HOTEL WHERE LOCATIONNO IN (8,9,10) AND HNAME LIKE '%'||#{schword}||'%'
 		</if>
 	</select>
 	

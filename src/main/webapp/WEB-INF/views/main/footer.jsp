@@ -29,7 +29,9 @@
 				<li>틀린정보신고</li>
 				<li>제주소식</li>
 				<li>관광업체등록신청</li>
-				<li><a href="${conPath}/admin.do?method=login">관리자 로그인</a></li>
+				<c:if test="${empty member and empty business and empty admin}">
+					<li><a href="${conPath}/admin.do?method=login">관리자 로그인</a></li>
+				</c:if>
 			</ul>
 		</div>
 	</footer>

@@ -1,12 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="conPath" value="${pageContext.request.contextPath }"/>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<link href="${conPath }/css/business/register.css" rel=stylesheet>
+    <title>나의 식당 게시글</title>
 </head>
 <body>
-
+	<jsp:include page="../main/header.jsp"/>
+    <h1>나의 식당 게시글</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>식당 이름</th>
+                <th>주소</th>
+                <th>전화번호</th>
+                <th>가격</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${restaurantList }" var="restaurant">
+                <tr>
+                    <td>${restaurant.rname}</td>
+                    <td>${restaurant.raddr}</td>
+                    <td>${restaurant.rtel}</td>
+                    <td>${restaurant.rprice}</td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+    <jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

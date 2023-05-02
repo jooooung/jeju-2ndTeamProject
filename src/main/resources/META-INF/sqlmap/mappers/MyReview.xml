@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.MyReviewDao">
+	<resultMap type="MyReview" id="MyReviewResult">
+		<result property="myreviewno" column="myreviewno" />
+		<result property="mid" column="mid" />
+		<result property="sname" column="sname" />
+		<result property="rname" column="rname" />
+		<result property="hname" column="hname" />
+		<result property="reviewno" column="reviewno" />
+		<result property="rtitle" column="rtitle" />
+		<result property="scontent" column="scontent" />
+		<result property="rcontent" column="rcontent" />
+		<result property="hcontent" column="hcontent" />
+	</resultMap>
+	
+	<!-- 작성한 리뷰게시판 글 조회 -->
+	<select id="ReadReview" parameterType="String" resultMap="MyReviewResult">
+		SELECT * FROM Review WHERE mId = #{mid, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 작성한 관광지 댓글 조회 -->
+	<select id="ReadSpotcomment" parameterType="String" resultMap="MyReviewResult">
+		SELECT * FROM spotComment WHERE mId = #{mid, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 작성한 식당 댓글 조회 -->
+	<select id="ReadRescomment" parameterType="String" resultMap="MyReviewResult">
+		SELECT * FROM restaurantComment WHERE mId = #{mid, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 작성한 숙소 댓글 조회 -->
+	<select id="ReadHotelcomment" parameterType="String" resultMap="MyReviewResult">
+		SELECT * FROM hotelComment WHERE mId = #{mid, jdbcType=VARCHAR}
+	</select>
+</mapper>

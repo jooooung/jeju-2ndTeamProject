@@ -13,7 +13,7 @@ public interface ReviewService {
 
 	public int writeReview(ReviewBoard reviewBoard, HttpServletRequest request);
 
-	public ReviewBoard contentFestival(int reviewno);
+	public ReviewBoard contentReview(int reviewno);
 
 	public int modifiyReview(ReviewBoard reviewBoard);
 

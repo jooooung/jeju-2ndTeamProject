@@ -35,7 +35,7 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public ReviewBoard contentFestival(int reviewno) {
+	public ReviewBoard contentReview(int reviewno) {
 		reviewDao.hitUpReview(reviewno);
 		return reviewDao.contentReview(reviewno);
 	}

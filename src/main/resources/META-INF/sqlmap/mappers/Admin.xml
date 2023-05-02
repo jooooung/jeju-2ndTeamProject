@@ -3,7 +3,25 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.AdminDao">
-
+	<resultMap type="Hotel" id="Hotel">
+		<result property="hname" column="hname"/>
+		<result property="bid" column="bid"/>
+		<result property="locationno" column="locationno"/>
+		<result property="haddr" column="haddr"/>
+		<result property="htel" column="htel"/>
+		<result property="hlink" column="hlink"/>
+		<result property="hinfo" column="hinfo"/>
+		<result property="intime" column="intime"/>
+		<result property="outtime" column="outtime"/>
+		<result property="hmainimg" column="hmainimg"/>
+		<result property="hsubimg_1" column="hsubimg_1"/>
+		<result property="hsubimg_2" column="hsubimg_2"/>
+		<result property="hsubimg_3" column="hsubimg_3"/>
+		<result property="hlatitude" column="hlatitude"/>
+		<result property="hlongitude" column="hlongitude"/>
+		<result property="hprice" column="hprice"/>
+		<collection property="Hotel" resultMap="Hotel"/>
+	</resultMap>
 	 <!-- 로그인 -->
 	<select id="loginCheck" parameterType="Admin" resultType="Admin">
         SELECT * FROM Admin WHERE aid=#{aid} AND apw=#{apw}
@@ -16,7 +34,10 @@
 	
 	<!-- 업체 등록 승인, 거절 -->
     <update id="approveHotel" parameterType="Hotel">
-        UPDATE Hotel SET requestStatus='A' WHERE hName=#{hname}
+        UPDATE Hotel SET requestStatus='A', 
+        				 HLATITUDE=#{hlatitude, jdbcType=DOUBLE},
+                 		 HLONGITUDE=#{hlongitude, jdbcType=DOUBLE}
+        WHERE hName=#{hname}
     </update>
     
     <update id="rejectHotel" parameterType="Hotel">

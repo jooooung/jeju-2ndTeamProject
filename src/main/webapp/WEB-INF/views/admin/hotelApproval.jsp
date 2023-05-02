@@ -30,7 +30,7 @@
                 <td>${hotel.haddr}</td>
                 <td>${hotel.htel}</td>
                 <td>
-                  <a href="${conPath}/admin/approveHotel.do?hname=${hotel.hname}" class="approval-button">승인</a>
+                  <a href="${conPath}/admin/approveHotel.do?hname=${hotel.hname}&haddr=${hotel.haddr}" class="approval-button">승인</a>
                   <a href="${conPath}/admin/rejectHotel.do?hname=${hotel.hname}" class="reject-button">거절</a>
                 </td>
               </tr>

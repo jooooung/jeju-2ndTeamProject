@@ -16,4 +16,6 @@ public class Business {
 	private String bpost; // 우편번호
 	private String bphoto; // 회원사진
 	private Date brdate; // 가입일
+    private int startrow;
+	private int endrow;
 }

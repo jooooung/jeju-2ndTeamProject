@@ -91,7 +91,7 @@ color: blue;
 					</td>
 					<td rowspan="6">
 					<p>[프로필사진]</p>
-						<img src="${conPath }/${business.bphoto}" alt="${business.bname }사진">
+						<img src="${conPath }/${business.bphoto}" alt="${business.bname }사진"style="width: 150px;">
 					</td>
 				</tr>
 

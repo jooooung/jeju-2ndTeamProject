@@ -1,3 +1,4 @@
+DROP TABLE MYREVIEW;
 DROP TABLE Review;
 DROP TABLE Festival;
 DROP TABLE hotelComment;
@@ -14,7 +15,6 @@ DROP TABLE Business;
 DROP TABLE Admin;
 DROP TABLE location;
 DROP TABLE RestauranTtype;
-DROP TABLE MYREVIEW;
 
 DROP SEQUENCE FestivalNo_seq;
 DROP SEQUENCE bookmarkNo_seq;
@@ -70,7 +70,7 @@ CREATE TABLE Review (
     rContent CLOB NOT NULL,
     rRdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     rHit NUMBER(5) DEFAULT 0
-); -- 후기게시판 테이블
+); -- 후기 게시판 테이블
 
 CREATE SEQUENCE festivalNo_seq MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE Festival (
@@ -229,12 +229,16 @@ CREATE SEQUENCE MYREVIEWNO_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE MYREVIEW (
     MYREVIEWNO NUMBER(5) PRIMARY KEY,
     mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
-    sCommentNo NUMBER(5) REFERENCES spotComment(sCommentNo), -- 관광지 댓글 번호
-    rCommentNo NUMBER(5) REFERENCES restaurantComment(rCommentNo), -- 식당 댓글 번호
-    hCommentNo NUMBER(5) REFERENCES hotelComment(hCommentNo), -- 호텔 댓글 번호
-    reviewNO NUMBER(5) REFERENCES Review(reviewNO) -- 후기 게시판 글 번호
+    sName VARCHAR2(50) REFERENCES SPOT(sName),
+    rName VARCHAR2(50) REFERENCES restaurant(rName),
+    hName VARCHAR2(50) REFERENCES HOTEL(hName),
+    reviewNO NUMBER(5) REFERENCES Review(reviewNO),
+    rRdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    rTitle VARCHAR2(100),
+    sContent VARCHAR2(1000),
+    rContent VARCHAR2(1000),
+    hContent VARCHAR2(1000)
 ); -- 마이페이지 리뷰테이블
-
 
 
 select * from myreview;

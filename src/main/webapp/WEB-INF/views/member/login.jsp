@@ -10,6 +10,10 @@
 <title>Insert title here</title>
 <link href="${conPath }/css/member/login.css" rel=stylesheet>
 <style>
+img {
+	margin: 0 auto;
+	width: 500px;
+}
 </style>
 </head>
 <body>
@@ -33,11 +37,13 @@
 			location.href = '${conPath}/main/main.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp" />
-	<br>
+	<%-- <jsp:include page="../main/header.jsp" /> --%>
 	<div id="content">
 		<form action="${conPath }/member/login.do" method="post">
 			<input type="hidden" name="after" value="${empty param.after ? 'main.do' : param.after}" />
+			<a href="${conPath }/main.do">	
+					<img alt="로고" src="${conPath }/img/logo_jeju.png"> 
+			</a>
 			<table>
 				<caption>일반회원</caption>
 				<tr>

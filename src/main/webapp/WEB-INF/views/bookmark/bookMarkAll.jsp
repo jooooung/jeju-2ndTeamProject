@@ -16,11 +16,12 @@ div.bookmark-list {
 
 }
 img {
-  display: block;
-  margin: 0 auto;
-  width: 250px;
-  height: 150px;
+	display: block;
+	margin: 0 auto;
+	width: 350px;
+	height: 250px;
 }
+
 </style>
 
 </head>
@@ -28,7 +29,8 @@ img {
 	<jsp:include page="../main/header.jsp" />
 	<br>
 	<br>
-	<img alt="귤" src="${conPath }/img/귤.png" />
+	<br>
+	<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png">
 	<div class="bookmark-list">
 		<div class="bookmark-box" onclick="location.href='${conPath}/bookmark/hotelList.do'">
 			<h2>

@@ -11,7 +11,7 @@
  <link href="${conPath }/css/spot/list.css" rel=stylesheet>
 <body>
 <jsp:include page="../main/header.jsp"/>
-	<div id="spot_warp">
+	<div id="spot_wrap">
 		<div id="title">
 			<ul>
 				<li><a>관광</a></li>
@@ -19,7 +19,7 @@
 				<li><a>숙박</a></li>
 			</ul>
 		</div>
-		<div id="search_warp">
+		<div id="search_wrap">
 			<form action="${conPath }/spot/list.do" id="schForm">
 				<div class="search">
 					<input type="text" name="schword" value="${schword }" placeholder="관광지를 검색하세요">
@@ -48,6 +48,42 @@
 					<p>중문&amp;안덕&amp;대정</p>
 				</li>
 			</ul>
+		</div>
+		<div id="list_wrap">
+			<c:forEach items="${list }" var="list">
+				<div id="list_form">
+					<table class="listTable">
+						<tr>
+							<td rowspan="5">
+								<img src="${conPath}/spotImgFileUpload/${list.smainimg }">
+							</td>
+							<td>
+								<span>${list.sname }</span>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								${list.saddr.substring(list.saddr.indexOf('도')+2) }
+							</td>
+						</tr>
+						<tr>
+							<td class="listInfo">
+								${list.sinfo }
+							</td>
+						</tr>
+						<tr>
+							<td class="listTel">
+								${list.stel }
+							</td>
+						</tr>
+						<tr>
+							<td class="listBcnt">
+								${list.bcnt }
+							</td>
+						</tr>
+					</table>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 <jsp:include page="../main/footer.jsp"/>

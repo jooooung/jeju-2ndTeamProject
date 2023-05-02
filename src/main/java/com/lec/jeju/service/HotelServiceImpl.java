@@ -77,6 +77,7 @@ public class HotelServiceImpl implements HotelService {
 		hotel.setHsubimg_1(himg[1]);
 		hotel.setHsubimg_2(himg[2]);
 		hotel.setHsubimg_3(himg[3]);
+	
 		return hotelDao.registerHotel(hotel);
 	}
 

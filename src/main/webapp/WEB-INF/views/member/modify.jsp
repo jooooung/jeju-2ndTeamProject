@@ -14,6 +14,9 @@ p 	{
 margin: 15px;
 color: blue;
 }
+b {
+	color:red;
+}
 </style>
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
@@ -99,7 +102,7 @@ color: blue;
 				</tr>
 
 				<tr>
-					<td>현 비밀번호</td>
+					<td>현 비밀번호<b>*</b></td>
 					<td>
 						<input type="password" name="oldMpw" required="required" size="3">
 					</td>

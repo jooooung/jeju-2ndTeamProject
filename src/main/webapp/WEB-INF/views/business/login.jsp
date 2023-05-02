@@ -24,7 +24,8 @@ p a {
 
 img {
 	margin: 0 auto;
-	width: 500px;
+	width: 400px;
+	height: auto;
 }
 </style>
 </head>
@@ -91,8 +92,8 @@ img {
 		</form>
 	</div>
 	<p>
-		<a href="#">아이디 찾기 |</a> 
-		<a href="#">비밀번호 찾기 |</a> 
+		<a href="${conPath }/member/findID.do">아이디 찾기 |</a>
+		<a href="${conPath }/member/findPW.do">비밀번호 찾기 |</a>
 		<a href="${conPath}/business/joinAgreePage.do">회원가입 |</a> 
 		<a href="${conPath}/member/login.do">일반회원</a>
 	</p>

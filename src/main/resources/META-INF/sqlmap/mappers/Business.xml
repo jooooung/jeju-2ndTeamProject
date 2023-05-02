@@ -67,10 +67,10 @@
 	
     <!-- 업체 등록요청 (등록글 작성) -->
 	<!-- Hotel 등록 -->
-	<insert id="registerHotel" parameterType="com.lec.jeju.vo.Hotel">
-	    INSERT INTO Hotel (hname, bid, locationno, haddr, htel, hlink, hinfo, intime, outtime, hmainimg, hsubimg_1, hsubimg_2, hsubimg_3, hprice, requeststatus)
-	    VALUES (#{param1.hname, jdbcType=VARCHAR}, #{param1.bid, jdbcType=VARCHAR}, #{param1.locationno}, #{param1.haddr}, #{param1.htel}, #{param1.hlink}, #{param1.hinfo}, #{param1.intime}, #{param1.outtime}, #{param1.hmainimg}, #{param1.hsubimg_1}, #{param1.hsubimg_2}, #{param1.hsubimg_3}, #{param1.hprice}, #{param1.requeststatus})
-	</insert>
+   <insert id="registerHotel" parameterType="com.lec.jeju.vo.Hotel">
+       INSERT INTO Hotel (hname, bid, locationno, haddr, htel, hlink, hinfo, intime, outtime, hmainimg, hsubimg_1, hsubimg_2, hsubimg_3, hprice, requeststatus)
+       VALUES (#{param1.hname, jdbcType=VARCHAR}, #{param1.bid, jdbcType=VARCHAR}, #{param1.locationno}, #{param1.haddr}, #{param1.htel}, #{param1.hlink}, #{param1.hinfo}, #{param1.intime}, #{param1.outtime}, #{param1.hmainimg}, #{param1.hsubimg_1}, #{param1.hsubimg_2}, #{param1.hsubimg_3}, #{param1.hprice}, #{param1.requeststatus})
+   </insert>
 	
 	<!-- 업체 등록요청 (등록글 수정) -->
 	<!-- Hotel 수정 -->

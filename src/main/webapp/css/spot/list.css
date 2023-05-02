@@ -6,18 +6,25 @@
     font-style: normal;
 }
 
-*{margin:0; padding: 0;}
-#spot_warp{width:800px; height: 100%; margin: 0 auto;}
-#spot_warp #title{font-family:'KCC-Ganpan';width:100%; height:60px; text-align: center;}
-#spot_warp #title ul{overflow: hidden;}
-#spot_warp #title li{float: left; width:33.3%; line-height: 60px; font-size: 1.3em;}
-#spot_warp #title li a{cursor: pointer;}
+*{margin:0; padding: 0;} 
+#spot_wrap{width:900px; height: 100%; margin: 0 auto;}
+#spot_wrap #title{font-family:'KCC-Ganpan';width:100%; height:60px; text-align: center;}
+#spot_wrap #title ul{overflow: hidden;}
+#spot_wrap #title li{float: left; width:33.3%; line-height: 60px; font-size: 1.3em;}
+#spot_wrap #title li a{cursor: pointer;}
 
-#spot_warp #search_warp{width:600px; border: 2px solid #ffd400; border-radius: 10px; overflow: hidden; margin: 0 auto; margin-bottom: 15px;}
-#spot_warp #search_warp .search input[type="text"]{width:520px; font-size:1.2em; border: 0px; outline: none; margin-left: 10px; padding:10px; float: left;}
-#spot_warp #search_warp .search img{width:40px; height:40px; float: left; cursor: pointer;}
+#spot_wrap #search_wrap{width:700px; border: 2px solid #ffd400; border-radius: 10px; overflow: hidden; margin: 0 auto; margin-bottom: 15px;}
+#spot_wrap #search_wrap .search input[type="text"]{width:620px; font-size:1.2em; border: 0px; outline: none; margin-left: 10px; padding:10px; float: left;}
+#spot_wrap #search_wrap .search img{width:40px; height:40px; float: left; cursor: pointer;}
 
-#spot_warp #spot_tag{text-align: center;}
-#spot_warp #spot_tag ul{overflow: hidden; display:inline-block;}
-#spot_warp #spot_tag li{float: left; height:35px; line-height: 35px; padding: 3px; }
-#spot_warp #spot_tag li p{cursor: pointer; border: 1px solid #ffd400; box-sizing: border-box; border-radius: 20px; padding: 0 10px; font-size: 0.8em; }
+#spot_wrap #spot_tag{text-align: center;}
+#spot_wrap #spot_tag ul{overflow: hidden; display:inline-block;}
+#spot_wrap #spot_tag li{float: left; height:35px; line-height: 35px; padding: 3px; }
+#spot_wrap #spot_tag li p{cursor: pointer; border: 1px solid #ffd400; box-sizing: border-box; border-radius: 20px; padding: 0 13px; font-size: 0.8em; font-weight: bold;}
+
+#list_wrap #list_form{background-color: #F6F6F6; width:700px; height:280px; margin: 0 auto; margin-top: 20px; margin-bottom: 20px; border-radius: 10px;}
+#list_wrap #list_form table{cursor: pointer;padding:12px 10px 10px 10px;}
+#list_wrap #list_form img { width: 320px; height: 250px; border-radius: 10px; border:none;}
+#list_wrap #list_form span{font-size: 1.4em; font-weight: bold;}
+#list_wrap #list_form .listInfo{width:100%;}
+#list_wrap #list_form .listTel{font-size: 13px;color: #888; margin: 20px 0;}

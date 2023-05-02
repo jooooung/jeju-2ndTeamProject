@@ -139,24 +139,24 @@ public class BusinessController {
 	}
 	
 	// 호텔 등록
-	@RequestMapping(value = "/registerHotel", method = RequestMethod.GET)
-	public String registerHotel() {
-	    return "business/registerHotel";
-	}
+   @RequestMapping(value = "/registerHotel", method = RequestMethod.GET)
+   public String registerHotel() {
+       return "business/registerHotel";
+   }
 
-	@RequestMapping(value = "/registerHotel", method = RequestMethod.POST)
-	public String registerHotel(@ModelAttribute("hotel") Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest, Model model) {
-	    String bid = (String) session.getAttribute("bid");
-	    hotel.setBid(bid);
-	    hotel.setRequeststatus("P");
-	    boolean registerHotel = businessService.registerHotel(hotel, mRequest);
-	    if (registerHotel) {
-	        return "redirect:/business/myHotelPosts.do";
-	    } else {
-	        model.addAttribute("errorMessage", "호텔 등록에 실패하였습니다.");
-	        return "error";
-	    }
-	}
+   @RequestMapping(value = "/registerHotel", method = RequestMethod.POST)
+   public String registerHotel(@ModelAttribute("hotel") Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest, Model model) {
+       String bid = (String) session.getAttribute("bid");
+       hotel.setBid(bid);
+       hotel.setRequeststatus("P");
+       boolean registerHotel = businessService.registerHotel(hotel, mRequest);
+       if (registerHotel) {
+           return "redirect:/business/myHotelPosts.do";
+       } else {
+           model.addAttribute("errorMessage", "호텔 등록에 실패하였습니다.");
+           return "error";
+       }
+   }
 	
 	// 호텔 수정
 	@RequestMapping(value = "/modifyHotel", method = RequestMethod.PUT)

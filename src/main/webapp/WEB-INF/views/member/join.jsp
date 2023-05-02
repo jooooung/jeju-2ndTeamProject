@@ -11,6 +11,12 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="${conPath }/js/address.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<style>
+b {
+  color: red;
+}
+
+</style>
 <script>
 	// ID 중복검사
 	$(function() {
@@ -88,39 +94,39 @@
 		<form action="${conPath }/member/join.do" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
-					<td>아이디</td>
+					<td>아이디<b>*</b></td>
 					<td>
 						<input type="text" name="mid" id="mid" required="required">
 						<div id="midConfirmResult">&nbsp; &nbsp; &nbsp;</div>
 					</td>
 				</tr>
 				<tr>
-					<td>비밀번호</td>
+					<td>비밀번호<b>*</b></td>
 					<td>
 						<input type="password" name="mpw" id="mpw" required="required">
 					</td>
 				</tr>
 				<tr>
-					<td>비밀번호 확인</td>
+					<td>비밀번호 확인<b>*</b></td>
 					<td>
 						<input type="password" name="pwChk" required="required" id="mpwChk">
 						<div id="pwChkResult">&nbsp; &nbsp; &nbsp;</div>
 					</td>
 				</tr>
 				<tr>
-					<td>이름</td>
+					<td>이름<b>*</b></td>
 					<td>
 						<input type="text" name="mname" required="required">
 					</td>
 				</tr>
 				<tr>
-					<td>연락처</td>
+					<td>연락처<b>*</b></td>
 					<td>
 						<input type="text" name="mtel" required="required" placeholder="010-0000-0000">
 					</td>
 				</tr>
 				<tr>
-					<td>메일</td>
+					<td>메일<b>*</b></td>
 					<td>
 						<input type="text" name="memail" id="memail" required="required" placeholder="you@example.com">
 						<div id="memailConfirmResult">&nbsp; &nbsp; &nbsp;</div>
@@ -128,14 +134,14 @@
 					
 				</tr>
 				<tr>
-					<td>우편번호</td>
+					<td>우편번호<b>*</b></td>
 					<td>
 						<input type="text" id="sample4_postcode" name="mpost" class="text_box" required="required" placeholder="우편번호"> 
 						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 					</td>
 				</tr>
 				<tr>
-					<td>주소</td>
+					<td>주소<b>*</b></td>
 					<td>
 						<input type="text" id="sample4_roadAddress" name="maddr" required="required" placeholder="도로명주소"> 
 						<input type="hidden" id="sample4_jibunAddress" placeholder="지번주소"> 
@@ -143,13 +149,13 @@
 					</td>
 				</tr>
 				<tr>
-					<td>상세주소</td>
+					<td>상세주소<b>*</b></td>
 					<td>
 						<input type="text" name="mdeaddr" required="required">
 					</td>
 				</tr>
 				<tr>
-					<td>생년월일</td>
+					<td>생년월일<b>*</b></td>
 					<td>
 						<input type="text" name="mbirth" id="datepicker" required="required">
 					</td>

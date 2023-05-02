@@ -1,0 +1,23 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'KCC-Ganpan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{margin:0; padding: 0;}
+#spot_warp{width:800px; height: 100%; margin: 0 auto;}
+#spot_warp #title{font-family:'KCC-Ganpan';width:100%; height:60px; text-align: center;}
+#spot_warp #title ul{overflow: hidden;}
+#spot_warp #title li{float: left; width:33.3%; line-height: 60px; font-size: 1.3em;}
+#spot_warp #title li a{cursor: pointer;}
+
+#spot_warp #search_warp{width:600px; border: 2px solid #ffd400; border-radius: 10px; overflow: hidden; margin: 0 auto; margin-bottom: 15px;}
+#spot_warp #search_warp .search input[type="text"]{width:520px; font-size:1.2em; border: 0px; outline: none; margin-left: 10px; padding:10px; float: left;}
+#spot_warp #search_warp .search img{width:40px; height:40px; float: left; cursor: pointer;}
+
+#spot_warp #spot_tag{text-align: center;}
+#spot_warp #spot_tag ul{overflow: hidden; display:inline-block;}
+#spot_warp #spot_tag li{float: left; height:35px; line-height: 35px; padding: 3px; }
+#spot_warp #spot_tag li p{cursor: pointer; border: 1px solid #ffd400; box-sizing: border-box; border-radius: 20px; padding: 0 10px; font-size: 0.8em; }

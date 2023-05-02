@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.lec.jeju.dao.SpotDao">
+    	<resultMap type="Spot" id="SpotResult">
+    		<result property="sname" column="sname"/>
+    		<result property="aid" column="aid"/>
+    		<result property="locationno" column="locationno"/>
+    		<result property="saddr" column="saddr"/>
+    		<result property="stel" column="stel"/>
+    		<result property="slink" column="slink"/>
+    		<result property="sinfo" column="sinfo"/>
+    		<result property="stime" column="stime"/>
+    		<result property="smainimg" column="smainimg"/>
+    		<result property="ssubmimg_1" column="ssubmimg_1"/>
+    		<result property="ssubmimg_2" column="ssubmimg_2"/>
+    		<result property="ssubmimg_3" column="ssubmimg_3"/>
+    		<result property="slatitude" column="slatitude"/>
+    		<result property="slongitude" column="slongitude"/>
+    		<result property="sprice" column="sprice"/>
+    	</resultMap>
+    	
+    	<!-- 관광지 리스트 -->
+    	<!-- 등록순 출력 -->
+    	<select id="spotList" parameterType="spot" resultMap="SpotResult"> 
+    		SELECT * 
+    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        		WHERE S.SNAME = B.SNAME(+))A)
+			WHERE RN BETWEEN #{startRow} AND #{endRow}
+    	</select>
+    	
+    	<!-- 기본 리스트(즐겨찾기 높은 순) 출력 -->
+    	<select id="spotSchList" parameterType="spot" resultMap="SpotResult">
+			<if test="schitem == null or schitem== ''"> 
+				SELECT * 
+    				FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        			WHERE S.SNAME = B.SNAME(+) ORDER BY bCnt DESC)A)
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
+			</if>
+			<!-- 이름 검색 -->
+			<if test="schitem == 'all'"> 
+				SELECT * 
+	    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+	        		WHERE S.SNAME = B.SNAME(+)  AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
+			</if>
+			<!-- 지역 선택 & 이름 검색 -->
+			<if test="schitem == 'sname'"> 
+				SELECT * 
+	    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+	        		WHERE S.SNAME = B.SNAME(+) AND LOCATIONNO = #{schitem} AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
+			</if>
+		</select>
+		
+		<!-- 관광지 리스트 갯수 -->
+		<select id="totCntSpot" parameterType="Spot" resultType="int">
+			<!-- 등록순 -->
+			<if test="schitem == null or schitem== ''"> 
+				SELECT COUNT(*) FROM SPOT	
+			</if>
+			<if test="schitem == 'sname'">
+				SELECT COUNT(*) FROM SPOT WHERE SNAME LIKE '%'|| #{schword} ||'%'
+			</if>
+			<if test="schitem == 'locaionno'">
+				SELECT COUNT(*) FROM SPOT WHERE LOCATIONNO = #{locationno}
+			</if>
+			<if test="schitem == 'sname'">
+				SELECT COUNT(*) FROM HOTEL WHERE SNAME LIKE '%'|| #{schword} ||'%' AND LOCATIONNO = #{locationno}
+			</if>
+		</select>
+		
+		<!-- 관광지 등록 -->
+		<insert id="insertSpot" parameterType="Spot">
+			INSERT INTO SPOT (SNAME, AID, LOCATIONNO, SADDR, STEL, SINFO, STIME, SMAINIMG, SSUBIMG_1, SLATITUDE, SLONGITUDE, SPRICE) 
+    			VALUES(#{sname}, #{aid}, #{locationno}, #{saddr}, #{stel}, #{sinfo}, #{stime}, #{smainimg}, #{ssubimg_1}, #{ssubimg_2}, #{ssubimg_3}, #{slatitude}, #{slongitude}, #{sprice});
+		</insert>
+		
+		<!-- 정보 수정 -->
+		<update id="modifySpot" parameterType="Spot">
+			UPDATE SPOT SET LOCATIONNO = #{locationno},
+                SADDR = #{saddr},
+                STEL = #{stel},
+                SINFO = #{sinfo},
+                SLINK = #{slink},
+                STIME = #{stime},
+                SMAINIMG = #{smainimg},
+                SSUBIMG_1 = #{ssubimg_1},
+                SSUBIMG_2 = #{ssubimg_2},
+                SSUBIMG_3 = #{ssubimg_3},
+                SLATITUDE = #{slatitude},
+                SLONGITUDE = #{slongitude},
+                SPRICE = #{sprice}
+    		WHERE SNAME = #{sname};
+		</update>
+		
+		<!-- 등록된 관광지 삭제 -->
+		<delete id="deleteSpot" parameterType="String">
+			DELETE FROM SPOT WHERE SNAME = #{sname}
+		</delete>
+		
+		<!-- 관광지 상세보기-->
+		<select id="detailSpot" parameterType="String" resultType="Spot">
+			SELECT * FROM SPOT WHERE SNAME = #{sname};
+		</select>
+    </mapper>

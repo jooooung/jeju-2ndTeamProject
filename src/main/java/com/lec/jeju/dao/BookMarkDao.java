@@ -31,7 +31,7 @@ public interface BookMarkDao {
 
 	// 호텔 북마크 삭제
 
-	int deleteHotelMark(String mid, String hname);
+	int deleteHotelMark(BookMark bookmark);
 
 	// 식당 북마크 삭제
 
@@ -49,5 +49,10 @@ public interface BookMarkDao {
 		
 	// 북마크 식당갯수
 	Integer ResCount(String mid);
-
+	
+	// 특정 사용자의 특정 호텔 북마크 여부
+	int checkBookmarkHotel(BookMark bookmark);
+	
+	// 특정 호텔 북마크 개수
+	int cntBmarkHotel(String hname);
 }

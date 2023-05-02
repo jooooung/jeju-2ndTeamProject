@@ -59,6 +59,13 @@ SELECT COUNT(*)
     FROM HOTEL, BOOKMARK
     WHERE HOTEL.HNAME = BOOKMARK.HNAME
     AND BOOKMARK.MID = 'test';
+    
+-- 특정 숙소 북마크 여부 - checkBookmark
+SELECT COUNT(*) FROM BOOKMARK WHERE MID = 'bbb' AND HNAME = '위드시티호텔';
+
+-- 특정 숙소 북마크 개수 - cntBmarkHotel
+SELECT COUNT(*) FROM BOOKMARK WHERE HNAME = '위드시티호텔';
+-- delete from bookmark where HNAME = '위드시티호텔';
 
 SELECT * FROM BOOKMARK;
 SELECT * FROM MEMBER;

@@ -14,8 +14,8 @@ public class HotelCommentServiceImpl implements HotelCommentService {
 	private HotelCommentDao hCommentDao;
 	
 	@Override
-	public List<HotelComment> hCommentList(HotelComment hotelComment, String pageNum) {
-		Paging paging = new Paging(hCommentDao.totCntHcomment(hotelComment), pageNum, 5, 5);
+	public List<HotelComment> hCommentList(HotelComment hotelComment, String CpageNum) {
+		Paging paging = new Paging(hCommentDao.totCntHcomment(hotelComment), CpageNum, 2, 2);
 		hotelComment.setStartrow(paging.getStartRow());
 		hotelComment.setEndrow(paging.getEndRow());
 		return hCommentDao.hCommentList(hotelComment);

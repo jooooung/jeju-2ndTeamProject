@@ -25,7 +25,7 @@ public interface AdminDao {
 	
 	public void approveHotel(@Param("hname") String hname, @Param("approval") String approval, @Param("requeststatus") String requeststatus, @Param("hlatitude") double hlatitude, @Param("hlongitude") double hlongitude);
 
-	public void approveRestaurant(@Param("rname") String rname, @Param("approval") String approval, @Param("requeststatus") String requeststatus);
+	public void approveRestaurant(@Param("rname") String rname, @Param("approval") String approval, @Param("requeststatus") String requeststatus, @Param("rlatitude") double rlatitude, @Param("rlongitude") double rlongitude);
 
 	public void rejectHotel(@Param("hname") String hname, @Param("approval") String approval, @Param("requeststatus") String requeststatus);
 

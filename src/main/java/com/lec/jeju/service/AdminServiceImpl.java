@@ -63,8 +63,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void approveRestaurant(String rname, String approval, String requeststatus) {
-		adminDao.approveRestaurant(rname, approval, requeststatus);
+	public void approveRestaurant(String rname, String approval, String requeststatus, double rlatitude, double rlongitude) {
+		adminDao.approveRestaurant(rname, approval, requeststatus, rlatitude, rlongitude);
 	}
 
 	@Override

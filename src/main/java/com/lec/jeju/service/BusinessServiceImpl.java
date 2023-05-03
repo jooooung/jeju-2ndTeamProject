@@ -274,10 +274,10 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public List<Hotel> myHotelPosts(String bid) {
-	    return businessDao.myHotelPosts(bid);
+	public List<Hotel> myHotelPosts(String bid, int startRow, int endRow) {
+	    return businessDao.myHotelPosts(bid, startRow, endRow);
 	}
-
+	
 	@Override
 	public String hotelApprovalStatus(String hname) {
 	    return businessDao.hotelApprovalStatus(hname);
@@ -324,43 +324,6 @@ public class BusinessServiceImpl implements BusinessService {
 	    restaurant.setRsubimg_2(rimg[2]);
 	    restaurant.setRsubimg_3(rimg[3]);
 	    
-	    String raddr = restaurant.getRaddr();
-	    int locationno = 0;
-	    raddr.substring(raddr.indexOf('도')+2, 14);
-	    if (raddr.equals("제주")) {
-	    	locationno = 1;
-	    } else if (raddr.equals("서귀")) {
-	    	locationno = 2;
-	    } else if (raddr.equals("대정")) {
-	    	locationno = 3;
-	    } else if (raddr.equals("애월")) {
-	    	locationno = 4;
-	    } else if (raddr.equals("한림")) {
-	    	locationno = 5;
-	    } else if (raddr.equals("조천")) {
-	    	locationno = 6;
-	    } else if (raddr.equals("구좌")) {
-	    	locationno = 7;
-	    } else if (raddr.equals("성산")) {
-	    	locationno = 8;
-	    } else if (raddr.equals("남원")) {
-	    	locationno = 9;
-	    } else if (raddr.equals("표선")) {
-	    	locationno = 10;
-	    } else if (raddr.equals("성읍")) {
-	    	locationno = 11;
-	    } else if (raddr.equals("안덕")) {
-	    	locationno = 12;
-	    } else if (raddr.equals("우도")) {
-	    	locationno = 13;
-	    } else if (raddr.equals("한경")) {
-	    	locationno = 14;
-	    } else if (raddr.equals("추자")) {
-	    	locationno = 15;
-	    }
-	    
-	    restaurant.setLocationno(locationno);
-	    
 	    boolean result = businessDao.registerRestaurant(restaurant, mRequest);
 	    if (result) {
 	        isSuccess = true;
@@ -374,8 +337,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public List<Restaurant> myRestaurantPosts(String bid) {
-	    return businessDao.myRestaurantPosts(bid);
+	public List<Restaurant> myRestaurantPosts(String bid, int startRow, int endRow) {
+	    return businessDao.myRestaurantPosts(bid, startRow, endRow);
 	}
 
 	@Override
@@ -451,4 +414,14 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.deleteRestaurantComment(rcommentno);
 	}// 식당 댓글 삭제
 	**/
+	
+	@Override
+	public int hotelTotalCount(String bid) {
+	    return businessDao.hotelTotalCount(bid);
+	}
+	
+	@Override
+	public int restaurantTotalCount(String bid) {
+	    return businessDao.restaurantTotalCount(bid);
+	}
 }

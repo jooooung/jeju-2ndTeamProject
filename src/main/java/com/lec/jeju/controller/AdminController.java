@@ -56,7 +56,7 @@ public class AdminController {
 	public String approveHotel(String hname, String haddr, Model model) {
 		model.addAttribute("haddr", haddr);
 		model.addAttribute("hname", hname);
-	    return "admin/addLatLng";
+	    return "admin/addHotelLatLng";
 	}
 	
 	@RequestMapping(value = "/approveHotel", method = RequestMethod.POST)
@@ -82,8 +82,15 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/approveRestaurant", method = RequestMethod.GET)
-	public String approveRestaurant(String rname, Model model) {
-	    adminService.approveRestaurant(rname, "A", "P");
+	public String approveRestaurant(String rname, String raddr, Model model) {
+		model.addAttribute("raddr", raddr);
+		model.addAttribute("rname", rname);
+	    return "admin/addResLatLng";
+	}
+	
+	@RequestMapping(value = "/approveRestaurant", method = RequestMethod.POST)
+	public String approveRestaurant(String rname, double rlatitude, double rlongitude, Model model) {
+	    adminService.approveRestaurant(rname, "A", "P", rlatitude, rlongitude);
 	    model.addAttribute("approvedList", adminService.approvedRestaurants("A"));
 	    model.addAttribute("approvalList", adminService.restaurantApproval("P"));
 	    return "admin/approvedRestaurants";

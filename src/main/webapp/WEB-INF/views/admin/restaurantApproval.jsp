@@ -30,8 +30,8 @@
                 <td>${restaurant.raddr}</td>
                 <td>${restaurant.rtel}</td>
                 <td>
-                  <a href="${conPath}/admin/approveRestaurnat.do?rname=${restaurnat.rname}" class="approval-button">승인</a>
-                  <a href="${conPath}/admin/rejectRestaurnat.do?rname=${restaurnat.rname}" class="reject-button">거절</a>
+                  <a href="${conPath}/admin/approveRestaurant.do?rname=${restaurant.rname}&raddr=${restaurant.raddr}" class="approval-button">승인</a>
+                  <a href="${conPath}/admin/approveRestaurant.do?rname=${restaurant.rname}" class="reject-button">거절</a>
                 </td>
               </tr>
             </c:forEach>

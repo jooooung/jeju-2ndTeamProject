@@ -6,8 +6,8 @@ SELECT *
         FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
                 FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
                 WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' 
-                 AND H.HNAME LIKE '%'||'호텔더원'||'%' ORDER BY bCnt DESC) A)
-    WHERE RN BETWEEN 1 AND 5;
+                 AND H.HNAME LIKE '%'||''||'%' ORDER BY bCnt DESC) A)
+    WHERE RN BETWEEN 1 AND 10;
     -- 지역 미선택
 SELECT *    
     FROM (SELECT ROWNUM RN, A.* 
@@ -16,7 +16,7 @@ SELECT *
                     WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
                     AND REQUESTSTATUS = 'A' AND H.HNAME LIKE '%'||'호텔더원'||'%' ORDER BY bCnt DESC) A)
     WHERE RN BETWEEN 1 AND 3;
-
+select * from location;
 
     -- 지역선택
 SELECT * 

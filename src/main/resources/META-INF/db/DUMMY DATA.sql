@@ -56,7 +56,9 @@ INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPho
     VALUES ('hotel', 'bpw', '호텔', '010-1234-1234', 'hotel@naver.com', '제주시 서귀포구', '감귤동', '125863', null, sysdate);
 INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
     VALUES ('hidden', 'bpw', '히든클리프 호텔 앤 네이쳐', '010-1234-1234', 'hotel@naver.com', '서귀포시', '예래해안로', '125863', null, sysdate);
-    
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('hotelDummy', 'bpw', 'hotelDummy', '010-1234-1234', 'hotelDummy@naver.com', '서귀포시', '예래해안로', '125863', null, sysdate);
+
 -- MEMBER -- 
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
     values('aaa', '1', '홍길동','010-1234-1234',  'hong@hong.com', '서울시 중랑구', 'xx아파트', '12345', '1995-12-12');
@@ -73,9 +75,9 @@ insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth
 
 -- SPOT --
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
-    values('한라산국립공원', 'admin', 2, '제주특별자치도 제주시 오등동 산 182', '064-713-9950', 
+    values('한라산국립공원', 'admin', 1, '제주특별자치도 제주시 오등동 1100로 2070-61', '064-713-9950', 
     'https://jeju.go.kr/hallasan/index.htm', '계절과 기후변화에 따른 입산 통제구간은 홈페이지 참고', 
-    '한라산국립공원m.jpg', '한라산국립공원s1.jpg', 33.37856425194726, 126.5431717373512, '무료');
+    '한라산국립공원m.jpg', '한라산국립공원s1.jpg', 33.37665160436703, 126.54222531677055 , '무료');
     
 insert into spot (sName, aId, locationNo, sAddr, sTel, sLink, sInfo, sTime, sMainImg, sSubImg_1, sLatitude, sLongitude, sPrice) 
     values('성산일출봉', 'admin', 2, '제주특별자치도 서귀포시 성산읍 일출로 284-12', '064-783-0959', 

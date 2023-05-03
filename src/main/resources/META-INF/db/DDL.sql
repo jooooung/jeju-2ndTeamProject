@@ -136,8 +136,8 @@ CREATE TABLE restaurant (
   rSubImg_1 VARCHAR2(255),
   rSubImg_2 VARCHAR2(255),
   rSubImg_3 VARCHAR2(255),
-  rLatitude NUMBER(10, 6) NOT NULL, -- 위도
-  rLongitude NUMBER(10, 6) NOT NULL, -- 경도
+  rLatitude NUMBER(10, 6), -- 위도
+  rLongitude NUMBER(10, 6), -- 경도
   rPrice VARCHAR2(2000),
   requestStatus VARCHAR(1) DEFAULT 'P'
 ); -- 맛집 테이블
@@ -261,3 +261,9 @@ SELECT * FROM Business;
 SELECT * FROM Admin;
 SELECT * FROM LOCATION;
 COMMIT;
+--select * from v$resource_limit where resource_name = 'processes';
+--alter system set processes=300 scope=spfile;
+--shutdown immediate; --셧다운
+--startup; --재시작
+
+

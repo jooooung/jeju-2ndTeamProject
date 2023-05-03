@@ -9,6 +9,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Hotel Approval Status</title>
+    <style>
+	    .paging{
+				text-align: center;
+			}
+			.paging a{
+				text-decoration: none;
+				color: black;
+			}
+			.paging a:hover {
+				font-weight: bold;
+			}
+	</style>
 </head>
 <body>
 

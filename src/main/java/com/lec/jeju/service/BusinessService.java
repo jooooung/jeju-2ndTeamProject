@@ -4,8 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.annotations.Param;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -34,12 +32,14 @@ public interface BusinessService {
 
 	// 호텔 등록
 	public boolean registerHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
+	// 더미등록용
+	public int registerHoteldummy(Hotel hotel);
 
     // 호텔 수정
 	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
 
     // 나의 호텔 글 조회
-	public List<Hotel> myHotelPosts(String bid);
+	public List<Hotel> myHotelPosts(String bid, int startRow, int endRow);
 
     // 호텔 등록 승인 여부 확인
 	public String hotelApprovalStatus(String hname);
@@ -51,7 +51,7 @@ public interface BusinessService {
 	public void modifyRestaurant(Restaurant restaurant);
 
     // 나의 레스토랑 글 조회
-	public List<Restaurant> myRestaurantPosts(String bid);
+	public List<Restaurant> myRestaurantPosts(String bid, int startRow, int endRow);
 
     // 레스토랑 등록 승인 여부 확인
 	public String restaurantApprovalStatus(String rname);
@@ -73,6 +73,10 @@ public interface BusinessService {
 	
 	// 숙소 댓글 삭제
 	public int deleteHotelComment(int hcommentno);
+
+	public int hotelTotalCount(String bid);
+	
+	public int restaurantTotalCount(String bid);
 	
 	// 특정 식당 댓글 목록
 	/**public List<RestaurantComment> rCommentList(RestaurantComment restaurantComment);

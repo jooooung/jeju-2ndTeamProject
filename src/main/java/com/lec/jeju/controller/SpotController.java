@@ -16,9 +16,17 @@ public class SpotController {
 	private SpotService sservice;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String list(String pageNum, Model model, Spot spot) {
+	public String list(String pageNum, Model model, Spot spot, String schitem) {
+		model.addAttribute("schitem", schitem);
 		model.addAttribute("list", sservice.spotList(pageNum, spot));
 		model.addAttribute("paging", new Paging(sservice.totCntSpot(spot), pageNum, 5, 5));
 		return "spot/list";
 	}
+	
+	@RequestMapping(value = "detail", method = RequestMethod.GET)
+	public String detail(String pageNum, Model model, String sname) {
+		model.addAttribute("detail", sservice.detailSpot(sname));
+		return "spot/detail";
+	}
+	
 }

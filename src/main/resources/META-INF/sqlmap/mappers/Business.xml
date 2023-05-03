@@ -43,7 +43,7 @@
 
 	<!-- 상세보기 -->
 	<select id="getDetailBusiness" parameterType="String" resultType="Business">
-		SELECT * FROM Business WHERE bid = #{bid}
+		SELECT * FROM Business WHERE bid = #{param1.bid}
 	</select>
 
 	<!-- 정보수정 -->
@@ -60,9 +60,13 @@
 	</update>
 	
 	<!-- 등록된 글 갯수 -->
-	<select id="totCntHotel" resultType="int">
-		SELECT COUNT(*) FROM
-		HOTEL
+	<select id="hotelTotalCount" resultType="int">
+	  SELECT COUNT(*) FROM HOTEL WHERE bid=#{bid}
+	</select>
+	
+		<!-- 등록된 글 갯수 -->
+	<select id="restaurantTotalCount" resultType="int">
+	  SELECT COUNT(*) FROM RESTAURANT WHERE bid=#{bid}
 	</select>
 	
     <!-- 업체 등록요청 (등록글 작성) -->
@@ -93,15 +97,15 @@
 	
 	<!-- Hotel 나의 글 조회 매퍼 -->
 	<select id="myHotelPosts" resultType="com.lec.jeju.vo.Hotel">
-	    SELECT * FROM Hotel WHERE bid=#{param1.bid, jdbcType=VARCHAR}
+		SELECT * FROM Hotel WHERE bid=#{param1, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- 업체 등록요청 (등록글 작성) -->
 	<!-- Restaurant 등록 -->
 	<insert id="registerRestaurant" parameterType="com.lec.jeju.vo.Restaurant">
-	   INSERT INTO Restaurant (rName, bId, locationNo, rAddr, rTel, rLink, rInfo, rMENU, rMainImg, rSubImg_1, rSubImg_2, rSubImg_3, rLatitude, rLongitude, rPrice, requestStatus)
+	   INSERT INTO Restaurant (rName, bId, locationNo, rAddr, rTel, rLink, rInfo, rMENU, rMainImg, rSubImg_1, rSubImg_2, rSubImg_3, rPrice, requeststatus)
 	    VALUES (#{param1.rname}, #{param1.bid, jdbcType=VARCHAR}, #{param1.locationno}, #{param1.raddr}, #{param1.rtel}, #{param1.rlink}, #{param1.rinfo},#{param1.rmenu},
-	    #{param1.rmainimg}, #{param1.rsubimg_1}, #{param1.rsubimg_2}, #{param1.rsubimg_3}, #{param1.rlatitude}, #{param1.rlongitude}, #{param1.rprice}, #{param1.requestStatus})
+	    #{param1.rmainimg}, #{param1.rsubimg_1}, #{param1.rsubimg_2}, #{param1.rsubimg_3}, #{param1.rprice}, #{param1.requeststatus})
 	</insert>
 	
 	<!-- 업체 등록요청 (등록글 수정) -->
@@ -113,12 +117,12 @@
 	</update>
 	
 	<!-- Restaurant 나의 글 조회 매퍼 -->
-	<select id="myRestaurantPosts" resultType="Business">
-	    SELECT * FROM Restaurant WHERE bid=#{param1.bid, jdbcType=VARCHAR}
+	<select id="myRestaurantPosts" resultType="com.lec.jeju.vo.Restaurant">
+	    SELECT * FROM Restaurant WHERE bid=#{param1, jdbcType=VARCHAR}
 	</select>
 	
 	<!-- Restaurant 등록 승인 여부 확인 매퍼 -->
-	<select id="restaurantApprovalStatus" resultType="Business">
+	<select id="restaurantApprovalStatus" resultType="com.lec.jeju.vo.Restaurant">
 	    SELECT requestStatus FROM Restaurant WHERE rname=#{restaurant.rname}
 	</select>
 	

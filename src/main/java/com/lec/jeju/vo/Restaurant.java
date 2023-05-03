@@ -25,4 +25,5 @@ public class Restaurant {
     private Double rlongitude;
     private String rprice;
     private String requeststatus;
+    private String requestStatus;
 }

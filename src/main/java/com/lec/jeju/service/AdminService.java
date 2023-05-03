@@ -24,7 +24,7 @@ public interface AdminService {
     
     public List<Restaurant> restaurantApproval(String requeststatus); // 식당 등록 요청 목록
     
-    public void approveRestaurant(String rname, String approval, String requeststatus); // 식당 승인
+    public void approveRestaurant(String rname, String approval, String requeststatus, double rlatitude, double rlongitude); // 식당 승인
     
     public void rejectRestaurant(String rname, String approval, String requeststatus); // 식당 거절
     

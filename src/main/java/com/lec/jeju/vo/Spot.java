@@ -20,6 +20,7 @@ public class Spot {
 	private int slongitude;
 	private String sprice;
 	private int bcnt;
+	private String lname;
 	
 	private int startRow;
 	private int endRow;

@@ -24,7 +24,36 @@
 		
         <label for="rname">식당 이름:</label>
         <input type="text" id="rname" name="rname" required>
-
+		
+		<label for="locationno">지역:</label>
+        <select id="locationno" name="locationno" required>
+	        <option value="">지역을 선택하세요</option>
+	        <option value="1">제주시</option>
+	        <option value="2">서귀포시</option>
+	        <option value="3">조천</option>
+	        <option value="4">구좌</option>
+	        <option value="5">성산</option>
+	        <option value="6">표선</option>
+	        <option value="7">남원</option>
+	        <option value="8">중문</option>
+	        <option value="9">안덕</option>
+	        <option value="10">대정</option>
+	        <option value="11">한경</option>
+	        <option value="12">한림</option>
+	        <option value="13">애월</option>
+	        <option value="14">우도</option>
+	        <option value="15">추자도</option>
+      	</select> 주소와 동일하게 시,읍,면을 선택하셔야합니다.<br><br>
+     	
+     	<label for="restauranttypeno">식당 종류:</label>
+        <select id="restauranttypeno" name="restauranttypeno" required>
+	        <option value="">식당 종류를 선택하세요</option>
+	        <option value="1">고기</option>
+	        <option value="2">해산물</option>
+	        <option value="3">분식</option>
+	        <option value="4">국수</option>
+      	</select><br><br>
+      	
         <label for="raddr">식당 주소:</label><br>
         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 		<input type="text" id="sample4_postcode" name="raddr" class="text_box" required="required" placeholder="우편번호"> 
@@ -42,7 +71,7 @@
         <label for="rinfo">식당 정보:</label>
         <textarea id="rinfo" name="rinfo" required></textarea>
         
-        <label for="rmenu">식당 종류:</label>
+        <label for="rmenu">식당 메뉴:</label>
         <textarea id="rmenu" name="rmenu" required></textarea>
 
 		<label for="rmainimg">식당 메인 이미지:</label>

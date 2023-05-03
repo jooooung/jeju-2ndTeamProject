@@ -41,6 +41,8 @@ public interface BusinessDao {
 	
 	// Hotel 등록
 	public boolean registerHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
+	// Hotel 더미 등록
+	public int registerHoteldummy(Hotel hotel);
 	
     // Hotel 수정
 	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);

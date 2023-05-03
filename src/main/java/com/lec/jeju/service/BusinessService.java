@@ -34,6 +34,8 @@ public interface BusinessService {
 
 	// 호텔 등록
 	public boolean registerHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
+	// 더미등록용
+	public int registerHoteldummy(Hotel hotel);
 
     // 호텔 수정
 	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);

@@ -15,6 +15,47 @@
 	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 	<link href="${conPath }/css/business/register.css" rel=stylesheet>
     <title>호텔 등록</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+	<script>
+		$(document).ready(function(){
+			 $.ajax({ 
+				    type:"post", 
+				    url:"../dummy/hotelDummy.json",
+				    dataType:"json",
+				    success: function(data){
+				    	$.each(data, function(i, item){
+				    		$.ajax({
+				    			type : "get",
+				    			url : "${conPath}/business/registerHoteldummy.do",
+				    			dataType : "html",
+				    			data : {
+				    				"hname": item.hname,
+				    			    "bid": item.bid,
+				    			    "locationno": item.LOCATIONNO,
+				    			    "haddr": item.HADDR,
+				    			    "htel": item.HTEL,
+				    			    "hinfo": item.hinfo,
+				    			    "intime": item.INTIME,
+				    			    "outtime": item.OUTTIME,
+				    			    "hmainimg": item.HMAINIMG,
+				    			    "hlatitude": item.HLATITUDE,
+				    			    "hlongitude": item.HLONGITUDE,
+				    			    "hprice": item.HPRICE,
+				    			    "requeststatus": item.requeststatus
+				    			},
+				    			success : function(){
+				    				console.log("더미 데이터 삽입 성공");
+				    			},
+				    			error : function(){
+				    				console.log("더미 데이터 삽입 실패/"+item.requestStatus);
+				    				
+				    			}
+				    		})
+				    	})
+				    }
+				})
+		});
+	</script>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
@@ -86,9 +127,10 @@
         
         <input type="hidden" id="requeststatus" name="requeststatus" value="P">
         
-        <button type="submit">호텔 등록</button>
+        <button type="submit"">호텔 등록</button>
         <a href="${conPath}/main.do" class="but">등록 취소</a>
     </form>
+        
     <jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

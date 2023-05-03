@@ -267,6 +267,10 @@ public class BusinessServiceImpl implements BusinessService {
 	    }
 	    return isSuccess;
 	}
+	@Override
+	public int registerHoteldummy(Hotel hotel) {
+		return businessDao.registerHoteldummy(hotel);
+	}
 	
 	@Override
 	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest) {
@@ -451,4 +455,6 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.deleteRestaurantComment(rcommentno);
 	}// 식당 댓글 삭제
 	**/
+
+	
 }

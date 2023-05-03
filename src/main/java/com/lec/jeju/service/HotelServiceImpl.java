@@ -25,7 +25,7 @@ public class HotelServiceImpl implements HotelService {
 	
 	@Override
 	public List<Hotel> hotelList(String pageNum, Hotel hotel, Model model) {
-		Paging paging = new Paging(hotelDao.totCntHotel(hotel), pageNum, 5, 5);
+		Paging paging = new Paging(hotelDao.totCntHotel(hotel), pageNum, 2, 2);
 		model.addAttribute("paging", paging);
 		hotel.setStartrow(paging.getStartRow());
 		hotel.setEndrow(paging.getEndRow());

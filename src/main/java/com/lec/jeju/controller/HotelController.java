@@ -38,20 +38,27 @@ public class HotelController {
 	
 	// 숙소목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String list(String pageNum, Model model, Hotel hotel) {
+	public String list(String pageNum, Model model, Hotel hotel, HttpSession session) {
 		// model.addAttribute("locList", hotelService.locList());
 		model.addAttribute("list", hotelService.hotelList(pageNum, hotel, model));
-		
+		BookMark mark = new BookMark();
+		String hname = hotel.getHname();
+		Member member = (Member) session.getAttribute("member");
+		if(member != null) {
+			String mid = member.getMid();
+			mark.setMid(mid);
+			model.addAttribute("checkBookmarkHotel", bookmarkService.checkBookmarkHotel(mark));
+		}
+		model.addAttribute("bookmark", bookmarkService.cntBmarkHotel(hname));
 		return "hotel/list";
 	}
 	
 	// 숙소 상세보기
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String detail(String hname, Model model, String pageNum, HotelComment hotelComment, HttpSession session) {
+	public String detail(String hname, Model model, String pageNum, HotelComment hotelComment, HttpSession session, String CpageNum) {
 		model.addAttribute("hotelVo", hotelService.detailHotel(hname));
-		String CpageNum = "1";
-		List<HotelComment> hotelComments = hotelCommentService.hCommentList(hotelComment, CpageNum);
-		model.addAttribute("paging", new Paging(hotelCommentService.totCntHcomment(hname, hotelComment), CpageNum, 5, 5));
+		
+		List<HotelComment> hotelComments = hotelCommentService.hCommentList(hotelComment, CpageNum, model);
 		model.addAttribute("hotelComments", hotelComments);
 		
 		BookMark mark = new BookMark();

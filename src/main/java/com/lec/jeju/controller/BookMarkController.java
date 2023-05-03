@@ -78,6 +78,19 @@ public class BookMarkController {
 		return "bookmark/spotList";
 	}
 	
+	// 호텔 목록에서 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkHotelList", method = RequestMethod.GET)
+	public String addBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+		bookMarkService.addHotelBookmark(bookmark);
+		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+	}
+	// 호텔 목록에서 즐겨찾기 추가
+	@RequestMapping(value = "deleteBookmarkHotelList", method = RequestMethod.GET)
+	public String deleteBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+		bookMarkService.addHotelBookmark(bookmark);
+		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+	}
+	
 	// 호텔 즐겨찾기 추가
 	@RequestMapping(value = "addBookmarkHotel", method = RequestMethod.GET)
 	public String addBookmarkHotel(BookMark bookmark, String mid, String pageNum, String lname) throws UnsupportedEncodingException {

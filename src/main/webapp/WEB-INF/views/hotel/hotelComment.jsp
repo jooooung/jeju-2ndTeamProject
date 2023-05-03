@@ -11,7 +11,7 @@
 	<style>
 		.comment{
 			display: flex;
-			margin: 20px 0;
+			margin: 50px 0;
 		}
 		.comment .write{
 			width: 100%;
@@ -40,13 +40,6 @@
 			cursor: pointer;
 			color: white;
 		}
-		.commentBtn{
-			margin: 10px 5px;
-			height: 20px;
-		}
-		.modifyBtn{
-			float: right;
-		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<script>
@@ -60,9 +53,9 @@
 						"<form action='modifyComment.do' method='post'>"
 						+"<input type='hidden' id='hcommentno' name='hcommentno'  value='"+ hcommentno +"'>"
 						+"<input type='hidden' id='hname' name='hname' value='${hotelVo.hname }'>"
-						+"<input type='text' name='hcontent' id='hcontent' value='"+ hcontent + "'>"
-			         	+"<input type='button' value='취소' class='commentBtn modifyBtn' onclick='cancle()'>"
+						+"<textarea rows='10' cols='100' name='hcontent' id='hcontent'>"+hcontent+"</textarea>"
 						+"<input type='submit' value='수정' class='commentBtn modifyBtn'> "
+			         	+"<input type='button' value='취소' class='commentBtn modifyBtn' onclick='cancle()'>"
 			         	+"</form>"
 			    );
 			});

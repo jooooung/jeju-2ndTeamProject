@@ -35,4 +35,5 @@ public class Hotel {
 	private Location location;
 	private Hreservation hreservation;
 	private HotelComment hotelComment;
+	
 }

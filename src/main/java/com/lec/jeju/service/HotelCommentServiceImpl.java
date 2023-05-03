@@ -16,7 +16,7 @@ public class HotelCommentServiceImpl implements HotelCommentService {
 	
 	@Override
 	public List<HotelComment> hCommentList(HotelComment hotelComment, String CpageNum, Model model) {
-		Paging paging = new Paging(hCommentDao.totCntHcomment(hotelComment), CpageNum, 2, 2);
+		Paging paging = new Paging(hCommentDao.totCntHcomment(hotelComment), CpageNum, 5, 5);
 		model.addAttribute("paging", paging);
 		hotelComment.setStartrow(paging.getStartRow());
 		hotelComment.setEndrow(paging.getEndRow());

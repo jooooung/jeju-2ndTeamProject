@@ -46,18 +46,28 @@ img {
 		</script>
 	</c:if>
 	<div id="content">
-	<form action="${conPath}/admin.do" method="post">
-		<input type="hidden" name="method" value="login">
-		<input type="hidden" name="after" value="${empty param.after ?  'main.do':param.after}">
-		<table>
-			<caption>관리자 로그인 화면</caption>
-			<tr><th>아이디</th><td><input type="text" name="aid" required="required" value="${aid }"></td></tr>
-			<tr><th>비밀번호</th><td><input type="password" name="apw" required="required" value="${apw }"></td></tr>
-			<tr><td colspan="2">
-				<input type="submit" value="로그인">
-			</td></tr>
-		</table>
-	</form>
+		<form action="${conPath}/admin.do" method="post">
+			<input type="hidden" name="method" value="login"> <input
+				type="hidden" name="after"
+				value="${empty param.after ?  'main.do':param.after}">
+			<table>
+				<caption>관리자 로그인 화면</caption>
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" name="aid" required="required"
+						value="${aid }"></td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="apw" required="required"
+						value="${apw }"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><input type="submit" value="로그인"
+						style="width: 100%;"></td>
+				</tr>
+			</table>
+		</form>
 	</div>
 	<jsp:include page="../main/footer.jsp" />
 </body>

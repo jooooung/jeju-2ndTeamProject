@@ -1,18 +1,29 @@
 ------------------------------------------------------
 --           restaurant query            
 ------------------------------------------------------
--- (1) 식당목록 전체(startRow ~ endRow까지)
+-- (등록 순) - 기본출력
 SELECT * 
-    FROM (SELECT ROWNUM RN, A.*
-        FROM (SELECT R.* FROM restaurant R, BUSINESS B  WHERE R.BID = B.BID ORDER BY RPRICE DESC) A)
-    WHERE RN BETWEEN 1 AND 50;
+    FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*, NVL(bCnt, 0) bCnt FROM restaurant R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
+    WHERE R.RNAME = B.RNAME(+))A)
+    WHERE RN BETWEEN 1 AND 2;
     
 -- 식당목록 즐겨찾기 순
 SELECT * 
-    FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM restaurant S, (SELECT rName, COUNT(*) bCnt FROM BOOKMARK GROUP BY rName)B 
-        WHERE S.rName = B.rName(+) ORDER BY bCnt DESC)A)
-WHERE RN BETWEEN 1 AND 3;
+FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*, NVL(bCnt, 0) bCnt FROM restaurant R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
+WHERE R.RNAME = B.RNAME(+) ORDER BY bCnt DESC)A)
+WHERE RN BETWEEN 1 AND 2;
 
+-- 이름검색
+SELECT * 
+        FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*, NVL(bCnt, 0) bCnt FROM restaurant R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
+        WHERE R.RNAME = B.RNAME(+)  AND R.RNAME LIKE '%' || '카페' || '%' ORDER BY bCnt DESC)A)
+        WHERE RN BETWEEN 1 AND 5;
+
+-- 음식종류, 이름검색
+SELECT * 
+	 FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*, NVL(bCnt, 0) bCnt FROM restaurant R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY RNAME)B 
+	 WHERE R.RNAME = B.RNAME(+) AND RESTAURANTTYPENO = '3' AND R.RNAME LIKE '%' || '제주' || '%' ORDER BY bCnt DESC)A)
+     WHERE RN BETWEEN 1 AND 2;
 -- 식당목록 카페
 SELECT * FROM (SELECT ROWNUM RN, A.* 
     FROM (SELECT * FROM  RESTAURANT WHERE RestauranTtypeNo LIKE '%'||'5'||'%' ORDER BY RNAME DESC) A) 
@@ -39,7 +50,14 @@ SELECT * FROM (SELECT ROWNUM RN, A.*
     WHERE RN BETWEEN 1 AND 10;
 
 -- (2) 등록된 식당 갯수
-SELECT COUNT(*) FROM RESTAURANT;
+SELECT COUNT(*) FROM RESTAURANT; -- 전체
+SELECT COUNT(*) FROM RESTAURANT WHERE RNAME LIKE '%'||'올래'||'%'; -- 이름검색
+SELECT COUNT(*) FROM RESTAURANT WHERE LOCATIONNO = '2'; -- 지역검색
+SELECT COUNT(*) FROM RESTAURANT WHERE RestauranTtypeNo = '1'; -- 종류검색
+SELECT COUNT(*) FROM RESTAURANT WHERE RNAME -- 이름 및 지역
+    LIKE '%'|| '가시' ||'%' AND LOCATIONNO = '5';
+SELECT COUNT(*) FROM RESTAURANT WHERE RNAME -- 이름 및 종류
+    LIKE '%'|| '가시' ||'%' AND RestauranTtypeNo = '4';
 
 -- (3) 식당등록
 INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR, RTEL, RLINK, RINFO, RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3, RLATITUDE, RLONGITUDE, RPRICE)
@@ -48,26 +66,30 @@ INSERT INTO restaurant (RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR, RTEL, RL
             'main.img', 'sub1.img', 'sub2.img', 'sub3.img',  33.49710002092335, 126.5089619090469, '국수 7000원 부터');
             
 -- (4) 등록된 식당 수정
-UPDATE RESTAURANT SET
-    RNAME = '바뀐식당',
-    BID = 'su',
-    LOCATIONNO = 1,
-    RADDR = '제주특별자치도 제주시 오라로 42',
-    RTEL = '064-759-8582',
-    RLINK = 'LINK',
-    RINFO = '만복이네 바뀌었어유',
-    RMENU = '참치김밥',
-    RMAINIMG = 'main.jpg',
-    RSUBIMG_1 = 'sub1.jpg',
-    RSUBIMG_2 = 'sub2.jpg',
-    RSUBIMG_3 = 'sub3.jpg',
-    RLATITUDE = 33.497066158681676,
-    RLONGITUDE = 126.50894864880289,
-    RPRICE = '수정하자고'
-WHERE RNAME = '제주김만복';
+UPDATE RESTAURANT SET RNAME = '제주김만복2',
+    BID = '수정',
+    LOCATIONNO = 2,
+    RestauranTtypeNo = 1,
+    RADDR = '수정 주소',
+    RTEL = '수정 전화',
+    RLINK = '수정 링크',
+    RINFO = '수정 인포',
+    RMENU = '수정 메뉴',
+    RMAINIMG = '수정 메인',
+    RSUBIMG_1 = '수정 서브1',
+    RSUBIMG_2 = '수정 서브2',
+    RSUBIMG_3 = '수정 서브3',
+    RLATITUDE = 1212,
+    RLONGITUDE = 1414,
+    RPRICE = '수정된 만복이예유'
+WHERE RNAME = '올래국수1';
+
+select * from spot;
+SELECT * FROM location;
+SELECT * FROM restaurant;
 
 -- (5) 등록된 식당 삭제
-DELETE FROM RESTAURANT WHERE RNAME = '바뀐식당';
+DELETE FROM RESTAURANT WHERE RNAME = '올래국수1';
 
 -- (6) 상세보기 
 SELECT * FROM RESTAURANT WHERE RNAME = '올래국수';
@@ -78,6 +100,11 @@ UPDATE RESTAURANT SET requestStatus = 'A';
     -- 관리자가 숙소 등록 거절
 UPDATE RESTAURANT SET requestStatus = 'R';
 
+
+SELECT * FROM location;
+SELECT * FROM restaurant;
+SELECT * FROM RestauranTtype;
+commit;
 ------------------------------------------------------
 --           restaurantComment query            
 ------------------------------------------------------

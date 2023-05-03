@@ -1,0 +1,150 @@
+@charset "UTF-8";
+/* 전체 화면을 덮는 wrap */
+#wrap {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+/* 상단 타이틀 */
+.title {
+	text-align: center;
+	display: flex;
+	justify-content: space-around;
+	margin: 20px 0;
+}
+
+.title a {
+	text-decoration: none;
+	margin: 30px;
+	padding: 10px 15px;
+	font-size: 30px;
+	color: #333;
+	transition: background-color 0.3s, color 0.3s;
+	text-align: center;
+}
+
+.title a:hover {
+	background-color: #333;
+	color: #fff;
+}
+
+/* 검색 창 */
+.search {
+	margin: 20px 0;
+}
+
+.search form {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search input[type="text"] {
+	padding: 10px;
+	font-size: 18px;
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	width: 700px;
+}
+
+.search input[type="image"] {
+	cursor: pointer;
+	width: 50px;
+	height: auto;
+}
+
+/* 음식 종류 */
+#spot_tag li {
+	display: inline-block;
+	padding: 10px 15px;
+	background-color: #f5f5f5;
+	border: 1px solid #ddd;
+	border-radius: 15px;
+	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	margin: 10px;
+	font-weight: bold;
+	width: 70px;
+	text-align: center;
+}
+
+#spot_tag li:hover {
+	background-color: #eee;
+}
+
+#spot_tag p {
+	margin: 0;
+	font-size: 18px;
+	color: #333;
+}
+
+}
+
+/* 식당 목록 */
+.item_list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+.item_section {
+	width: 700px;
+	height: 500px;
+	margin: 20px;
+	border: 2px solid #ccc;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+.item_section:hover {
+	box-shadow: 0px 0px 10px #ccc;
+	transition: all 0.3s ease;
+}
+
+.item_section img {
+	width: 100%;
+	height: 350px;
+	object-fit: cover;
+}
+
+.item_section h2 {
+	margin: 10px;
+	font-size: 24px;
+	color: #333;
+}
+
+.item_section .name {
+	margin: 10px;
+	font-size: 18px;
+	font-weight: bold;
+	color: #333;
+}
+
+.item_section .info {
+	margin: 10px;
+	font-size: 16px;
+	color: #666;
+}
+
+/* 페이징 */
+.paging {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 50px;
+}
+
+.paging a, .paging b {
+	text-decoration: none;
+	margin: 0 5px;
+	padding: 5px;
+	font-size: 18px;
+	color: #333;
+	border-radius: 5px;
+}
+
+.paging a:hover {
+	background-color: #ccc;
+}

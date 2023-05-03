@@ -22,8 +22,8 @@ public interface MemberDao {
 
 	public String findID(String memail);
 
-	public String findPW(String mid, String memail);
-	
+	public String findPW(Member member);
+
 	public int updatePW(Member member);
 
 }

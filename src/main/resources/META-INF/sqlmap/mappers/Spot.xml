@@ -28,7 +28,7 @@
     		SELECT * 
     			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
         		WHERE S.SNAME = B.SNAME(+))A)
-			WHERE RN BETWEEN #{startRow} AND #{endRow}
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
     	</select>
     	
     	<!-- 기본 리스트(즐겨찾기 높은 순) 출력 -->
@@ -93,7 +93,7 @@
                 SLATITUDE = #{slatitude},
                 SLONGITUDE = #{slongitude},
                 SPRICE = #{sprice}
-    		WHERE SNAME = #{sname};
+    		WHERE SNAME = #{sname}
 		</update>
 		
 		<!-- 등록된 관광지 삭제 -->
@@ -103,6 +103,6 @@
 		
 		<!-- 관광지 상세보기-->
 		<select id="detailSpot" parameterType="String" resultType="Spot">
-			SELECT * FROM SPOT WHERE SNAME = #{sname};
+			SELECT * FROM SPOT WHERE SNAME = #{sname}
 		</select>
     </mapper>

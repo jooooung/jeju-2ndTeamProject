@@ -13,8 +13,24 @@
 			width: 80%;
 			margin: 0 auto;
 		}
+		
 		.hidden{
 			display: none; 
+		}
+		.reservBtn{
+			border: 3px solid #ffd400;
+		    border-radius: 50px;
+		    background-color: white;
+		    font-size: 15px;
+		    font-weight: 700;
+		    padding: 10px 15px;
+		    cursor: pointer;
+		    float: right;
+		    margin-left: 20px;
+		}
+		.reservBtn:hover {
+			background-color:  #ffd400;
+		    color: white;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -41,8 +57,10 @@
 <body>
 	<jsp:include page="../main/header.jsp"/>
 	<div class="wrap">
-		<h1>예약 </h1>
-		<h2>${param.hname }</h2>
+		<h1>${param.hname } 예약</h1>
+		<h2 align="right">
+				1박  <fmt:formatNumber value="${hotelVo.hprice }" pattern="###,###"/>원
+			</h2>
 		<form action="reserv.do" method="post">
 			<input type="hidden" name="mid" value="${param.mid }">
 			<input type="hidden" name="hname" value="${param.hname }">
@@ -51,11 +69,9 @@
 			<input type="hidden" name="pageNum" value="${param.pageNum }">
 			<input type="hidden" name="lname" value="${param.lname}">
 			<jsp:include page="cal.jsp"/>
-			<p align="right">
-				1박  <fmt:formatNumber value="${hotelVo.hprice }" pattern="###,###"/>원
-			</p>
-			<input type="submit" value="예약하기">
-			<input type="button" value="취소" onclick="history.back()">
+			
+			<input type="button" class="reservBtn" value="취소" onclick="history.back()">
+			<input type="submit" class="reservBtn" value="예약하기">
 		</form>
 		<!-- 기존 예약 데이터 -->
 		<c:forEach var="list" items="${list }">

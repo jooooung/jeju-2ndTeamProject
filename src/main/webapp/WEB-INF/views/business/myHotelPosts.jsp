@@ -38,7 +38,7 @@
         <tbody>
             <c:forEach items="${hotelList }" var="hotel">
                 <tr>
-                    <td>${hotel.hname}</td>
+                    <td><a href="${conPath}/admin/hotelDetail.do?hname=${hotel.hname}">${hotel.hname}</a></td>
                     <td>${hotel.haddr}</td>
                     <td>${hotel.htel}</td>
                     <td>${hotel.hprice}</td>

@@ -217,7 +217,6 @@ INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, 
 -- 댓글의 댓글
 INSERT INTO HOTELCOMMENT (HCOMMENTNO, HNAME, MID, BID, HCONTENT, HGROUP, HSTEP, HINDENT, HCRDATE)
     VALUES (hCommentNo_seq.NEXTVAL, '호텔더원', 'aaa', NULL, '감사합니다', 1, 2, 2, SYSDATE);
-
     
 -- FESTIVAL --
 INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)
@@ -231,6 +230,7 @@ INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)
 INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)
     VALUES (festivalNo_seq.NEXTVAL, 'admin', '제주 반려동물 문화축제', '2023.05.06. ~ 2023.05.07.');
     select * from restaurant;
+    select * from hotel;
 -- REVIEW --
 insert into Review (reviewNo, mId, rTitle, rContent) 
 values (reviewNo_seq.nextval, 'aaa', '성산일출봉 다녀왔습니다~', 

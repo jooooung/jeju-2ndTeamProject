@@ -19,6 +19,7 @@
     		<result property="slatitude" column="slatitude"/>
     		<result property="slongitude" column="slongitude"/>
     		<result property="sprice" column="sprice"/>
+    		<result property="bcnt" column="bcnt"/>
     	</resultMap>
     	
     	<!-- 관광지 리스트 -->

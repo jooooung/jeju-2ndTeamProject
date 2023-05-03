@@ -32,6 +32,16 @@
 		SELECT * FROM Admin WHERE aid = #{aid}
 	</select>
 	
+	<!-- 등록된 글 갯수 -->
+	<select id="hotelTotalCount" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM hotel WHERE requeststatus = #{aid}
+    </select>
+	
+	<!-- 등록된 글 갯수 -->
+	<select id="restaurantTotalCount" resultType="int">
+	  SELECT COUNT(*) FROM RESTAURANT WHERE requeststatus = #{aid}
+	</select>
+	
 	<!-- 업체 등록 승인, 거절 -->
     <update id="approveHotel" parameterType="Hotel">
         UPDATE Hotel SET requestStatus='A', 

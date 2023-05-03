@@ -1,5 +1,7 @@
 package com.lec.jeju.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import com.lec.jeju.service.BookMarkService;
 import com.lec.jeju.service.HotelService;
 import com.lec.jeju.service.MemberService;
 import com.lec.jeju.vo.BookMark;
+import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.Member;
 
 @Controller
@@ -73,5 +76,35 @@ public class BookMarkController {
 		List<BookMark> spotList = bookMarkService.getBookmarkSpotList(mid, session);
 		model.addAttribute("spotList", spotList);
 		return "bookmark/spotList";
+	}
+	
+	// 호텔 목록에서 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkHotelList", method = RequestMethod.GET)
+	public String addBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+		bookMarkService.addHotelBookmark(bookmark);
+		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+	}
+	// 호텔 목록에서 즐겨찾기 추가
+	@RequestMapping(value = "deleteBookmarkHotelList", method = RequestMethod.GET)
+	public String deleteBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+		bookMarkService.addHotelBookmark(bookmark);
+		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+	}
+	
+	// 호텔 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkHotel", method = RequestMethod.GET)
+	public String addBookmarkHotel(BookMark bookmark, String mid, String pageNum, String lname) throws UnsupportedEncodingException {
+		bookMarkService.addHotelBookmark(bookmark);
+		String hname = 	URLEncoder.encode(bookmark.getHname(), "utf-8");
+		lname = URLEncoder.encode(lname, "utf-8");
+		return "redirect:../hotel/detail.do?hname="+hname+"&mid="+mid+"&pageNum="+pageNum+"&lname="+lname;
+	}
+	// 호텔 즐겨찾기 취소
+	@RequestMapping(value = "deleteBookmarkHotel", method = RequestMethod.GET)
+	public String deleteBookmarkHotel(BookMark bookmark, String mid, String pageNum, String lname) throws UnsupportedEncodingException {
+		bookMarkService.deleteHotelBookmark(bookmark);
+		String hname = 	URLEncoder.encode(bookmark.getHname(), "utf-8");
+		lname = URLEncoder.encode(lname, "utf-8");
+		return "redirect:../hotel/detail.do?hname="+hname+"&mid="+mid+"&pageNum="+pageNum+"&lname="+lname;
 	}
 }

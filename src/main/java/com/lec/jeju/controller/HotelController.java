@@ -2,7 +2,6 @@ package com.lec.jeju.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.sql.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -10,14 +9,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.lec.jeju.service.BookMarkService;
 import com.lec.jeju.service.HotelCommentService;
 import com.lec.jeju.service.HotelService;
 import com.lec.jeju.service.HreservationService;
 import com.lec.jeju.util.Paging;
+import com.lec.jeju.vo.BookMark;
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
@@ -33,22 +33,45 @@ public class HotelController {
 	private HotelCommentService hotelCommentService;
 	@Autowired
 	private HreservationService hreservService;
+	@Autowired
+	private BookMarkService bookmarkService;
 	
 	// 숙소목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public String list(String pageNum, Model model, Hotel hotel) {
+	public String list(String pageNum, Model model, Hotel hotel, HttpSession session) {
 		// model.addAttribute("locList", hotelService.locList());
 		model.addAttribute("list", hotelService.hotelList(pageNum, hotel, model));
+		BookMark mark = new BookMark();
+		String hname = hotel.getHname();
+		Member member = (Member) session.getAttribute("member");
+		if(member != null) {
+			String mid = member.getMid();
+			mark.setMid(mid);
+			model.addAttribute("checkBookmarkHotel", bookmarkService.checkBookmarkHotel(mark));
+		}
+		model.addAttribute("bookmark", bookmarkService.cntBmarkHotel(hname));
 		return "hotel/list";
 	}
 	
 	// 숙소 상세보기
 	@RequestMapping(value = "detail", method = RequestMethod.GET)
-	public String detail(String hname, Model model, String pageNum, HotelComment hotelComment) {
+	public String detail(String hname, Model model, String pageNum, HotelComment hotelComment, HttpSession session, String CpageNum) {
 		model.addAttribute("hotelVo", hotelService.detailHotel(hname));
-		List<HotelComment> hotelComments = hotelCommentService.hCommentList(hotelComment, pageNum);
-		model.addAttribute("paging", new Paging(hotelCommentService.totCntHcomment(hname, hotelComment), pageNum, 5, 5));
+		
+		List<HotelComment> hotelComments = hotelCommentService.hCommentList(hotelComment, CpageNum, model);
 		model.addAttribute("hotelComments", hotelComments);
+		
+		BookMark mark = new BookMark();
+		mark.setHname(hname);
+		
+		Member member = (Member) session.getAttribute("member");
+		if(member != null) {
+			String mid = member.getMid();
+			mark.setMid(mid);
+			model.addAttribute("checkBookmarkHotel", bookmarkService.checkBookmarkHotel(mark));
+		}
+		model.addAttribute("bookmark", bookmarkService.cntBmarkHotel(hname));
+		
 		return "hotel/detail";
 	}
 	

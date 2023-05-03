@@ -8,6 +8,18 @@
 	<meta charset="UTF-8">
 	<title>승인된 호텔 목록</title>
 	<link href="${conPath }/css/admin/approved.css" rel=stylesheet>
+	<style>
+	    .paging{
+				text-align: center;
+			}
+			.paging a{
+				text-decoration: none;
+				color: black;
+			}
+			.paging a:hover {
+				font-weight: bold;
+			}
+	</style>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
@@ -26,7 +38,7 @@
 				<tbody>
 					<c:forEach items="${approvedList}" var="hotel">
 						<tr>
-							<td>${hotel.hname}</td>
+							<td><a href="${conPath}/admin/hotelDetail.do?hname=${hotel.hname}">${hotel.hname}</a></td>
 							<td>${hotel.haddr}</td>
 							<td>${hotel.htel}</td>
 						</tr>
@@ -40,6 +52,23 @@
 			<a href="${conPath}/admin/hotelApproval.do" class="my-button">호텔 등록 요청 목록</a>
 			<a href="${conPath}/main.do" class="my-button">메인으로 돌아가기</a>
 		</div>
+	</div>
+	<div class="paging">
+			<c:if test="${paging.startPage > paging.blockSize }">
+			[ <a href="${conPath }/admin/approvedHotels.do?pageNum=${paging.startPage-1}">이전</a> ]
+		</c:if>
+			<c:forEach var="i" begin="${paging.startPage }"
+				end="${paging.endPage }">
+				<c:if test="${i eq paging.currentPage}">
+				[ <b>${i }</b> ]
+			</c:if>
+				<c:if test="${i != paging.currentPage }">
+				[ <a href="${conPath }/admin/approvedHotels.do?pageNum=${i}">${i }</a> ]
+			</c:if>
+			</c:forEach>
+			<c:if test="${paging.endPage < paging.pageCnt }">
+			[ <a href="${conPath }/admin/approvedHotels.do?pageNum=${paging.endPage+1}">다음</a> ]
+		</c:if>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>
 </body>

@@ -19,6 +19,7 @@ public class Spot {
 	private int slatitude;
 	private int slongitude;
 	private String sprice;
+	private int bcnt;
 	
 	private int startRow;
 	private int endRow;

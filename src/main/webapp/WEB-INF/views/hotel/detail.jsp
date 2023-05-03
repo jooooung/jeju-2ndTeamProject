@@ -19,18 +19,20 @@
 			width: 80%;
 			margin: 0 auto;
 		}
+		h2 {
+		    float: left;
+		}
 		.wrap .title{
 			text-align: center;
 			margin: 20px 0;
-			display: flex;
-			justify-content: space-between;
 		}
 		.wrap .lname{
 			color: brown;
 			padding-left: 10px;
 		}
-		.wrap .bookmark{
-			line-height: 60px;
+
+		.lineBookmark:hover, .fullBookmark:hover{
+			cursor: pointer;
 		}
 		.swiper {
 			width: 100%;
@@ -78,11 +80,32 @@
 		    border-radius: 10px;
 		    font-weight: 600;
 		}
+		.reserv:hover {
+			cursor: pointer;
+			color: white;
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<script>
 		$(document).ready(function(){
+			var member = '${member}'
+			var mid = '${member.mid}'
+			var hname = '${hotelVo.hname}';
+			var checkBookmarkHotel = '${checkBookmarkHotel}'
 			
+			$('.lineBookmark').click(function(){
+				if(!member){
+					alert('로그인 후 이용 가능한 서비스입니다.');
+					location.href='${conPath}/member/login.do?after=detali.do';
+				}else if(checkBookmarkHotel == 1){
+					return false;
+				}else{
+					location.href='${conPath}/bookmark/addBookmarkHotel.do?hname='+hname+'&mid='+mid+'&pageNum='+'${param.pageNum }'+'&lname='+'${param.lname }';
+				}
+			});
+			$('.fullBookmark').click(function(){
+				location.href='${conPath}/bookmark/deleteBookmarkHotel.do?hname='+hname+'&mid='+mid+'&pageNum='+'${param.pageNum }'+'&lname='+'${param.lname }';
+			});
 		});
 	</script>
 </head>
@@ -90,9 +113,27 @@
 	<jsp:include page="../main/header.jsp"/>
 	<div class="wrap">
 		<div class="title">
-			<h2><img alt="숙소아이콘" src="${conPath }/icon/숙소.png" style="width: 50px;">
-			${hotelVo.hname }</h2>
-			<p class="bookmark">즐겨찾기수</p>
+			<h2>
+				<img alt="숙소아이콘" src="${conPath }/icon/숙소.png" style="width: 50px;">
+				${hotelVo.hname }
+			</h2>
+			<p class="bookmark">
+				<c:if test="${empty member }">
+					<div class="lineBookmark" align="right">
+						<img width="50px;" alt="빈 별" src="${conPath }/img/linestar.png"> ${bookmark }
+					</div>
+				</c:if>
+				<c:if test="${checkBookmarkHotel == 0 }">
+					<div class="lineBookmark" align="right">
+						<img width="50px;" alt="빈 별" src="${conPath }/img/linestar.png"> ${bookmark }
+					</div>
+				</c:if>
+				<c:if test="${checkBookmarkHotel == 1 }">
+					<div class="fullBookmark" align="right">
+						<img width="50px;" alt="별" src="${conPath }/img/fullstar.png">${bookmark }
+					</div>
+				</c:if>
+			</p>
 		</div>
 		<div class="lname">
 			${param.lname }

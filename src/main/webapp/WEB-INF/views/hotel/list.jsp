@@ -155,6 +155,26 @@
 				var schword = $('input[name="schword"]').val();
 				location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }&schitem='+schitem+"&schword="+schword;
 			});
+			
+			
+				var member = '${member}'
+				var mid = '${member.mid}'
+				var hname = $('input[name=hname]').val();
+				var checkBookmarkHotel = '${checkBookmarkHotel}'
+				
+			$('.lineBookmark').click(function(){
+				if(!member){
+					alert('로그인 후 이용 가능한 서비스입니다.');
+					location.href='${conPath}/member/login.do?after=hotel/list.do';
+				}else if(checkBookmarkHotel == 1){
+					return false;
+				}else{
+					location.href='${conPath}/bookmark/addBookmarkHotelList.do?hname='+hname+'&mid='+mid+'&pageNum='+'${param.pageNum }';
+				}
+			});
+			$('.fullBookmark').click(function(){
+				location.href='${conPath}/bookmark/deleteBookmarkHotel.do?hname='+hname+'&mid='+mid+'&pageNum='+'${param.pageNum }';
+			});
 		});
 	</script>
 	
@@ -201,12 +221,33 @@
 			<ul class="item_list">
 			<c:forEach var="list" items="${list }">
 				<li>
-					<dl class="item_section" onclick="location.href='${conPath}/hotel/detail.do?hname=${list.hname }&pageNum=${paging.currentPage}&lname=${list.location.lname}'">
-						<img alt="" src="${conPath }/hotelImgFileUpload/${list.hmainimg}">
-						<h2>${list.hname }</h2>
-						<p class="name">${list.location.lname}</p>
-						<p class="info">${list.hinfo }</p>
-						<span>즐겨찾기 수</span>
+					<dl class="item_section">
+						<div onclick="location.href='${conPath}/hotel/detail.do?hname=${list.hname }&pageNum=${paging.currentPage}&lname=${list.location.lname}&mid=${member.mid }&CpageNum=1'">
+							<img alt="" src="${conPath }/hotelImgFileUpload/${list.hmainimg}">
+							<h2>${list.hname }</h2>
+							<p class="name">${list.location.lname}</p>
+							<p class="info">${list.hinfo }</p>
+						</div>
+						<%-- <div class="bookmark">
+							<input type="hidden" name="hname" value="${list.hname }">
+							<p class="bookmark">
+							<c:if test="${empty member }">
+								<div class="lineBookmark">
+									☆ ${bookmark }
+								</div>
+							</c:if>
+							<c:if test="${checkBookmarkHotel == 0 }">
+								<div class="lineBookmark">
+									☆ ${bookmark }
+								</div>
+							</c:if>
+							<c:if test="${checkBookmarkHotel == 1 }">
+								<div class="fullBookmark">
+									★ ${bookmark }
+								</div>
+							</c:if>
+						</p>
+						</div> --%>
 					</dl>	
 				</li>
 			</c:forEach>
@@ -216,19 +257,19 @@
 			<c:if test="${paging.startPage > paging.blockSize }">
 			[ <a
 					href="${conPath }/hotel/list.do?pageNum=${paging.startPage-1}">이전</a> ]
-		</c:if>
-			<c:forEach var="i" begin="${paging.startPage }"
-				end="${paging.endPage }">
-				<c:if test="${i eq paging.currentPage}">
-				[ <b>${i }</b> ]
 			</c:if>
-				<c:if test="${i != paging.currentPage }">
-				[ <a href="${conPath }/hotel/list.do?pageNum=${i}">${i }</a> ]
+				<c:forEach var="i" begin="${paging.startPage }"
+					end="${paging.endPage }">
+					<c:if test="${i eq paging.currentPage}">
+					[ <b>${i }</b> ]
+				</c:if>
+					<c:if test="${i != paging.currentPage }">
+					[ <a href="${conPath }/hotel/list.do?pageNum=${i}">${i }</a> ]
+				</c:if>
+				</c:forEach>
+				<c:if test="${paging.endPage < paging.pageCnt }">
+				[ <a href="${conPath }/hotel/list.do?pageNum=${paging.endPage+1}">다음</a> ]
 			</c:if>
-			</c:forEach>
-			<c:if test="${paging.endPage < paging.pageCnt }">
-			[ <a href="${conPath }/hotel/list.do?pageNum=${paging.endPage+1}">다음</a> ]
-		</c:if>
 		</div>
 	<jsp:include page="../main/footer.jsp"/>
 </body>

@@ -46,7 +46,7 @@ public interface BusinessDao {
 	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
     
     // Hotel 나의 글 조회
-	public List<Hotel> myHotelPosts(String bid);
+	public List<Hotel> myHotelPosts(String bid, int startRow, int endRow);
     
     // Hotel 등록 승인 여부 확인
 	public String hotelApprovalStatus(String hname);
@@ -58,7 +58,7 @@ public interface BusinessDao {
 	public void modifyRestaurant(Restaurant restaurant);
     
     // Restaurant 나의 글 조회
-	public List<Restaurant> myRestaurantPosts(String bid);
+	public List<Restaurant> myRestaurantPosts(String bid, int startRow, int endRow);
     
     // Restaurant 등록 승인 여부 확인
 	public String restaurantApprovalStatus(String rname);
@@ -83,6 +83,10 @@ public interface BusinessDao {
 	
 	// 숙소 댓글 삭제
 	public int deleteHotelComment(int hcommentno);
+	
+	public int hotelTotalCount(String bid);
+	
+	public int restaurantTotalCount(String bid);
 	
 	// 특정 식당 댓글 목록
 	/**public List<RestaurantComment> rCommentList(RestaurantComment restaurantComment);

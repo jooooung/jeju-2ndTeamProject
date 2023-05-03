@@ -178,9 +178,9 @@ CREATE SEQUENCE bookmarkNo_seq MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE Bookmark (
     bookmark_no NUMBER(5) PRIMARY KEY,
     mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
-    hName VARCHAR2(50) REFERENCES hotel(hName) UNIQUE,
-    rName VARCHAR2(50) REFERENCES restaurant(rName) UNIQUE,
-    sName VARCHAR2(50) REFERENCES spot(sName) UNIQUE,
+    hName VARCHAR2(50) REFERENCES hotel(hName),
+    rName VARCHAR2(50) REFERENCES restaurant(rName),
+    sName VARCHAR2(50) REFERENCES spot(sName),
     hMainImg VARCHAR2(255),
     RMainImg VARCHAR2(255),
     SMainImg VARCHAR2(255),

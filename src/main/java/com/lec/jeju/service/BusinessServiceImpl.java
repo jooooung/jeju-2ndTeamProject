@@ -274,10 +274,10 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public List<Hotel> myHotelPosts(String bid) {
-	    return businessDao.myHotelPosts(bid);
+	public List<Hotel> myHotelPosts(String bid, int startRow, int endRow) {
+	    return businessDao.myHotelPosts(bid, startRow, endRow);
 	}
-
+	
 	@Override
 	public String hotelApprovalStatus(String hname) {
 	    return businessDao.hotelApprovalStatus(hname);
@@ -337,8 +337,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public List<Restaurant> myRestaurantPosts(String bid) {
-	    return businessDao.myRestaurantPosts(bid);
+	public List<Restaurant> myRestaurantPosts(String bid, int startRow, int endRow) {
+	    return businessDao.myRestaurantPosts(bid, startRow, endRow);
 	}
 
 	@Override
@@ -414,4 +414,14 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.deleteRestaurantComment(rcommentno);
 	}// 식당 댓글 삭제
 	**/
+	
+	@Override
+	public int hotelTotalCount(String bid) {
+	    return businessDao.hotelTotalCount(bid);
+	}
+	
+	@Override
+	public int restaurantTotalCount(String bid) {
+	    return businessDao.restaurantTotalCount(bid);
+	}
 }

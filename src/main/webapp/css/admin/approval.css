@@ -123,3 +123,13 @@ footer {
 	height: 100px;
 	margin: auto;
 }
+.paging{
+	text-align: center;
+}
+.paging a{
+	text-decoration: none;
+	color: black;
+}
+.paging a:hover {
+	font-weight: bold;
+}

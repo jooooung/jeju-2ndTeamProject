@@ -16,8 +16,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">	
-					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
-					<span>제주어때</span>
+					<img alt="로고" src="${conPath }/img/logo_jeju.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -61,8 +60,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
-					<span>JEJU</span>
+					<img alt="로고" src="${conPath }/img/logo_jeju.png">
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -72,7 +70,7 @@
 						<ol class="subMenu">
 							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
 							<li><a href="">음식</a></li>
-							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
+							<li><a href="${conPath }/hotel/list.do?pageNum=1&mid=${member.mid}">숙박</a></li>
 						</ol>
 					</li>
 					<li>게시판
@@ -105,8 +103,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
-					<span>JEJU</span>
+					<img alt="로고" src="${conPath }/img/logo_jeju.png">
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -128,10 +125,11 @@
 					</li>
 					<li>내업체관리
 						<ol class="subMenu">
-							<li><a href="${conPath }/business.do?method=modify">정보수정</a></li>
+							<li><a href="${conPath }/business.do?method=modify">업체 정보수정</a></li>
 							<li><a href="${conPath }/business/registerHotel.do">호텔 등록 요청</a></li>
 							<li><a href="${conPath }/business/registerRestaurant.do">식당 등록 요청</a></li>
 							<li><a href="${conPath }/business/myHotelPosts.do">호텔 등록 요청 목록</a></li>
+							<li><a href="${conPath }/business/myRestaurantPosts.do">식당 등록 요청 목록</a></li>
 						</ol>
 					</li>
 				</ul>
@@ -148,8 +146,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png"> 
-					<span>JEJU</span>
+					<img alt="로고" src="${conPath }/img/logo_jeju.png">
 				</a>
 			</div>
 			<div class="navbar_menu">

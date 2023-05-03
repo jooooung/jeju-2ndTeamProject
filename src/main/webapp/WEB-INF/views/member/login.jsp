@@ -8,14 +8,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 <link href="${conPath }/css/member/login.css" rel=stylesheet>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
 <style>
+body {
+	font-family: 'Rubik', sans-serif;
+}
 img {
 	margin: 0 auto;
 	width: 400px;
 	height: auto;
+	margin-top: 30px;
+}
+caption {
+	margin-bottom: 50px;
 }
 </style>
 </head>

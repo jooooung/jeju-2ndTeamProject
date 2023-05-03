@@ -93,7 +93,7 @@
 			</div>
 			<div class="log">
 				<ul>
-					<li><a>${member.mname }님 &nbsp;</a></li>
+					<li><a href="${conPath }/member/modify.do">${member.mname }님 &nbsp;</a></li>
 					<li><a href="${conPath }/member/logout.do">로그아웃</a></li>
 				</ul>
 			</div>

@@ -9,11 +9,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link href="${conPath }/css/member/login.css" rel=stylesheet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 <style>
+body {
+	font-family: 'Rubik', sans-serif;
+}
 img {
 	margin: 0 auto;
 	width: 400px;
 	height: auto;
+	margin-top: 30px;
+}
+caption {
+	margin-bottom: 50px;
 }
 </style>
 </head>
@@ -50,6 +60,9 @@ img {
 			<input type="hidden" name="method" value="login"> <input
 				type="hidden" name="after"
 				value="${empty param.after ?  'main.do':param.after}">
+				<a href="${conPath }/main.do">	
+					<img alt="로고" src="${conPath }/img/logo_jeju.png"> 
+			</a>
 			<table>
 				<caption>관리자 로그인 화면</caption>
 				<tr>

@@ -106,8 +106,9 @@ SELECT *
     WHERE RN BETWEEN 1 AND 10;
 
 SELECT *
-    FROM Restaurant
-    WHERE bId = 'bid';
+    FROM (SELECT R.*, ROWNUM RN
+    FROM (SELECT * FROM Restaurant WHERE bId = 'bid' ORDER BY rname DESC) R)
+    WHERE RN BETWEEN 1 AND 10;
 
 -- 7. 업체 마이페이지 (나의 댓글)
 -- My comments in the hotelComment table

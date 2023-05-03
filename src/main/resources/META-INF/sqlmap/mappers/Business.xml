@@ -93,12 +93,9 @@
 	<!-- Hotel 나의 글 조회 매퍼 -->
 	<select id="myHotelPosts" resultType="com.lec.jeju.vo.Hotel">
 	    SELECT *
-	    FROM (
-	        SELECT h.*, rownum rn
-	        FROM (SELECT * FROM Hotel WHERE bid=#{param1, jdbcType=VARCHAR} ORDER BY hname) h
-	        WHERE rownum = #{param2, jdbcType=INTEGER} + #{param3, jdbcType=INTEGER}
-	    )
-	    WHERE rn > #{param3, jdbcType=INTEGER}
+	    FROM (SELECT H.*, ROWNUM RN
+	    FROM (SELECT * FROM Hotel WHERE bId = #{param1, jdbcType=VARCHAR} ORDER BY hname DESC) H)
+	    WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
 	</select>
 	
 	<!-- 업체 등록요청 (등록글 작성) -->
@@ -119,7 +116,10 @@
 	
 	<!-- Restaurant 나의 글 조회 매퍼 -->
 	<select id="myRestaurantPosts" resultType="com.lec.jeju.vo.Restaurant">
-	    SELECT * FROM Restaurant WHERE bid=#{param1, jdbcType=VARCHAR}
+	    SELECT *
+	    FROM (SELECT R.*, ROWNUM RN
+	    FROM (SELECT * FROM Restaurant WHERE bId = #{param1, jdbcType=VARCHAR} ORDER BY rname DESC) R)
+	    WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
 	</select>
 	
 	<!-- Restaurant 등록 승인 여부 확인 매퍼 -->

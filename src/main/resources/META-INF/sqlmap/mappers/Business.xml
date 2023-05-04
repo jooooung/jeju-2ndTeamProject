@@ -142,4 +142,13 @@
 	<delete id="deleteBusiness" parameterType="String">
 	    DELETE FROM Business WHERE bid=#{bid}
 	</delete>
+	
+	<!-- 상세 내용 보기 -->
+	<select id="selectHotelByName" parameterType="String" resultType="com.lec.jeju.vo.Hotel">
+		SELECT * FROM Hotel WHERE hName=#{hname}
+	</select>
+	
+	<select id="selectRestaurantByName" parameterType="String" resultType="com.lec.jeju.vo.Restaurant">
+		SELECT * FROM Restaurant WHERE rName=#{rname}
+	</select>
 </mapper>

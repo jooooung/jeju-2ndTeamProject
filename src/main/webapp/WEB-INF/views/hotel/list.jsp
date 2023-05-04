@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -183,7 +184,7 @@
 	<jsp:include page="../main/header.jsp"/>
 	<div class="wrap">
 		<div class="title">
-			<a class="title_link" href="#1">관광${locationno }</a>
+			<a class="title_link" href="${conPath }/spot/list.do">관광${locationno }</a>
 			<a class="title_link" href="#2">맛집</a>
 			<a class="title_link" href="${conPath }/hotel/list.do">숙박</a>
 		</div>
@@ -222,7 +223,11 @@
 			<c:forEach var="list" items="${list }">
 				<li>
 					<dl class="item_section">
-						<div onclick="location.href='${conPath}/hotel/detail.do?hname=${list.hname }&pageNum=${paging.currentPage}&lname=${list.location.lname}&mid=${member.mid }&CpageNum=1'">
+						<div onclick="location.href='${conPath}/hotel/detail.do?hname=${list.hname }&pageNum=${paging.currentPage}&lname=${list.location.lname}&mid=${member.mid }&CpageNum=1&bid=${bid }'">
+							<c:set var="img" value="${list.hmainimg}"/>
+							<c:if test = "${fn:contains(img, 'http')}">
+								<img alt="" src="${list.hmainimg }">							
+							</c:if>
 							<img alt="" src="${conPath }/hotelImgFileUpload/${list.hmainimg}">
 							<h2>${list.hname }</h2>
 							<p class="name">${list.location.lname}</p>

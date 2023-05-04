@@ -24,6 +24,7 @@
 		<typeAlias type="com.lec.jeju.vo.ReviewBoard" alias="Review" />
 		<typeAlias type="com.lec.jeju.vo.Spot" alias="Spot" />
 		<typeAlias type="com.lec.jeju.vo.MyReview" alias="MyReview" />
+		<typeAlias type="com.lec.jeju.vo.Restaurant" alias="Res" />
 	</typeAliases>
 	
 	<mappers>
@@ -41,5 +42,11 @@
 		<mapper resource="META-INF/sqlmap/mappers/ReviewBoard.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/Spot.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/MyReview.xml" />
+		<mapper resource="META-INF/sqlmap/mappers/restaurant.xml" />
+		
+		
+		
+		
+		
 	</mappers>
 </configuration>

@@ -22,5 +22,11 @@ public interface MemberService {
 	public int deleteMember(String mid);
 
 	public void logout(HttpSession httpSession);
+	
+	public String findID(String memail, HttpSession session);
+	
+	public String findPW(String mid, String memail);
+	
+	public int updatePW(Member member, HttpSession Session);
 
 }

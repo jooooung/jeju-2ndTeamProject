@@ -26,7 +26,7 @@
 						여행지
 						<ol class="subMenu">
 							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
-							<li><a href="">음식</a></li>
+							<li><a href="${conPath }/res/list.do">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do">숙박</a></li>
 						</ol>
 					</li>
@@ -93,7 +93,7 @@
 			</div>
 			<div class="log">
 				<ul>
-					<li><a>${member.mname }님 &nbsp;</a></li>
+					<li><a href="${conPath }/member/modify.do">${member.mname }님 &nbsp;</a></li>
 					<li><a href="${conPath }/member/logout.do">로그아웃</a></li>
 				</ul>
 			</div>
@@ -118,18 +118,26 @@
 					</li>
 					<li>게시판
 						<ol class="subMenu">
+							<li><a href="">공지사항</a></li>
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
-							<li><a href="">공지사항</a></li>
 						</ol>
 					</li>
-					<li>내업체관리
+					<li>MY업체
 						<ol class="subMenu">
-							<li><a href="${conPath }/business.do?method=modify">업체 정보수정</a></li>
-							<li><a href="${conPath }/business/registerHotel.do">호텔 등록 요청</a></li>
-							<li><a href="${conPath }/business/registerRestaurant.do">식당 등록 요청</a></li>
-							<li><a href="${conPath }/business/myHotelPosts.do">호텔 등록 요청 목록</a></li>
-							<li><a href="${conPath }/business/myRestaurantPosts.do">식당 등록 요청 목록</a></li>
+							<li><a href="${conPath }/business.do?method=modify">정보수정</a></li>
+						</ol>
+					</li>
+					<li>호텔 등록
+						<ol class="subMenu">
+							<li><a href="${conPath }/business/registerHotel.do">등록 요청</a></li>
+							<li><a href="${conPath }/business/myHotelPosts.do">요청 목록</a></li>
+						</ol>
+					</li>
+					<li>식당 등록
+						<ol class="subMenu">
+							<li><a href="${conPath }/business/registerRestaurant.do">등록 요청</a></li>
+							<li><a href="${conPath }/business/myRestaurantPosts.do">요청 목록</a></li>
 						</ol>
 					</li>
 				</ul>
@@ -161,20 +169,28 @@
 					</li>
 					<li>게시판
 						<ol class="subMenu">
+							<li><a href="">공지사항</a></li>
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
-							<li><a href="">공지사항</a></li>
 						</ol>
 					</li>
-					<li>관리하기
+					<li>관광지
 						<ol class="subMenu">
-							<li><a href="${conPath }/admin/hotelApproval.do">호텔 등록 승인 요청 목록</a></li>
-							<li><a href="${conPath }/admin/restaurantApproval.do">식당 등록 승인 요청 목록</a></li>
-							<li><a href="${conPath }/admin/approvedHotels.do">호텔 등록 승인 목록</a></li>
-							<li><a href="${conPath }/admin/approvedRestaurants.do">식당 등록 승인 목록</a></li>
-							<li><a href="${conPath }/admin/rejectedHotels.do">호텔 등록 거절 목록</a></li>
-							<li><a href="${conPath }/admin/rejectedRestaurants.do">식당 등록 거절 목록</a></li>
-							<li><a href="${conPath }/">관광지목록</a></li>
+							<li><a href=""></a></li>
+						</ol>
+					</li>
+					<li>호텔
+						<ol class="subMenu">
+							<li><a href="${conPath }/admin/hotelApproval.do">등록 요청 목록</a></li>
+							<li><a href="${conPath }/admin/approvedHotels.do">등록 승인 목록</a></li>
+							<li><a href="${conPath }/admin/rejectedHotels.do">등록 거절 목록</a></li>
+						</ol>
+					</li>
+					<li>식당
+						<ol class="subMenu">
+							<li><a href="${conPath }/admin/restaurantApproval.do">등록 요청 목록</a></li>
+							<li><a href="${conPath }/admin/approvedRestaurants.do">등록 승인 목록</a></li>
+							<li><a href="${conPath }/admin/rejectedRestaurants.do">등록 거절 목록</a></li>
 						</ol>
 					</li>
 				</ul>

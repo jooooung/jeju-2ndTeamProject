@@ -48,6 +48,9 @@
 		.paging {
 		    text-align: center;
 		}
+		.buisness{
+			margin-left:100px; 
+		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<script>
@@ -64,7 +67,8 @@
 	<div class="comment_list">
 		<ol>
 		<c:forEach var="hotelComments" items="${hotelComments }">
-			<div class="comment">
+		<c:if test="${not empty hotelComments.mid }">
+		<div class="comment">
 				<div class="photo">
 						<li>
 							<%-- <c:if test="${empty member.mphoto || empty buisness.bphoto}"> --%>
@@ -90,12 +94,12 @@
 					${hotelComments.hcontent }
 				</li>
 				<li class="cBtns">
-					<c:if test="${not empty member || not empty buisness }">
+					<c:if test="${not empty member || not empty bid }">
 						<button class="commentBtn replyComment" id="reply${hotelComments.hcommentno }">
 							답글
 						</button>
 					</c:if>
-					<c:if test="${not empty member.mid and hotelComments.mid eq member.mid || not empty buisness.bid and hotelComments.bid eq buisness.bid || not empty admin}">
+					<c:if test="${not empty member.mid and hotelComments.mid eq member.mid || not empty bid and hotelComments.bid eq bid || not empty admin}">
 						<button class="commentBtn modifyComment" id="${hotelComments.hcommentno }">
 							수정
 						</button>
@@ -106,6 +110,51 @@
 				</li>
 				</div>
 			</div>
+		</c:if>
+		<c:if test="${not empty hotelComments.bid  }">
+			<div class="comment buisness">
+				<div class="photo">
+						<li>
+							<%-- <c:if test="${empty member.mphoto || empty buisness.bphoto}"> --%>
+								<img width="100px;" alt="기본프로필사진(해녀)" src="${conPath }/img/defaultMphoto.png">
+								<br>
+							<%-- </c:if>
+							<c:if test="${not empty member.mphoto }">
+								${member.mphoto}<br>
+							</c:if>
+							<c:if test="${not empty business.bphoto }">
+								${business.bphoto }<br>
+							</c:if> --%>
+							${hotelComments.mid }
+							${hotelComments.bid }
+						</li>
+				</div>
+				<div class="content detail">
+				<li class="commentDate">
+					<fmt:formatDate value="${hotelComments.hcrdate }" pattern="yyyy-MM-dd"/>
+					${buisness }
+				</li>
+				<li class="list_content hcontent${hotelComments.hcommentno }">
+					${hotelComments.hcontent }
+				</li>
+				<li class="cBtns">
+					<c:if test="${not empty member || not empty bid }">
+						<button class="commentBtn replyComment" id="reply${hotelComments.hcommentno }">
+							답글
+						</button>
+					</c:if>
+					<c:if test="${not empty member.mid and hotelComments.mid eq member.mid || not empty bid and hotelComments.bid eq bid || not empty admin}">
+						<button class="commentBtn modifyComment" id="${hotelComments.hcommentno }">
+							수정
+						</button>
+						<button class="commentBtn deleteComment" onclick="location.href='deleteComment.do?hname=${hotelVo.hname }&hcommentno=${hotelComments.hcommentno }'">
+							삭제
+						</button>
+					</c:if>
+				</li>
+				</div>
+			</div>
+		</c:if>
 		</c:forEach>
 		</ol>
 	</div>

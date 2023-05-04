@@ -10,6 +10,12 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
+body {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
 img {
 	display: block;
 	margin: 0 auto;
@@ -97,24 +103,61 @@ input[type="button"] {
 	font-weight: bold;
 	font-size: 1.1em;
 }
+
 p {
 	text-align: center;
 }
+
+form p {
+	margin-top: 20px;
+	font-size: .8rem;
+	color: #666;
+	text-align: center;
+}
+
+form p a {
+	color: #47C83E;
+	text-decoration: none;
+	font-size: 1.2em;
+}
+
+form p a:hover {
+	text-decoration: none;
+}
+
+form button[type="submit"]:hover, form button[type="submit"]:focus {
+	background-color: #008c9e;
+	box-shadow: 0 2px 2px rgba(0, 0, 0, .1), 0 0 5px rgba(0, 188, 212, .5);
+	outline: 0;
+}
 </style>
+<script>
+	window.onload = function() {
+		var form = document.getElementById('findPWForm');
+		var button = document.getElementById('findPWBtn');
+		button.onclick = function() {
+			if (form.memail.value.trim() == '') {
+				alert('이메일을 입력해주세요.');
+				return false;
+			}
+			form.submit();
+		}
+	}
+</script>
 </head>
 <body>
-	<form action="${conPath}/member/findID.do" method="post">
+	<form id="findPWForm" action="${conPath}/member/findID.do"
+		method="post">
 		<a href="${conPath }/main.do"> <img alt="로고"
 			src="${conPath }/img/logo_jeju.png">
 		</a>
 		<table>
 			<tr>
 				<th>이메일</th>
-				<td>
-					<input type="email" name="memail" id="email-input">
+				<td><input type="email" name="memail" id="email-input">
 				</td>
 				<td>
-					<button type="submit">아이디 찾기</button>
+					<button type="submit" id="findPWBtn">아이디 찾기</button>
 				</td>
 			</tr>
 		</table>
@@ -128,7 +171,8 @@ p {
 		<c:if test="${not empty mid}">
 			<p class="success-msg">찾은 아이디는 " ${mid} " 입니다.</p>
 			<p>
-				<input type="button" value="로그인" onclick="location.href='${conPath}/member/login.do'">
+				<input type="button" value="로그인"
+					onclick="location.href='${conPath}/member/login.do'">
 			</p>
 
 		</c:if>

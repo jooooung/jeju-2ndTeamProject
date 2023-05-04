@@ -74,7 +74,7 @@
 	<div class="comment">
 		<div class="write">
 			<form action="writeComment.do" method="post">
-			<c:if test="${empty member and empty buisness }">
+			<c:if test="${empty member and empty bid }">
 				<input type="text" name="hcontent" placeholder="로그인 후 이용해주세요." readonly="readonly">
 			</c:if>
 			<c:if test="${not empty member}">
@@ -83,9 +83,9 @@
 				<input type="text" name="hcontent" required="required">
 				<input type="submit" value="작성"> 
 			</c:if>
-			<c:if test="${not empty buisness}">
+			<c:if test="${not empty bid}">
 				<input type="hidden" name="hname" value="${hotelVo.hname }">
-				<input type="hidden" name="bid" value="${buisness.bid }">
+				<input type="hidden" name="bid" value="${bid }">
 				<input type="text" name="hcontent" required="required">
 				<input type="submit" value="작성"> 
 			</c:if>

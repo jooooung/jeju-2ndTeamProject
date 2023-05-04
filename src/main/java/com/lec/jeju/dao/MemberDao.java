@@ -3,6 +3,7 @@ package com.lec.jeju.dao;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.lec.jeju.vo.Member;
+
 @Mapper
 public interface MemberDao {
 	public int idConfirm(String mid);
@@ -18,4 +19,11 @@ public interface MemberDao {
 	public int modifyMember(Member member);
 
 	public int deleteMember(String mid);
+
+	public String findID(String memail);
+
+	public String findPW(Member member);
+
+	public int updatePW(Member member);
+
 }

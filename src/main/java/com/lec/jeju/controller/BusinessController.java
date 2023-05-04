@@ -289,6 +289,21 @@ public class BusinessController {
 		String hname = 	URLEncoder.encode(hotelComment.getRname(), "utf-8");
 		return "redirect:myRestaurantComments.do?rname="+rname;
 	}**/
+	
+    // 승인 및 거절 요청의 상세 내용 보기
+	@RequestMapping(value = "/hotelDetail", method = RequestMethod.GET)
+	public String hotelDetail(String hname, Model model) {
+	    Hotel hotel = businessService.getHotelByName(hname);
+	    model.addAttribute("hotel", hotel);
+	    return "business/hotelDetail";
+	}
+
+	@RequestMapping(value = "/restaurantDetail", method = RequestMethod.GET)
+	public String restaurantDetail(String rname, Model model) {
+	    Restaurant restaurant = businessService.getRestaurantByName(rname);
+	    model.addAttribute("restaurant", restaurant);
+	    return "business/restaurantDetail";
+	}
 }
 	
 	

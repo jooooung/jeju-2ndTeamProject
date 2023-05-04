@@ -8,18 +8,6 @@
 	<meta charset="UTF-8">
 	<title>승인된 호텔 목록</title>
 	<link href="${conPath }/css/admin/approved.css" rel=stylesheet>
-	<style>
-	    .paging{
-				text-align: center;
-			}
-			.paging a{
-				text-decoration: none;
-				color: black;
-			}
-			.paging a:hover {
-				font-weight: bold;
-			}
-	</style>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>

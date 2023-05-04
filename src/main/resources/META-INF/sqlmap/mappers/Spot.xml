@@ -20,6 +20,7 @@
     		<result property="slongitude" column="slongitude"/>
     		<result property="sprice" column="sprice"/>
     		<result property="bcnt" column="bcnt"/>
+    		<result property="lname" column="lname"/>
     	</resultMap>
     	
     	<!-- 관광지 리스트 -->
@@ -28,47 +29,75 @@
     		SELECT * 
     			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
         		WHERE S.SNAME = B.SNAME(+))A)
-			WHERE RN BETWEEN #{startRow} AND #{endRow}
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
     	</select>
     	
     	<!-- 기본 리스트(즐겨찾기 높은 순) 출력 -->
     	<select id="spotSchList" parameterType="spot" resultMap="SpotResult">
 			<if test="schitem == null or schitem== ''"> 
 				SELECT * 
-    				FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
-        			WHERE S.SNAME = B.SNAME(+) ORDER BY bCnt DESC)A)
+    				FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt, L.LNAME FROM SPOT S, LOCATION L, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        			WHERE S.SNAME = B.SNAME(+) AND S.LOCATIONNO = L.LOCATIONNO AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
 				WHERE RN BETWEEN #{startRow} AND #{endRow}
 			</if>
-			<!-- 이름 검색 -->
-			<if test="schitem == 'all'"> 
+			
+			<!-- 지역 선택 -->
+			<if test="schitem == '11,12,15'"> 
 				SELECT * 
-	    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
-	        		WHERE S.SNAME = B.SNAME(+)  AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
+    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt, L.LNAME FROM SPOT S, LOCATION L, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        			WHERE S.SNAME = B.SNAME(+) AND S.LOCATIONNO = L.LOCATIONNO AND S.LOCATIONNO IN(11, 12, 15) AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
 				WHERE RN BETWEEN #{startRow} AND #{endRow}
 			</if>
-			<!-- 지역 선택 & 이름 검색 -->
-			<if test="schitem == 'sname'"> 
+			
+			<if test="schitem == '1,3,13'">
 				SELECT * 
-	    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
-	        		WHERE S.SNAME = B.SNAME(+) AND LOCATIONNO = #{schitem} AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
+    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt, L.LNAME FROM SPOT S, LOCATION L, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        			WHERE S.SNAME = B.SNAME(+) AND S.LOCATIONNO = L.LOCATIONNO AND S.LOCATIONNO IN(1, 3, 13) AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
 				WHERE RN BETWEEN #{startRow} AND #{endRow}
 			</if>
-		</select>
-		
+			
+			<if test="schitem == '4,5,14'">
+				SELECT * 
+    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt, L.LNAME FROM SPOT S, LOCATION L, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        			WHERE S.SNAME = B.SNAME(+) AND S.LOCATIONNO = L.LOCATIONNO AND S.LOCATIONNO IN(4, 5, 14) AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
+			</if>
+			
+			<if test="schitem == '2,6,7'">
+				SELECT * 
+    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt, L.LNAME FROM SPOT S, LOCATION L, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        			WHERE S.SNAME = B.SNAME(+) AND S.LOCATIONNO = L.LOCATIONNO AND S.LOCATIONNO IN(2, 6, 7) AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
+			</if>
+			
+			<if test="schitem == '8,9,10'">
+				SELECT * 
+    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt, L.LNAME FROM SPOT S, LOCATION L, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        			WHERE S.SNAME = B.SNAME(+) AND S.LOCATIONNO = L.LOCATIONNO AND S.LOCATIONNO IN(8, 9, 10) AND S.SNAME LIKE '%' || #{schword} || '%' ORDER BY bCnt DESC)A)
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
+			</if>
+    	</select>
+    	
 		<!-- 관광지 리스트 갯수 -->
 		<select id="totCntSpot" parameterType="Spot" resultType="int">
 			<!-- 등록순 -->
 			<if test="schitem == null or schitem== ''"> 
 				SELECT COUNT(*) FROM SPOT	
 			</if>
-			<if test="schitem == 'sname'">
-				SELECT COUNT(*) FROM SPOT WHERE SNAME LIKE '%'|| #{schword} ||'%'
+			<if test="schitem == '11,12,15'">
+				SELECT COUNT(*) FROM SPOT WHERE LOCATIONNO IN (11,12,15) AND SNAME LIKE '%'||#{schword}||'%' 
 			</if>
-			<if test="schitem == 'locaionno'">
-				SELECT COUNT(*) FROM SPOT WHERE LOCATIONNO = #{locationno}
+			<if test="schitem == '1,3,13'">
+				SELECT COUNT(*) FROM SPOT WHERE LOCATIONNO IN (1,3,13) AND SNAME LIKE '%'||#{schword}||'%'
 			</if>
-			<if test="schitem == 'sname'">
-				SELECT COUNT(*) FROM HOTEL WHERE SNAME LIKE '%'|| #{schword} ||'%' AND LOCATIONNO = #{locationno}
+			<if test="schitem == '4,5,14'">
+				SELECT COUNT(*) FROM SPOT WHERE LOCATIONNO IN (4,5,14) AND SNAME LIKE '%'||#{schword}||'%'
+			</if>
+			<if test="schitem == '2,6,7'">
+				SELECT COUNT(*) FROM SPOT WHERE LOCATIONNO IN (2,6,7) AND SNAME LIKE '%'||#{schword}||'%'
+			</if>
+			<if test="schitem == '8,9,10'">
+				SELECT COUNT(*) FROM SPOT WHERE LOCATIONNO IN (8,9,10) AND SNAME LIKE '%'||#{schword}||'%'
 			</if>
 		</select>
 		
@@ -93,7 +122,7 @@
                 SLATITUDE = #{slatitude},
                 SLONGITUDE = #{slongitude},
                 SPRICE = #{sprice}
-    		WHERE SNAME = #{sname};
+    		WHERE SNAME = #{sname}
 		</update>
 		
 		<!-- 등록된 관광지 삭제 -->
@@ -103,6 +132,6 @@
 		
 		<!-- 관광지 상세보기-->
 		<select id="detailSpot" parameterType="String" resultType="Spot">
-			SELECT * FROM SPOT WHERE SNAME = #{sname};
+			SELECT * FROM SPOT WHERE SNAME = #{sname}
 		</select>
     </mapper>

@@ -10,22 +10,10 @@
 	<meta charset="UTF-8">
 	<link href="${conPath }/css/business/posts.css" rel=stylesheet>
     <title>나의 호텔 게시글</title>
-    <style>
-	    .paging{
-				text-align: center;
-			}
-			.paging a{
-				text-decoration: none;
-				color: black;
-			}
-			.paging a:hover {
-				font-weight: bold;
-			}
-	</style>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
-    <h1>나의 호텔 게시글</h1>
+    <h2>나의 호텔 게시글</h2>
     <table>
         <thead>
             <tr>
@@ -38,7 +26,7 @@
         <tbody>
             <c:forEach items="${hotelList }" var="hotel">
                 <tr>
-                    <td><a href="${conPath}/admin/hotelDetail.do?hname=${hotel.hname}">${hotel.hname}</a></td>
+                    <td><a href="${conPath}/business/hotelDetail.do?hname=${hotel.hname}">${hotel.hname}</a></td>
                     <td>${hotel.haddr}</td>
                     <td>${hotel.htel}</td>
                     <td>${hotel.hprice}</td>

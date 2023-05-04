@@ -8,23 +8,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 <link href="${conPath }/css/business/login.css" rel=stylesheet>
 <style>
-p {
-	text-align: center;
-	margin: 25px;
-	padding: 10px;
+body {
+	font-family: 'Rubik', sans-serif;
 }
-
-p a {
-	text-decoration: none;
-	color: #6b6b6b;
-	font-size: 12px;
-}
-
 img {
 	margin: 0 auto;
-	width: 500px;
+	width: 400px;
+	height: auto;
+	margin-top: 30px;
+}
+caption {
+	margin-bottom: 50px;
 }
 </style>
 </head>

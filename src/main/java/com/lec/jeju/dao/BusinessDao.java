@@ -108,6 +108,10 @@ public interface BusinessDao {
 	
 	// 식당 댓글 삭제
 	public int deleteRestaurantComment(int restaurantComment);**/
+	
+    public Hotel selectHotelByName(String hname);
+
+    public Restaurant selectRestaurantByName(String rname);
 }
 
 

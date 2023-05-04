@@ -76,6 +76,10 @@ public interface BusinessService {
 	
 	public int restaurantTotalCount(String bid);
 
+	public Hotel getHotelByName(String hname);
+
+	public Restaurant getRestaurantByName(String rname);
+
 	// 특정 식당 댓글 목록
 	/**public List<RestaurantComment> rCommentList(RestaurantComment restaurantComment);
 	

@@ -99,7 +99,6 @@ public class MemberController {
 	}
 
 	// 회원탈퇴
-
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteView() {
 		return "member/delete";

@@ -22,6 +22,7 @@ public class Restaurant {
 	private String rprice;
 	private String requeststatus;
 	private int bcnt;
+	private String lname;
 
 	private int startRow;
 	private int endRow;

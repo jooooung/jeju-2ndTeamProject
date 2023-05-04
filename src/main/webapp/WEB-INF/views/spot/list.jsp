@@ -31,9 +31,15 @@
 	<div id="spot_wrap">
 		<div id="title">
 			<ul>
-				<li><a class="title_active">관광</a></li>
-				<li><a>맛집</a></li>
-				<li><a>숙박</a></li>
+				<li>
+					<a class="title_active" href="${conPath }/spot/list.do">관광</a>
+				</li>
+				<li>
+					<a href="${conPath }/res/list.do">맛집</a>
+				</li>
+				<li>
+					<a href="${conPath }/hotel/list.do">숙박</a>
+				</li>
 			</ul>
 		</div>
 		<div id="search_wrap">
@@ -82,7 +88,7 @@
 						<p>${list.saddr.substring(list.saddr.indexOf('시')+2) }</p>
 						<p class="info">${list.sinfo }</p>
 						<div class="bookmark">
-							<c:if test="${empty member }">
+							<c:if test="${not empty member }">
 								<img width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">
 								<span class="cnt">${list.bcnt }</span>
 							</c:if>
@@ -90,7 +96,7 @@
 								<img width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">
 								<span class="cnt">${list.bcnt }</span>
 							</c:if>
-							<c:if test="${checkBookmarkSpot == 1 }">
+							<c:if test="${checkBookmarkSpot >= 1 }">
 								<img width="20px;" alt="별" src="${conPath }/img/fullstar.png">
 								<span class="cnt">${list.bcnt }</span>
 							</c:if>

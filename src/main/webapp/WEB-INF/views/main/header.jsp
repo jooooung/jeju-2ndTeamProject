@@ -10,10 +10,25 @@
 	<link href="${conPath }/css/header.css" rel=stylesheet>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <style>
-	#jeju {
-		width: 200px;
-	}
+#jeju {
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
+}
+
 </style>
+<script>
+	$(document).ready(function() {
+		var member = '${member}'
+		$('#nonMember').click(function() {
+			if(!member) {
+				alert('로그인 후 이용 가능한 서비스 입니다.')
+				location.href='${conPath}/member/login.do?after=detali.do';
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<c:if test="${empty member and empty business and empty admin}"><!-- 비회원 -->
@@ -42,7 +57,7 @@
 						</ol>
 					</li>
 					<li>마이페이지
-						<ol class="subMenu">
+						<ol class="subMenu" id="nonMember">
 							<li><a href="${conPath }/member/login.do">나의일정</a></li>
 							<li><a href="${conPath }/member/login.do">나의리뷰</a></li>
 							<li><a href="${conPath }/member/login.do">예약내역</a></li>

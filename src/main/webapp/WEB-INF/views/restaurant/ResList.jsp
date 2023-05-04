@@ -29,14 +29,25 @@
 						});
 	});
 </script>
+<style>
+	li a {
+		text-decoration: none;
+	}
+</style>
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<div id="spot_wrap">
 		<div id="title">
 			<ul>
-				<li><a>관광</a></li>
-				<li><a class="title_active">맛집</a></li>
-				<li><a>숙박</a></li>
+				<li>
+					<a href="${conPath }/spot/list.do">관광</a>
+				</li>
+				<li>
+					<a class="title_active" href="${conPath }/res/list.do">맛집</a>
+				</li>
+				<li>
+					<a href="${conPath }/hotel/list.do">숙박</a>
+				</li>
 			</ul>
 		</div>
 		<div id="search_wrap">

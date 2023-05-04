@@ -18,17 +18,16 @@ body {
 
 img {
 	display: block;
-	margin: 0 auto; width : 400px; height : auto;
-	margin-top: 30px;
-	width: 400px;
-	height: auto;
+	margin: 0 auto;
+	width: 500px;
+	height: 300px;
 }
 </style>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<a href="/jeju/main.do"> 
-		<img alt="로고" src="/jeju/img/logo_jeju.png">
+		<img alt="로고" src="/jeju/img/logo(2).png">
 	</a>
 
 	<h2>이용약관</h2>

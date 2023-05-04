@@ -38,7 +38,7 @@
 						<ol class="subMenu">
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
-							<li><a href="">공지사항</a></li>
+							<li><a href="${conPath }/notice.do">공지사항</a></li>
 						</ol>
 					</li>
 					<li>마이페이지
@@ -73,7 +73,7 @@
 					<li>여행지
 						<ol class="subMenu">
 							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
-							<li><a href="">음식</a></li>
+							<li><a href="${conPath }/res/list.do?pageNum=1">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1&mid=${member.mid}">숙박</a></li>
 						</ol>
 					</li>
@@ -81,7 +81,7 @@
 						<ol class="subMenu">
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
-							<li><a href="">공지사항</a></li>
+							<li><a href="${conPath }/notice.do">공지사항</a></li>
 						</ol>
 					</li>
 					<li>마이페이지
@@ -116,7 +116,7 @@
 					<li>여행지
 						<ol class="subMenu">
 							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
-							<li><a href="">음식</a></li>
+							<li><a href="${conPath }/res/list.do?pageNum=1">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
 					</li>
@@ -124,7 +124,7 @@
 						<ol class="subMenu">
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
-							<li><a href="">공지사항</a></li>
+							<li><a href="${conPath }/notice.do">공지사항</a></li>
 						</ol>
 					</li>
 					<li>내업체관리
@@ -158,7 +158,7 @@
 					<li>여행지
 						<ol class="subMenu">
 							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
-							<li><a href="">음식</a></li>
+							<li><a href="${conPath }/res/list.do?pageNum=1">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
 					</li>
@@ -166,7 +166,7 @@
 						<ol class="subMenu">
 							<li><a href="${conPath }/festival/list.do">축제정보</a></li>
 							<li><a href="${conPath }/review/list.do">여행리뷰</a></li>
-							<li><a href="">공지사항</a></li>
+							<li><a href="${conPath }/notice.do">공지사항</a></li>
 						</ol>
 					</li>
 					<li>관리하기

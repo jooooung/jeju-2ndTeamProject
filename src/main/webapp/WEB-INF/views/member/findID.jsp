@@ -148,8 +148,8 @@ form button[type="submit"]:hover, form button[type="submit"]:focus {
 <body>
 	<form id="findPWForm" action="${conPath}/member/findID.do"
 		method="post">
-		<a href="${conPath }/main.do"> <img alt="로고"
-			src="${conPath }/img/logo_jeju.png">
+		<a href="${conPath }/main.do"> 
+			<img alt="로고" src="${conPath }/img/logo(2).png">
 		</a>
 		<table>
 			<tr>

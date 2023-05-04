@@ -47,7 +47,7 @@ body {
 </head>
 <body>
 	<c:if test="${empty getRes}">
-		<td>작성한 댓글이 존재하지 않습니다.</td>
+		<td>작성한 댓글이 없어요.</td>
 	</c:if>
 	<c:forEach var="res" items="${getRes}">
 		<div class="hotel-box">

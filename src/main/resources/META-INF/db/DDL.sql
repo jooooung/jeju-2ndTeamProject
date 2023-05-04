@@ -225,31 +225,14 @@ CREATE TABLE spotComment (
     sCrdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ); -- 관광지 댓글 테이블
 
-CREATE SEQUENCE MYREVIEWNO_SEQ MAXVALUE 99999 NOCACHE NOCYCLE;
-CREATE TABLE MYREVIEW (
-    MYREVIEWNO NUMBER(5) PRIMARY KEY,
-    mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
-    sName VARCHAR2(50) REFERENCES SPOT(sName),
-    rName VARCHAR2(50) REFERENCES restaurant(rName),
-    hName VARCHAR2(50) REFERENCES HOTEL(hName),
-    reviewNO NUMBER(5) REFERENCES Review(reviewNO),
-    rRdate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    rTitle VARCHAR2(100),
-    sContent VARCHAR2(1000),
-    rContent VARCHAR2(1000),
-    hContent VARCHAR2(1000)
-); -- 마이페이지 리뷰테이블
-
-
-select * from myreview;
 SELECT * FROM restaurant;
 SELECT * FROM restaurantComment;
 SELECT * FROM Festival;
 SELECT * FROM MEMBER;
+DELETE  FROM MEMBER WHERE MID = 'kang';
 SELECT * FROM BOOKMARK;
 SELECT * FROM RestauranTtype;
 SELECT * FROM restaurant;
---------------
 SELECT * FROM Review;
 SELECT * FROM hotelComment;
 SELECT * FROM spotComment;
@@ -265,5 +248,3 @@ COMMIT;
 --alter system set processes=300 scope=spfile;
 --shutdown immediate; --셧다운
 --startup; --재시작
-
-

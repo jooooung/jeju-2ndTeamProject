@@ -9,14 +9,18 @@
 	<title>Insert title here</title>
 	<link href="${conPath }/css/header.css" rel=stylesheet>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-
+<style>
+	#jeju {
+		width: 200px;
+	}
+</style>
 </head>
 <body>
 	<c:if test="${empty member and empty business and empty admin}"><!-- 비회원 -->
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">	
-					<img alt="로고" src="${conPath }/img/logo_jeju.png"> 
+					<img id="jeju" alt="로고" src="${conPath }/img/logo.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -60,7 +64,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="${conPath }/img/logo_jeju.png">
+					<img id="jeju" alt="로고" src="${conPath }/img/logo.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -103,7 +107,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="${conPath }/img/logo_jeju.png">
+					<img id="jeju" alt="로고" src="${conPath }/img/logo.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -145,7 +149,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="${conPath }/img/logo_jeju.png">
+					<img id="jeju" alt="로고" src="${conPath }/img/logo.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">

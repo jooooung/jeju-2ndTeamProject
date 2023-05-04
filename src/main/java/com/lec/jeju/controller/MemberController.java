@@ -29,7 +29,7 @@ public class MemberController {
 		model.addAttribute("idConfirmResult", memberService.idConfirm(mid));
 		return "member/idConfirm";
 	}
-
+	// 이메일 중복체크
 	@RequestMapping(value = "memailConfirm", method = RequestMethod.GET)
 	public String mailConfirm(String memail, Model model) {
 		model.addAttribute("memailConfirmResult", memberService.emailConfirm(memail));

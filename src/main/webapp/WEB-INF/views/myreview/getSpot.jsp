@@ -47,7 +47,7 @@ body {
 </head>
 <body>
 	<c:if test="${empty getSpot}">
-		<td>작성한 댓글이 존재하지 않습니다.</td>
+		<td>작성한 댓글이 없어요.</td>
 	</c:if>
 	<c:forEach var="spot" items="${getSpot}">
 		<h3>${spot.sname}</h3>

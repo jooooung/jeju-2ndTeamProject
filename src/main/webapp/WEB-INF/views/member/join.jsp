@@ -163,7 +163,7 @@ b {
 				<tr>
 					<td>프로필사진</td>
 					<td>
-						<input type="file" name="tempmphoto">
+						<input type="file" name="temphoto">
 					</td>
 				</tr>
 				<tr>

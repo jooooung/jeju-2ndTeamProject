@@ -15,7 +15,6 @@ img {
 	display: block;
 	margin: 0 auto;
 	width: 350px;
-	height: 250px;
 }
 
 .tabcontent a {
@@ -80,10 +79,9 @@ img {
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
-	<br>
-	<br>
-	<img alt="로고"
-		src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2019/05/urbanbrush-20190527111859163541.png">
+	<a href="${conPath }/main.do"> 
+			<img alt="로고" src="${conPath }/img/logo(2).png">
+	</a>
 	<br>
 	<div class="tab">
 		<button class="tablinks" id="tab1-link" onclick="openTab('tab1')">작성한글</button>

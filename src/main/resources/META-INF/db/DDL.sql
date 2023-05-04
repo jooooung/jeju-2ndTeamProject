@@ -229,7 +229,6 @@ SELECT * FROM restaurant;
 SELECT * FROM restaurantComment;
 SELECT * FROM Festival;
 SELECT * FROM MEMBER;
-DELETE  FROM MEMBER WHERE MID = 'kang';
 SELECT * FROM BOOKMARK;
 SELECT * FROM RestauranTtype;
 SELECT * FROM restaurant;

@@ -10,13 +10,24 @@
 	<link href="${conPath }/css/header.css" rel=stylesheet>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 <style>
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
 #jeju {
   width: 100%;
   display: block;
   margin: 0 auto;
   filter: drop-shadow(2px 2px 2px rgba(0, 0, 0, 0.2));
 }
-
 </style>
 <script>
 	$(document).ready(function() {

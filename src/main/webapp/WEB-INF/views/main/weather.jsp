@@ -15,25 +15,6 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp" />
-	<main>
-		<div class="weather-container">
-			<h1 class="weather-title">제주도 날씨 정보</h1>
-			<div class="weather-info">
-				<div class="weather-icon-container">
-					<img class="weather-icon" src="" alt="날씨 아이콘">
-				</div>
-				<div class="weather-temp">
-					<p class="weather-temp-now"></p>
-					<p class="weather-temp-min"></p>
-					<p class="weather-temp-max"></p>
-				</div>
-				<div class="weather-desc">
-					<p class="weather-desc-now"></p>
-					<p class="weather-desc-detail"></p>
-				</div>
-			</div>
-		</div>
-	</main>
 	<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

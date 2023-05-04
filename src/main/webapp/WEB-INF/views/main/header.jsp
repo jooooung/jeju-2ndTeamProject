@@ -26,7 +26,7 @@
 						여행지
 						<ol class="subMenu">
 							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
-							<li><a href="">음식</a></li>
+							<li><a href="${conPath }/res/list.do">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do">숙박</a></li>
 						</ol>
 					</li>
@@ -93,7 +93,7 @@
 			</div>
 			<div class="log">
 				<ul>
-					<li><a>${member.mname }님 &nbsp;</a></li>
+					<li><a href="${conPath }/member/modify.do">${member.mname }님 &nbsp;</a></li>
 					<li><a href="${conPath }/member/logout.do">로그아웃</a></li>
 				</ul>
 			</div>

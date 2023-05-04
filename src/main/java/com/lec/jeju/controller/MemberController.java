@@ -1,5 +1,6 @@
 package com.lec.jeju.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -149,4 +150,18 @@ public class MemberController {
 	public String findPW() {
 		return "member/findpwform";
 	}
+
+	@RequestMapping(value = "findPW", method = RequestMethod.POST)
+	public String findPw(String mid, String memail, Model model, HttpServletRequest request) {
+		String mpw = memberService.findPW(mid, memail);
+		if (mpw == null) {
+			model.addAttribute("error", "입력하신 정보가 일치하지 않습니다.");
+			return "member/findPW";
+		} else {
+			model.addAttribute("memail", memail);
+			model.addAttribute("mpw", mpw);
+			return "member/findPW";
+		}
+	}
+
 }

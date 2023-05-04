@@ -136,10 +136,15 @@ public class BusinessController {
 	}
 	
 	// 호텔 등록
-    @RequestMapping(value = "/registerHotel", method = RequestMethod.GET)
+   @RequestMapping(value = "/registerHotel", method = RequestMethod.GET)
     public String registerHotel() {
         return "business/registerHotel";
-    }
+   }
+   @RequestMapping(value = "/registerHoteldummy", method = RequestMethod.GET)
+   public String registerHoteldummy(Hotel hotel) {
+	   businessService.registerHoteldummy(hotel);
+	   return "redirect:/business/myHotelPosts.do";
+   }
 
 	@RequestMapping(value = "/registerHotel", method = RequestMethod.POST)
 	public String registerHotel(@ModelAttribute("hotel") Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest, Model model) {

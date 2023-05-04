@@ -25,7 +25,7 @@ public interface MemberService {
 	
 	public String findID(String memail, HttpSession session);
 	
-	public String findPW(String mid, String memail, HttpSession session);
+	public String findPW(String mid, String memail);
 	
 	public int updatePW(Member member, HttpSession Session);
 

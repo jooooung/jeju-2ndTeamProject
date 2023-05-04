@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lec.jeju.service.BookMarkService;
+import com.lec.jeju.service.BusinessService;
 import com.lec.jeju.service.HotelCommentService;
 import com.lec.jeju.service.HotelService;
 import com.lec.jeju.service.HreservationService;
@@ -22,6 +24,7 @@ import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
 import com.lec.jeju.vo.Hreservation;
+import com.lec.jeju.vo.Location;
 import com.lec.jeju.vo.Member;
 
 @Controller
@@ -35,6 +38,8 @@ public class HotelController {
 	private HreservationService hreservService;
 	@Autowired
 	private BookMarkService bookmarkService;
+	@Autowired
+	private BusinessService businessService;
 	
 	// 숙소목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)

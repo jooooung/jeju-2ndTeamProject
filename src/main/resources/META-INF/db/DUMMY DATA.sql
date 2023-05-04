@@ -56,7 +56,9 @@ INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPho
     VALUES ('hotel', 'bpw', '호텔', '010-1234-1234', 'hotel@naver.com', '제주시 서귀포구', '감귤동', '125863', null, sysdate);
 INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
     VALUES ('hidden', 'bpw', '히든클리프 호텔 앤 네이쳐', '010-1234-1234', 'hotel@naver.com', '서귀포시', '예래해안로', '125863', null, sysdate);
-    
+INSERT INTO Business (bId, bPw, bName, bTel, bEmail, bAddr, bDeAddr, bPost, bPhoto, bRdate)
+    VALUES ('hotelDummy', 'bpw', 'hotelDummy', '010-1234-1234', 'hotelDummy@naver.com', '서귀포시', '예래해안로', '125863', null, sysdate);
+
 -- MEMBER -- 
 insert into member (mId, mPw, mName, mTel, mEmail, mAddr, mDeAddr, mPost, mBirth)
     values('aaa', '1', '홍길동','010-1234-1234',  'hong@hong.com', '서울시 중랑구', 'xx아파트', '12345', '1995-12-12');
@@ -172,7 +174,7 @@ VALUES (scheduleNo_seq.NEXTVAL, 'kim', '드라이브여행', TO_TIMESTAMP('2023-
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
     VALUES (bookmarkNo_seq.NEXTVAL, 'kim', '호텔더원', null, null, '호텔더원m.jpg', null, null);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', null, '올래국수', null, null, '올래국수m.jpg', null);
+    VALUES (bookmarkNo_seq.NEXTVAL, 'kang', null, '올래국수', null, null, '올래국수m.jpg', null);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
     VALUES (bookmarkNo_seq.NEXTVAL, 'kim', null, NULL, '한라산국립공원', null, null, '한라산국립공원m');
 

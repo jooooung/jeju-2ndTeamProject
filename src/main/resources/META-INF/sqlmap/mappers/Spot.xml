@@ -26,6 +26,14 @@
     	<!-- 관광지 리스트 -->
     	<!-- 등록순 출력 -->
     	<select id="spotList" parameterType="spot" resultMap="SpotResult"> 
+    		SELECT * 
+    			FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt FROM SPOT S, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
+        		WHERE S.SNAME = B.SNAME(+))A)
+				WHERE RN BETWEEN #{startRow} AND #{endRow}
+    	</select>
+    	
+    	<!-- 기본 리스트(즐겨찾기 높은 순) 출력 -->
+    	<select id="spotSchList" parameterType="spot" resultMap="SpotResult">
 			<if test="schitem == null or schitem== ''"> 
 				SELECT * 
     				FROM (SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt, L.LNAME FROM SPOT S, LOCATION L, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
@@ -114,7 +122,7 @@
                 SLATITUDE = #{slatitude},
                 SLONGITUDE = #{slongitude},
                 SPRICE = #{sprice}
-    		WHERE SNAME = #{sname};
+    		WHERE SNAME = #{sname}
 		</update>
 		
 		<!-- 등록된 관광지 삭제 -->
@@ -124,7 +132,6 @@
 		
 		<!-- 관광지 상세보기-->
 		<select id="detailSpot" parameterType="String" resultType="Spot">
-			SELECT ROWNUM RN, A.* FROM (SELECT S.*, NVL(bCnt, 0) bCnt, L.LNAME FROM SPOT S, LOCATION L, (SELECT SNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY SNAME)B 
-        		WHERE S.SNAME = B.SNAME(+) AND S.LOCATIONNO = L.LOCATIONNO AND S.SNAME = #{sname})A
+			SELECT * FROM SPOT WHERE SNAME = #{sname}
 		</select>
     </mapper>

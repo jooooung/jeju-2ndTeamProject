@@ -68,6 +68,7 @@
     </table>
     <div class="btn-wrapper">
 		<a href="${conPath}/business/myRestaurantPosts.do" class="my-button">목록</a>
+		<a href="${conPath}/business/modifyRestaurant.do" class="my-button">수정</a>
 	</div>
     <jsp:include page="../main/footer.jsp"/>
 </body>

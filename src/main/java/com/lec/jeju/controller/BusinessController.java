@@ -157,13 +157,26 @@ public class BusinessController {
 	}
 	
 	/*
-	 * // 호텔 수정
+	 * // 정보수정 뷰
 	 * 
-	 * @RequestMapping(value = "/modifyHotel", method = RequestMethod.PUT) public
-	 * String modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest, Model
-	 * model) { businessService.modifyHotel(hotel, mRequest); String bid =
-	 * hotel.getBid(); List<Hotel> hotels = businessService.myHotelPosts(bid);
-	 * model.addAttribute("hotels", hotels); return "business/myHotelPosts"; }
+	 * @RequestMapping(value = "/modifyHotel", method = RequestMethod.GET) public
+	 * String modifyHotel(Model model, @RequestParam("bid") String
+	 * bid, @RequestParam("hname") String hame) { Hotel hotel =
+	 * businessService.getHotelByName(bid); hotel.setBid(bid);
+	 * model.addAttribute("hotel", hotel); return "business/modifyHotel"; }
+	 * 
+	 * @RequestMapping(value = "/modifyHotel", method = RequestMethod.POST) public
+	 * String modifyHotel(@RequestParam String bid, @ModelAttribute("hotel") Hotel
+	 * hotel, MultipartHttpServletRequest mRequest, Model
+	 * model, @RequestParam(defaultValue = "1") int pageNum) { int hotelTotalCount =
+	 * businessService.hotelTotalCount(bid); Paging paging = new
+	 * Paging(hotelTotalCount, String.valueOf(pageNum), 5, 5); List<Hotel> hotelList
+	 * = businessService.myHotelPosts(bid, paging.getStartRow(),
+	 * paging.getEndRow()); if (hotel.getRequeststatus().equals("P")) {
+	 * businessService.modifyHotel(hotel, mRequest); model.addAttribute("hotelList",
+	 * hotelList); model.addAttribute("paging", paging); return
+	 * "business/myHotelPosts"; } else { model.addAttribute("errorMessage",
+	 * "승인 또는 거절 처리된 글은 수정할 수 없습니ek"); return "error"; } }
 	 */
 	
 	// 호텔 등록 요청 목록

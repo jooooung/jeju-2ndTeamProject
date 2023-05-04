@@ -112,6 +112,7 @@ public interface BusinessDao {
     public Hotel selectHotelByName(String hname);
 
     public Restaurant selectRestaurantByName(String rname);
+    
 }
 
 

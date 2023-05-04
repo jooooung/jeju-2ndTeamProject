@@ -127,7 +127,7 @@
         
         <input type="hidden" id="requeststatus" name="requeststatus" value="P">
         
-        <button type="submit"">호텔 등록</button>
+        <button type="submit">호텔 등록</button>
         <a href="${conPath}/main.do" class="but">등록 취소</a>
     </form>
         

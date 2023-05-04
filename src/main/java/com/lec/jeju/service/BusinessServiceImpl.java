@@ -438,4 +438,5 @@ public class BusinessServiceImpl implements BusinessService {
 	public Restaurant getRestaurantByName(String rname) {
 	    return businessDao.selectRestaurantByName(rname);
 	}
+	
 }

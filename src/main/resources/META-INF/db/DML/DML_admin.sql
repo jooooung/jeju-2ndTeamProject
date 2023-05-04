@@ -3,7 +3,7 @@
 INSERT INTO Admin (aId, aPw, aName)
     VALUES ('jejuKing', 'island', '감귤');
 
-select * from admin;
+select * from restaurant;
 
 -- 2. 승인 요청 리스트
 -- Hotel 승인 요청 목록

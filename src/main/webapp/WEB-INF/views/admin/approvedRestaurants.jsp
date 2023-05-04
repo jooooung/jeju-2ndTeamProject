@@ -10,18 +10,6 @@
 	<meta charset="UTF-8">
 	<title>승인된 식당 목록</title>
 	<link href="${conPath }/css/admin/approved.css" rel=stylesheet>
-    <style>
-	    .paging{
-				text-align: center;
-			}
-			.paging a{
-				text-decoration: none;
-				color: black;
-			}
-			.paging a:hover {
-				font-weight: bold;
-			}
-	</style>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
@@ -40,7 +28,7 @@
 				<tbody>
 					<c:forEach items="${approvedList}" var="restaurant">
 						<tr>
-							<td><a href="${conPath}/admin/restaurantDetail.do?rname=${restaurant.rname}">${restaurant.rname}</a></td>
+							<td>${restaurant.rname}</td>
 							<td>${restaurant.raddr}</td>
 							<td>${restaurant.rtel}</td>
 						</tr>
@@ -69,7 +57,7 @@
 			</c:if>
 			</c:forEach>
 			<c:if test="${paging.endPage < paging.pageCnt }">
-			[ <a href="${conPath }/admin/approvedRestaurants.do?pageNum=${paging.endPage+1}">다음</a> ]
+			[ <a href="${conPath }/admin/approveRestaurants.do?pageNum=${paging.endPage+1}">다음</a> ]
 		</c:if>
 	</div>
 	<jsp:include page="../main/footer.jsp"/>

@@ -20,7 +20,7 @@ public interface AdminDao {
 	
 	public List<Hotel> hotelApproval(String requeststatus, int startRow, int endRow);
 
-	public void approveHotel(String hname, String approval, String requeststatus, double hlatitude, double hlongitude, int startRow, int endRow); // 호텔 승인
+	public void approveHotel(@Param("hname") String hname, @Param("approval") String approval, @Param("requeststatus") String requeststatus,@Param("hlatitude") double hlatitude,@Param("hlongitude") double hlongitude); // 호텔 승인
 
 	public List<Hotel> approvedHotels(String requeststatus, int startRow, int endRow);
 	
@@ -31,7 +31,7 @@ public interface AdminDao {
 	
 	public List<Restaurant> restaurantApproval(String requeststatus, int startRow, int endRow);
 	
-	public void approveRestaurant(String hname, String approval, String requeststatus, double hlatitude, double hlongitude, int startRow, int endRow);
+	public void approveRestaurant(@Param("rname") String rname, @Param("approval") String approval, @Param("requeststatus") String requeststatus, @Param("rlatitude") double rlatitude,@Param("rlongitude") double rlongitude);
 
     public List<Restaurant> approvedRestaurants(String requeststatus, int startRow, int endRow);
     

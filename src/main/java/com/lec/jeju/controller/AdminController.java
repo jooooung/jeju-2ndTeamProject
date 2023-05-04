@@ -62,14 +62,15 @@ public class AdminController {
 	public String approveHotel(String hname, String haddr, Model model) {
 		model.addAttribute("haddr", haddr);
 		model.addAttribute("hname", hname);
-	    return "admin/addLatLng";
+	    return "admin/addHotelLatLng";
 	}
 	
 	@RequestMapping(value = "/approveHotel", method = RequestMethod.POST)
 	public String approveHotel(String hname, double hlatitude, double hlongitude, Model model, @RequestParam(defaultValue = "1") int pageNum) {
+	    adminService.approveHotel(hname, "A", "P", hlatitude, hlongitude);
 	    Paging paging = new Paging(adminService.hotelTotalCount("A"), String.valueOf(pageNum), 5, 5);
-	    adminService.approveHotel(hname, "A", "P", hlatitude, hlongitude, paging.getStartRow(), paging.getEndRow());
 	    model.addAttribute("approvedList", adminService.approvedHotels("A", paging.getStartRow(), paging.getEndRow()));
+	    model.addAttribute("approvalList", adminService.hotelApproval("P", paging.getStartRow(), paging.getEndRow()));
 	    model.addAttribute("paging", paging);
 	    return "admin/approvedHotels";
 	}
@@ -117,14 +118,15 @@ public class AdminController {
 	public String approveRestaurant(String rname, String raddr, Model model) {
 		model.addAttribute("raddr", raddr);
 		model.addAttribute("rname", rname);
-	    return "admin/addLatLng";
+	    return "admin/addResLatLng";
 	}
 	
 	@RequestMapping(value = "/approveRestaurant", method = RequestMethod.POST)
-	public String approveRestaurant(String rname, double rlatitude, double rlongitude, Model model, @RequestParam(defaultValue = "1") int pageNum) {
+	public String approveRestaurnat(String rname, double rlatitude, double rlongitude, Model model, @RequestParam(defaultValue = "1") int pageNum) {
+	    adminService.approveRestaurant(rname, "A", "P", rlatitude, rlongitude);
 	    Paging paging = new Paging(adminService.restaurantTotalCount("A"), String.valueOf(pageNum), 5, 5);
-	    adminService.approveHotel(rname, "A", "P", rlatitude, rlongitude, paging.getStartRow(), paging.getEndRow());
 	    model.addAttribute("approvedList", adminService.approvedRestaurants("A", paging.getStartRow(), paging.getEndRow()));
+	    model.addAttribute("approvalList", adminService.restaurantApproval("P", paging.getStartRow(), paging.getEndRow()));
 	    model.addAttribute("paging", paging);
 	    return "admin/approvedRestaurants";
 	}

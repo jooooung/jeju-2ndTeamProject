@@ -34,33 +34,13 @@
 	
 	<!-- 등록된 글 갯수 -->
 	<select id="hotelTotalCount" parameterType="String" resultType="int">
-        SELECT COUNT(*) FROM hotel WHERE requeststatus = #{aid}
+        SELECT COUNT(*) FROM hotel WHERE requeststatus = #{param1}
     </select>
 	
 	<!-- 등록된 글 갯수 -->
 	<select id="restaurantTotalCount" resultType="int">
-	  SELECT COUNT(*) FROM RESTAURANT WHERE requeststatus = #{aid}
+	  SELECT COUNT(*) FROM RESTAURANT WHERE requeststatus = #{param1}
 	</select>
-	
-	<!-- 업체 등록 승인, 거절 -->
-    <update id="approveHotel" parameterType="Hotel">
-        UPDATE Hotel SET requestStatus='A', 
-        				 HLATITUDE=#{hlatitude, jdbcType=DOUBLE},
-                 		 HLONGITUDE=#{hlongitude, jdbcType=DOUBLE}
-        WHERE hName=#{hname}
-    </update>
-    
-    <update id="rejectHotel" parameterType="Hotel">
-        UPDATE Hotel SET requestStatus='R' WHERE hName=#{hname}
-    </update>
-
-    <update id="approveRestaurant" parameterType="Restaurant">
-        UPDATE Restaurant SET requestStatus='A' WHERE rName=#{rname}
-    </update>
-    
-    <update id="rejectRestaurant" parameterType="Restaurant">
-        UPDATE Restaurant SET requestStatus='R' WHERE rName=#{rname}
-    </update>
 	
 	<!-- 업체 등록 승인 요청 목록 -->
     <select id="hotelApproval" resultType="com.lec.jeju.vo.Hotel">
@@ -76,7 +56,31 @@
 		FROM (SELECT * FROM Restaurant WHERE requestStatus = 'P' ORDER BY rname DESC) R)
 		WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
     </select>
+    
+	<!-- 호텔 등록 승인, 거절 -->
+    <update id="approveHotel" parameterType="Hotel">
+        UPDATE Hotel SET requestStatus='A', 
+		HLATITUDE=#{hlatitude, jdbcType=DOUBLE},
+		HLONGITUDE=#{hlongitude, jdbcType=DOUBLE}
+        WHERE hName=#{hname}
+    </update>
+    
+    <update id="rejectHotel" parameterType="Hotel">
+        UPDATE Hotel SET requestStatus='R' WHERE hName=#{hname}
+    </update>
 
+	<!-- 식당 등록 승인, 거절 -->
+    <update id="approveRestaurant" parameterType="Restaurant">
+       UPDATE Restaurant SET requestStatus='A', 
+	   RLATITUDE=#{rlatitude, jdbcType=DOUBLE},
+       RLONGITUDE=#{rlongitude, jdbcType=DOUBLE}
+       WHERE rName=#{rname}
+    </update>
+    
+    <update id="rejectRestaurant" parameterType="Restaurant">
+        UPDATE Restaurant SET requestStatus='R' WHERE rName=#{rname}
+    </update>
+	
 	<!-- 업체 등록 승인 현황 -->
     <select id="approvedHotels" resultType="com.lec.jeju.vo.Hotel">
         SELECT *

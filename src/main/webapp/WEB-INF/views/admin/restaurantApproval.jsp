@@ -8,18 +8,6 @@
 	<meta charset="UTF-8">
 	<title>식당 등록 승인 요청 목록</title>
 	<link href="${conPath }/css/admin/approval.css" rel=stylesheet>
-    <style>
-	    .paging{
-				text-align: center;
-			}
-			.paging a{
-				text-decoration: none;
-				color: black;
-			}
-			.paging a:hover {
-				font-weight: bold;
-			}
-	</style>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
@@ -42,7 +30,7 @@
                 <td>${restaurant.raddr}</td>
                 <td>${restaurant.rtel}</td>
                 <td>
-                  <a href="${conPath}/admin/approveRestaurant.do?rname=${restaurant.rname}" class="approval-button">승인</a>
+                  <a href="${conPath}/admin/approveRestaurant.do?rname=${restaurant.rname}&raddr=${restaurant.raddr}" class="approval-button">승인</a>
                   <a href="${conPath}/admin/rejectRestaurant.do?rname=${restaurant.rname}" class="reject-button">거절</a>
                 </td>
               </tr>
@@ -56,20 +44,20 @@
         <a href='${conPath}/main.do' class="my-button">메인으로 돌아가기</a>
       </div>
     </div>
-    <div class="paging">
-			<c:if test="${paging.startPage > paging.blockSize }">
+	<div class="paging">
+		<c:if test="${paging.startPage > paging.blockSize }">
 			[ <a href="${conPath }/admin/restaurantApproval.do?pageNum=${paging.startPage-1}">이전</a> ]
 		</c:if>
-			<c:forEach var="i" begin="${paging.startPage }"
-				end="${paging.endPage }">
-				<c:if test="${i eq paging.currentPage}">
-				[ <b>${i }</b> ]
-			</c:if>
-				<c:if test="${i != paging.currentPage }">
-				[ <a href="${conPath }/admin/restaurantApproval.do?pageNum=${i}">${i }</a> ]
-			</c:if>
-			</c:forEach>
-			<c:if test="${paging.endPage < paging.pageCnt }">
+		<c:forEach var="i" begin="${paging.startPage }"
+			end="${paging.endPage }">
+			<c:if test="${i eq paging.currentPage}">
+			[ <b>${i }</b> ]
+		</c:if>
+		<c:if test="${i != paging.currentPage }">
+			[ <a href="${conPath }/admin/restaurantApproval.do?pageNum=${i}">${i }</a> ]
+		</c:if>
+		</c:forEach>
+		<c:if test="${paging.endPage < paging.pageCnt }">
 			[ <a href="${conPath }/admin/restaurantApproval.do?pageNum=${paging.endPage+1}">다음</a> ]
 		</c:if>
 	</div>

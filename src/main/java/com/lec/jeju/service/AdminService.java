@@ -21,7 +21,7 @@ public interface AdminService {
     
     public List<Hotel> hotelApproval(String requeststatus, int startRow, int endRow); // 호텔 등록 요청 목록
     
-    public void approveHotel(String hname, String approval, String requeststatus, double hlatitude, double hlongitude, int startRow, int endRow); // 호텔 승인
+    public void approveHotel(String hname, String approval, String requeststatus, double hlatitude, double hlongitude); // 호텔 승인
     
     public List<Hotel> approvedHotels(String requeststatus, int startRow, int endRow); // 호텔 승인 목록
     
@@ -32,7 +32,7 @@ public interface AdminService {
     
     public List<Restaurant> restaurantApproval(String requeststatus, int startRow, int endRow); // 식당 등록 요청 목록
     
-    public void approveRestaurant(String rname, String approval, String requeststatus, double hlatitude, double hlongitude, int startRow, int endRow); // 식당 승인
+    public void approveRestaurant(String rname, String approval, String requeststatus, double rlatitude, double rlongitude); // 식당 승인
     
     public List<Restaurant> approvedRestaurants(String requeststatus, int startRow, int endRow); // 식당 승인 목록
     

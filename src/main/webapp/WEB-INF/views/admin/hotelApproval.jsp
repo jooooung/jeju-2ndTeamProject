@@ -44,7 +44,7 @@
         <a href='${conPath}/main.do' class="my-button">메인으로 돌아가기</a>
       </div>
     </div>
-    <div class="paging">
+	<div class="paging">
 			<c:if test="${paging.startPage > paging.blockSize }">
 			[ <a href="${conPath }/admin/hotelApproval.do?pageNum=${paging.startPage-1}">이전</a> ]
 		</c:if>

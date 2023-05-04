@@ -9,18 +9,6 @@
 	<meta charset="UTF-8">
 	<title>거절된 호텔 목록</title>
 	<link href="${conPath }/css/admin/approved.css" rel=stylesheet>
-    <style>
-	    .paging{
-				text-align: center;
-			}
-			.paging a{
-				text-decoration: none;
-				color: black;
-			}
-			.paging a:hover {
-				font-weight: bold;
-			}
-	</style>
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
@@ -39,7 +27,7 @@
 				<tbody>
 					<c:forEach items="${rejectedList}" var="hotel">
 						<tr>
-							<td><a href="${conPath}/admin/hotelDetail.do?hname=${hotel.hname}">${hotel.hname}</a></td>
+							<td>${hotel.hname}</td>
 							<td>${hotel.haddr}</td>
 							<td>${hotel.htel}</td>
 						</tr>

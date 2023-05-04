@@ -92,7 +92,7 @@ p a {
 		</script>
 	</c:if>
 	<a href="<c:url value='/main.do' />"> <img class="logo" alt="로고"
-		src="${conPath }/img/logo_jeju.png">
+		src="${conPath }/img/logo(2).png">
 	</a>
 	<div class="wrap">
 		<div class="container">

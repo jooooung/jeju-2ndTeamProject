@@ -67,9 +67,20 @@ input[type="button"]:hover {
 	background-color: orange;
 }
 
-/* 캡션 스타일 */
 caption {
 	font-size: 24px;
 	font-weight: bold;
 	margin-bottom: 16px;
+}
+
+p {
+	text-align: center;
+	margin: 25px;
+	padding: 10px;
+}
+
+p a {
+	text-decoration: none;
+	color: #6b6b6b;
+	font-size: 12px;
 }

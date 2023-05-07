@@ -120,35 +120,37 @@
 		SELECT * FROM Restaurant WHERE rName=#{rname}
 	</select>
 	
-	<!-- 게시글 삭제 -->
-	<!-- 페스티벌 -->
-	<delete id="deleteFestival" parameterType="int">
-	    DELETE FROM Festival
-	    WHERE festivalNo = #{festivalno}
+	<!-- 호텔 글 삭제 -->
+	<delete id="deleteHotel" parameterType="String">
+  		DELETE FROM hotel WHERE hname=#{hname};
 	</delete>
-
-	<!-- 리뷰 -->
-	<delete id="deleteReview" parameterType="int">
-	    DELETE FROM Review
-	    WHERE reviewNo = #{reviewno}
+	
+	<!-- 식당 글 삭제 -->
+	<delete id="deleteRestaurant" parameterType="String">
+		DELETE FROM restaurant WHERE rname = #{rname}
 	</delete>
-
-	<!-- 댓글 삭제 -->
-	<!-- 호텔 -->
+	
+	<!-- 호텔 댓글 삭제 -->
 	<delete id="deleteHotelComment" parameterType="int">
 	    DELETE FROM hotelComment
-	    WHERE hCommentNo = #{hcommentno}
+	    WHERE hcommentno = #{hcommentno}
 	</delete>
-
-	<!-- 식당 -->
+	
+	<!-- 식당 댓글 삭제 -->
 	<delete id="deleteRestaurantComment" parameterType="int">
 	    DELETE FROM restaurantComment
-	    WHERE rCommentNo = #{rcommentno}
+	    WHERE rcommentno = #{rcommentno}
 	</delete>
-
-	<!-- 관광지 -->
-	<delete id="deleteSpotComment" parameterType="int">
-	    DELETE FROM spotComment
-	    WHERE sCommentNo = #{scommentno}
+	
+	<!-- 호텔 글에 속한 댓글 전체 삭제 -->
+	<delete id="deleteHotelCommentAll" parameterType="String">
+	    DELETE FROM hotelComment
+	    WHERE hname = #{hname}
+	</delete>
+	
+	<!-- 식당 글에 속한 댓글 전체 삭제 -->
+	<delete id="deleteRestaurantCommentAll" parameterType="String">
+	    DELETE FROM restaurantComment
+	    WHERE rname = #{rname}
 	</delete>
 </mapper>

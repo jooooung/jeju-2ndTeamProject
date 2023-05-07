@@ -47,4 +47,5 @@ public interface AdminDao {
 	public int hotelTotalCount(String requeststatus);
 
 	public int restaurantTotalCount(String requeststatus);
+	
 }

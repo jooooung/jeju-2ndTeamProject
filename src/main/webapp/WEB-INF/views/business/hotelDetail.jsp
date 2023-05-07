@@ -11,7 +11,7 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
-    <h2>${hotel.hname}</h2>
+    <h2>"${hotel.hname}" 상세정보</h2>
 	<table>
         <tr>
             <td>호텔 이름:</td>
@@ -68,7 +68,6 @@
     </table>
     <div class="btn-wrapper">
 		<a href="${conPath}/business/myHotelPosts.do" class="my-button">목록</a>
-		<a href="${conPath}/business/modifyHotel.do" class="my-button">수정</a>
 	</div>
     <jsp:include page="../main/footer.jsp"/>
 </body>

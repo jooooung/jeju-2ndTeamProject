@@ -28,7 +28,7 @@
 				<tbody>
 					<c:forEach items="${approvedList}" var="restaurant">
 						<tr>
-							<td>${restaurant.rname}</td>
+							<td><a href="${conPath}/admin/restaurantDetail.do?rname=${restaurant.rname}">${restaurant.rname}</a></td>
 							<td>${restaurant.raddr}</td>
 							<td>${restaurant.rtel}</td>
 						</tr>

@@ -21,8 +21,9 @@ public class SpotServiceImpl implements SpotService {
 	private SpotDao sDao;
 	String backupPath = "C:/houn/source/10_2ndTeamProject/jeju-2ndTeamProject/src/main/webapp/spotImgFileUpload/";
 	@Override
-	public List<Spot> spotList(String pageNum, Spot spot) {
+	public List<Spot> spotList(String pageNum, Spot spot, String mid) {
 		Paging paging = new Paging(sDao.totCntSpot(spot), pageNum, 5, 5);
+		spot.setMid(mid);
 		spot.setStartRow(paging.getStartRow());
 		spot.setEndRow(paging.getEndRow());
 		return sDao.spotList(spot);

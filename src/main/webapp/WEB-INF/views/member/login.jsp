@@ -33,6 +33,7 @@ th {
 	text-align: center;
 }
 </style>
+
 </head>
 <body>
 	<c:if test="${joinResult eq 1 }">

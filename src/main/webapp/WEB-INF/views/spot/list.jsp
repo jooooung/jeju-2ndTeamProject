@@ -36,7 +36,7 @@
 					alert('로그인 후 이용 가능한 서비스입니다.');
 					location.href='${conPath}/member/login.do?after=list.do';
 				}else{
-					location.href='${conPath}/bookmark/addBookmarkSpot.do?sname='+sname+'&mid='+mid;
+					location.href='${conPath}/bookmark/addBookmarkSpotList.do?sname='+sname+'&mid='+mid+'&pageNum=${paging.currentPage }';
 				}
 			});
 			
@@ -46,7 +46,7 @@
 				var sname = $(this).prevAll('.sname').val();
 				var bmark = $(this).prevAll('.bmark').val();
 				var mid = '${member.mid}';
-				location.href='${conPath}/bookmark/deleteBookmarkSpot.do?sname='+sname+'&mid='+mid;
+				location.href='${conPath}/bookmark/deleteBookmarkSpotList.do?sname='+sname+'&mid='+mid+'&pageNum=${paging.currentPage }';
 			});
 		});
 	</script>
@@ -55,15 +55,9 @@
 	<div id="spot_wrap">
 		<div id="title">
 			<ul>
-				<li>
-					<a class="title_active" href="${conPath }/spot/list.do">관광</a>
-				</li>
-				<li>
-					<a href="${conPath }/res/list.do">맛집</a>
-				</li>
-				<li>
-					<a href="${conPath }/hotel/list.do">숙박</a>
-				</li>
+				<li><a class="title_active">관광</a></li>
+				<li><a href="${conPath }/res/list.do">맛집</a></li>
+				<li><a href="${conPath }/hotel/list.do">숙박</a></li>
 			</ul>
 		</div>
 		<div id="search_wrap">
@@ -158,15 +152,15 @@
 							<input type="hidden" class="sname" value="${list.sname }">
 							<input type="hidden" class="bmark" value="${list.bookmarkok }">
 							<c:if test="${empty member }">
-								<img class="lineBookmark" onclick="click(event)" width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">
+								<img class="lineBookmark" width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">
 								<span class="cnt">${list.bcnt }</span>
 							</c:if>
 							<c:if test="${not empty member && list.bookmarkok == 0 }">
-								<img class="lineBookmark" onclick="click(event)" width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">
+								<img class="lineBookmark" width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">
 								<span class="cnt">${list.bcnt }</span>
 							</c:if>
 							<c:if test="${not empty member && list.bookmarkok == 1 }">
-								<img class="fullBookmark" onclick="click(event)" width="20px;" alt="별" src="${conPath }/img/fullstar.png">
+								<img class="fullBookmark" width="20px;" alt="별" src="${conPath }/img/fullstar.png">
 								<span class="cnt">${list.bcnt }</span>
 							</c:if>
 						</div>

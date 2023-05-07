@@ -7,15 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
-import java.util.Properties;
-import java.util.Random;
 import java.util.UUID;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
@@ -24,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -39,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	String backupPath = "D:/TeamProject/Source/jeju-2ndTeamProject/src/main/webapp/memberPhoto/";
+	String backupPath = "D:/TeamProject/jeju-2ndTeamProject/jeju-2ndTeamProject/src/main/webapp/memberPhoto";
 
 	@Override
 	public int idConfirm(String mid) {
@@ -172,6 +165,7 @@ public class MemberServiceImpl implements MemberService {
 					+ " <h3>" + member.getMid() + "님의 임시 비밀번호는 " + tempPw + " 입니다.</h3>\n"
 					+ "<p style=\"color:black; font-weight:bold;\">로그인 후 꼭 비밀번호를 변경해주세요.</p>" 
 					+ "</div>";
+
 
 			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception {

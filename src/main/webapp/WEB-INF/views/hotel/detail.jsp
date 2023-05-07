@@ -131,7 +131,7 @@
 						<img width="50px;" alt="빈 별" src="${conPath }/img/linestar.png"> ${bookmark }
 					</div>
 				</c:if>
-				<c:if test="${checkBookmarkHotel == 1 }">
+				<c:if test="${checkBookmarkHotel >= 1 }">
 					<div class="fullBookmark" align="right">
 						<img width="50px;" alt="별" src="${conPath }/img/fullstar.png">${bookmark }
 					</div>
@@ -149,21 +149,21 @@
 		</div>
 		<div class="swiper mySwiper">
 	    <div class="swiper-wrapper">
-	    	<c:set var="img" value="${list.hmainimg}"/>
 			<c:if test = "${fn:contains(img, 'http')}">
-				<img alt="" src="${list.hmainimg }">
-		      <div class="swiper-slide" style="background-image: url('${list.hmainimg }');"></div>
+		    	<div class="swiper-slide" style="background-image: url('${hotelVo.hmainimg }');"></div>
 			</c:if>
-	      <div class="swiper-slide" style="background-image: url('${conPath}/hotelImgFileUpload/${hotelVo.hmainimg }');"></div>
-	      <c:if test="${not empty hotelVo.hsubimg_1}">
-		      <div class="swiper-slide" style="background-image: url('${conPath}/hotelImgFileUpload/${hotelVo.hsubimg_1 }');"></div>
-	      </c:if>
-	      <c:if test="${not empty hotelVo.hsubimg_2}">
-		      <div class="swiper-slide" style="background-image: url('${conPath}/hotelImgFileUpload/${hotelVo.hsubimg_2 }');"></div>
-	      </c:if>
-	      <c:if test="${not empty hotelVo.hsubimg_3}">
-		      <div class="swiper-slide" style="background-image: url('${conPath}/hotelImgFileUpload/${hotelVo.hsubimg_3 }');"></div>
-	      </c:if>
+			<c:if test = "${not fn:contains(img, 'http')}">
+		    	<div class="swiper-slide" style="background-image: url('${conPath}/hotelImgFileUpload/${hotelVo.hmainimg }');"></div>
+			</c:if>
+	        <c:if test="${not empty hotelVo.hsubimg_1}">
+		        <div class="swiper-slide" style="background-image: url('${conPath}/hotelImgFileUpload/${hotelVo.hsubimg_1 }');"></div>
+	        </c:if>
+	        <c:if test="${not empty hotelVo.hsubimg_2}">
+		        <div class="swiper-slide" style="background-image: url('${conPath}/hotelImgFileUpload/${hotelVo.hsubimg_2 }');"></div>
+	        </c:if>
+	        <c:if test="${not empty hotelVo.hsubimg_3}">
+		        <div class="swiper-slide" style="background-image: url('${conPath}/hotelImgFileUpload/${hotelVo.hsubimg_3 }');"></div>
+	        </c:if>
 	    </div>
 		    <div class="swiper-button-next"></div>
 		    <div class="swiper-button-prev"></div>
@@ -213,6 +213,7 @@
 		</div>
 	<jsp:include page="../hotel/hotelComment.jsp"/>
 	<jsp:include page="../main/footer.jsp"/>
+	</div>
 </body>
 </html>
 <!-- Swiper JS -->

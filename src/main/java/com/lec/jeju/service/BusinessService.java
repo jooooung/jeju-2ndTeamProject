@@ -32,8 +32,6 @@ public interface BusinessService {
 
 	// 호텔 등록
 	public boolean registerHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
-	// 더미등록용
-	public int registerHoteldummy(Hotel hotel);
 
     // 호텔 수정
 	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
@@ -73,11 +71,15 @@ public interface BusinessService {
 	
 	// 숙소 댓글 삭제
 	public int deleteHotelComment(int hcommentno);
-
+	
 	public int hotelTotalCount(String bid);
 	
 	public int restaurantTotalCount(String bid);
-	
+
+	public Hotel getHotelByName(String hname);
+
+	public Restaurant getRestaurantByName(String rname);
+
 	// 특정 식당 댓글 목록
 	/**public List<RestaurantComment> rCommentList(RestaurantComment restaurantComment);
 	

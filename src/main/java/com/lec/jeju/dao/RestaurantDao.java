@@ -18,7 +18,7 @@ public interface RestaurantDao {
 
 	public int modifyRes(Restaurant res);
 
-	public int deleteRes(Restaurant res);
+	public int deleteRes(String rname);
 
 	public Restaurant detailRes(String rname);
 }

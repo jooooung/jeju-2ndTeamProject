@@ -5,7 +5,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.lec.jeju.dao.AdminDao;
@@ -43,13 +42,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public List<Hotel> hotelApproval(String requeststatus) {
-	    return adminDao.hotelApproval(requeststatus);
+	public List<Hotel> hotelApproval(String requeststatus, int startRow, int endRow) {
+	    return adminDao.hotelApproval(requeststatus, startRow, endRow);
 	}
 
 	@Override
 	public void approveHotel(String hname, String approval, String requeststatus, double hlatitude, double hlongitude) {
 	    adminDao.approveHotel(hname, approval, requeststatus, hlatitude, hlongitude);
+	}
+	
+	@Override
+	public List<Hotel> approvedHotels(String requeststatus, int startRow, int endRow) {
+	    return adminDao.approvedHotels("A", startRow, endRow);
 	}
 
 	@Override
@@ -58,8 +62,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public List<Restaurant> restaurantApproval(String requeststatus) {
-		return adminDao.restaurantApproval(requeststatus);
+	public List<Hotel> rejectedHotels(String requeststatus, int startRow, int endRow) {
+	    return adminDao.rejectedHotels("R", startRow, endRow);
+	}
+	
+	@Override
+	public List<Restaurant> restaurantApproval(String requeststatus, int startRow, int endRow) {
+		return adminDao.restaurantApproval(requeststatus, startRow, endRow);
 	}
 
 	@Override
@@ -68,28 +77,18 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public List<Restaurant> approvedRestaurants(String requeststatus, int startRow, int endRow) {
+	    return adminDao.approvedRestaurants("A", startRow, endRow);
+	}
+
+	@Override
 	public void rejectRestaurant(String rname, String approval, String requeststatus) {
 		adminDao.rejectRestaurant(rname, approval, requeststatus);
 	}
-	
-	@Override
-	public List<Hotel> approvedHotels(String requeststatus) {
-	    return adminDao.approvedHotels("A");
-	}
 
 	@Override
-	public List<Restaurant> approvedRestaurants(String requeststatus) {
-	    return adminDao.approvedRestaurants("A");
-	}
-
-	@Override
-	public List<Hotel> rejectedHotels(String requeststatus) {
-	    return adminDao.rejectedHotels("R");
-	}
-
-	@Override
-	public List<Restaurant> rejectedRestaurants(String requeststatus) {
-	    return adminDao.rejectedRestaurants("R");
+	public List<Restaurant> rejectedRestaurants(String requeststatus, int startRow, int endRow) {
+	    return adminDao.rejectedRestaurants("R", startRow, endRow);
 	}
 	
 	@Override
@@ -101,4 +100,15 @@ public class AdminServiceImpl implements AdminService {
 	public Restaurant getRestaurantByName(String rname) {
 	    return adminDao.selectRestaurantByName(rname);
 	}
+	
+	@Override
+	public int hotelTotalCount(String requeststatus) {
+	    return adminDao.hotelTotalCount(requeststatus);
+	}
+	
+	@Override
+	public int restaurantTotalCount(String requeststatus) {
+	    return adminDao.restaurantTotalCount(requeststatus);
+	}
+	
 }

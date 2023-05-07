@@ -20,7 +20,10 @@ img {
 	margin: 0 auto;
 	width: 370px;
 }
-
+h2 {
+	color: black;
+	font-size: medium;
+}
 </style>
 </head>
 <body>

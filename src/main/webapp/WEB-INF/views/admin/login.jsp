@@ -10,10 +10,6 @@
 <title>Insert title here</title>
 <link href="${conPath }/css/member/login.css" rel=stylesheet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
-	rel="stylesheet">
 <style>
 #logo {
 	text-align: center;
@@ -22,12 +18,16 @@
 
 img {
 	display: block;
+	width : 300xp;
 	margin: 0 auto;
 }
 
 caption {
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+th {
+	text-align: center;
 }
 </style>
 </head>
@@ -66,11 +66,12 @@ caption {
 	</div>
 	<div id="content">
 		<form action="${conPath}/admin.do" method="post">
-			<input type="hidden" name="method" value="login"> <input
-				type="hidden" name="after"
+			<input type="hidden" name="method" value="login"> 
+      <input type="hidden" name="after"
 				value="${empty param.after ?  'main.do':param.after}">
 
 			<table>
+        <caption>관리자 로그인</caption>
 				<tr>
 					<th>아이디</th>
 					<td><input type="text" name="aid" required="required"

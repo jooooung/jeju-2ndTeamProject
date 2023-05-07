@@ -1,4 +1,17 @@
 @charset "UTF-8";
+
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
 /* 아이디 중복확인 버튼 스타일 */
 .idconfirm {
 	padding: 0 15px;

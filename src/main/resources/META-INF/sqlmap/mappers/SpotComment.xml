@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.SpotCommentDao">
+	<resultMap type="SpotComment" id="ScommentResult">
+		<result property="scommentno" column="scomentno"/>
+		<result property="sname" column="sname"/>
+		<result property="mid" column="mid"/>
+		<result property="scontent" column="scontent"/>
+		<result property="sgroup" column="sgroup"/>
+		<result property="sstep" column="sstep"/>
+		<result property="sindent" column="sindent"/>
+		<result property="scrdate" column="scrdate"/>
+		<result property="mphoto" column="mphoto"/>
+	</resultMap>
+	<!-- 특정 관광지 댓글 목록 -->
+	<select id="sCommentList" parameterType="SpotComment" resultMap="ScommentResult">
+		SELECT * 
+		    FROM (SELECT A.*, ROWNUM RN 
+		        FROM (SELECT S.*, mphoto FROM SPOTCOMMENT S, MEMBER M WHERE SNAME = #{sname} AND S.MID = M.MID ORDER BY SGROUP DESC, SSTEP) A)
+		    WHERE RN BETWEEN #{startRow} AND #{endRow}
+	</select>
+	
+	<!-- 특정 관광지 댓글수 -->
+	<select id="totCntScomment" parameterType="String" resultType="int">
+		SELECT COUNT(*) FROM SPOTCOMMENT WHERE SNAME = #{sname}
+	</select>
+	
+	<!-- 원 댓글 달기 -->
+	<insert id="insertScomment" parameterType="SpotComment">
+		INSERT INTO SPOTCOMMENT (SCOMMENTNO, SNAME, MID, SCONTENT, SGROUP, SSTEP, SINDENT, SCRDATE)
+	    	VALUES (sCommentNo_seq.NEXTVAL, #{sname}, #{mid, jdbcType=VARCHAR},  #{scontent}, sCommentNo_seq.CURRVAL, 0, 0, SYSDATE)
+    </insert>
+    
+    <!-- 답 댓글 달기 전 작업 -->
+    <update id="preReplyScomment" parameterType="SpotComment">
+    <![CDATA[
+    	UPDATE SPOTCOMMENT SET SSTEP = SSTEP + 1
+    		WHERE SGROUP = #{sgroup} AND SSTEP > #{sstep}
+    ]]>
+    </update>
+    
+    <!-- 답댓글 달기 -->
+    <insert id="replyScomment" parameterType="SpotComment">
+    	INSERT INTO SPOTCOMMENT (SCOMMENTNO, SNAME, MID, SCONTENT, SGROUP, SSTEP, SINDENT, SCRDATE)
+    		VALUES (sCommentNo_seq.NEXTVAL, #{sname}, #{mid}, #{scontent}, #{sgroup}, #{sindent}+1, #{sstep}+1, SYSDATE)
+    </insert>
+    
+    <!-- 댓글 수정 -->
+    <update id="modifyScomment" parameterType="SpotComment">
+	 	UPDATE SPOTCOMMENT SET SCONTENT = #{scontent} 
+	 		WHERE SCOMMENTNO = #{scommentno}
+    </update>
+    
+    <!-- 댓글 삭제 -->
+    <delete id="deleteScomment" parameterType="int">
+    	DELETE FROM SPOTCOMMENT WHERE SCOMMENTNO = #{scommentno}
+    </delete>
+</mapper>

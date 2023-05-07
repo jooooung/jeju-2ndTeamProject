@@ -22,12 +22,16 @@
 
 img {
 	display: block;
+	width : 300xp;
 	margin: 0 auto;
 }
 
 caption {
 	margin-top: 5px;
 	margin-bottom: 5px;
+}
+th {
+	text-align: center;
 }
 </style>
 </head>

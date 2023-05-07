@@ -8,8 +8,17 @@
 <head>
 <meta charset="UTF-8">
 <style>
-body {
-	font-family: "Noto Sans KR", sans-serif;
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
 }
 
 .hotel-box {
@@ -48,7 +57,7 @@ body {
 </head>
 <body>
 	<c:if test="${empty getReview}">
-		<td>작성한 글이 존재하지 않습니다.</td>
+		<td>작성한 글이 없어요.</td>
 	</c:if>
 	<c:forEach var="Review" items="${getReview}">
 		<div class="hotel-box">

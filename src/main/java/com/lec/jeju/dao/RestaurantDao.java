@@ -20,5 +20,5 @@ public interface RestaurantDao {
 
 	public int deleteRes(Restaurant res);
 
-	public Restaurant detailRes(String rname);
+	public int detailRes(String rname);
 }

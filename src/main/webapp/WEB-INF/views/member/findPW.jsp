@@ -8,8 +8,29 @@
 <head>
 <title>임시 비밀번호 안내</title>
 <style>
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
+
+img {
+	display: block;
+	margin: 0 auto;
+	width: 300px;
+	height: auto;
+}
+
 .wrap {
-	margin: 0 auto; display : flex;
+	margin: 0 auto;
+	display: flex;
 	flex-direction: column;
 	align-items: center;
 	display: flex;
@@ -91,7 +112,7 @@ p a {
 			location.href = "${conPath}/main.do";
 		</script>
 	</c:if>
-	<a href="<c:url value='/main.do' />"> <img class="logo" alt="로고"
+	<a href="${conPath }/main.do"> <img alt="로고"
 		src="${conPath }/img/logo(2).png">
 	</a>
 	<div class="wrap">

@@ -131,7 +131,7 @@
 						<img width="50px;" alt="빈 별" src="${conPath }/img/linestar.png"> ${bookmark }
 					</div>
 				</c:if>
-				<c:if test="${checkBookmarkHotel == 1 }">
+				<c:if test="${checkBookmarkHotel >= 1 }">
 					<div class="fullBookmark" align="right">
 						<img width="50px;" alt="별" src="${conPath }/img/fullstar.png">${bookmark }
 					</div>

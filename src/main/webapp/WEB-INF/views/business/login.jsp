@@ -13,17 +13,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 <link href="${conPath }/css/business/login.css" rel=stylesheet>
 <style>
-body {
-	font-family: 'Rubik', sans-serif;
+#logo {
+	text-align: center;
+	height: 200px;
 }
+
 img {
+	display: block;
+	width : 300xp;
 	margin: 0 auto;
-	width: 400px;
-	height: auto;
-	margin-top: 30px;
 }
+
 caption {
-	margin-bottom: 50px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+th {
+	text-align: center;
 }
 </style>
 </head>
@@ -61,17 +67,16 @@ caption {
 		</c:if>
 	</c:if>
 	<%-- <jsp:include page="../main/header.jsp" /> --%>
-	<br>
+	<div id="logo">
+		<a href="${conPath }/main.do"> <img alt="로고"
+			src="${conPath }/img/logo(2).png">
+		</a>
+	</div>
 	<div id="content">
 		<form action="${conPath }/business.do" method="post">
-			<input type="hidden" name="method" value="login"> <input
-				type="hidden" name="after"
-				value="${empty param.after ? 'main.do':param.after}"> <a
-				href="${conPath }/main.do"> 
-				<img alt="로고" src="${conPath }/img/logo_jeju.png">
-			</a>
+			<input type="hidden" name="method" value="login"> 
+			<input type="hidden" name="after" value="${empty param.after ? 'main.do':param.after}"> 
 			<table>
-				<caption>업체회원</caption>
 				<tr>
 					<th>아이디</th>
 					<td><input type="text" name="bid" required="required"

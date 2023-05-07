@@ -124,7 +124,7 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public Restaurant detailRes(String rname) {
+	public int detailRes(String rname) {
 		return resDao.detailRes(rname);
 	}
 

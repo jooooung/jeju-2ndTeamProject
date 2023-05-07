@@ -1,4 +1,17 @@
 @charset "UTF-8";
+
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
 /* 전체 페이지 스타일 */
 body {
 	font-family: 'Noto Sans KR', sans-serif;

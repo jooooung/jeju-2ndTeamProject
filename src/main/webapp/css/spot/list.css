@@ -48,7 +48,11 @@
 #list_wrap .list_info .list_img img{width:320px; height:230px; border-radius: 20px; padding: 10px;}
 #list_wrap .list_info .list_form{float:left; width:350px; margin: 0 auto; margin-top: 20px;}
 #list_wrap .list_info .list_form .name{font-size: 1.6em; font-family: 'TheJamsil5Bold';}
-#list_wrap .list_info .list_form .info{height:100px;}
+#list_wrap .list_info .list_form .info{
+    height: 100px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+	}
 #list_wrap .list_info .list_form p:first-of-type{margin-top: 10px;}
 #list_wrap .list_info .list_form p{margin: 5px 0; font-size: 0.9em; font-family: 'SUITE-Regular';}
 #list_wrap .list_info .list_form .bookmark img{position: relative; top:1.5px; left:1px;}

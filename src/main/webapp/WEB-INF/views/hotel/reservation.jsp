@@ -55,6 +55,11 @@
 	</script>
 </head>
 <body>
+	<c:if test="${empty member }">
+		<script>
+			location.href = '${conPath}/member/login.do?&after=${conPath}/hotel/reservation.do';
+		</script>
+	</c:if>
 	<jsp:include page="../main/header.jsp"/>
 	<div class="wrap">
 		<h1>${param.hname } 예약</h1>

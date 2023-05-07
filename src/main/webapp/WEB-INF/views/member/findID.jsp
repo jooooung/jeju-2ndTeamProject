@@ -10,16 +10,23 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
-body {
-	font-family: 'Noto Sans KR', sans-serif;
-	font-size: 16px;
-	line-height: 1.5;
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
 }
 
 img {
 	display: block;
 	margin: 0 auto;
-	width: 250px;
+	width: 300px;
 	height: auto;
 }
 
@@ -50,8 +57,7 @@ button[type="submit"] {
 	border-radius: 5px;
 	background-color: #4CAF50;
 	color: white;
-	font-weight: bold;
-	font-size: 1.1em;
+	font-size: 0.9em;
 	cursor: pointer;
 }
 
@@ -146,10 +152,9 @@ form button[type="submit"]:hover, form button[type="submit"]:focus {
 </script>
 </head>
 <body>
-	<form id="findPWForm" action="${conPath}/member/findID.do"
-		method="post">
-		<a href="${conPath }/main.do"> <img alt="로고"
-			src="${conPath }/img/logo_jeju.png">
+	<form id="findPWForm" action="${conPath}/member/findID.do" method="post">
+		<a href="${conPath }/main.do"> 
+			<img alt="로고" src="${conPath }/img/logo(2).png">
 		</a>
 		<table>
 			<tr>

@@ -1,4 +1,21 @@
 /* 폼 요소 정렬 */
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
+
+body {
+	margin: 0 auto;
+}
+
 form {
 	display: flex;
 	flex-direction: column;

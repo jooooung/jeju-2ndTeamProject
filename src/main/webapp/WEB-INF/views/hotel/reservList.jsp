@@ -88,7 +88,7 @@
 		<ul class="item_list">
 		<li>
 			<dl class="item_section">
-				<c:set var="img" value="${list.hmainimg}"/>
+				<c:set var="img" value="${reservList.hotel.hmainimg}"/>
 				<c:if test = "${fn:contains(img, 'http')}">
 					<img alt="" src="${reservList.hotel.hmainimg}">							
 				</c:if>

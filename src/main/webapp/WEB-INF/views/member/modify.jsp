@@ -84,22 +84,22 @@ b {
 <body>
 	<c:if test="${empty member }">
 		<script>
-			location.href = '${conPath}/member.do?method=login&after=member/modify.do';
+			location.href = '${conPath}/member/login.do';
 		</script>
 	</c:if>
 	<jsp:include page="../main/header.jsp" />
 	<div id="content">
-		<form action="${conPath }/member/modify.do" method="post"
-			enctype="multipart/form-data">
+		<form action="${conPath }/member/modify.do" method="post" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>아이디</td>
-					<td><input type="text" name="mid" value="${member.mid }"
-						readonly="readonly" size="3"></td>
+					<td>
+						<input type="text" name="mid" value="${member.mid }" readonly="readonly" size="3">
+					</td>
 					<td rowspan="6">
 						<p>[프로필사진]</p>
 							<c:if test="${empty member.mphoto}">
-								<img src="${conPath}/memberPhoto/NOIMG.JPG" />
+								<img src="${conPath}/memberPhoto/default_profile.png" />
 							</c:if> 
 							<c:if test="${not empty member.mphoto}">
 									<img src="${conPath}/${member.mphoto}"alt="${member.mname} photo" />
@@ -109,12 +109,15 @@ b {
 
 				<tr>
 					<td>현 비밀번호<b>*</b></td>
-					<td><input type="password" name="oldMpw" required="required"
-						size="3"></td>
+					<td>
+						<input type="password" name="oldMpw" required="required" size="3" placeholder="현재 비밀번호가 일치해야 합니다." >
+					</td>
 				</tr>
 				<tr>
 					<td>새비밀번호</td>
-					<td><input type="password" name="mpw" size="3"></td>
+					<td>
+						<input type="password" name="mpw" size="3">
+					</td>
 				</tr>
 				<tr>
 					<td>이름</td>
@@ -134,38 +137,45 @@ b {
 				</tr>
 				<tr>
 					<td>우편번호</td>
-					<td><input type="text" id="sample4_postcode" name="mpost"
-						class="text_box" size="3" value="${member.mpost }"> <input
-						type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
+					<td>
+						<input type="text" id="sample4_postcode" name="mpost" class="text_box" size="3" value="${member.mpost }"> 
+						<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 					</td>
 				</tr>
 				<tr>
 					<td>주소</td>
-					<td><input type="text" id="sample4_roadAddress" name="maddr"
-						size="3" value="${member.maddr }"> <input type="hidden"
-						id="sample4_jibunAddress" name="X" placeholder="지번주소"> <span
-						id="guide"></span></td>
+					<td>
+						<input type="text" id="sample4_roadAddress" name="maddr"
+							size="3" value="${member.maddr }"> 
+						<input type="hidden" id="sample4_jibunAddress" name="X" placeholder="지번주소"> 
+						<span id="guide"></span></td>
 				</tr>
 				<tr>
 					<td>상세주소</td>
-					<td><input type="text" name="mdeaddr"
-						value="${member.mdeaddr }" required="required" size="3"></td>
+					<td>
+						<input type="text" name="mdeaddr" value="${member.mdeaddr }" required="required" size="3">
+					</td>
 				</tr>
 				<tr>
 					<td>생년월일</td>
-					<td><input type="text" name="mbirth" id="datepicker"
-						value="${member.mbirth }" required="required" size="3"></td>
+					<td>
+						<input type="text" name="mbirth" id="datepicker"
+							value="${member.mbirth }" required="required" size="3">
+						</td>
 				</tr>
+				
 				<tr>
 					<td>프로필사진</td>
-					<td><input type="file" name="tempmphoto"></td>
+					<td>
+						<input type="file" name="temphoto">
+					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;"><input
-						type="submit" value="정보수정"> <input type="button"
-						value="돌아가기" onclick="location.href='${conPath}/main.do'">
-						<input type="button" value="회원탈퇴"
-						onclick="location.href='${conPath}/member/delete.do'">
+					<td colspan="2" style="text-align: center; margin: 30px;">
+						<input type="submit" value="정보수정" style="margin: 0 auto;"> 
+						<input type="button" value="돌아가기" onclick="location.href='${conPath}/main.do'">
+						<input type="button" value="회원탈퇴" onclick="location.href='${conPath}/member/delete.do'">
+					</td>
 			</table>
 		</form>
 	</div>

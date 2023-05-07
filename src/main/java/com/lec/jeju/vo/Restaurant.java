@@ -6,6 +6,8 @@ import lombok.Data;
 public class Restaurant {
 	private String rname;
 	private String bid;
+	private String mid;    // 즐겨찾기용
+	private int bookmarkok; // 즐겨찾기용
 	private Integer locationno;
 	private Integer restauranttypeno;
 	private String raddr;
@@ -22,6 +24,7 @@ public class Restaurant {
 	private String rprice;
 	private String requeststatus;
 	private int bcnt;
+	private String lname;
 
 	private int startRow;
 	private int endRow;

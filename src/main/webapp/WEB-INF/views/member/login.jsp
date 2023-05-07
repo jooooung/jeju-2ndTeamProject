@@ -14,24 +14,30 @@
 <link href="${conPath }/css/member/login.css" rel=stylesheet>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
-body {
-	font-family: 'Rubik', sans-serif;
+#logo {
+	text-align: center;
+	height: 200px;
 }
+
 img {
+	display: block;
+	width : 300xp;
 	margin: 0 auto;
-	width: 400px;
-	height: auto;
-	margin-top: 30px;
 }
+
 caption {
-	margin-bottom: 50px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+th {
+	text-align: center;
 }
 </style>
 </head>
 <body>
 	<c:if test="${joinResult eq 1 }">
 		<script>
-			alert('회원가입 감사합니다');
+			alert('회원가입 감사합니다, 즐거운 여행 되시길 바랍니다.');
 		</script>
 	</c:if>
 	<c:if test="${modifyResult eq 1 }">
@@ -50,14 +56,16 @@ caption {
 		</script>
 	</c:if>
 	<%-- <jsp:include page="../main/header.jsp" /> --%>
+	<div id="logo">
+		<a href="${conPath }/main.do"> 
+			<img alt="로고" src="${conPath }/img/logo(2).png">
+		</a>
+	</div>
 	<div id="content">
 		<form action="${conPath }/member/login.do" method="post">
-			<input type="hidden" name="after" value="${empty param.after ? 'main.do' : param.after}" />
-			<a href="${conPath }/main.do">	
-					<img alt="로고" src="${conPath }/img/logo_jeju.png"> 
-			</a>
+			<input type="hidden" name="after"
+				value="${empty param.after ? 'main.do' : param.after}" />
 			<table>
-				<caption>일반회원</caption>
 				<tr>
 					<th>아이디</th>
 					<td>
@@ -66,23 +74,23 @@ caption {
 				</tr>
 				<tr>
 					<th>비밀번호</th>
-					<td>
-						<input type="password" name="mpw" required="required" value="${mpw }">
-					</td>
+					<td><input type="password" name="mpw" required="required"
+						value="${mpw }"></td>
 				</tr>
 				<tr>
 					<td colspan="2" style="text-align: center;">
-					<input type="submit" value="로그인" style="width: 100%;">
+						<input type="submit" value="로그인" style="width: 100%;">
 					</td>
 				</tr>
 			</table>
 		</form>
 	</div>
 	<p>
-		<a href="${conPath }/member/findID.do">아이디 찾기 |</a>
-		<a href="${conPath }/member/findPW.do">비밀번호 찾기 |</a>
-		<a href="${conPath}/member/joinAgreePage.do">회원가입 |</a>
-		<a href="${conPath}/business.do?method=login">업체회원</a>
+		<a href="${conPath }/member/findID.do">아이디 찾기 |</a> 
+		<a
+			href="${conPath }/member/findPW.do">비밀번호 찾기 |</a> <a
+			href="${conPath}/member/joinAgreePage.do">회원가입 |</a> <a
+			href="${conPath}/business.do?method=login">업체회원</a>
 	</p>
 	<jsp:include page="../main/footer.jsp" />
 </body>

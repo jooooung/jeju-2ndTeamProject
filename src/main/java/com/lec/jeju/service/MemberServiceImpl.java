@@ -7,15 +7,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
-import java.util.Properties;
-import java.util.Random;
 import java.util.UUID;
 
 import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpSession;
@@ -24,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -39,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	String backupPath = "D:/TeamProject/Source/jeju-2ndTeamProject/src/main/webapp/memberPhoto/";
+	String backupPath = "D:/TeamProject/jeju-2ndTeamProject/jeju-2ndTeamProject/src/main/webapp/memberPhoto";
 
 	@Override
 	public int idConfirm(String mid) {
@@ -74,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
 				System.out.println(e.getMessage());
 			}
 		} else {
-			mphoto = "memberPhoto/default_profile.png";
+			mphoto = "default_profile.png";
 		} // if
 			// 메일전송
 		final String mailContent = createWelcomeMailContent(member);
@@ -167,9 +160,12 @@ public class MemberServiceImpl implements MemberService {
 		MimeMessagePreparator message = new MimeMessagePreparator() {
 			String content = "<div style=\"width:500px; margin: 0 auto\">\n"
 					+ "<img src=\"http://localhost:8088/jeju/img/logo(2).png\" "
-					+ "alt=\"제주도가즈아\" style=\"width: 100%; max-width: 500px;\">\n" + " <h2>제주어때 임시 비밀번호 안내 메일</h2>\n"
-					+ " <h3>" + member.getMid() + "님의 임시 비밀번호는 " + "\n" + tempPw + " 입니다.</h3>\n"
-					+ "<p style=\"color:orange; font-weight:bold;> 로그인 후 꼭 비밀번호를 변경해주세요</p>" + "</div>";
+					+ "alt=\"제주도가즈아\" style=\"width: 100%; max-width: 500px;\">\n" 
+					+ " <h2>제주어때 임시 비밀번호 안내 메일 입니다.</h2>\n"
+					+ " <h3>" + member.getMid() + "님의 임시 비밀번호는 " + tempPw + " 입니다.</h3>\n"
+					+ "<p style=\"color:black; font-weight:bold;\">로그인 후 꼭 비밀번호를 변경해주세요.</p>" 
+					+ "</div>";
+
 
 			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception {
@@ -242,16 +238,19 @@ public class MemberServiceImpl implements MemberService {
 
 	// 메일전송 본문
 	private String createWelcomeMailContent(Member member) {
-		String content = "<div style=\"text-align: center;\">\n"
+		String content = "<div style=\"text-align: center;\">\n" + " <style>\n" + " @font-face {\n"
+				+ "     font-family: 'RIDIBatang';\n"
+				+ "     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');\n"
+				+ "     font-weight: normal;\n" + "     font-style: normal;\n" + " }\n" + " </style>\n"
 				+ " <img src=\"http://localhost:8088/jeju/img/logo(2).png\" "
 				+ "alt=\"제주도가즈아\" style=\"max-width: 100%; width: 500px;\">\n"
-				+ " <div style=\"width:500px; margin: 0 auto\">\n" + "  <h1>" + member.getMname()
-				+ "님 회원가입 감사합니다!</h1>\n"
-				+ "  <p style=\"color:orange; font-weight:bold;\">저희 제주어때 사이트에 오신걸 환영합니다.</p>\n"
-				+ "  <p style=\"color:black; font-weight:bold;\">부디 편안하고 안전한 여행 되시길 바랍니다.</p>\n"
-				+ "  <p style=\"color:black; font-weight:bold;\">(00000) 제주특별자치도 제주시 JEJU 어때</p>\n"
-				+ "  <p style=\"color:black; font-weight:bold;\">관광불편신고 : 제주안내 120 콜센터 (국번없이 120번)</p>\n" + " </div>\n"
-				+ "</div>";
+				+ " <div style=\"width:500px; margin: 0 auto\">\n" + "  <h1 style=\"font-family: 'RIDIBatang';\">"
+				+ member.getMname() + "님 회원가입 감사합니다!</h1>\n"
+				+ "  <p style=\"color:orange; font-weight:bold; font-family: 'RIDIBatang';\">저희 제주어때 사이트에 오신걸 환영합니다.</p>\n"
+				+ "  <p style=\"color:green; font-weight:bold; font-family: 'RIDIBatang';\">부디 편안하고 안전한 여행 되시길 바랍니다.</p>\n"
+				+ "  <p style=\"color:black; font-weight:bold; font-family: 'RIDIBatang';\">(00000) 제주특별자치도 제주시 JEJU 어때</p>\n"
+				+ "  <p style=\"color:black; font-weight:bold; font-family: 'RIDIBatang';\">관광불편신고 : 제주안내 120 콜센터 (국번없이 120번)</p>\n"
+				+ " </div>\n" + "</div>";
 		return content;
 	}
 

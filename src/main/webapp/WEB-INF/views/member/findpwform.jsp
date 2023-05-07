@@ -10,10 +10,23 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <style>
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
+
 img {
 	display: block;
 	margin: 0 auto;
-	width: 250px;
+	width: 300px;
 	height: auto;
 }
 
@@ -102,6 +115,10 @@ form p a {
 form p a:hover {
 	text-decoration: none;
 }
+#cap {
+	font-size: 1.0em;
+	color: #666;
+}
 </style>
 <script>
 	window.onload = function() {
@@ -121,7 +138,6 @@ form p a:hover {
 	}
 
 	function isValidEmail(email) {
-		// 이메일 주소 형식을 정규식으로 검사합니다.
 		var emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 		return emailRegex.test(email);
 	}
@@ -140,13 +156,12 @@ form p a:hover {
 		</script>
 	</c:if>
 
-	<form id="findPWForm" action="${conPath}/member/findPW.do"
-		method="post">
-		<a href="${conPath }/main.do"> <img alt="로고"
-			src="${conPath }/img/logo_jeju.png">
-		</a> <br>
+	<form id="findPWForm" action="${conPath}/member/findPW.do" method="post">
+		<a href="${conPath }/main.do"> 
+			<img alt="로고" src="${conPath }/img/logo(2).png">
+		</a>
 		<table>
-			<caption>비밀번호를 찾고자하는 아이디와 이메일을 입력해주세요.</caption>
+			<caption id="cap">비밀번호를 찾고자하는 아이디와 이메일을 입력해주세요.</caption>
 			<tr>
 				<td><input type="text" name="mid" placeholder="아이디"></td>
 			</tr>

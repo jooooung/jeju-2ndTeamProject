@@ -24,6 +24,8 @@
 		<result property="hlatitude" column="hlatitude"/>
 		<result property="hlongitude" column="hlongitude"/>
 		<result property="hprice" column="hprice"/>
+		<result property="bcnt" column="bcnt"/>
+		<result property="bookmarkok" column="bookmarkok"/>
 		<collection property="location" resultMap="Location"/>
 	</resultMap>
 	<select id="locList" resultType="Location">

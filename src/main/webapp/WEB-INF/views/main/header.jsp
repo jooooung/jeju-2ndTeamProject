@@ -9,14 +9,18 @@
 	<title>Insert title here</title>
 	<link href="${conPath }/css/header.css" rel=stylesheet>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
-
+<style>
+	#jeju {
+		width: 200px;
+	}
+</style>
 </head>
 <body>
 	<c:if test="${empty member and empty business and empty admin}"><!-- 비회원 -->
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">	
-					<img alt="로고" src="${conPath }/img/logo_jeju.png"> 
+					<img id="jeju" alt="로고" src="${conPath }/img/logo.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -25,7 +29,7 @@
 					<li>
 						여행지
 						<ol class="subMenu">
-							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
+							<li><a href="${conPath }/spot/list.do?pageNum=1&schitem=&schword=">관광</a></li>
 							<li><a href="${conPath }/res/list.do">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do">숙박</a></li>
 						</ol>
@@ -60,7 +64,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="${conPath }/img/logo_jeju.png">
+					<img id="jeju" alt="로고" src="${conPath }/img/logo.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -68,7 +72,7 @@
 					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
-							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
+							<li><a href="${conPath }/spot/list.do?pageNum=1&schitem=">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1&mid=${member.mid}">숙박</a></li>
 						</ol>
@@ -103,7 +107,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="${conPath }/img/logo_jeju.png">
+					<img id="jeju" alt="로고" src="${conPath }/img/logo.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -111,7 +115,7 @@
 					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
-							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
+							<li><a href="${conPath }/spot/list.do?pageNum=1&schitem=">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>
@@ -145,7 +149,7 @@
 		<div class="navbar">
 			<div class="navbar_logo">
 				<a href="${conPath }/main.do">
-					<img alt="로고" src="${conPath }/img/logo_jeju.png">
+					<img id="jeju" alt="로고" src="${conPath }/img/logo.png"> 
 				</a>
 			</div>
 			<div class="navbar_menu">
@@ -153,7 +157,7 @@
 					<li onclick="location.href='${conPath}/map/mapList.do'" style="cursor: pointer;">지도</li>
 					<li>여행지
 						<ol class="subMenu">
-							<li><a href="${conPath }/spot/list.do?pageNum=1">관광</a></li>
+							<li><a href="${conPath }/spot/list.do?pageNum=1&schitem=">관광</a></li>
 							<li><a href="">음식</a></li>
 							<li><a href="${conPath }/hotel/list.do?pageNum=1">숙박</a></li>
 						</ol>

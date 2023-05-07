@@ -63,7 +63,7 @@
 	</delete>
 	
 	<!-- 식당 북마크 삭제 -->
-	<delete id="deleteResMark">
+	<delete id="deleteResMark"> 
 		DELETE FROM BOOKMARK
     	WHERE MID = #{mid} AND RNAME = #{rname}
 	</delete>

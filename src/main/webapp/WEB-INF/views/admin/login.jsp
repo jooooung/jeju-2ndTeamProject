@@ -11,19 +11,23 @@
 <link href="${conPath }/css/member/login.css" rel=stylesheet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap"
+	rel="stylesheet">
 <style>
-body {
-	font-family: 'Rubik', sans-serif;
+#logo {
+	text-align: center;
+	height: 200px;
 }
+
 img {
+	display: block;
 	margin: 0 auto;
-	width: 400px;
-	height: auto;
-	margin-top: 30px;
 }
+
 caption {
-	margin-bottom: 50px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 </style>
 </head>
@@ -55,16 +59,18 @@ caption {
 			location.href = '${conPath}/main.do';
 		</script>
 	</c:if>
+	<div id="logo">
+		<a href="${conPath }/main.do"> <img alt="로고"
+			src="${conPath }/img/logo(2).png">
+		</a>
+	</div>
 	<div id="content">
 		<form action="${conPath}/admin.do" method="post">
 			<input type="hidden" name="method" value="login"> <input
 				type="hidden" name="after"
 				value="${empty param.after ?  'main.do':param.after}">
-				<a href="${conPath }/main.do">	
-					<img alt="로고" src="${conPath }/img/logo_jeju.png"> 
-			</a>
+
 			<table>
-				<caption>관리자 로그인 화면</caption>
 				<tr>
 					<th>아이디</th>
 					<td><input type="text" name="aid" required="required"
@@ -76,8 +82,8 @@ caption {
 						value="${apw }"></td>
 				</tr>
 				<tr>
-					<td colspan="2"><input type="submit" value="로그인"
-						style="width: 100%;"></td>
+					<td colspan="2">
+					<input type="submit" value="로그인(관리자)" style="width: 100%;"></td>
 				</tr>
 			</table>
 		</form>

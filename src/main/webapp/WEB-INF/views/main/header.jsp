@@ -82,7 +82,7 @@
 					</li>
 					<li>마이페이지
 						<ol class="subMenu">
-							<li><a href="">나의일정</a></li>
+							<li><a href="${conPath }/schedule/myScheduleList.do">나의일정</a></li>
 							<li><a href="${conPath }/myreview/mypage.do">나의리뷰</a></li>
 							<li><a href="${conPath }/hotel/reservList.do?mid=${param.mid}">예약내역</a></li>
 							<li><a href="${conPath }/bookmark/MyAll.do">즐겨찾기</a></li>

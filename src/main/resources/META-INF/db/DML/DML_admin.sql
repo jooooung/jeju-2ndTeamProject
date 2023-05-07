@@ -80,3 +80,9 @@ DELETE FROM restaurantComment
 -- For spotComment:
 DELETE FROM spotComment
     WHERE sCommentNo = '1';
+    
+DELETE FROM hotel
+    WHERE hname = 'Ramada55';
+    
+DELETE FROM hotelComment WHERE hname = 'Ramada55';
+DELETE FROM hotel WHERE hname = 'Ramada55';

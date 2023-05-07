@@ -271,20 +271,10 @@ public class BusinessServiceImpl implements BusinessService {
 	    }
 	    return isSuccess;
 	}
-	
-	@Override
-	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest) {
-		businessDao.modifyHotel(hotel, mRequest);
-	}
 
 	@Override
 	public List<Hotel> myHotelPosts(String bid, int startRow, int endRow) {
 	    return businessDao.myHotelPosts(bid, startRow, endRow);
-	}
-	
-	@Override
-	public String hotelApprovalStatus(String hname) {
-	    return businessDao.hotelApprovalStatus(hname);
 	}
 
 	@Override
@@ -336,88 +326,9 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public void modifyRestaurant(Restaurant restaurant) {
-		businessDao.modifyRestaurant(restaurant);
-	}
-
-	@Override
 	public List<Restaurant> myRestaurantPosts(String bid, int startRow, int endRow) {
 	    return businessDao.myRestaurantPosts(bid, startRow, endRow);
 	}
-
-	@Override
-	public String restaurantApprovalStatus(String rname) {
-	    return businessDao.restaurantApprovalStatus(rname);
-	}
-
-	@Override
-	public List<HotelComment> hCommentList(HotelComment hotelComment, String pageNum) {
-		Paging paging = new Paging(businessDao.totCntHcomment(hotelComment), pageNum, 5, 5);
-		hotelComment.setStartrow(paging.getStartRow());
-		hotelComment.setEndrow(paging.getEndRow());
-		return businessDao.hCommentList(hotelComment);
-	}// 숙소 댓글 목록
-
-	@Override
-	public int totCntHcomment(String hname, HotelComment hotelComment) {
-		return businessDao.totCntHcomment(hotelComment);
-	}// 숙소 댓글 개수
-
-	@Override
-	public int registerHcomment(HotelComment hotelComment) {
-		return businessDao.registerHcomment(hotelComment);
-	}// 숙소 댓글 쓰기
-
-	@Override
-	public int replyHotelComment(HotelComment hotelComment) {
-		businessDao.preReplyHcomment(hotelComment);
-		return businessDao.replyHotelComment(hotelComment);
-	}// 숙소 답 댓글 쓰기
-
-	@Override
-	public int modifyHotelComment(HotelComment hotelComment) {
-		return businessDao.modifyHotelComment(hotelComment);
-	}// 숙소 댓글 수정
-
-	@Override
-	public int deleteHotelComment(int hcommentno) {
-		return businessDao.deleteHotelComment(hcommentno);
-	}// 숙소 댓글 삭제
-	/**
-	@Override
-	public List<RestaurantComment> rCommentList(RestaurantComment restaurantComment, String pageNum) {
-		Paging paging = new Paging(businessDao.totCntRcomment(restaurantComment), pageNum, 5, 5);
-		restaurantComment.setStartrow(paging.getStartRow());
-		restaurantComment.setEndrow(paging.getEndRow());
-		return businessDao.rCommentList(restaurantComment);
-	}// 식당 댓글 목록
-	
-	@Override
-	public int totCntRcomment(String rname, RestaurantComment restaurantComment) {
-		return businessDao.totCntRcomment(RestaurantComment);
-	}// 식당 댓글 개수
-
-	@Override
-	public int registerRcomment(RestaurantComment restaurantComment) {
-		return businessDao.registerRcomment(restaurantComment);
-	}// 식당 댓글 쓰기
-
-	@Override
-	public int replyRestaurantComment(RestaurantComment restaurantComment) {
-		businessDao.preReplyRcomment(restaurantComment);
-		return businessDao.replyRestaurantComment(restaurantComment);
-	}// 식당 답 댓글 쓰기
-
-	@Override
-	public int modifyRestaurantComment(RestaurantComment restaurantComment) {
-		return businessDao.modifyRestaurantComment(restaurantComment);
-	}// 식당 댓글 수정
-
-	@Override
-	public int deleteRestaurantComment(int rcommentno) {
-		return businessDao.deleteRestaurantComment(rcommentno);
-	}// 식당 댓글 삭제
-	**/
 	
 	@Override
 	public int hotelTotalCount(String bid) {

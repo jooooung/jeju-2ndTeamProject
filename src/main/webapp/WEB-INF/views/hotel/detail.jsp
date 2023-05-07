@@ -208,7 +208,6 @@
 						</button>
 					</c:if>
 				</p>
-				
 			</div>
 		</div>
 	<jsp:include page="../hotel/hotelComment.jsp"/>

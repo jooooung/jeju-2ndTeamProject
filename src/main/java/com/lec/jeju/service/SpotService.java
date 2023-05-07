@@ -12,6 +12,6 @@ public interface SpotService {
 	public int insertSpot(Spot spot, MultipartHttpServletRequest mRequest);
 	public int modifySpot(Spot spot, MultipartHttpServletRequest mRequest);
 	public int totCntSpot(Spot spot);
-	public Spot detailSpot(String sname);
+	public Spot detailSpot(String sname, String mid);
 	public int deleteSpot(String sname);
 }

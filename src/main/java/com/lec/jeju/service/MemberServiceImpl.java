@@ -74,7 +74,7 @@ public class MemberServiceImpl implements MemberService {
 				System.out.println(e.getMessage());
 			}
 		} else {
-			mphoto = "memberPhoto/default_profile.png";
+			mphoto = "default_profile.png";
 		} // if
 			// 메일전송
 		final String mailContent = createWelcomeMailContent(member);

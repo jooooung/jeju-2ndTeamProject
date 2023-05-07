@@ -115,8 +115,8 @@ public class SpotServiceImpl implements SpotService {
 	}
 
 	@Override
-	public Spot detailSpot(String sname) {
-		return sDao.detailSpot(sname);
+	public Spot detailSpot(String sname, String mid) {
+		return sDao.detailSpot(sname, mid);
 	}
 	
 	@Override

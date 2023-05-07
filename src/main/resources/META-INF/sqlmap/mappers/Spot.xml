@@ -21,7 +21,7 @@
     		<result property="sprice" column="sprice"/>
     		<result property="bcnt" column="bcnt"/>
     		<result property="lname" column="lname"/>
-    		<result property="bookmarkok" column="bookmarkok"/>
+    		<result property="bookmarkok" column="bookmarkok"/><!-- 즐겨찾기용 -->
     	</resultMap>
     	
     	<!-- 관광지 리스트 -->
@@ -124,7 +124,7 @@
 		</delete>
 		
 		<!-- 관광지 상세보기-->
-		<select id="detailSpot" parameterType="String" resultType="Spot">
-			SELECT * FROM SPOT WHERE SNAME = #{sname}
+		<select id="detailSpot" parameterType="String" resultMap="SpotResult">
+			SELECT A.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID = #{mid} AND SNAME = A.SNAME)bookmarkOk FROM (SELECT S.*, NVL(BCNT,0)BCNT FROM SPOT S, (SELECT SNAME, COUNT(*) BCNT FROM BOOKMARK GROUP BY SNAME)B WHERE S.SNAME = B.SNAME(+) AND S.SNAME = #{sname})A
 		</select>
     </mapper>

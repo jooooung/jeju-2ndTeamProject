@@ -55,6 +55,14 @@
 #list_wrap .list_info .list_form .cnt{font-size: 1.2em;}
 #list_wrap .not_list{text-align: center; font-family: 'TheJamsil5Bold'; font-size: 1.5em; margin:30px;}
 
+
+.paging {
+    text-align: center;
+}
+.buisness{
+	margin-left:100px; 
+}
+
 /** 페이징 처리 **/
 #list_paging {
 	margin-top: 30px;

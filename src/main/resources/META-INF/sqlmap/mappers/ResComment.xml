@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.ResCommentDao">
+	<resultMap type="ResComment" id="RcommentResult">
+		<result property="rcommentno" column="rcomentno" />
+		<result property="rname" column="rname" />
+		<result property="mid" column="mid" />
+		<result property="rcontent" column="rcontent" />
+		<result property="rgroup" column="rgroup" />
+		<result property="rstep" column="rstep" />
+		<result property="rindent" column="rindent" />
+		<result property="rcrdate" column="rcrdate" />
+		<result property="mphoto" column="mphoto" />
+	</resultMap>
+	<!-- 특정 관광지 댓글 목록 -->
+	<select id="rCommentList" parameterType="ResComment"
+		resultMap="RcommentResult">
+		SELECT *
+		FROM (SELECT A.*, ROWNUM RN
+		FROM (SELECT R.*, mphoto
+		FROM restaurantComment R, MEMBER M WHERE RNAME =
+		#{rname} AND R.MID = M.MID 
+		ORDER BY RGROUP DESC, RSTEP) A)
+		WHERE RN BETWEEN #{startRow} AND
+		#{endRow}
+	</select>
+
+	<!-- 특정 관광지 댓글수 -->
+	<select id="totCntRcomment" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*) FROM restaurantComment WHERE RNAME =
+		#{rname}
+	</select>
+
+	<!-- 원 댓글 달기 -->
+	<insert id="insertRcomment" parameterType="ResComment">
+		INSERT INTO
+		restaurantComment (RCOMMENTNO, RNAME, MID, RCONTENT, RGROUP, RSTEP, RINDENT, RCRDATE)
+		VALUES (rCommentNo_seq.NEXTVAL, #{rname}, #{mid, jdbcType=VARCHAR}, #{rcontent}, rCommentNo_seq.CURRVAL,0, 0, SYSDATE);
+	</insert>
+
+	<!-- 답 댓글 달기 전 작업 -->
+	<update id="preReplyRcomment" parameterType="ResComment">
+    <![CDATA[
+    	UPDATE restaurantComment SET RSTEP = RSTEP + 1
+    		WHERE RGROUP = #{rgroup} AND RSTEP > #{rstep}
+    ]]>
+	</update>
+
+	<!-- 답댓글 달기 -->
+	<insert id="replyRcomment" parameterType="ResComment">
+		INSERT INTO
+		restaurantComment
+		(RCOMMENTNO, RNAME, MID, RCONTENT, RGROUP, RSTEP,
+		RINDENT, RCRDATE)
+		VALUES (rCommentNo_seq.NEXTVAL, #{rname}, #{mid},
+		#{rcontent},
+		#{rgroup}, #{rindent}+1, #{rstep}+1, SYSDATE)
+	</insert>
+
+	<!-- 댓글 수정 -->
+	<update id="modifyRcomment" parameterType="ResComment">
+		UPDATE
+		restaurantComment SET
+		RCONTENT = #{rcontent}
+		WHERE RCOMMENTNO =
+		#{rcommentno}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteRcomment" parameterType="int">
+		DELETE FROM
+		restaurantComment WHERE RCOMMENTNO = #{rcommentno}
+	</delete>
+</mapper>

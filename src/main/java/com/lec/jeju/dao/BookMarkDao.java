@@ -35,7 +35,7 @@ public interface BookMarkDao {
 
 	// 식당 북마크 삭제
 
-	int deleteResMark(String mid, String rname);
+	int deleteResMark(BookMark bookmark);
 
 	// 관광지 북마크 삭제
 

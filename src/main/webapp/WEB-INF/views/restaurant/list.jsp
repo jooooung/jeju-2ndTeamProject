@@ -27,7 +27,7 @@
 		// 즐겨찾기 추가
 		$('.lineBookmark').click(function(){
 			event.stopPropagation();
-			var sname = $(this).prevAll('.sname').val();
+			var rname = $(this).prevAll('.rname').val();
 			var bmark = $(this).prevAll('.bmark').val();
 			var member = '${member}';
 			var mid = '${member.mid}';
@@ -35,7 +35,7 @@
 				alert('로그인 후 이용 가능한 서비스입니다.');
 				location.href='${conPath}/member/login.do?after=list.do';
 			}else{
-				location.href='${conPath}/bookmark/addBookmarkSpotList.do?sname='+sname+'&mid='+mid+'&pageNum=${paging.currentPage }';
+				location.href='${conPath}/bookmark/addBookmarkResList.do?rname='+rname+'&mid='+mid+'&pageNum=${paging.currentPage }';
 			}
 		});
 		
@@ -45,7 +45,7 @@
 			var sname = $(this).prevAll('.sname').val();
 			var bmark = $(this).prevAll('.bmark').val();
 			var mid = '${member.mid}';
-			location.href='${conPath}/bookmark/deleteBookmarkSpotList.do?sname='+sname+'&mid='+mid+'&pageNum=${paging.currentPage }';
+			location.href='${conPath}/bookmark/deleteBookmarkResList.do?rname='+rname+'&mid='+mid+'&pageNum=${paging.currentPage }';
 		});
 	});
 </script>
@@ -159,7 +159,7 @@
 						<p>${list.raddr.substring(list.raddr.indexOf('시')+2) }</p>
 						<p class="info">${list.rinfo }</p>
 						<div class="bookmark">
-							<input type="hidden" class="sname" value="${list.rname }">
+							<input type="hidden" class="rname" value="${list.rname }">
 							<input type="hidden" class="bmark" value="${list.bookmarkok }">
 							<c:if test="${empty member }">
 								<img class="lineBookmark" width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">

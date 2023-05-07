@@ -1,14 +1,27 @@
 @charset "UTF-8";
+
 body {
 	background-color: #f2f2f2;
 }
-h1 {
-	font-size: 2rem;
-	margin-top: 3rem;
-	margin-bottom: 2rem;
+
+h2 {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	background-color: orange;
+	color: white;
+	padding: 8px;
+	border-radius: 8px;
 	text-align: center;
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
+h6 {
+	color: red;
+	text-align: right;
+	margin-right: 10px;
+}
 form {
 	background-color: white;
 	padding: 2rem;
@@ -24,9 +37,12 @@ label {
 	font-weight: bold;
 }
 
+input:required:invalid {
+  border: 1px solid red;
+}
+
 input[type="text"],
 input[type="url"],
-input[type="time"],
 input[type="file"],
 textarea {
 	display: block;
@@ -39,10 +55,21 @@ textarea {
 	font-size: 1rem;
 }
 
+input[type="time"] {
+	display: block;
+	padding: 0.5rem;
+	margin-bottom: 1rem;
+	border: 1px solid #ddd;
+	border-radius: 0.25rem;
+	width: 25%;
+	box-sizing: border-box;
+	font-size: 1rem;
+}
+
 input[type="button"],
 button[type="submit"],
 a.but {
-	background-color: #007bff;
+	background-color: #4CAF50;
 	color: white;
 	padding: 0.5rem 1rem;
 	border: none;
@@ -57,4 +84,14 @@ input[type="button"]:hover,
 button[type="submit"]:hover,
 a.but:hover {
 	background-color: orange;
+}
+
+select[id="locationno"]{
+	padding: 10px;
+	font-size: 1rem;
+	border-radius: 8px;
+	border: 1px solid #ccc;
+	background-color: #4CAF50;
+	color: white;
+	font-weight: bold;
 }

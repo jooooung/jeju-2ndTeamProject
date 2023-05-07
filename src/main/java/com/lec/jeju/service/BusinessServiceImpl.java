@@ -24,6 +24,7 @@ import com.lec.jeju.util.Paging;
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
+import com.lec.jeju.vo.Member;
 import com.lec.jeju.vo.Restaurant;
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -33,6 +34,8 @@ public class BusinessServiceImpl implements BusinessService {
 	String backupPath = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/businessPhoto/";
 	
 	String backupPath1 = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/hotelImgFileUpload/";
+	
+	String backupPath2 = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/resImgFileUpload/";
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -117,38 +120,39 @@ public class BusinessServiceImpl implements BusinessService {
 
 	@Override
 	public int modifyBusiness(Business business, HttpSession httpSession, MultipartHttpServletRequest mRequest) {
-		String uploadPath = mRequest.getRealPath("businessPhoto/");
-		Iterator<String> params = mRequest.getFileNames();
-		String bphoto = "";
 		// 기존 멤버 정보를 세션에서 가져옴
 		Business sessionBusiness = (Business) httpSession.getAttribute("business");
-		// 새 비밀번호를 가져옴
+		// 비밀번호
 		String newPassword = business.getBpw();
-		// 새 비밀번호가 null 이거나 빈 문자열일 경우, 기존 비밀번호로 설정
 		if (newPassword == null || newPassword.isEmpty()) {
 			business.setBpw(sessionBusiness.getBpw());
 		}
-		while (params.hasNext()) {
-			String param = params.next();
-			MultipartFile bfile = mRequest.getFile(param);
-			String originalFileName = bfile.getOriginalFilename();
-			String saveFileName = System.currentTimeMillis() + originalFileName;
-			try {
-				bfile.transferTo(new File(uploadPath + saveFileName));
-				System.out.println("서버파일 : " + uploadPath + saveFileName);
-				System.out.println("백업파일 : " + backupPath + saveFileName);
-				int result = fileCopy(uploadPath + saveFileName, backupPath + saveFileName);
-				System.out.println(result == 1? "백업 성공" : "백업 실패");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			bphoto = "businessPhoto/" + saveFileName;
+		// 이름
+		String newName = business.getBname();
+		if (newName == null || newName.isEmpty()) {
+			business.setBname(sessionBusiness.getBname());
 		}
-		// 새로운 프로필 사진 경로를 business 객체에 저장
+		// 사진
+		String bphoto = sessionBusiness.getBphoto();
+		MultipartFile mFile = mRequest.getFile("temphoto");
+		if (mFile != null && !mFile.isEmpty()) { // 새로운 파일이 첨부되었을 때
+			String uploadPath = mRequest.getRealPath("memberPhoto/");
+			String fileName = mFile.getOriginalFilename();
+			if (new File(uploadPath + fileName).exists()) { // 같은 이름의 파일이 이미 존재하는 경우
+				fileName = System.currentTimeMillis() + "_" + fileName;
+			}
+			try {
+				mFile.transferTo(new File(uploadPath + fileName)); // 파일 업로드
+				boolean result = filecopy(uploadPath + fileName, backupPath + fileName); // 백업 파일 생성
+				System.out.println(result ? "백업성공" : "백업실패");
+				bphoto = "businessPhoto/" + fileName;
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		business.setBphoto(bphoto);
-		// 세션에 새 멤버 정보 저장
+
 		httpSession.setAttribute("business", business);
-		// 데이터베이스에 업데이트 요청
 		return businessDao.modifyBusiness(business);
 	}
 
@@ -266,10 +270,6 @@ public class BusinessServiceImpl implements BusinessService {
 	        isSuccess = true;
 	    }
 	    return isSuccess;
-	}
-	@Override
-	public int registerHoteldummy(Hotel hotel) {
-		return businessDao.registerHoteldummy(hotel);
 	}
 	
 	@Override
@@ -418,7 +418,7 @@ public class BusinessServiceImpl implements BusinessService {
 		return businessDao.deleteRestaurantComment(rcommentno);
 	}// 식당 댓글 삭제
 	**/
-
+	
 	@Override
 	public int hotelTotalCount(String bid) {
 	    return businessDao.hotelTotalCount(bid);
@@ -428,4 +428,15 @@ public class BusinessServiceImpl implements BusinessService {
 	public int restaurantTotalCount(String bid) {
 	    return businessDao.restaurantTotalCount(bid);
 	}
+	
+	@Override
+	public Hotel getHotelByName(String hname) {
+	    return businessDao.selectHotelByName(hname);
+	}
+
+	@Override
+	public Restaurant getRestaurantByName(String rname) {
+	    return businessDao.selectRestaurantByName(rname);
+	}
+	
 }

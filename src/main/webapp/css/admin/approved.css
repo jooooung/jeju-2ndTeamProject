@@ -12,15 +12,22 @@ body {
 	justify-content: center;
 	min-height: 50vh;
 }
-
+h2 {
+	margin-top: 20px;
+	background-color: orange;
+	color: white;
+	padding: 8px;
+	border-radius: 8px;
+}
 main {
-	width: 800px;
+	width: 900px;
 	flex: 1;
+	margin-top: 20px;
 }
 
 table {
 	border-collapse: collapse;
-	width: 90%;
+	width: 100%;
 	margin: 0 auto;
 }
 
@@ -32,22 +39,23 @@ td {
 }
 
 th {
-	background-color: orange;
+	background-color: #4CAF50;
 	color: white;
 }
 
 td a{
-	color: black;
+	color: blue;
+	text-decoration: none;
 }
 
 td:nth-child(1) {
 	width: 25%;
 }
 td:nth-child(2) {
-	width: 50%;
+	width: 55%;
 }
 td:nth-child(3) {
-	width: 25%;
+	width: 20%;
 }
 
 
@@ -106,4 +114,14 @@ footer {
 	line-height: 100px;
 	height: 100px;
 	margin: auto;
+}
+.paging{
+	text-align: center;
+}
+.paging a{
+	text-decoration: none;
+	color: black;
+}
+.paging a:hover {
+	font-weight: bold;
 }

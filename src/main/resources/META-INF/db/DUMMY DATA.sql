@@ -231,11 +231,8 @@ INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)
     VALUES (festivalNo_seq.NEXTVAL, 'admin', '한라산 청정 고사리축제', '2023.04.29. ~ 2023.04.30.');
 INSERT INTO FESTIVAL (FESTIVALNO, aID, FTITLE, FCONTENT)
     VALUES (festivalNo_seq.NEXTVAL, 'admin', '제주 반려동물 문화축제', '2023.05.06. ~ 2023.05.07.');
-    select * from restaurant;
-    select * from hotel;
 -- REVIEW --
 insert into Review (reviewNo, mId, rTitle, rContent) 
 values (reviewNo_seq.nextval, 'aaa', '성산일출봉 다녀왔습니다~', 
                     '새벽 4시에 기상해서 아침 일찍 산에 올랐는데 몸은 힘들었지만... 일출이 너무 아름다웠습니다 제주도 여행가시는 분들은 꼭 한번 가보셨으면 좋겠어요');
-
 COMMIT;

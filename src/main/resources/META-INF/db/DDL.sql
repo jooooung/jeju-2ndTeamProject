@@ -241,6 +241,7 @@ SELECT * FROM Business;
 SELECT * FROM Admin;
 SELECT * FROM LOCATION;
 COMMIT;
+
 --select * from v$resource_limit where resource_name = 'processes';
 --alter system set processes=300 scope=spfile;
 --shutdown immediate; --셧다운

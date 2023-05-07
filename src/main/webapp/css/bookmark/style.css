@@ -1,4 +1,17 @@
 @charset "UTF-8";
+
+@font-face {
+	font-family: 'RIDIBatang';
+	src:
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff')
+		format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+* {
+	font-family: 'RIDIBatang';
+}
 /* 전체 body */
 body {
 	margin: 0;
@@ -38,7 +51,7 @@ h2 {
 
 /* 링크 */
 .box a {
-	width : 250px;
+	width: 250px;
 	display: block;
 	text-align: center;
 	margin-top: 10px;

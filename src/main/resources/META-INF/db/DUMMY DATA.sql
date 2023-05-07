@@ -172,7 +172,7 @@ VALUES (scheduleNo_seq.NEXTVAL, 'kim', '드라이브여행', TO_TIMESTAMP('2023-
     
 -- BOOKMARK --
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', '호텔더원', null, null, '호텔더원m.jpg', null, null);
+    VALUES (bookmarkNo_seq.NEXTVAL, 'mid', '호텔더원', null, null, '호텔더원m.jpg', null, null);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
     VALUES (bookmarkNo_seq.NEXTVAL, 'kang', null, '올래국수', null, null, '올래국수m.jpg', null);
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)

@@ -171,10 +171,11 @@ b {
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" style="text-align: center;">
-						<input type="submit" value="정보수정"> 
+					<td colspan="2" style="text-align: center; margin: 30px;">
+						<input type="submit" value="정보수정" style="margin: 0 auto;"> 
 						<input type="button" value="돌아가기" onclick="location.href='${conPath}/main.do'">
 						<input type="button" value="회원탈퇴" onclick="location.href='${conPath}/member/delete.do'">
+					</td>
 			</table>
 		</form>
 	</div>

@@ -1,4 +1,3 @@
-DROP TABLE MYREVIEW;
 DROP TABLE Review;
 DROP TABLE Festival;
 DROP TABLE hotelComment;
@@ -25,7 +24,6 @@ DROP SEQUENCE hCommentNo_seq;
 DROP SEQUENCE rCommentNo_seq;
 DROP SEQUENCE locationNo_seq;
 DROP SEQUENCE RestauranTtypeNo_seq;
-DROP SEQUENCE MYREVIEWNO_SEQ;
 
 CREATE TABLE Member (
     mId VARCHAR2(50) PRIMARY KEY,
@@ -229,7 +227,6 @@ SELECT * FROM restaurant;
 SELECT * FROM restaurantComment;
 SELECT * FROM Festival;
 SELECT * FROM MEMBER;
-DELETE  FROM MEMBER WHERE MID = 'kang';
 SELECT * FROM BOOKMARK;
 SELECT * FROM RestauranTtype;
 SELECT * FROM restaurant;

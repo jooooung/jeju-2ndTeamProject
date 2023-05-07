@@ -173,7 +173,6 @@ public class MemberServiceImpl implements MemberService {
 					+ "<p style=\"color:black; font-weight:bold;\">로그인 후 꼭 비밀번호를 변경해주세요.</p>" 
 					+ "</div>";
 
-
 			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(member.getMemail())); // 받을 메일 주소

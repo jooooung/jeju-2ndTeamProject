@@ -70,11 +70,12 @@ th {
 	</div>
 	<div id="content">
 		<form action="${conPath}/admin.do" method="post">
-			<input type="hidden" name="method" value="login"> <input
-				type="hidden" name="after"
+			<input type="hidden" name="method" value="login"> 
+      <input type="hidden" name="after"
 				value="${empty param.after ?  'main.do':param.after}">
 
 			<table>
+        <caption>관리자 로그인</caption>
 				<tr>
 					<th>아이디</th>
 					<td><input type="text" name="aid" required="required"

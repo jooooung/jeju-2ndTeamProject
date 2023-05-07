@@ -13,18 +13,36 @@ body {
 	min-height: 50vh;
 }
 
+h2 {
+	margin-top: 20px;
+	background-color: orange;
+	color: white;
+	padding: 8px;
+	border-radius: 8px;
+}
+
 main {
-	width: 800px;
+	width: 900px;
 	flex: 1;
+	margin-top: 20px;
 }
 
 table {
 	border-collapse: collapse;
 	width: 100%;
 	margin: 0 auto;
+	border-radius: 8px;
 }
 
-th,
+th {
+	width: 80%;
+	padding: 8px;
+	text-align: center;
+	text-decoration: none;
+	background-color: #4CAF50;
+	color: white;
+}
+
 td {
 	width: 80%;
 	padding: 8px;
@@ -32,13 +50,8 @@ td {
 	text-decoration: none;
 }
 
-th {
-	background-color: orange;
-	color: white;
-}
-
 td a{
-	color: black;
+	color: blue;
 	text-decoration: none;
 }
 
@@ -122,4 +135,14 @@ footer {
 	line-height: 100px;
 	height: 100px;
 	margin: auto;
+}
+.paging{
+	text-align: center;
+}
+.paging a{
+	text-decoration: none;
+	color: black;
+}
+.paging a:hover {
+	font-weight: bold;
 }

@@ -11,7 +11,7 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
-    <h2>${hotel.hname} 등록 요청 상세보기</h2>
+    <h2>${hotel.hname}</h2>
 	<table>
         <tr>
             <td>호텔 이름:</td>
@@ -66,6 +66,11 @@
             <td>${hotel.hprice}</td>
         </tr>
     </table>
+    <div class="btn-wrapper">
+		<a href="${conPath}/admin/hotelApproval.do" class="my-button">요청 목록</a>
+		<a href="${conPath}/admin/approveHotel.do?hname=${hotel.hname}&haddr=${hotel.haddr}" class="approval-button">승인</a>
+		<a href="${conPath}/admin/rejectHotel.do?hname=${hotel.hname}" class="reject-button">거절</a>
+	</div>
     <jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

@@ -59,10 +59,10 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
-    <h1>호텔 등록</h1>
+    <h2>호텔 등록</h2>
 		<form action="${conPath}/business/registerHotel.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="bid" value="${sessionScope.bid}">
-		
+		<h6>box 테두리가 빨간색은 필수 입력사항입니다.</h6>
         <label for="hname">호텔 이름:</label>
         <input type="text" id="hname" name="hname" required>
         
@@ -87,7 +87,7 @@
       	</select>
      	 주소와 동일하게 시,읍,면을 선택하셔야합니다.<br><br>
        
-        <label for="haddr">호텔 주소:</label><br>
+        <label for="haddr">호텔 주소</label><br>
         <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기">
 		<input type="text" id="sample4_postcode" name="haddr" class="text_box" required="required" placeholder="우편번호"> 
 		<input type="text" id="sample4_roadAddress" name="haddr" required="required" placeholder="도로명주소"> 
@@ -95,39 +95,39 @@
 		<span id="guide"></span>
 		<input type="text" name="haddr" required="required" placeholder="상세주소">
 
-        <label for="htel">호텔 전화번호:</label>
+        <label for="htel">호텔 전화번호</label>
         <input type="text" id="htel" name="htel" required>
 
-        <label for="hlink">호텔 웹사이트:</label>
+        <label for="hlink">호텔 웹사이트</label>
         <input type="url" id="hlink" name="hlink" required>
 
-        <label for="hinfo">호텔 정보:</label>
+        <label for="hinfo">호텔 정보</label>
         <textarea id="hinfo" name="hinfo" required></textarea>
         
-        <label for="intime">체크인 시간:</label>
+        <label for="intime">체크인 시간</label>
         <input type="time" id="intime" name="intime" required>
 
-        <label for="outtime">체크아웃 시간:</label>
+        <label for="outtime">체크아웃 시간</label>
         <input type="time" id="outtime" name="outtime" required>
 
-		<label for="hmainimg">호텔 메인 이미지:</label>
+		<label for="hmainimg">호텔 메인 이미지</label>
 		<input type="file" id="hmainimg" name="himg[0]" accept="image/*" required>
 		
-		<label for="hsubimg_1">호텔 서브 이미지1:</label>
+		<label for="hsubimg_1">호텔 서브 이미지1</label>
 		<input type="file" id="hsubimg_1" name="himg[1]" accept="image/*">
 		
-		<label for="hsubimg_2">호텔 서브 이미지2:</label>
+		<label for="hsubimg_2">호텔 서브 이미지2</label>
 		<input type="file" id="hsubimg_2" name="himg[2]" accept="image/*">
 		
-		<label for="hsubimg_3">호텔 서브 이미지3:</label>
+		<label for="hsubimg_3">호텔 서브 이미지3</label>
 		<input type="file" id="hsubimg_3" name="himg[3]" accept="image/*">
 
-        <label for="hprice">호텔 가격:</label>
+        <label for="hprice">호텔 가격</label>
         <input type="text" id="hprice" name="hprice" required>
         
         <input type="hidden" id="requeststatus" name="requeststatus" value="P">
         
-        <button type="submit"">호텔 등록</button>
+        <button type="submit">호텔 등록</button>
         <a href="${conPath}/main.do" class="but">등록 취소</a>
     </form>
         

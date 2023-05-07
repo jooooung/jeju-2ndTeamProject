@@ -3,7 +3,25 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.AdminDao">
-
+	<resultMap type="Hotel" id="Hotel">
+		<result property="hname" column="hname"/>
+		<result property="bid" column="bid"/>
+		<result property="locationno" column="locationno"/>
+		<result property="haddr" column="haddr"/>
+		<result property="htel" column="htel"/>
+		<result property="hlink" column="hlink"/>
+		<result property="hinfo" column="hinfo"/>
+		<result property="intime" column="intime"/>
+		<result property="outtime" column="outtime"/>
+		<result property="hmainimg" column="hmainimg"/>
+		<result property="hsubimg_1" column="hsubimg_1"/>
+		<result property="hsubimg_2" column="hsubimg_2"/>
+		<result property="hsubimg_3" column="hsubimg_3"/>
+		<result property="hlatitude" column="hlatitude"/>
+		<result property="hlongitude" column="hlongitude"/>
+		<result property="hprice" column="hprice"/>
+		<collection property="Hotel" resultMap="Hotel"/>
+	</resultMap>
 	 <!-- 로그인 -->
 	<select id="loginCheck" parameterType="Admin" resultType="Admin">
         SELECT * FROM Admin WHERE aid=#{aid} AND apw=#{apw}
@@ -14,11 +32,36 @@
 		SELECT * FROM Admin WHERE aid = #{aid}
 	</select>
 	
-	<!-- 업체 등록 승인, 거절 -->
+	<!-- 등록된 글 갯수 -->
+	<select id="hotelTotalCount" parameterType="String" resultType="int">
+        SELECT COUNT(*) FROM hotel WHERE requeststatus = #{param1}
+    </select>
+	
+	<!-- 등록된 글 갯수 -->
+	<select id="restaurantTotalCount" resultType="int">
+	  SELECT COUNT(*) FROM RESTAURANT WHERE requeststatus = #{param1}
+	</select>
+	
+	<!-- 업체 등록 승인 요청 목록 -->
+    <select id="hotelApproval" resultType="com.lec.jeju.vo.Hotel">
+        SELECT *
+		FROM (SELECT H.*, ROWNUM RN
+		FROM (SELECT * FROM Hotel WHERE requestStatus = 'P' ORDER BY hname DESC) H)
+		WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
+    </select>
+ 
+    <select id="restaurantApproval" resultType="com.lec.jeju.vo.Restaurant">
+        SELECT *
+		FROM (SELECT R.*, ROWNUM RN
+		FROM (SELECT * FROM Restaurant WHERE requestStatus = 'P' ORDER BY rname DESC) R)
+		WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
+    </select>
+    
+	<!-- 호텔 등록 승인, 거절 -->
     <update id="approveHotel" parameterType="Hotel">
         UPDATE Hotel SET requestStatus='A', 
-        				 HLATITUDE=#{hlatitude, jdbcType=DOUBLE},
-                 		 HLONGITUDE=#{hlongitude, jdbcType=DOUBLE}
+		HLATITUDE=#{hlatitude, jdbcType=DOUBLE},
+		HLONGITUDE=#{hlongitude, jdbcType=DOUBLE}
         WHERE hName=#{hname}
     </update>
     
@@ -26,42 +69,46 @@
         UPDATE Hotel SET requestStatus='R' WHERE hName=#{hname}
     </update>
 
+	<!-- 식당 등록 승인, 거절 -->
     <update id="approveRestaurant" parameterType="Restaurant">
-        UPDATE Restaurant SET requestStatus='A', 
-        					  RLATITUDE=#{rlatitude, jdbcType=DOUBLE},
-                 		      RLONGITUDE=#{rlongitude, jdbcType=DOUBLE}
-        WHERE rName=#{rname}
+       UPDATE Restaurant SET requestStatus='A', 
+	   RLATITUDE=#{rlatitude, jdbcType=DOUBLE},
+       RLONGITUDE=#{rlongitude, jdbcType=DOUBLE}
+       WHERE rName=#{rname}
     </update>
     
     <update id="rejectRestaurant" parameterType="Restaurant">
         UPDATE Restaurant SET requestStatus='R' WHERE rName=#{rname}
     </update>
 	
-	<!-- 업체 등록 승인 요청 목록 -->
-    <select id="hotelApproval" resultType="com.lec.jeju.vo.Hotel">
-        SELECT * FROM Hotel WHERE requestStatus='P'
-    </select>
-
-    <select id="restaurantApproval" resultType="com.lec.jeju.vo.Restaurant">
-        SELECT * FROM Restaurant WHERE requestStatus='P'
-    </select>
-
 	<!-- 업체 등록 승인 현황 -->
     <select id="approvedHotels" resultType="com.lec.jeju.vo.Hotel">
-        SELECT * FROM Hotel WHERE requestStatus='A'
+        SELECT *
+		FROM (SELECT H.*, ROWNUM RN
+		FROM (SELECT * FROM Hotel WHERE requestStatus = 'A' ORDER BY hname DESC) H)
+		WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
     </select>
 
     <select id="approvedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
-        SELECT * FROM Restaurant WHERE requestStatus='A'
+        SELECT *
+		FROM (SELECT R.*, ROWNUM RN
+		FROM (SELECT * FROM Restaurant WHERE requestStatus = 'A' ORDER BY rname DESC) R)
+		WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
     </select>
 
 	<!-- 업체 등록 거절 현황 -->
    <select id="rejectedHotels" resultType="com.lec.jeju.vo.Hotel">
-        SELECT * FROM Hotel WHERE requestStatus='R'
+   		SELECT *
+		FROM (SELECT R.*, ROWNUM RN
+		FROM (SELECT * FROM Hotel WHERE requestStatus = 'R' ORDER BY hname DESC) R)
+		WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
     </select>
 
     <select id="rejectedRestaurants" resultType="com.lec.jeju.vo.Restaurant">
-        SELECT * FROM Restaurant WHERE requestStatus='R'
+    	SELECT *
+		FROM (SELECT R.*, ROWNUM RN
+		FROM (SELECT * FROM Restaurant WHERE requestStatus = 'R' ORDER BY rname DESC) R)
+		WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
     </select>
 	
 	<!-- 비즈니스 등록 승인 및 거절 요청의 상세 내용 보기 -->

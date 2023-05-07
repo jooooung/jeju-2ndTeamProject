@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
@@ -10,6 +9,7 @@
 <body>
 <input type="text" id="addr" value="${haddr.substring(haddr.indexOf('도')+2, haddr.length())}"/>
 <form action="${conPath }/admin/approveHotel.do" id="frm" method="post">
+	<input type="hidden" id="pageNum" name="pageNum" value="${paging.pageNum }"/>
 	<input type="text" id="hlongitude" name="hlongitude" value=""/>
 	<input type="text" id="hlatitude" name="hlatitude" value=""/>
 	<input type="text" id="hname" name="hname" value="${hname }"/>

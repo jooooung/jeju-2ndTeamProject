@@ -136,15 +136,10 @@ public class BusinessController {
 	}
 	
 	// 호텔 등록
-   @RequestMapping(value = "/registerHotel", method = RequestMethod.GET)
+    @RequestMapping(value = "/registerHotel", method = RequestMethod.GET)
     public String registerHotel() {
         return "business/registerHotel";
-   }
-   @RequestMapping(value = "/registerHoteldummy", method = RequestMethod.GET)
-   public String registerHoteldummy(Hotel hotel) {
-	   businessService.registerHoteldummy(hotel);
-	   return "redirect:/business/myHotelPosts.do";
-   }
+    }
 
 	@RequestMapping(value = "/registerHotel", method = RequestMethod.POST)
 	public String registerHotel(@ModelAttribute("hotel") Hotel hotel, HttpSession session, MultipartHttpServletRequest mRequest, Model model) {
@@ -162,13 +157,26 @@ public class BusinessController {
 	}
 	
 	/*
-	 * // 호텔 수정
+	 * // 정보수정 뷰
 	 * 
-	 * @RequestMapping(value = "/modifyHotel", method = RequestMethod.PUT) public
-	 * String modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest, Model
-	 * model) { businessService.modifyHotel(hotel, mRequest); String bid =
-	 * hotel.getBid(); List<Hotel> hotels = businessService.myHotelPosts(bid);
-	 * model.addAttribute("hotels", hotels); return "business/myHotelPosts"; }
+	 * @RequestMapping(value = "/modifyHotel", method = RequestMethod.GET) public
+	 * String modifyHotel(Model model, @RequestParam("bid") String
+	 * bid, @RequestParam("hname") String hame) { Hotel hotel =
+	 * businessService.getHotelByName(bid); hotel.setBid(bid);
+	 * model.addAttribute("hotel", hotel); return "business/modifyHotel"; }
+	 * 
+	 * @RequestMapping(value = "/modifyHotel", method = RequestMethod.POST) public
+	 * String modifyHotel(@RequestParam String bid, @ModelAttribute("hotel") Hotel
+	 * hotel, MultipartHttpServletRequest mRequest, Model
+	 * model, @RequestParam(defaultValue = "1") int pageNum) { int hotelTotalCount =
+	 * businessService.hotelTotalCount(bid); Paging paging = new
+	 * Paging(hotelTotalCount, String.valueOf(pageNum), 5, 5); List<Hotel> hotelList
+	 * = businessService.myHotelPosts(bid, paging.getStartRow(),
+	 * paging.getEndRow()); if (hotel.getRequeststatus().equals("P")) {
+	 * businessService.modifyHotel(hotel, mRequest); model.addAttribute("hotelList",
+	 * hotelList); model.addAttribute("paging", paging); return
+	 * "business/myHotelPosts"; } else { model.addAttribute("errorMessage",
+	 * "승인 또는 거절 처리된 글은 수정할 수 없습니ek"); return "error"; } }
 	 */
 	
 	// 호텔 등록 요청 목록
@@ -176,7 +184,7 @@ public class BusinessController {
 	public String myHotelPosts(Model model, HttpSession session, @RequestParam(defaultValue = "1") int pageNum) {
 	    String bid = (String) session.getAttribute("bid");
 	    int hotelTotalCount = businessService.hotelTotalCount(bid); // 등록 요청 건수 조회
-	    Paging paging = new Paging(hotelTotalCount, String.valueOf(pageNum), 10, 10); // 페이징 객체 생성
+	    Paging paging = new Paging(hotelTotalCount, String.valueOf(pageNum), 5, 5); // 페이징 객체 생성
 	    List<Hotel> hotelList = businessService.myHotelPosts(bid, paging.getStartRow(), paging.getEndRow()); // 범위 내 등록 요청 목록 조회
 	    model.addAttribute("hotelList", hotelList);
 	    model.addAttribute("paging", paging); // 페이징 정보 전달
@@ -230,7 +238,7 @@ public class BusinessController {
 	public String myRestaurantPosts(Model model, HttpSession session, @RequestParam(defaultValue = "1") int pageNum) {
 		String bid = (String) session.getAttribute("bid");
 		int restaurantTotalCount = businessService.restaurantTotalCount(bid); // 등록 요청 건수 조회
-		Paging paging = new Paging(restaurantTotalCount, String.valueOf(pageNum), 10, 10); // 페이징 객체 생성
+		Paging paging = new Paging(restaurantTotalCount, String.valueOf(pageNum), 5, 5); // 페이징 객체 생성
 		List<Restaurant> restaurantList = businessService.myRestaurantPosts(bid, paging.getStartRow(), paging.getEndRow()); // 범위 내 등록 요청 목록 조회
 		model.addAttribute("restaurantList", restaurantList);
 		model.addAttribute("paging", paging); // 페이징 정보 전달
@@ -294,6 +302,21 @@ public class BusinessController {
 		String hname = 	URLEncoder.encode(hotelComment.getRname(), "utf-8");
 		return "redirect:myRestaurantComments.do?rname="+rname;
 	}**/
+	
+    // 승인 및 거절 요청의 상세 내용 보기
+	@RequestMapping(value = "/hotelDetail", method = RequestMethod.GET)
+	public String hotelDetail(String hname, Model model) {
+	    Hotel hotel = businessService.getHotelByName(hname);
+	    model.addAttribute("hotel", hotel);
+	    return "business/hotelDetail";
+	}
+
+	@RequestMapping(value = "/restaurantDetail", method = RequestMethod.GET)
+	public String restaurantDetail(String rname, Model model) {
+	    Restaurant restaurant = businessService.getRestaurantByName(rname);
+	    model.addAttribute("restaurant", restaurant);
+	    return "business/restaurantDetail";
+	}
 }
 	
 	

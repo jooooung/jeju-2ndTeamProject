@@ -57,14 +57,14 @@
 		WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
     </select>
     
-	<!-- 호텔 등록 승인, 거절 -->
+		<!-- 호텔 등록 승인, 거절 -->
     <update id="approveHotel" parameterType="Hotel">
         UPDATE Hotel SET requestStatus='A', 
 		HLATITUDE=#{hlatitude, jdbcType=DOUBLE},
 		HLONGITUDE=#{hlongitude, jdbcType=DOUBLE}
         WHERE hName=#{hname}
     </update>
-    
+
     <update id="rejectHotel" parameterType="Hotel">
         UPDATE Hotel SET requestStatus='R' WHERE hName=#{hname}
     </update>
@@ -76,7 +76,7 @@
        RLONGITUDE=#{rlongitude, jdbcType=DOUBLE}
        WHERE rName=#{rname}
     </update>
-    
+
     <update id="rejectRestaurant" parameterType="Restaurant">
         UPDATE Restaurant SET requestStatus='R' WHERE rName=#{rname}
     </update>

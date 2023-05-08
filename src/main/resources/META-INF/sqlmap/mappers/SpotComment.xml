@@ -15,36 +15,26 @@
 		<result property="mphoto" column="mphoto"/>
 	</resultMap>
 	<!-- 특정 관광지 댓글 목록 -->
-	<select id="sCommentList" parameterType="SpotComment"
-		resultMap="ScommentResult">
-		SELECT *
-		FROM (SELECT A.*, ROWNUM RN
-		FROM (SELECT S.*, mphoto
-		FROM SPOTCOMMENT S, MEMBER M WHERE SNAME =
-		#{sname} AND S.MID = M.MID
-		ORDER BY SGROUP DESC, SSTEP) A)
-		WHERE RN BETWEEN #{startRow} AND
-		#{endRow}
+	<select id="sCommentList" parameterType="SpotComment" resultMap="ScommentResult">
+		SELECT * 
+		    FROM (SELECT A.*, ROWNUM RN 
+		        FROM (SELECT S.*, mphoto FROM SPOTCOMMENT S, MEMBER M WHERE SNAME = #{sname} AND S.MID = M.MID ORDER BY SGROUP DESC, SSTEP) A)
+		    WHERE RN BETWEEN #{startRow} AND #{endRow}
 	</select>
-
+	
 	<!-- 특정 관광지 댓글수 -->
-	<select id="totCntScomment" parameterType="String"
-		resultType="int">
+	<select id="totCntScomment" parameterType="String" resultType="int">
 		SELECT COUNT(*) FROM SPOTCOMMENT WHERE SNAME = #{sname}
 	</select>
-
+	
 	<!-- 원 댓글 달기 -->
 	<insert id="insertScomment" parameterType="SpotComment">
-		INSERT INTO
-		SPOTCOMMENT (SCOMMENTNO, SNAME, MID, SCONTENT, SGROUP, SSTEP, SINDENT,
-		SCRDATE)
-		VALUES (sCommentNo_seq.NEXTVAL, #{sname}, #{mid,
-		jdbcType=VARCHAR},
-		#{scontent}, sCommentNo_seq.CURRVAL, 0, 0, SYSDATE)
-	</insert>
-
-	<!-- 답 댓글 달기 전 작업 -->
-	<update id="preReplyScomment" parameterType="SpotComment">
+		INSERT INTO SPOTCOMMENT (SCOMMENTNO, SNAME, MID, SCONTENT, SGROUP, SSTEP, SINDENT, SCRDATE)
+	    	VALUES (sCommentNo_seq.NEXTVAL, #{sname}, #{mid, jdbcType=VARCHAR},  #{scontent}, sCommentNo_seq.CURRVAL, 0, 0, SYSDATE)
+    </insert>
+    
+    <!-- 답 댓글 달기 전 작업 -->
+    <update id="preReplyScomment" parameterType="SpotComment">
     <![CDATA[
     	UPDATE SPOTCOMMENT SET SSTEP = SSTEP + 1
     		WHERE SGROUP = #{sgroup} AND SSTEP > #{sstep}

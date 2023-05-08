@@ -32,16 +32,21 @@
 			SELECT R.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID =
 			#{mid} AND RNAME = R.rname) bookmarkOk
 			FROM (SELECT ROWNUM RN, A.* FROM
-			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			(SELECT R.*, NVL(bCnt, 0)
+			bCnt, L.LNAME
 			FROM restaurant R, LOCATION L,
-			(SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK
+			(SELECT RNAME, COUNT(*)
+			bCnt FROM BOOKMARK
 			GROUP BY RNAME)B
 			WHERE
-			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND R.RNAME
+			R.RNAME = B.RNAME(+) AND
+			R.LOCATIONNO = L.LOCATIONNO AND R.RNAME
 			LIKE
-			'%' || #{schword} || '%' )A) R
+			'%' || #{schword} || '%'
+			)A) R
 			WHERE RN BETWEEN #{startRow} AND
-			#{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			#{endRow} ORDER BY bCnt DESC,
+			BOOKMARKOK
 			DESC
 		</if>
 

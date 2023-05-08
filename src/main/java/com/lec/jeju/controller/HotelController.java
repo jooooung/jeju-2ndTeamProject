@@ -37,7 +37,7 @@ public class HotelController {
 	private HreservationService hreservService;
 	@Autowired
 	private BookMarkService bookmarkService;
-  
+
 	// 숙소목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)
 	public String list(String pageNum, Model model, Hotel hotel, HttpSession session) {

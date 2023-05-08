@@ -137,6 +137,7 @@
 		  	<form action="${conPath }/spot/modifyComment.do" method="post">
 		  		<div class="input">
 			  		<input type="text" name="scontent" value="${modifyComment.scontent }">
+		  			<input type="hidden" name="scommentno" value="${modifyComment.scommentno }">
 			  		<input type="hidden" name="sname" value="${detail.sname }">
 			  		<input type="hidden" name="mid" value="${member.mid }">
 			  	</div>

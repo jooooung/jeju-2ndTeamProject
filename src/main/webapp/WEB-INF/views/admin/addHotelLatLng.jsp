@@ -7,12 +7,11 @@
     <meta charset="utf-8">
 </head>
 <body>
-<input type="text" id="addr" value="${haddr.substring(haddr.indexOf('도')+2, haddr.length())}"/>
+<input type="hidden" id="addr" value="${haddr.substring(haddr.indexOf('도')+2, haddr.length())}"/>
 <form action="${conPath }/admin/approveHotel.do" id="frm" method="post">
-	<input type="hidden" id="pageNum" name="pageNum" value="${paging.pageNum }"/>
-	<input type="text" id="hlongitude" name="hlongitude" value=""/>
-	<input type="text" id="hlatitude" name="hlatitude" value=""/>
-	<input type="text" id="hname" name="hname" value="${hname }"/>
+	<input type="hidden" id="hlongitude" name="hlongitude" value=""/>
+	<input type="hidden" id="hlatitude" name="hlatitude" value=""/>
+	<input type="hidden" id="hname" name="hname" value="${hname }"/>
 	<input type="submit" value="go">
 </form>
 <script>
@@ -21,7 +20,6 @@
 	var hlatitude = document.getElementById('hlatitude').value;
 	var addrTemp = addr.split(",");
 	var haddr = addrTemp[0];
-	alert(haddr);
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=21cedbfdcfb60dc62330e49e8c4f4a19&libraries=services"></script>
@@ -41,8 +39,6 @@ geocoder.addressSearch(haddr, function(result, status) {
     } 
     document.getElementById('hlongitude').setAttribute('value', x)
     document.getElementById('hlatitude').setAttribute('value', y)
-    alert(x);
-    alert(y);
 });
 </script>
 <script>

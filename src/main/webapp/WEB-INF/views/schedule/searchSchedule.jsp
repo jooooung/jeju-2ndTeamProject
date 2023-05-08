@@ -8,7 +8,7 @@
 <body>
 	<jsp:include page="../main/header.jsp" />
 	<h2>일정 검색</h2>
-	<form action="search" method="post">
+	<form action="searchSchedule" method="post">
 		<select name="searchType">
 			<option value="period">기간별 검색</option>
 			<option value="title">일정명 검색</option>

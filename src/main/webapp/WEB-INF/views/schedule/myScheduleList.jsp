@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,6 +88,7 @@
 	<jsp:include page="../main/header.jsp" />
 	<div class="schedule-form">
 		<h2>일정 목록</h2>
+		<c:set var="mid" value="${member.mid}" />
 		<c:if test="${not empty scheduleList}">
 			<table>
 				<thead>
@@ -94,8 +97,6 @@
 						<th>제목</th>
 						<th>시작 일자</th>
 						<th>종료 일자</th>
-						<th>장소</th>
-						<th>내용</th>
 						<th>수정</th>
 						<th>삭제</th>
 					</tr>
@@ -103,14 +104,12 @@
 				<tbody>
 					<c:forEach items="${scheduleList}" var="schedule">
 						<tr>
-							<td>${schedule.scheduleNo}</td>
-							<td>${schedule.scheduleTitle}</td>
-							<td>${schedule.startDate}</td>
-							<td>${schedule.endDate}</td>
-							<td>${schedule.place}</td>
-							<td>${schedule.memo}</td>
-							<td><a href="updateSchedule.do?scheduleNo=${schedule.scheduleNo}">수정</a></td>
-							<td><a href="delete.do?scheduleNo=${schedule.scheduleNo}">삭제</a></td>
+							<td><a href="${conPath}/jeju/schedule/scheduleDetail.do?scheduleno=${schedule.scheduleno}">${schedule.scheduleno}</a></td>
+							<td>${schedule.scheduletitle}</td>
+							<td><fmt:formatDate value="${schedule.startdate}" pattern="yy-MM-dd"/></td>
+							<td><fmt:formatDate value="${schedule.enddate}" pattern="yy-MM-dd"/></td>
+							<td><a href="updateSchedule.do?scheduleno=${schedule.scheduleno}">수정</a></td>
+							<td><a href="delete.do?scheduleno=${schedule.scheduleno}">삭제</a></td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -123,7 +122,7 @@
 		
 		<div class="button-group">
 			<a class="button" href="createSchedule.do">새 일정 등록</a>
-			<a class="button" href="searchSchedule.do">일정 검색</a>
+			<!-- <a class="button" href="searchSchedule.do">일정 검색</a> -->
 		</div>
 	</div>
 	<jsp:include page="../main/footer.jsp" />

@@ -13,50 +13,50 @@ import com.lec.jeju.vo.Schedule;
 public class ScheduleServiceImpl implements ScheduleService {
 
 	@Autowired
-	private ScheduleDao dao;
+	private ScheduleDao scheduledao;
 	
 	// 일정 생성
 	@Override
-	public int createSchedule(Schedule schedule) {
-		dao.createSchedule(schedule);
-		return dao.getSchedule(schedule.getScheduleno()) != null ? 1 : 0;
+	public String createSchedule(Schedule schedule) {
+		scheduledao.createSchedule(schedule);
+		return scheduledao.scheduleDetail(schedule.getScheduleno()) != null ? "1" : "0";
 	}
 
 	// 일정 조회
 	@Override
 	public List<Schedule> myScheduleList(String mid) {
-		return dao.myScheduleList(mid);
+		return scheduledao.myScheduleList(mid);
 	}
 
 	// 특정 일정 조회
 	@Override
-	public Schedule getSchedule(int scheduleno) {
-		return dao.getSchedule(scheduleno);
+	public Schedule scheduleDetail(int scheduleno) {
+		return scheduledao.scheduleDetail(scheduleno);
 	}
 
 	// 일정 수정
 	@Override
-	public int updateSchedule(Schedule schedule) {
-		dao.updateSchedule(schedule);
-		return dao.getSchedule(schedule.getScheduleno()) != null ? 1 : 0;
+	public String updateSchedule(Schedule schedule) {
+		scheduledao.updateSchedule(schedule);
+		return scheduledao.scheduleDetail(schedule.getScheduleno()) != null ? "1" : "0";
 	}
 
 	// 일정 삭제
 	@Override
 	public int deleteSchedule(int scheduleno) {
-		dao.deleteSchedule(scheduleno);
-		return dao.getSchedule(scheduleno) == null ? 1 : 0;
+		scheduledao.deleteSchedule(scheduleno);
+		return scheduledao.scheduleDetail(scheduleno) == null ? 1 : 0;
 	}
 
 	// 기간별 일정 검색
 	@Override
 	public List<Schedule> scheduleListByPeriod(String mid, Date startdate, Date enddate) {
-		return dao.scheduleListByPeriod(mid, startdate, enddate);
+		return scheduledao.scheduleListByPeriod(mid, startdate, enddate);
 	}
 
 	// 일정명으로 검색
 	@Override
 	public List<Schedule> searchScheduleByTitle(String mid, String scheduletitle) {
-		return dao.searchScheduleByTitle(mid, scheduletitle);
+		return scheduledao.searchScheduleByTitle(mid, scheduletitle);
 	}
 }

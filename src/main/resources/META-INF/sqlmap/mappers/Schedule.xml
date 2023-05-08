@@ -10,20 +10,17 @@
 		<result property="startdate" column="startdate"/>
 		<result property="enddate" column="enddate"/>
 		<result property="schedulecontent" column="schedulecontent"/>
-		<result property="hname" column="hname"/>
-		<result property="rname" column="rname"/>
-		<result property="sname" column="sname"/>
 	</resultMap>
 
 	<!-- 일정 생성 -->
 	<insert id="createSchedule" parameterType="Schedule">
-		INSERT INTO Schedule (scheduleno, mid, scheduletitle, startdate, enddate, schedulecontent, hname, rname, sname)
-		VALUES (scheduleno_seq.NEXTVAL, #{mid}, #{scheduletitle}, #{startdate}, #{enddate}, #{schedulecontent}, #{hname}, #{rname}, #{sname})
+		INSERT INTO Schedule (scheduleNo, mid, scheduleTitle, startDate, endDate, scheduleContent)
+		VALUES (scheduleNo_seq.NEXTVAL, #{mid}, #{scheduletitle}, TO_DATE(#{startdate},'yyyy-MM-dd'), TO_DATE(#{enddate},'yyyy-MM-dd'), #{schedulecontent})
 	</insert>
 	
 	<!-- 일정 수정 -->
 	<update id="updateSchedule" parameterType="Schedule">
-		UPDATE Schedule SET hname = #{hname}, rname = #{rname}, sname = #{sname}, scheduletitle = #{scheduletitle}, startdate = #{startdate}, enddate = #{enddate}, schedulecontent = #{schedulecontent}
+		UPDATE Schedule SET scheduletitle = #{scheduletitle}, startdate = #{startdate}, enddate = #{enddate}, schedulecontent = #{schedulecontent}
 		WHERE mid = #{mid} AND scheduleno = #{scheduleno}
 	</update>
 	
@@ -34,25 +31,30 @@
 	
 	<!-- 회원별 일정 목록 조회 -->
 	<select id="myScheduleList" parameterType="String" resultType="Schedule">
-	    SELECT scheduleno, scheduletitle, startdate, enddate
+	    SELECT scheduleNo, scheduleTitle, startDate, endDate
 	    FROM Schedule WHERE mid = #{mid}
-	    ORDER BY startdate
+	    ORDER BY scheduleno
 	</select>
 	
 	<!-- 기간별 일정 검색 -->	
 	<select id="scheduleListByPeriod" parameterType="map" resultType="Schedule">
-		<![CDATA[
-		  SELECT * FROM Schedule
-		  WHERE mid = #{mid}
-		  AND startdate >= #{startdate}
-		  AND enddate <= #{enddate}
-		]]>
+	    <![CDATA[
+	    SELECT *
+	    FROM Schedule
+	    WHERE mid = #{mid}
+	    AND startdate >= #{startdate, jdbcType=TIMESTAMP}
+	    AND enddate <= #{enddate, jdbcType=TIMESTAMP}
+	    ]]>
 	</select>
 	
 	<!-- 일정명으로 검색 -->	
-	<select id="scheduleListByTitle" parameterType="map" resultType="Schedule">
+	<select id="searchScheduleByTitle" parameterType="map" resultType="Schedule">
 		SELECT * FROM Schedule
 		WHERE mid = #{mid}
 		AND LOWER(scheduletitle) LIKE LOWER(CONCAT('%', #{title}, '%'))
+	</select>
+	
+	<select id="scheduleDetail" parameterType="int" resultMap="Schedule">
+	    SELECT * FROM Schedule WHERE scheduleno = #{scheduleno}
 	</select>
 </mapper>

@@ -206,11 +206,6 @@
 							<li><a href="${conPath }/notice.do">공지사항</a></li>
 						</ol>
 					</li>
-					<li>관광지
-						<ol class="subMenu">
-							<li><a href=""></a></li>
-						</ol>
-					</li>
 					<li>호텔
 						<ol class="subMenu">
 							<li><a href="${conPath }/admin/hotelApproval.do">등록 요청 목록</a></li>

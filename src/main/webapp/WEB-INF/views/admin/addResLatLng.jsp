@@ -8,11 +8,11 @@
     <meta charset="utf-8">
 </head>
 <body>
-<input type="text" id="addr" value="${raddr.substring(raddr.indexOf('도')+2, raddr.length())}"/>
+<input type="hidden" id="addr" value="${raddr.substring(raddr.indexOf('도')+2, raddr.length())}"/>
 <form action="${conPath }/admin/approveRestaurant.do" id="frm" method="post">
-	<input type="text" id="rlongitude" name="rlongitude" value=""/>
-	<input type="text" id="rlatitude" name="rlatitude" value=""/>
-	<input type="text" id="rname" name="rname" value="${rname }"/>
+	<input type="hidden" id="rlongitude" name="rlongitude" value=""/>
+	<input type="hidden" id="rlatitude" name="rlatitude" value=""/>
+	<input type="hidden" id="rname" name="rname" value="${rname }"/>
 	<input type="submit" value="go">
 </form>
 <script>
@@ -21,7 +21,6 @@
 	var rlatitude = document.getElementById('rlatitude').value;
 	var addrTemp = addr.split(",");
 	var raddr = addrTemp[0];
-	alert(raddr);
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=21cedbfdcfb60dc62330e49e8c4f4a19&libraries=services"></script>
@@ -41,8 +40,6 @@ geocoder.addressSearch(raddr, function(result, status) {
     } 
     document.getElementById('rlongitude').setAttribute('value', x)
     document.getElementById('rlatitude').setAttribute('value', y)
-    alert(x);
-    alert(y);
 });
 </script>
 <script>

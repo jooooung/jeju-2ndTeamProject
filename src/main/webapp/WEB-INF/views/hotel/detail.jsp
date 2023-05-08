@@ -17,7 +17,7 @@
 			text-decoration: none;
 		}
 		.wrap{
-			width: 80%;
+			width: 700px;
 			margin: 0 auto;
 		}
 		h2 {

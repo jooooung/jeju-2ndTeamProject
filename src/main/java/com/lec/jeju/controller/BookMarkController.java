@@ -87,7 +87,7 @@ public class BookMarkController {
 	// 호텔 목록에서 즐겨찾기 취소
 	@RequestMapping(value = "deleteBookmarkHotelList", method = RequestMethod.GET)
 	public String deleteBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
-		bookMarkService.addHotelBookmark(bookmark);
+		bookMarkService.deleteHotelBookmark(bookmark);
 		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
 	}
 	

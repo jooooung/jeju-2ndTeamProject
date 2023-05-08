@@ -66,7 +66,7 @@
 					<a class="title_active" href="${conPath }/res/list.do">맛집</a>
 				</li>
 				<li>
-					<a href="${conPath }/hotel/list.do">숙박</a>
+					<li><a href="${conPath }/hotel/list.do?mid=${member.mid}">숙박</a></li>
 				</li>
 			</ul>
 		</div>

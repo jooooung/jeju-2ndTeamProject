@@ -64,7 +64,7 @@ public class MemberController {
 
 	// 로그인 처리
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String mid, String mpw, HttpSession httpSession, Model model) {
+	public String login(String mid, String mpw, HttpSession httpSession, Model model, String after) {
 		String loginResult = memberService.loginCheck(mid, mpw, httpSession);
 		if (loginResult.equals("로그인 성공")) {
 			model.addAttribute("loginResult", loginResult);

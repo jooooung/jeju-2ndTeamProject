@@ -19,8 +19,8 @@ public class Restaurant {
 	private String rsubimg_1;
 	private String rsubimg_2;
 	private String rsubimg_3;
-	private int rlatitude;
-	private int rlongitude;
+	private double rlatitude;
+	private double rlongitude;
 	private String rprice;
 	private String requeststatus;
 	private int bcnt;

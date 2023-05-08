@@ -24,12 +24,13 @@
 		<result property="lname" column="lname" />
 		<result property="bookmarkok" column="bookmarkok" />
 	</resultMap>
+	
 	<!-- 식당 리스트 -->
 	<!-- 등록순 출력 -->
 	<select id="ResList" parameterType="Res" resultMap="ResResult">
 		<if test="schitem == null or schitem== ''">
 			SELECT R.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID =
-			#{mid} AND RNAME = R.Rname) bookmarkOk
+			#{mid} AND RNAME = R.rname) bookmarkOk
 			FROM (SELECT ROWNUM RN, A.* FROM
 			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
 			FROM restaurant R, LOCATION L,
@@ -222,9 +223,14 @@
 	</delete>
 
 	<!-- 식당 상세보기 -->
-	<select id="detailRes" parameterType="String" resultType="Res">
-		SELECT
-		* FROM RESTAURANT WHERE RNAME = #{rname}
+	<select id="detailRes" parameterType="String" resultMap="ResResult">
+		SELECT A.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+		#{mid} AND RNAME =
+		A.RNAME)bookmarkOk FROM (SELECT S.*, NVL(BCNT,0)BCNT
+		FROM RESTAURANT S,
+		(SELECT RNAME, COUNT(*) BCNT FROM BOOKMARK GROUP BY
+		RNAME)B WHERE
+		S.RNAME = B.RNAME(+) AND S.RNAME = #{rname})A
 	</select>
 </mapper>
 

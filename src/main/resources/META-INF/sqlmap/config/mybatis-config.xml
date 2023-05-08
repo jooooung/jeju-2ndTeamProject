@@ -47,7 +47,7 @@
 		<mapper resource="META-INF/sqlmap/mappers/SpotComment.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/MyReview.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/restaurant.xml" />
-		<mapper resource="META-INF/sqlmap/mappers/Schedule.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/ResComment.xml" />
+		<mapper resource="META-INF/sqlmap/mappers/Schedule.xml" />
 	</mappers>
 </configuration>

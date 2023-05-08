@@ -69,17 +69,13 @@
     </select>
     
 	<!-- 댓글 수정 -->
-	<update id="modifyRcomment" parameterType="ResComment">
-		UPDATE
-		restaurantComment SET
-		RCONTENT = #{rcontent}
-		WHERE RCOMMENTNO =
-		#{rcommentno}
-	</update>
+    <update id="modifyRcomment" parameterType="ResComment">
+	 	UPDATE restaurantComment SET RCONTENT = #{rcontent} 
+	 		WHERE RCOMMENTNO = #{rcommentno}
+    </update>
 
 	<!-- 댓글 삭제 -->
-	<delete id="deleteRcomment" parameterType="int">
-		DELETE FROM
-		restaurantComment WHERE RCOMMENTNO = #{rcommentno}
-	</delete>
+    <delete id="deleteRcomment" parameterType="int">
+    	DELETE FROM restaurantComment WHERE RCOMMENTNO = #{rcommentno}
+    </delete>
 </mapper>

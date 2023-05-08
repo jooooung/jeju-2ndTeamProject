@@ -19,7 +19,7 @@
 		.comment input[type=text]{
 			border: 0;
 			background: #f6f6f6;
-			width: 90%;
+			width: 80%;
 			height: 50px;
 			margin-right: 8px;
 			border-radius: 30px;
@@ -32,7 +32,7 @@
 		.comment .write input[type=submit]{
 			border: 0;
 			background: #c8c8c8;
-			width: 7%;
+			width: 100px;
 			height: 70px;
 			border-radius: 10px;
 			padding: 10px;

@@ -1,4 +1,3 @@
-DROP TABLE MYREVIEW;
 DROP TABLE Review;
 DROP TABLE Festival;
 DROP TABLE hotelComment;
@@ -25,7 +24,6 @@ DROP SEQUENCE hCommentNo_seq;
 DROP SEQUENCE rCommentNo_seq;
 DROP SEQUENCE locationNo_seq;
 DROP SEQUENCE RestauranTtypeNo_seq;
-DROP SEQUENCE MYREVIEWNO_SEQ;
 
 CREATE TABLE Member (
     mId VARCHAR2(50) PRIMARY KEY,
@@ -164,12 +162,9 @@ CREATE SEQUENCE scheduleNo_seq MAXVALUE 99999 NOCACHE NOCYCLE;
 CREATE TABLE Schedule (
     scheduleNo NUMBER(5) PRIMARY KEY,
     mId VARCHAR2(50) REFERENCES Member(mId) ON DELETE CASCADE,
-    hName VARCHAR2(50) REFERENCES hotel(hName) ON DELETE CASCADE,
-    rName VARCHAR2(50) REFERENCES restaurant(rName) ON DELETE CASCADE,
-    sName VARCHAR2(50) REFERENCES spot(sName) ON DELETE CASCADE,
     scheduleTitle VARCHAR2(100) NOT NULL,
-    startDate TIMESTAMP NOT NULL,
-    endDate TIMESTAMP NOT NULL,
+    startDate DATE NOT NULL,
+    endDate DATE NOT NULL,
     ScheduleContent CLOB NOT NULL
 ); -- 일정관리 테이블
 
@@ -231,7 +226,6 @@ SELECT * FROM Festival;
 SELECT * FROM MEMBER;
 SELECT * FROM BOOKMARK;
 SELECT * FROM RestauranTtype;
-SELECT * FROM restaurant;
 SELECT * FROM Review;
 SELECT * FROM hotelComment;
 SELECT * FROM spotComment;

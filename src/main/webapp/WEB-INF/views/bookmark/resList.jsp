@@ -32,7 +32,7 @@ img {
 				<img alt="" src="${conPath }/resImgFileUpload/${res.rmainimg}">
 				<p>${res.rname}</p>
 				<br>
-				<a style="text-align: center; display: block; margin: 0 auto;" href="${conPath}/hotel/detail.do?hname=${hotel.hname}">상세보기</a>
+				<a style="text-align: center; display: block; margin: 0 auto;" href="${conPath}/res/detail.do?rname=${res.rname}">상세보기</a>
 				<br>
 			</div>
 		</c:forEach>

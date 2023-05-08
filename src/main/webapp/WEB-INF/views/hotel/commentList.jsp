@@ -56,9 +56,15 @@
 	<script>
 		$(document).ready(function(){
 			$('.replyComment').click(function(){
-				const _this = $(this);
-				alert(_this);
-				
+					$.ajax({
+						type: "post",
+						url : "replyComment.do",
+						dataType : "html",
+						success : function(){
+							$('.reply').html('aaaa')
+							
+						}
+					});
 			});
 		});
 	</script>
@@ -71,16 +77,10 @@
 		<div class="comment">
 				<div class="photo">
 						<li>
-							<%-- <c:if test="${empty member.mphoto || empty buisness.bphoto}"> --%>
+							<c:if test="${empty member.mphoto || empty buisness.bphoto}">
 								<img width="100px;" alt="기본프로필사진(해녀)" src="${conPath }/img/defaultMphoto.png">
 								<br>
-							<%-- </c:if>
-							<c:if test="${not empty member.mphoto }">
-								${member.mphoto}<br>
 							</c:if>
-							<c:if test="${not empty business.bphoto }">
-								${business.bphoto }<br>
-							</c:if> --%>
 							${hotelComments.mid }
 							${hotelComments.bid }
 						</li>
@@ -153,6 +153,7 @@
 					</c:if>
 				</li>
 				</div>
+				<div class="reply"></div>
 			</div>
 		</c:if>
 		</c:forEach>

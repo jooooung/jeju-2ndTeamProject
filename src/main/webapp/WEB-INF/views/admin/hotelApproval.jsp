@@ -30,8 +30,8 @@
                 <td>${hotel.haddr}</td>
                 <td>${hotel.htel}</td>
                 <td>
-                  <a href="${conPath}/admin/approveHotel.do?hname=${hotel.hname}&haddr=${hotel.haddr}" class="approval-button">승인</a>
-                  <a href="${conPath}/admin/rejectHotel.do?hname=${hotel.hname}" class="reject-button">거절</a>
+                  <a href="${conPath}/admin/approveHotel.do?hname=${hotel.hname}&raddr=${hotel.haddr}" class="approval-button" onclick="return confirm('해당 호텔 등록을 승인하시겠습니까?')">승인</a>
+				  <a href="${conPath}/admin/rejectHotel.do?hname=${hotel.hname}" class="reject-button" onclick="return confirm('해당 호텔 등록을 거절하시겠습니까?')">거절</a>
                 </td>
               </tr>
             </c:forEach>
@@ -44,6 +44,23 @@
         <a href='${conPath}/main.do' class="my-button">메인으로 돌아가기</a>
       </div>
     </div>
+	<div class="paging">
+			<c:if test="${paging.startPage > paging.blockSize }">
+			[ <a href="${conPath }/admin/hotelApproval.do?pageNum=${paging.startPage-1}">이전</a> ]
+		</c:if>
+			<c:forEach var="i" begin="${paging.startPage }"
+				end="${paging.endPage }">
+				<c:if test="${i eq paging.currentPage}">
+				[ <b>${i }</b> ]
+			</c:if>
+				<c:if test="${i != paging.currentPage }">
+				[ <a href="${conPath }/admin/hotelApproval.do?pageNum=${i}">${i }</a> ]
+			</c:if>
+			</c:forEach>
+			<c:if test="${paging.endPage < paging.pageCnt }">
+			[ <a href="${conPath }/admin/hotelApproval.do?pageNum=${paging.endPage+1}">다음</a> ]
+		</c:if>
+	</div>
     <jsp:include page="../main/footer.jsp"/>
   </body>
 </html>

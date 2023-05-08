@@ -25,6 +25,9 @@ public class Hotel {
     private double hlongitude;
     private Integer hprice;
     private String requeststatus;
+    private int bcnt;
+    private int bookmarkok;
+    private String mid;
     
     private int startrow;
 	private int endrow;

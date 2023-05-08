@@ -20,134 +20,161 @@
 		<result property="rlatitude" column="rlatitude" />
 		<result property="rlongitude" column="rlongitude" />
 		<result property="rprice" column="rprice" />
-		<result property="bcnt" column="bcnt"/>
-    	<result property="lname" column="lname"/>
+		<result property="bcnt" column="bcnt" />
+		<result property="lname" column="lname" />
+		<result property="bookmarkok" column="bookmarkok" />
 	</resultMap>
-
+	
+	<!-- 식당 리스트 -->
 	<!-- 등록순 출력 -->
 	<select id="ResList" parameterType="Res" resultMap="ResResult">
-		SELECT * FROM
-		(SELECT ROWNUM RN, A.* FROM (SELECT R.*, NVL(bCnt, 0)
-		bCnt FROM
-		restaurant R, (SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY
-		RNAME)B
-		WHERE R.RNAME = B.RNAME(+))A) WHERE RN BETWEEN #{startRow} AND
-		#{endRow}
-	</select>
-
-	<!-- 기본 리스트(즐겨찾기 높은 순) 출력 -->
-	<select id="ResSchList" parameterType="Res"
-		resultMap="ResResult">
 		<if test="schitem == null or schitem== ''">
-			SELECT * FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*,
-			NVL(bCnt, 0)
-			bCnt FROM restaurant R, (SELECT RNAME, COUNT(*) bCnt FROM
-			BOOKMARK GROUP
-			BY RNAME)B
-			WHERE R.RNAME = B.RNAME(+) ORDER BY bCnt
-			DESC)A)
-			WHERE RN
-			BETWEEN #{startRow} AND #{endRow}
+			SELECT R.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.rname) bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM BOOKMARK
+			GROUP BY RNAME)B
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND R.RNAME
+			LIKE
+			'%' || #{schword} || '%' )A) R
+			WHERE RN BETWEEN #{startRow} AND
+			#{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
 		</if>
 
 		<!-- 지역선택 -->
 		<if test="schitem == '11,12,15'">
-			SELECT *
-			FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*,
-			NVL(bCnt, 0) bCnt, L.LNAME
-			FROM restaurant R, LOCATION L, (SELECT
-			RNAME, COUNT(*) bCnt FROM
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
 			BOOKMARK GROUP BY RNAME)B
-			WHERE R.RNAME =
-			B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
-			R.LOCATIONNO IN
-			(11,12,15) AND R.RNAME LIKE '%' ||#{schword}|| '%' ORDER BY
-			bCnt
-			DESC)A)
-			WHERE RN BETWEEN #{startRow} AND #{endRow}
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(11,12,15) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
 		</if>
 
 		<if test="schitem == '1,3,13'">
-			SELECT *
-			FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*,
-			NVL(bCnt, 0) bCnt, L.LNAME
-			FROM restaurant R, LOCATION L, (SELECT
-			RNAME, COUNT(*) bCnt FROM
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
 			BOOKMARK GROUP BY RNAME)B
-			WHERE R.RNAME =
-			B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
-			R.LOCATIONNO IN
-			(1,3,13) AND R.RNAME LIKE '%' ||#{schword}|| '%' ORDER BY
-			bCnt DESC)A)
-			WHERE RN BETWEEN #{startRow} AND #{endRow}
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(1,3,13) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
 		</if>
 		<if test="schitem == '4,5,14'">
-			SELECT *
-			FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*,
-			NVL(bCnt, 0) bCnt, L.LNAME
-			FROM restaurant R, LOCATION L, (SELECT
-			RNAME, COUNT(*) bCnt FROM
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
 			BOOKMARK GROUP BY RNAME)B
-			WHERE R.RNAME =
-			B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
-			R.LOCATIONNO IN
-			(4,5,14) AND R.RNAME LIKE '%' ||#{schword}|| '%' ORDER BY
-			bCnt DESC)A)
-			WHERE RN BETWEEN #{startRow} AND #{endRow}
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(4,5,14) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
 		</if>
 		<if test="schitem == '2,6,7'">
-			SELECT *
-			FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*,
-			NVL(bCnt, 0) bCnt, L.LNAME
-			FROM restaurant R, LOCATION L, (SELECT
-			RNAME, COUNT(*) bCnt FROM
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
 			BOOKMARK GROUP BY RNAME)B
-			WHERE R.RNAME =
-			B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
-			R.LOCATIONNO IN
-			(2,6,7)
-			AND R.RNAME LIKE '%' ||#{schword}|| '%' ORDER BY
-			bCnt DESC)A)
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(2,6,7) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
 			WHERE RN
-			BETWEEN #{startRow} AND #{endRow}
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
 		</if>
 		<if test="schitem == '8,9,10'">
-			SELECT *
-			FROM (SELECT ROWNUM RN, A.* FROM (SELECT R.*,
-			NVL(bCnt, 0) bCnt, L.LNAME
-			FROM restaurant R, LOCATION L, (SELECT
-			RNAME, COUNT(*) bCnt FROM
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
 			BOOKMARK GROUP BY RNAME)B
-			WHERE R.RNAME =
-			B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
-			R.LOCATIONNO IN
-			(8,9,10) AND R.RNAME LIKE '%' ||#{schword}|| '%' ORDER BY
-			bCnt DESC)A)
-			WHERE RN BETWEEN #{startRow} AND #{endRow}
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(8,9,10) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
 		</if>
 	</select>
 
 	<!-- 식당 리스트 갯수 -->
 	<select id="totCntRes" parameterType="Res" resultType="int">
 		<!-- 등록순 -->
-		<if test="schitem == null or schitem== ''"> 
-				SELECT COUNT(*) FROM restaurant	
+		<if test="schitem == null or schitem== ''">
+			SELECT COUNT(*) FROM restaurant
 		</if>
 		<if test="schitem == '11,12,15'">
-				SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN (11,12,15) AND RNAME LIKE '%'||#{schword}||'%' 
-			</if>
-			<if test="schitem == '1,3,13'">
-				SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN (1,3,13) AND RNAME LIKE '%'||#{schword}||'%'
-			</if>
-			<if test="schitem == '4,5,14'">
-				SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN (4,5,14) AND RNAME LIKE '%'||#{schword}||'%'
-			</if>
-			<if test="schitem == '2,6,7'">
-				SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN (2,6,7) AND RNAME LIKE '%'||#{schword}||'%'
-			</if>
-			<if test="schitem == '8,9,10'">
-				SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN (8,9,10) AND RNAME LIKE '%'||#{schword}||'%'
-			</if>
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(11,12,15) AND RNAME
+			LIKE '%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '1,3,13'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(1,3,13) AND RNAME LIKE
+			'%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '4,5,14'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(4,5,14) AND RNAME LIKE
+			'%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '2,6,7'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(2,6,7) AND RNAME LIKE
+			'%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '8,9,10'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(8,9,10) AND RNAME LIKE
+			'%'||#{schword}||'%'
+		</if>
 	</select>
 
 	<!-- 식당 등록 -->
@@ -191,12 +218,19 @@
 
 	<!-- 등록된 식당 삭제 -->
 	<delete id="deleteRes" parameterType="String">
-		DELETE FROM RESTAURANT WHERE RNAME = #{rname}
+		DELETE FROM RESTAURANT
+		WHERE RNAME = #{rname}
 	</delete>
 
 	<!-- 식당 상세보기 -->
-	<select id="detailRes" parameterType="String" resultType="Res">
-		SELECT * FROM RESTAURANT WHERE RNAME = #{rname}
+	<select id="detailRes" parameterType="String" resultMap="ResResult">
+		SELECT A.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+		#{mid} AND RNAME =
+		A.RNAME)bookmarkOk FROM (SELECT S.*, NVL(BCNT,0)BCNT
+		FROM RESTAURANT S,
+		(SELECT RNAME, COUNT(*) BCNT FROM BOOKMARK GROUP BY
+		RNAME)B WHERE
+		S.RNAME = B.RNAME(+) AND S.RNAME = #{rname})A
 	</select>
 </mapper>
 

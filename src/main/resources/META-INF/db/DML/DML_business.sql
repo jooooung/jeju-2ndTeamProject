@@ -16,6 +16,7 @@ SELECT *
 FROM all_constraints
 WHERE constraint_name = 'SYS_C0010412';
 
+
 -- 3. 업체 등록요청 (등록글 작성)
 -- Hotel 등록
 INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
@@ -24,6 +25,53 @@ INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, ou
 INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
     VALUES ('Ramada50', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
 
+INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada51', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada53', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada54', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada55', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada56', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada57', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada58', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada59', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada60', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada61', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada62', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada63', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada64', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada65', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada66', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
+    
+    INSERT INTO Hotel (hName, bId, locationNo, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus)
+    VALUES ('Ramada67', 'bid', 3, '조천시', '010-1234-1324', 'www.naver.com', 'information', '14:00', '11:00', 'main.jpg' , 'sub_img_1', 'sub_img_2', 'sub_img_3', 40000, 'P');
 -- Restaurant 등록
 INSERT INTO Restaurant (rName, bId, locationNo, rAddr, rTel, rLink, rInfo, rMenu, rMainImg, rSubImg_1, rSubImg_2, rSubImg_3, rLatitude, rLongitude, rPrice, requestStatus)
 SELECT '식당', 'bid', locationNo, '제주', '02-1234-1234', 'www.naver.com', '정보', '올래국수', 'main_img.jpg', 'sub_img_1', 'sub_img_2', 'sub_img_3', 50.5, 50.5, '40,000', 'P'
@@ -53,12 +101,14 @@ DELETE FROM Restaurant
 
 -- 6. 업체 마이페이지 (나의 글)
 SELECT *
-    FROM Hotel
-    WHERE bId = 'bid';
+    FROM (SELECT H.*, ROWNUM RN
+    FROM (SELECT * FROM Hotel WHERE bId = 'bid' ORDER BY hname DESC) H)
+    WHERE RN BETWEEN 1 AND 10;
 
 SELECT *
-    FROM Restaurant
-    WHERE bId = 'bid';
+    FROM (SELECT R.*, ROWNUM RN
+    FROM (SELECT * FROM Restaurant WHERE bId = 'bid' ORDER BY rname DESC) R)
+    WHERE RN BETWEEN 1 AND 10;
 
 -- 7. 업체 마이페이지 (나의 댓글)
 -- My comments in the hotelComment table

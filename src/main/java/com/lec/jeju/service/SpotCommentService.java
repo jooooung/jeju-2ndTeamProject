@@ -19,6 +19,9 @@ public interface SpotCommentService {
 	// 답 댓글 달기
 	public int replyScomment(SpotComment sComment);
 	
+	// 댓글 수정 뷰
+	public SpotComment modifyScommentView(int scommentno);
+		
 	// 댓글 수정
 	public int modifyScomment(SpotComment sComment);
 	

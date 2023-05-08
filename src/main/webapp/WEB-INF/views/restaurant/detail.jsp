@@ -9,7 +9,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
 	<link rel="stylesheet" href="${conPath }/css/spot/detail.css"/>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -117,24 +116,27 @@
 		  		</div>
 			  	<input type="submit" value="작성">
 	  	</c:if>
+	  	<c:if test="${not empty member && empty modifyComment}">
 		  	<form action="${conPath }/res/insertComment.do" method="post">
-	  	<c:if test="${not empty member }">
 		  		<div class="input">
 			  		<input type="text" name="rcontent" placeholder="댓글을 작성하세요.">
 			  		<input type="hidden" name="rname" value="${detail.rname }">
 			  		<input type="hidden" name="mid" value="${member.mid }">
 			  	</div>
 			  		<input type="submit" value="작성">
+			</form>
 	  	</c:if>
-	  	<c:if test="${not empty bid }">
+	  		<c:if test="${not empty member && not empty modifyComment}">
+		  	<form action="${conPath }/res/modifyComment.do" method="post">
 		  		<div class="input">
-			  		<input type="text" name="rcontent" placeholder="댓글을 작성하세요.">
+			  		<input type="text" name="rcontent" value="${modifyComment.rcontent }">
+		  			<input type="hidden" name="rcommentno" value="${modifyComment.rcommentno }">
 			  		<input type="hidden" name="rname" value="${detail.rname }">
-			  		<input type="hidden" name="bid" value="${bid }">
+			  		<input type="hidden" name="mid" value="${member.mid }">
 			  	</div>
-			  		<input type="submit" value="작성">
-	  	</c:if>
+			  		<input type="submit" value="수정">
 		  	</form>
+	  	</c:if>
 	</div>
 		</div>
 	  	<div id="comment_wrap">
@@ -168,7 +170,7 @@
 				<div class="paging" align="center">
 					<c:if test="${paging.startPage > paging.blockSize }">
 					[ <a
-							href="${conPath}/spot/detail.do?sname=${param.sname }&pageNum=${paging.currentPage}&lname=${param.lname}&mid=${member.mid }&CpageNum=${paging.startPage-1}">이전</a> ]
+							href="${conPath}/res/detail.do?rname=${param.rname }&pageNum=${paging.currentPage}&lname=${param.lname}&mid=${member.mid }&CpageNum=${paging.startPage-1}">이전</a> ]
 							<%-- href="${conPath }/spot/detail.do?CpageNum=${paging.startPage-1}">이전</a> ] --%>
 					</c:if>
 						<c:forEach var="i" begin="${paging.startPage }"
@@ -177,18 +179,18 @@
 							[ <b>${i }</b> ]
 						</c:if>
 							<c:if test="${i != paging.currentPage }">
-							[ <a href="${conPath}/res/detail.do?sname=${param.sname }&pageNum=${paging.currentPage}&lname=${param.lname}&mid=${member.mid }&CpageNum=${i}">${i }</a> ]
+							[ <a href="${conPath}/res/detail.do?rname=${param.rname }&pageNum=${paging.currentPage}&lname=${param.lname}&mid=${member.mid }&CpageNum=${i}">${i }</a> ]
 						</c:if>
 						</c:forEach>
 						<c:if test="${paging.endPage < paging.pageCnt }">
-						[ <a href="${conPath}/res/detail.do?sname=${param.sname }&pageNum=${paging.currentPage}&lname=${param.lname}&mid=${member.mid }&CpageNum=${paging.endPage+1}">다음</a> ]
+						[ <a href="${conPath}/res/detail.do?rname=${param.rname }&pageNum=${paging.currentPage}&lname=${param.lname}&mid=${member.mid }&CpageNum=${paging.endPage+1}">다음</a> ]
 					</c:if>
 				</div>
 			</div>
 		</div>
 	<jsp:include page="../main/footer.jsp"/>
 </body>
-<!-- Swiper JS -->
+<!-- <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script>
     var swiper = new Swiper(".mySwiper", {
@@ -199,5 +201,5 @@
         clickable: true,
       },
     });
-  </script>
+  </script> -->
 </html>

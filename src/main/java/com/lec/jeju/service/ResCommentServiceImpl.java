@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import com.lec.jeju.dao.ResCommentDao;
 import com.lec.jeju.util.Paging;
 import com.lec.jeju.vo.ResComment;
+import com.lec.jeju.vo.SpotComment;
 
 @Service
 public class ResCommentServiceImpl implements ResCommentService {
@@ -40,13 +41,18 @@ public class ResCommentServiceImpl implements ResCommentService {
 	}
 
 	@Override
+	public ResComment modifyRcommentView(int rcommentno) {
+		return rCommentDao.modifyRcommentView(rcommentno);
+	}
+
+	@Override
 	public int modifyRcomment(ResComment rComment) {
 		return rCommentDao.modifysRcmment(rComment);
 	}
 
 	@Override
 	public int deleteRcomment(int rcommentno) {
-		return rCommentDao.deleteRcomment(rcommentno);
+		return rCommentDao.deleteRcomment(rcommentno); //dd
 	}
 
 }

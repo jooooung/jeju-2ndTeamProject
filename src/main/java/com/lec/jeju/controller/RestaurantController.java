@@ -18,8 +18,6 @@ import com.lec.jeju.util.Paging;
 import com.lec.jeju.vo.Member;
 import com.lec.jeju.vo.ResComment;
 import com.lec.jeju.vo.Restaurant;
-import com.lec.jeju.vo.Spot;
-import com.lec.jeju.vo.SpotComment;
 
 @Controller
 @RequestMapping("res")
@@ -70,6 +68,13 @@ public class RestaurantController {
 		return "redirect:detail.do?rname=" + rname;
 	}
 
+	// 댓글 수정 뷰
+	@RequestMapping(value = "modifyComment", method = RequestMethod.GET)
+	public String mdodifyCommentView(int rcommentno, String rname, Model model) throws UnsupportedEncodingException {
+		model.addAttribute("modifyComment", rCService.modifyRcommentView(rcommentno));
+		return "forward:detail.do";
+	}
+
 	// 댓글 수정
 	@RequestMapping(value = "modifyComment", method = RequestMethod.POST)
 	public String mdodifyComment(ResComment rComment) throws UnsupportedEncodingException {
@@ -84,6 +89,6 @@ public class RestaurantController {
 		int rcommentno = rComment.getRcommentno();
 		rCService.deleteRcomment(rcommentno);
 		String rname = URLEncoder.encode(rComment.getRname(), "utf-8");
-		return "redirect:detail.do?sname=" + rname;
+		return "redirect:detail.do?rname=" + rname;
 	}
 }

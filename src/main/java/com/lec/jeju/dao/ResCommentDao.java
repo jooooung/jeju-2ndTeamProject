@@ -18,6 +18,8 @@ public interface ResCommentDao {
 
 	public int replyRcomment(ResComment rComment);
 
+	public ResComment modifyRcommentView(int rcommentno);
+
 	public int modifysRcmment(ResComment rComment);
 
 	public int deleteRcomment(int rcommentno);

@@ -11,7 +11,7 @@
 </head>
 <body>
 	<jsp:include page="../main/header.jsp"/>
-    <h2>${restaurant.rname}등록 요청글 상세보기</h2>
+    <h2>${restaurant.rname}</h2>
     <table>
         <tr>
             <td>식당 이름:</td>
@@ -66,6 +66,11 @@
             <td>${restaurant.rprice}</td>
         </tr>
     </table>
+    <div class="btn-wrapper">
+		<a href="${conPath}/admin/restaurantApproval.do" class="my-button">식당 등록 요청 목록</a>
+		<a href="${conPath}/admin/approveRestaurant.do?rname=${restaurant.rname}&raddr=${restaurant.raddr}" class="approval-button">승인</a>
+		<a href="${conPath}/admin/rejectRestaurant.do?rname=${restaurant.rname}" class="reject-button">거절</a>
+	</div>
     <jsp:include page="../main/footer.jsp"/>
 </body>
 </html>

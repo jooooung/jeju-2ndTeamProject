@@ -23,4 +23,5 @@ public interface HotelService {
 	public int modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
 	// 호텔 삭제
 	public int deleteHotel(String hname);
+	
 }

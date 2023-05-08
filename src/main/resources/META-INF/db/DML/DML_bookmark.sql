@@ -3,7 +3,7 @@
 ------------------------------------------------------
 -- (1) 북마크 (호텔) - addHotel
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)
-    VALUES (bookmarkNo_seq.NEXTVAL, 'kim', '그라벨호텔', null, null, '그라벨호텔m.jpg', null, null);
+    VALUES (bookmarkNo_seq.NEXTVAL, 'bbb', '위드시티호텔', null, null, '위드시티호텔m.jpg', null, null);
 
 -- (2) 북마크 (식당) - addRes
 INSERT INTO BOOKMARK (BOOKMARK_NO, MID, HNAME, RNAME, SNAME, HMAINIMG, RMAINIMG, SMAINIMG)

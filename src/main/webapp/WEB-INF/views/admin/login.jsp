@@ -1,25 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="conPath" value="${pageContext.request.contextPath }"/>
+<c:set var="conPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-	<link href="${conPath }/css/member/login.css" rel=stylesheet>
-	<style>
-	#content {
-		width: 800px;
-		height: 350px;
-		margin: 50px auto;
-	}
-	</style>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<link href="${conPath }/css/member/login.css" rel=stylesheet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+#logo {
+	text-align: center;
+	height: 200px;
+}
+
+img {
+	display: block;
+	width : 300xp;
+	margin: 0 auto;
+}
+
+caption {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+th {
+	text-align: center;
+}
+</style>
 </head>
 <body>
 	<c:if test="${not empty loginResult}">
-		<script>alert('${loginResult}');</script>
+		<script>
+			alert('${loginResult}');
+		</script>
 	</c:if>
 	<c:if test="${not empty admin }">
 		<script>
@@ -43,21 +59,36 @@
 			location.href = '${conPath}/main.do';
 		</script>
 	</c:if>
-	<jsp:include page="../main/header.jsp"/>
-	<div id="content">
-	<form action="${conPath}/admin.do" method="post">
-		<input type="hidden" name="method" value="login">
-		<input type="hidden" name="after" value="${empty param.after ?  'main.do':param.after}">
-		<table>
-			<caption>로그인 화면</caption>
-			<tr><th>아이디</th><td><input type="text" name="aid" required="required" value="${aid }"></td></tr>
-			<tr><th>비밀번호</th><td><input type="password" name="apw" required="required" value="${apw }"></td></tr>
-			<tr><td colspan="2">
-				<input type="submit" value="로그인">
-			</td></tr>
-		</table>
-	</form>
+	<div id="logo">
+		<a href="${conPath }/main.do"> <img alt="로고"
+			src="${conPath }/img/logo(2).png">
+		</a>
 	</div>
-	<jsp:include page="../main/footer.jsp"/>
+	<div id="content">
+		<form action="${conPath}/admin.do" method="post">
+			<input type="hidden" name="method" value="login"> 
+      <input type="hidden" name="after"
+				value="${empty param.after ?  'main.do':param.after}">
+
+			<table>
+        <caption>관리자 로그인</caption>
+				<tr>
+					<th>아이디</th>
+					<td><input type="text" name="aid" required="required"
+						value="${aid }"></td>
+				</tr>
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" name="apw" required="required"
+						value="${apw }"></td>
+				</tr>
+				<tr>
+					<td colspan="2">
+					<input type="submit" value="로그인(관리자)" style="width: 100%;"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<jsp:include page="../main/footer.jsp" />
 </body>
 </html>

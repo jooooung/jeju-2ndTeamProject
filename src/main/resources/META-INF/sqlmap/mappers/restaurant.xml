@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lec.jeju.dao.RestaurantDao">
+	<resultMap type="Res" id="ResResult">
+		<result property="rname" column="rname" />
+		<result property="bid" column="bid" />
+		<result property="locationno" column="locationno" />
+		<result property="restauranttypeno" column="restauranttypeno" />
+		<result property="raddr" column="raddr" />
+		<result property="rtel" column="rtel" />
+		<result property="rlink" column="rlink" />
+		<result property="rinfo" column="rinfo" />
+		<result property="rmenu" column="rmenu" />
+		<result property="rmainimg" column="rmainimg" />
+		<result property="rsubimg_1" column="rsubimg_1" />
+		<result property="rsubimg_2" column="rsubimg_2" />
+		<result property="rsubimg_3" column="rsubimg_3" />
+		<result property="rlatitude" column="rlatitude" />
+		<result property="rlongitude" column="rlongitude" />
+		<result property="rprice" column="rprice" />
+		<result property="bcnt" column="bcnt" />
+		<result property="lname" column="lname" />
+		<result property="bookmarkok" column="bookmarkok" />
+	</resultMap>
+	<!-- 식당 리스트 -->
+	<!-- 등록순 출력 -->
+	<select id="ResList" parameterType="Res" resultMap="ResResult">
+		<if test="schitem == null or schitem== ''">
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0)
+			bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*)
+			bCnt FROM BOOKMARK
+			GROUP BY RNAME)B
+			WHERE
+			R.RNAME = B.RNAME(+) AND
+			R.LOCATIONNO = L.LOCATIONNO AND R.RNAME
+			LIKE
+			'%' || #{schword} || '%'
+			)A) R
+			WHERE RN BETWEEN #{startRow} AND
+			#{endRow} ORDER BY bCnt DESC,
+			BOOKMARKOK
+			DESC
+		</if>
+
+		<!-- 지역선택 -->
+		<if test="schitem == '11,12,15'">
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
+			BOOKMARK GROUP BY RNAME)B
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(11,12,15) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
+		</if>
+
+		<if test="schitem == '1,3,13'">
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
+			BOOKMARK GROUP BY RNAME)B
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(1,3,13) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
+		</if>
+		<if test="schitem == '4,5,14'">
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
+			BOOKMARK GROUP BY RNAME)B
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(4,5,14) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
+		</if>
+		<if test="schitem == '2,6,7'">
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
+			BOOKMARK GROUP BY RNAME)B
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(2,6,7) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
+		</if>
+		<if test="schitem == '8,9,10'">
+			SELECT R.*,
+			(SELECT COUNT(*) FROM BOOKMARK WHERE MID =
+			#{mid} AND RNAME = R.Rname)
+			bookmarkOk
+			FROM (SELECT ROWNUM RN, A.* FROM
+			(SELECT R.*, NVL(bCnt, 0) bCnt, L.LNAME
+			FROM restaurant R, LOCATION L,
+			(SELECT RNAME, COUNT(*) bCnt FROM
+			BOOKMARK GROUP BY RNAME)B
+			WHERE
+			R.RNAME = B.RNAME(+) AND R.LOCATIONNO = L.LOCATIONNO AND
+			R.LOCATIONNO
+			IN(8,9,10) AND R.RNAME LIKE '%' || #{schword} ||
+			'%')A) R
+			WHERE RN
+			BETWEEN #{startRow} AND #{endRow} ORDER BY bCnt DESC, BOOKMARKOK
+			DESC
+		</if>
+	</select>
+
+	<!-- 식당 리스트 갯수 -->
+	<select id="totCntRes" parameterType="Res" resultType="int">
+		<!-- 등록순 -->
+		<if test="schitem == null or schitem== ''">
+			SELECT COUNT(*) FROM restaurant
+		</if>
+		<if test="schitem == '11,12,15'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(11,12,15) AND RNAME
+			LIKE '%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '1,3,13'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(1,3,13) AND RNAME LIKE
+			'%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '4,5,14'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(4,5,14) AND RNAME LIKE
+			'%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '2,6,7'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(2,6,7) AND RNAME LIKE
+			'%'||#{schword}||'%'
+		</if>
+		<if test="schitem == '8,9,10'">
+			SELECT COUNT(*) FROM restaurant WHERE LOCATIONNO IN
+			(8,9,10) AND RNAME LIKE
+			'%'||#{schword}||'%'
+		</if>
+	</select>
+
+	<!-- 식당 등록 -->
+	<insert id="insertRes" parameterType="Res">
+		INSERT INTO restaurant
+		(RNAME, BID, LOCATIONNO, RestauranTtypeNo,RADDR,
+		RTEL, RLINK, RINFO,
+		RMENU, RMAINIMG, RSUBIMG_1, RSUBIMG_2, RSUBIMG_3,
+		RLATITUDE,
+		RLONGITUDE, RPRICE)
+		VALUES (#{rname}, #{bid}, #{locationno},
+		#{restauranttypeno}, #{raddr},
+		#{rtel}, #{rlink}, #{rinfo}, #{rmenu},
+		#{rmainimg}, #{rsubimg_1}, #{rsubimg_2}, #{rsubimg_3}, #{rlatitude},
+		#{rlongitude}, #{rprice})
+	</insert>
+
+	<!-- 정보 수정 -->
+	<update id="modifyRes" parameterType="Res">
+		UPDATE RESTAURANT SET RNAME
+		= #{rname},
+		BID = #{bid},
+		LOCATIONNO = #{locationno},
+		RestauranTtypeNo =
+		#{restauranttypeno},
+		RADDR = #{raddr},
+		RTEL = #{rtel},
+		RLINK = #{rlink},
+		RINFO = #{rinfo},
+		RMENU = #{rmenu},
+		RMAINIMG = #{rmainimg},
+		RSUBIMG_1 =
+		#{rsubimg_1},
+		RSUBIMG_2 = #{rsubimg_2},
+		RSUBIMG_3 = #{rsubimg_3},
+		RLATITUDE = #{rlatitude},
+		RLONGITUDE = #{rlongitude},
+		RPRICE = #{rprice}
+		WHERE RNAME = #{rname}
+	</update>
+
+	<!-- 등록된 식당 삭제 -->
+	<delete id="deleteRes" parameterType="String">
+		DELETE FROM RESTAURANT
+		WHERE RNAME = #{rname}
+	</delete>
+
+	<!-- 식당 상세보기 -->
+	<select id="detailRes" parameterType="String" resultType="Res">
+		SELECT
+		* FROM RESTAURANT WHERE RNAME = #{rname}
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

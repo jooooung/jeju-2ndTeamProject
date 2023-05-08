@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Iterator;
+import java.util.UUID;
 
 import javax.mail.Message;
 import javax.mail.internet.InternetAddress;
@@ -31,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	String backupPath = "D:/TeamProject/Source/jeju-2ndTeamProject/src/main/webapp/memberPhoto/";
+	String backupPath = "D:/TeamProject/jeju-2ndTeamProject/jeju-2ndTeamProject/src/main/webapp/memberPhoto";
 
 	@Override
 	public int idConfirm(String mid) {
@@ -66,31 +67,22 @@ public class MemberServiceImpl implements MemberService {
 				System.out.println(e.getMessage());
 			}
 		} else {
-			mphoto = "NOIMG.JPG";
+			mphoto = "default_profile.png";
 		} // if
 			// 메일전송
+		final String mailContent = createWelcomeMailContent(member);
 		MimeMessagePreparator message = new MimeMessagePreparator() {
-			String content = 
-				    "<div style=\"width:500px; margin: 0 auto\">\n" + 
-				    " <h1>" + member.getMname() + "님 회원가입 감사합니다!</h1>\n" + 
-				    " <img src=\"https://api.cdn.visitjeju.net/photomng/imgpath/202304/05/cb6172ca-26be-4877-bccf-1ed66c4ac683.jpg\" "
-				    + "alt=\"제주도가즈아\" style=\"width: 100%; max-width: 500px;\">\n" +
-				    " <p align=\"center\">저희 JEJU 종합관광정보 사이트에 오신걸 환영합니다.</p>\n" + 
-				    " <p align=\"center\">부디 편안하고 안전한 여행 되시길 바랍니다.</p>\n" + 
-				    " <p align=\"center\">(00000) 제주특별자치도 제주시 JEJU</p>\n" + 
-				    " <p align=\"center\">관광불편신고 : 제주안내 120콜센터(국번없이 120번)</p>\n" + 
-				    "</div>";
 
 			@Override
 			public void prepare(MimeMessage mimeMessage) throws Exception {
 				// 받을 메일
 				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(member.getMemail()));
 				// 보낼 메일
-				mimeMessage.setFrom(new InternetAddress("dnvk8888@gmail.com"));
+				mimeMessage.setFrom(new InternetAddress("jejukang94@gmail.com"));
 				// 메일 제목
-				mimeMessage.setSubject("[JEJU] " + member.getMname() + "님 제주도에 오신걸 환영합니다 !");
+				mimeMessage.setSubject("[제주어때] " + member.getMname() + "님 제주도에 혼저옵서 !");
 				// 메일 본문
-				mimeMessage.setText(content, "utf-8", "html");
+				mimeMessage.setText(mailContent, "utf-8", "html");
 			}
 		}; // message 객체 생성
 		mailSender.send(message); // 메일 전송
@@ -120,39 +112,76 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int modifyMember(Member member, HttpSession httpSession, MultipartHttpServletRequest mRequest) {
-		String uploadPath = mRequest.getRealPath("memberPhoto/");
-		Iterator<String> params = mRequest.getFileNames();
-		String mphoto = "";
 		// 기존 멤버 정보를 세션에서 가져옴
 		Member sessionMember = (Member) httpSession.getAttribute("member");
-		// 새 비밀번호를 가져옴
+		// 비밀번호
 		String newPassword = member.getMpw();
-		// 새 비밀번호가 null 이거나 빈 문자열일 경우, 기존 비밀번호로 설정
 		if (newPassword == null || newPassword.isEmpty()) {
 			member.setMpw(sessionMember.getMpw());
 		}
-		while (params.hasNext()) {
-			String paramName = params.next();
-			MultipartFile mFile = mRequest.getFile(paramName);
-			String originalFileName = mFile.getOriginalFilename();
-			String saveFileName = System.currentTimeMillis() + originalFileName;
-			try {
-				mFile.transferTo(new File(uploadPath + saveFileName));
-				System.out.println("서버파일 : " + uploadPath + saveFileName);
-				System.out.println("백업파일 : " + backupPath + saveFileName);
-				boolean result = fileCopy(uploadPath + saveFileName, backupPath + saveFileName);
-				System.out.println(result ? "백업성공" : "백업실패");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			mphoto = "memberPhoto/" + saveFileName;
+		// 이름
+		String newName = member.getMname();
+		if (newName == null || newName.isEmpty()) {
+			member.setMname(sessionMember.getMname());
 		}
-		// 새로운 프로필 사진 경로를 member 객체에 저장
+		// 사진
+		String mphoto = sessionMember.getMphoto();
+		MultipartFile mFile = mRequest.getFile("temphoto");
+		if (mFile != null && !mFile.isEmpty()) { // 새로운 파일이 첨부되었을 때
+			String uploadPath = mRequest.getRealPath("memberPhoto/");
+			String fileName = mFile.getOriginalFilename();
+			if (new File(uploadPath + fileName).exists()) { // 같은 이름의 파일이 이미 존재하는 경우
+				fileName = System.currentTimeMillis() + "_" + fileName;
+			}
+			try {
+				mFile.transferTo(new File(uploadPath + fileName)); // 파일 업로드
+				boolean result = fileCopy(uploadPath + fileName, backupPath + fileName); // 백업 파일 생성
+				System.out.println(result ? "백업성공" : "백업실패");
+				mphoto = "memberPhoto/" + fileName;
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		member.setMphoto(mphoto);
-		// 세션에 새 멤버 정보 저장
+
 		httpSession.setAttribute("member", member);
-		// 데이터베이스에 업데이트 요청
 		return memberDao.modifyMember(member);
+	}
+
+	public String findPW(final String mid, final String memail) {
+		final Member member = new Member();
+		member.setMid(mid);
+		member.setMemail(memail);
+		// 임시 비밀번호 생성 및 업데이트
+		final String tempPw = UUID.randomUUID().toString().replace("-", "").substring(0, 6);
+		member.setMpw(tempPw);
+		memberDao.updatePW(member);
+		String result = memberDao.findPW(member);
+		MimeMessagePreparator message = new MimeMessagePreparator() {
+			String content = "<div style=\"width:500px; margin: 0 auto\">\n"
+					+ "<img src=\"http://localhost:8088/jeju/img/logo(2).png\" "
+					+ "alt=\"제주도가즈아\" style=\"width: 100%; max-width: 500px;\">\n" 
+					+ " <h2>제주어때 임시 비밀번호 안내 메일 입니다.</h2>\n"
+					+ " <h3>" + member.getMid() + "님의 임시 비밀번호는 " + tempPw + " 입니다.</h3>\n"
+					+ "<p style=\"color:black; font-weight:bold;\">로그인 후 꼭 비밀번호를 변경해주세요.</p>" 
+					+ "</div>";
+
+
+			@Override
+			public void prepare(MimeMessage mimeMessage) throws Exception {
+				mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(member.getMemail())); // 받을 메일 주소
+				mimeMessage.setFrom(new InternetAddress("jejukang94@gmail.com")); // 보낼 메일 주소
+				mimeMessage.setSubject("[제주어때] " + member.getMid() + "님, 임시 비밀번호 안내 메일입니다."); // 메일 제목
+				mimeMessage.setText(content, "utf-8", "html"); // 메일 내용
+			}
+		};
+		mailSender.send(message); // 메일 전송
+		return result;
+	}
+
+	@Override
+	public int updatePW(Member member, HttpSession session) {
+		return memberDao.updatePW(member);
 	}
 
 	@Override
@@ -165,6 +194,15 @@ public class MemberServiceImpl implements MemberService {
 	public void logout(HttpSession httpSession) {
 		httpSession.invalidate();
 
+	}
+
+	@Override
+	public String findID(String memail, HttpSession session) {
+		String mid = memberDao.findID(memail); // 회원 아이디 조회
+		if (mid == null) {
+			throw new RuntimeException("회원 아이디를 찾을 수 없습니다.");
+		}
+		return mid;
 	}
 
 	private boolean fileCopy(String serverFile, String backupFile) {
@@ -197,4 +235,23 @@ public class MemberServiceImpl implements MemberService {
 		}
 		return isCopy;
 	}
+
+	// 메일전송 본문
+	private String createWelcomeMailContent(Member member) {
+		String content = "<div style=\"text-align: center;\">\n" + " <style>\n" + " @font-face {\n"
+				+ "     font-family: 'RIDIBatang';\n"
+				+ "     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.0/RIDIBatang.woff') format('woff');\n"
+				+ "     font-weight: normal;\n" + "     font-style: normal;\n" + " }\n" + " </style>\n"
+				+ " <img src=\"http://localhost:8088/jeju/img/logo(2).png\" "
+				+ "alt=\"제주도가즈아\" style=\"max-width: 100%; width: 500px;\">\n"
+				+ " <div style=\"width:500px; margin: 0 auto\">\n" + "  <h1 style=\"font-family: 'RIDIBatang';\">"
+				+ member.getMname() + "님 회원가입 감사합니다!</h1>\n"
+				+ "  <p style=\"color:orange; font-weight:bold; font-family: 'RIDIBatang';\">저희 제주어때 사이트에 오신걸 환영합니다.</p>\n"
+				+ "  <p style=\"color:green; font-weight:bold; font-family: 'RIDIBatang';\">부디 편안하고 안전한 여행 되시길 바랍니다.</p>\n"
+				+ "  <p style=\"color:black; font-weight:bold; font-family: 'RIDIBatang';\">(00000) 제주특별자치도 제주시 JEJU 어때</p>\n"
+				+ "  <p style=\"color:black; font-weight:bold; font-family: 'RIDIBatang';\">관광불편신고 : 제주안내 120 콜센터 (국번없이 120번)</p>\n"
+				+ " </div>\n" + "</div>";
+		return content;
+	}
+
 }

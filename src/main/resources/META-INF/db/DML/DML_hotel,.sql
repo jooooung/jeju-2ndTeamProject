@@ -1,13 +1,13 @@
 ------------------- HOTEL ---------------
 -- 숙소 목록 (즐겨찾기 많은 순) hotelList  (승인된 업체만)
     -- 전체목록
-SELECT * 
+SELECT C.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID = 'bbb' AND HNAME = c.hname) bookmarkOk
     FROM (SELECT ROWNUM RN, A.* 
         FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
                 FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
                 WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' 
-                 AND H.HNAME LIKE '%'||'호텔더원'||'%' ORDER BY bCnt DESC) A)
-    WHERE RN BETWEEN 1 AND 5;
+                 AND H.HNAME LIKE '%'||''||'%' ORDER BY bCnt DESC) A) C
+    WHERE RN BETWEEN 1 AND 10;
     -- 지역 미선택
 SELECT *    
     FROM (SELECT ROWNUM RN, A.* 
@@ -16,7 +16,7 @@ SELECT *
                     WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
                     AND REQUESTSTATUS = 'A' AND H.HNAME LIKE '%'||'호텔더원'||'%' ORDER BY bCnt DESC) A)
     WHERE RN BETWEEN 1 AND 3;
-
+select * from location;
 
     -- 지역선택
 SELECT * 

@@ -23,7 +23,7 @@ public interface BookMarkService {
 
 	int deleteResBookmark(String mid, String rname);
 
-	int deleteSpotBookmark(String mid, String sname);
+	int deleteSpotBookmark(BookMark bookmark);
 
 	Integer getSpotCount(String mid);
 

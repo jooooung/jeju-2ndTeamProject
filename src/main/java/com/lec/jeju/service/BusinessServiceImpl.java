@@ -24,6 +24,7 @@ import com.lec.jeju.util.Paging;
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
+import com.lec.jeju.vo.Member;
 import com.lec.jeju.vo.Restaurant;
 @Service
 public class BusinessServiceImpl implements BusinessService {
@@ -33,6 +34,8 @@ public class BusinessServiceImpl implements BusinessService {
 	String backupPath = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/businessPhoto/";
 	
 	String backupPath1 = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/hotelImgFileUpload/";
+	
+	String backupPath2 = "C:/webPro1/source/las/jeju-2ndTeamProject/src/main/webapp/resImgFileUpload/";
 	
 	@Autowired
 	private JavaMailSender mailSender;
@@ -117,38 +120,39 @@ public class BusinessServiceImpl implements BusinessService {
 
 	@Override
 	public int modifyBusiness(Business business, HttpSession httpSession, MultipartHttpServletRequest mRequest) {
-		String uploadPath = mRequest.getRealPath("businessPhoto/");
-		Iterator<String> params = mRequest.getFileNames();
-		String bphoto = "";
 		// 기존 멤버 정보를 세션에서 가져옴
 		Business sessionBusiness = (Business) httpSession.getAttribute("business");
-		// 새 비밀번호를 가져옴
+		// 비밀번호
 		String newPassword = business.getBpw();
-		// 새 비밀번호가 null 이거나 빈 문자열일 경우, 기존 비밀번호로 설정
 		if (newPassword == null || newPassword.isEmpty()) {
 			business.setBpw(sessionBusiness.getBpw());
 		}
-		while (params.hasNext()) {
-			String param = params.next();
-			MultipartFile bfile = mRequest.getFile(param);
-			String originalFileName = bfile.getOriginalFilename();
-			String saveFileName = System.currentTimeMillis() + originalFileName;
-			try {
-				bfile.transferTo(new File(uploadPath + saveFileName));
-				System.out.println("서버파일 : " + uploadPath + saveFileName);
-				System.out.println("백업파일 : " + backupPath + saveFileName);
-				int result = fileCopy(uploadPath + saveFileName, backupPath + saveFileName);
-				System.out.println(result == 1? "백업 성공" : "백업 실패");
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			bphoto = "businessPhoto/" + saveFileName;
+		// 이름
+		String newName = business.getBname();
+		if (newName == null || newName.isEmpty()) {
+			business.setBname(sessionBusiness.getBname());
 		}
-		// 새로운 프로필 사진 경로를 business 객체에 저장
+		// 사진
+		String bphoto = sessionBusiness.getBphoto();
+		MultipartFile mFile = mRequest.getFile("temphoto");
+		if (mFile != null && !mFile.isEmpty()) { // 새로운 파일이 첨부되었을 때
+			String uploadPath = mRequest.getRealPath("memberPhoto/");
+			String fileName = mFile.getOriginalFilename();
+			if (new File(uploadPath + fileName).exists()) { // 같은 이름의 파일이 이미 존재하는 경우
+				fileName = System.currentTimeMillis() + "_" + fileName;
+			}
+			try {
+				mFile.transferTo(new File(uploadPath + fileName)); // 파일 업로드
+				boolean result = filecopy(uploadPath + fileName, backupPath + fileName); // 백업 파일 생성
+				System.out.println(result ? "백업성공" : "백업실패");
+				bphoto = "businessPhoto/" + fileName;
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 		business.setBphoto(bphoto);
-		// 세션에 새 멤버 정보 저장
+
 		httpSession.setAttribute("business", business);
-		// 데이터베이스에 업데이트 요청
 		return businessDao.modifyBusiness(business);
 	}
 
@@ -261,63 +265,16 @@ public class BusinessServiceImpl implements BusinessService {
 	    hotel.setHsubimg_2(himg[2]);
 	    hotel.setHsubimg_3(himg[3]);
 	    
-	    String haddr = hotel.getHaddr();
-	    int locationno = 0;
-	    haddr.substring(haddr.indexOf('도')+2, 14);
-	    if (haddr.equals("제주")) {
-	    	locationno = 1;
-	    } else if (haddr.equals("서귀")) {
-	    	locationno = 2;
-	    } else if (haddr.equals("대정")) {
-	    	locationno = 3;
-	    } else if (haddr.equals("애월")) {
-	    	locationno = 4;
-	    } else if (haddr.equals("한림")) {
-	    	locationno = 5;
-	    } else if (haddr.equals("조천")) {
-	    	locationno = 6;
-	    } else if (haddr.equals("구좌")) {
-	    	locationno = 7;
-	    } else if (haddr.equals("성산")) {
-	    	locationno = 8;
-	    } else if (haddr.equals("남원")) {
-	    	locationno = 9;
-	    } else if (haddr.equals("표선")) {
-	    	locationno = 10;
-	    } else if (haddr.equals("성읍")) {
-	    	locationno = 11;
-	    } else if (haddr.equals("안덕")) {
-	    	locationno = 12;
-	    } else if (haddr.equals("우도")) {
-	    	locationno = 13;
-	    } else if (haddr.equals("한경")) {
-	    	locationno = 14;
-	    } else if (haddr.equals("추자")) {
-	    	locationno = 15;
-	    }
-	    
-	    hotel.setLocationno(locationno);
-	    
 	    boolean result = businessDao.registerHotel(hotel, mRequest);
 	    if (result) {
 	        isSuccess = true;
 	    }
 	    return isSuccess;
 	}
-	
-	@Override
-	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest) {
-		businessDao.modifyHotel(hotel, mRequest);
-	}
 
 	@Override
-	public List<Hotel> myHotelPosts(String bid) {
-	    return businessDao.myHotelPosts(bid);
-	}
-
-	@Override
-	public String hotelApprovalStatus(String hname) {
-	    return businessDao.hotelApprovalStatus(hname);
+	public List<Hotel> myHotelPosts(String bid, int startRow, int endRow) {
+	    return businessDao.myHotelPosts(bid, startRow, endRow);
 	}
 
 	@Override
@@ -361,43 +318,6 @@ public class BusinessServiceImpl implements BusinessService {
 	    restaurant.setRsubimg_2(rimg[2]);
 	    restaurant.setRsubimg_3(rimg[3]);
 	    
-	    String raddr = restaurant.getRaddr();
-	    int locationno = 0;
-	    raddr.substring(raddr.indexOf('도')+2, 14);
-	    if (raddr.equals("제주")) {
-	    	locationno = 1;
-	    } else if (raddr.equals("서귀")) {
-	    	locationno = 2;
-	    } else if (raddr.equals("대정")) {
-	    	locationno = 3;
-	    } else if (raddr.equals("애월")) {
-	    	locationno = 4;
-	    } else if (raddr.equals("한림")) {
-	    	locationno = 5;
-	    } else if (raddr.equals("조천")) {
-	    	locationno = 6;
-	    } else if (raddr.equals("구좌")) {
-	    	locationno = 7;
-	    } else if (raddr.equals("성산")) {
-	    	locationno = 8;
-	    } else if (raddr.equals("남원")) {
-	    	locationno = 9;
-	    } else if (raddr.equals("표선")) {
-	    	locationno = 10;
-	    } else if (raddr.equals("성읍")) {
-	    	locationno = 11;
-	    } else if (raddr.equals("안덕")) {
-	    	locationno = 12;
-	    } else if (raddr.equals("우도")) {
-	    	locationno = 13;
-	    } else if (raddr.equals("한경")) {
-	    	locationno = 14;
-	    } else if (raddr.equals("추자")) {
-	    	locationno = 15;
-	    }
-	    
-	    restaurant.setLocationno(locationno);
-	    
 	    boolean result = businessDao.registerRestaurant(restaurant, mRequest);
 	    if (result) {
 	        isSuccess = true;
@@ -406,86 +326,28 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public void modifyRestaurant(Restaurant restaurant) {
-		businessDao.modifyRestaurant(restaurant);
+	public List<Restaurant> myRestaurantPosts(String bid, int startRow, int endRow) {
+	    return businessDao.myRestaurantPosts(bid, startRow, endRow);
 	}
-
-	@Override
-	public List<Restaurant> myRestaurantPosts(String bid) {
-	    return businessDao.myRestaurantPosts(bid);
-	}
-
-	@Override
-	public String restaurantApprovalStatus(String rname) {
-	    return businessDao.restaurantApprovalStatus(rname);
-	}
-
-	@Override
-	public List<HotelComment> hCommentList(HotelComment hotelComment, String pageNum) {
-		Paging paging = new Paging(businessDao.totCntHcomment(hotelComment), pageNum, 5, 5);
-		hotelComment.setStartrow(paging.getStartRow());
-		hotelComment.setEndrow(paging.getEndRow());
-		return businessDao.hCommentList(hotelComment);
-	}// 숙소 댓글 목록
-
-	@Override
-	public int totCntHcomment(String hname, HotelComment hotelComment) {
-		return businessDao.totCntHcomment(hotelComment);
-	}// 숙소 댓글 개수
-
-	@Override
-	public int registerHcomment(HotelComment hotelComment) {
-		return businessDao.registerHcomment(hotelComment);
-	}// 숙소 댓글 쓰기
-
-	@Override
-	public int replyHotelComment(HotelComment hotelComment) {
-		businessDao.preReplyHcomment(hotelComment);
-		return businessDao.replyHotelComment(hotelComment);
-	}// 숙소 답 댓글 쓰기
-
-	@Override
-	public int modifyHotelComment(HotelComment hotelComment) {
-		return businessDao.modifyHotelComment(hotelComment);
-	}// 숙소 댓글 수정
-
-	@Override
-	public int deleteHotelComment(int hcommentno) {
-		return businessDao.deleteHotelComment(hcommentno);
-	}// 숙소 댓글 삭제
-	/**
-	@Override
-	public List<RestaurantComment> rCommentList(RestaurantComment restaurantComment, String pageNum) {
-		Paging paging = new Paging(businessDao.totCntRcomment(restaurantComment), pageNum, 5, 5);
-		restaurantComment.setStartrow(paging.getStartRow());
-		restaurantComment.setEndrow(paging.getEndRow());
-		return businessDao.rCommentList(restaurantComment);
-	}// 식당 댓글 목록
 	
 	@Override
-	public int totCntRcomment(String rname, RestaurantComment restaurantComment) {
-		return businessDao.totCntRcomment(RestaurantComment);
-	}// 식당 댓글 개수
+	public int hotelTotalCount(String bid) {
+	    return businessDao.hotelTotalCount(bid);
+	}
+	
+	@Override
+	public int restaurantTotalCount(String bid) {
+	    return businessDao.restaurantTotalCount(bid);
+	}
+	
+	@Override
+	public Hotel getHotelByName(String hname) {
+	    return businessDao.selectHotelByName(hname);
+	}
 
 	@Override
-	public int registerRcomment(RestaurantComment restaurantComment) {
-		return businessDao.registerRcomment(restaurantComment);
-	}// 식당 댓글 쓰기
-
-	@Override
-	public int replyRestaurantComment(RestaurantComment restaurantComment) {
-		businessDao.preReplyRcomment(restaurantComment);
-		return businessDao.replyRestaurantComment(restaurantComment);
-	}// 식당 답 댓글 쓰기
-
-	@Override
-	public int modifyRestaurantComment(RestaurantComment restaurantComment) {
-		return businessDao.modifyRestaurantComment(restaurantComment);
-	}// 식당 댓글 수정
-
-	@Override
-	public int deleteRestaurantComment(int rcommentno) {
-		return businessDao.deleteRestaurantComment(rcommentno);
-	}// 식당 댓글 삭제
-	**/
+	public Restaurant getRestaurantByName(String rname) {
+	    return businessDao.selectRestaurantByName(rname);
+	}
+	
 }

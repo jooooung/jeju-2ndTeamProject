@@ -41,69 +41,24 @@ public interface BusinessDao {
 	
 	// Hotel 등록
 	public boolean registerHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
-	
-    // Hotel 수정
-	public void modifyHotel(Hotel hotel, MultipartHttpServletRequest mRequest);
     
     // Hotel 나의 글 조회
-	public List<Hotel> myHotelPosts(String bid);
-    
-    // Hotel 등록 승인 여부 확인
-	public String hotelApprovalStatus(String hname);
-    
+	public List<Hotel> myHotelPosts(String bid, int startRow, int endRow);
+	
     // Restaurant 등록
 	public boolean registerRestaurant(Restaurant restaurant, MultipartHttpServletRequest mRequest);
     
-    // Restaurant 수정
-	public void modifyRestaurant(Restaurant restaurant);
-    
     // Restaurant 나의 글 조회
-	public List<Restaurant> myRestaurantPosts(String bid);
+	public List<Restaurant> myRestaurantPosts(String bid, int startRow, int endRow);
     
-    // Restaurant 등록 승인 여부 확인
-	public String restaurantApprovalStatus(String rname);
+	public int hotelTotalCount(String bid);
+	
+	public int restaurantTotalCount(String bid);
+	
+    public Hotel selectHotelByName(String hname);
+
+    public Restaurant selectRestaurantByName(String rname);
     
-	// 특정 숙소 댓글 목록
-	public List<HotelComment> hCommentList(HotelComment hotelComment);
-	
-	// 특정 숙소 댓글수
-	public int totCntHcomment(HotelComment hotelComment);
-	
-	// 숙소 원 댓글 달기
-	public int registerHcomment(HotelComment hotelComment);
-	
-	// 숙소 답 댓글 전 작업
-	public int preReplyHcomment(HotelComment hotelComment);
-	
-	// 숙소 답 댓글 달기
-	public int replyHotelComment(HotelComment hotelComment);
-	
-	// 숙소 댓글 수정
-	public int modifyHotelComment(HotelComment hotelComment);
-	
-	// 숙소 댓글 삭제
-	public int deleteHotelComment(int hcommentno);
-	
-	// 특정 식당 댓글 목록
-	/**public List<RestaurantComment> rCommentList(RestaurantComment restaurantComment);
-	
-	// 특정 식당 댓글수
-	public int totCntRcomment(RestaurantComment restaurantComment);
-	
-	// 식당 원 댓글 달기
-	public int registerRcomment(RestaurantComment restaurantComment);
-	
-	// 식당 답 댓글 전 작업
-	public int preReplyRcomment(RestaurantComment restaurantComment);
-	
-	// 식당 답 댓글 달기
-	public int replyRestaurantComment(RestaurantComment restaurantComment);
-	
-	// 식당 댓글 수정
-	public int modifyRestaurantComment(RestaurantComment restaurantComment);
-	
-	// 식당 댓글 삭제
-	public int deleteRestaurantComment(int restaurantComment);**/
 }
 
 

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="conPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
@@ -70,13 +71,12 @@
 		$(document).ready(function(){
 			$('button').click(function(){
 				var result = confirm("예약을 취소하시겠습니까?");
-				var mid = $("input[id=mid]").val();
-				var hname = $("input[id=hname]").val();
-				var indate = $("input[id=indate]").val();
-				
+				var mid = '${param.mid}';
+				var hname = $('.hname').val();
+				var indate = $('.indate').val();
 				if(result == true){
+					location.href='${conPath}/hotel/deleteReserv.do?mid='+mid+'&hname='+hname+'&indate='+indate;
 					alert("취소완료");
-					location.href="${conPath}/hotel/deleteReserv.do?mid="+mid+"&hname="+hname+"&indate="+indate;
 				}else{
 					return false;
 				}
@@ -89,12 +89,15 @@
 	<jsp:include page="../main/header.jsp"/>
 	<h1>예약 내역</h1>
 	<c:forEach var="reservList" items="${reservList }">
-	<input type="hidden" id="mid" value="${reservList.mid }">
-	<input type="hidden" id="hname" value="${reservList.hname }">
-	<input type="hidden" id="indate" value="${reservList.indate}">
+		<input type="hidden" class="hname" value="${reservList.hotel.hname }">
+		<input type="hidden" class="indate" value="${reservList.indate}">
 		<ul class="item_list">
 		<li>
 			<dl class="item_section">
+				<c:set var="img" value="${reservList.hotel.hmainimg}"/>
+				<c:if test = "${fn:contains(img, 'http')}">
+					<img alt="" src="${reservList.hotel.hmainimg}">							
+				</c:if>
 				<img alt="" src="${conPath }/hotelImgFileUpload/${reservList.hotel.hmainimg}">
 				<h2 onclick="location.href='${conPath}/hotel/detail.do?hname=${reservList.hotel.hname }'">
 					${reservList.hotel.hname }

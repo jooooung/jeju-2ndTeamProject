@@ -10,4 +10,14 @@ public class MainController {
 	public String main() {
 		return "main/main";
 	}
+
+	@RequestMapping(value = "notice", method = { RequestMethod.GET, RequestMethod.POST })
+	public String notice() {
+		return "main/notice";
+	}
+	
+	@RequestMapping(value = "weather", method = { RequestMethod.GET, RequestMethod.POST })
+	public String weather() {
+		return "main/weather";
+	}
 }

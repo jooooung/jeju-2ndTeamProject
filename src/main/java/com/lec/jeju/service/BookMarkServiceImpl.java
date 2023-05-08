@@ -66,8 +66,8 @@ public class BookMarkServiceImpl implements BookMarkService {
 	}
 
 	@Override
-	public int deleteSpotBookmark(String mid, String sname) {
-		return bookMarkDao.deleteSpotMark(mid, sname);
+	public int deleteSpotBookmark(BookMark bookmark) {
+		return bookMarkDao.deleteSpotMark(bookmark);
 	}
 
 	@Override
@@ -84,14 +84,16 @@ public class BookMarkServiceImpl implements BookMarkService {
 	public Integer getResCount(String mid) {
 		return bookMarkDao.ResCount(mid);
 	}
-
+	
 	@Override
 	public int checkBookmarkHotel(BookMark bookmark) {
 		return bookMarkDao.checkBookmarkHotel(bookmark);
 	}
-
+	
 	@Override
 	public int cntBmarkHotel(String hname) {
 		return bookMarkDao.cntBmarkHotel(hname);
 	}
+
+	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.lec.jeju.dao.HotelCommentDao;
 import com.lec.jeju.util.Paging;
@@ -14,8 +15,9 @@ public class HotelCommentServiceImpl implements HotelCommentService {
 	private HotelCommentDao hCommentDao;
 	
 	@Override
-	public List<HotelComment> hCommentList(HotelComment hotelComment, String CpageNum) {
-		Paging paging = new Paging(hCommentDao.totCntHcomment(hotelComment), CpageNum, 2, 2);
+	public List<HotelComment> hCommentList(HotelComment hotelComment, String CpageNum, Model model) {
+		Paging paging = new Paging(hCommentDao.totCntHcomment(hotelComment), CpageNum, 5, 5);
+		model.addAttribute("paging", paging);
 		hotelComment.setStartrow(paging.getStartRow());
 		hotelComment.setEndrow(paging.getEndRow());
 		return hCommentDao.hCommentList(hotelComment);

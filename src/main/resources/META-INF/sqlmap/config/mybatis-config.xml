@@ -2,6 +2,7 @@
 <!DOCTYPE configuration
     PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    
 <configuration>
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL"/> 
@@ -22,7 +23,10 @@
 		<typeAlias type="com.lec.jeju.vo.BookMark" alias="BookMark" />
 		<typeAlias type="com.lec.jeju.vo.ReviewBoard" alias="Review" />
 		<typeAlias type="com.lec.jeju.vo.Spot" alias="Spot" />
+		<typeAlias type="com.lec.jeju.vo.SpotComment" alias="SpotComment" />
 		<typeAlias type="com.lec.jeju.vo.MyReview" alias="MyReview" />
+		<typeAlias type="com.lec.jeju.vo.Restaurant" alias="Res" />
+		<typeAlias type="com.lec.jeju.vo.Schedule" alias="Schedule" />
 	</typeAliases>
 	
 	<mappers>
@@ -39,6 +43,9 @@
 		<mapper resource="META-INF/sqlmap/mappers/BookMark.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/ReviewBoard.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/Spot.xml" />
+		<mapper resource="META-INF/sqlmap/mappers/SpotComment.xml" />
 		<mapper resource="META-INF/sqlmap/mappers/MyReview.xml" />
+		<mapper resource="META-INF/sqlmap/mappers/restaurant.xml" />
+		<mapper resource="META-INF/sqlmap/mappers/Schedule.xml" />
 	</mappers>
 </configuration>

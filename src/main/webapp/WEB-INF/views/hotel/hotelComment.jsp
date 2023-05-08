@@ -11,7 +11,7 @@
 	<style>
 		.comment{
 			display: flex;
-			margin: 20px 0;
+			margin: 50px 0;
 		}
 		.comment .write{
 			width: 100%;
@@ -19,7 +19,7 @@
 		.comment input[type=text]{
 			border: 0;
 			background: #f6f6f6;
-			width: 90%;
+			width: 80%;
 			height: 50px;
 			margin-right: 8px;
 			border-radius: 30px;
@@ -32,20 +32,13 @@
 		.comment .write input[type=submit]{
 			border: 0;
 			background: #c8c8c8;
-			width: 7%;
+			width: 100px;
 			height: 70px;
 			border-radius: 10px;
 			padding: 10px;
 			font-size: 20px;
 			cursor: pointer;
 			color: white;
-		}
-		.commentBtn{
-			margin: 10px 5px;
-			height: 20px;
-		}
-		.modifyBtn{
-			float: right;
 		}
 	</style>
 	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
@@ -60,9 +53,9 @@
 						"<form action='modifyComment.do' method='post'>"
 						+"<input type='hidden' id='hcommentno' name='hcommentno'  value='"+ hcommentno +"'>"
 						+"<input type='hidden' id='hname' name='hname' value='${hotelVo.hname }'>"
-						+"<input type='text' name='hcontent' id='hcontent' value='"+ hcontent + "'>"
-			         	+"<input type='button' value='취소' class='commentBtn modifyBtn' onclick='cancle()'>"
+						+"<textarea rows='10' cols='100' name='hcontent' id='hcontent'>"+hcontent+"</textarea>"
 						+"<input type='submit' value='수정' class='commentBtn modifyBtn'> "
+			         	+"<input type='button' value='취소' class='commentBtn modifyBtn' onclick='cancle()'>"
 			         	+"</form>"
 			    );
 			});
@@ -81,7 +74,7 @@
 	<div class="comment">
 		<div class="write">
 			<form action="writeComment.do" method="post">
-			<c:if test="${empty member and empty buisness }">
+			<c:if test="${empty member and empty bid }">
 				<input type="text" name="hcontent" placeholder="로그인 후 이용해주세요." readonly="readonly">
 			</c:if>
 			<c:if test="${not empty member}">
@@ -90,9 +83,9 @@
 				<input type="text" name="hcontent" required="required">
 				<input type="submit" value="작성"> 
 			</c:if>
-			<c:if test="${not empty buisness}">
+			<c:if test="${not empty bid}">
 				<input type="hidden" name="hname" value="${hotelVo.hname }">
-				<input type="hidden" name="bid" value="${buisness.bid }">
+				<input type="hidden" name="bid" value="${bid }">
 				<input type="text" name="hcontent" required="required">
 				<input type="submit" value="작성"> 
 			</c:if>

@@ -1,5 +1,6 @@
 package com.lec.jeju.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lec.jeju.service.MemberService;
@@ -27,7 +29,7 @@ public class MemberController {
 		model.addAttribute("idConfirmResult", memberService.idConfirm(mid));
 		return "member/idConfirm";
 	}
-
+	// 이메일 중복체크
 	@RequestMapping(value = "memailConfirm", method = RequestMethod.GET)
 	public String mailConfirm(String memail, Model model) {
 		model.addAttribute("memailConfirmResult", memberService.emailConfirm(memail));
@@ -62,7 +64,7 @@ public class MemberController {
 
 	// 로그인 처리
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String mid, String mpw, HttpSession httpSession, Model model) {
+	public String login(String mid, String mpw, HttpSession httpSession, Model model, String after) {
 		String loginResult = memberService.loginCheck(mid, mpw, httpSession);
 		if (loginResult.equals("로그인 성공")) {
 			model.addAttribute("loginResult", loginResult);
@@ -97,7 +99,6 @@ public class MemberController {
 	}
 
 	// 회원탈퇴
-
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public String deleteView() {
 		return "member/delete";
@@ -122,6 +123,44 @@ public class MemberController {
 		}
 		model.addAttribute("msg", msg);
 		return "member/delete";
+	}
+
+	// 아이디 찾기
+	@RequestMapping(value = "findID", method = RequestMethod.GET)
+	public String findID() {
+		return "member/findID";
+	}
+
+	@RequestMapping(value = "findID", method = RequestMethod.POST)
+	public ModelAndView findID(ModelAndView mav, @RequestParam("memail") String memail, HttpSession session) {
+		try {
+			String mid = memberService.findID(memail, session);
+			mav.addObject("mid", mid);
+			mav.setViewName("/member/findID");
+		} catch (RuntimeException e) {
+			mav.addObject("errorMsg", e.getMessage());
+			mav.setViewName("/member/findID");
+		}
+		return mav;
+	}
+
+	// 비밀번호 찾기
+	@RequestMapping(value = "findPW", method = RequestMethod.GET)
+	public String findPW() {
+		return "member/findpwform";
+	}
+
+	@RequestMapping(value = "findPW", method = RequestMethod.POST)
+	public String findPw(String mid, String memail, Model model, HttpServletRequest request) {
+		String mpw = memberService.findPW(mid, memail);
+		if (mpw == null) {
+			model.addAttribute("error", "입력하신 정보가 일치하지 않습니다.");
+			return "member/findPW";
+		} else {
+			model.addAttribute("memail", memail);
+			model.addAttribute("mpw", mpw);
+			return "member/findPW";
+		}
 	}
 
 }

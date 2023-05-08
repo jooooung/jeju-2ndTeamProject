@@ -2,6 +2,8 @@ package com.lec.jeju.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -16,6 +18,7 @@ import com.lec.jeju.service.BookMarkService;
 import com.lec.jeju.service.HotelService;
 import com.lec.jeju.service.MemberService;
 import com.lec.jeju.vo.BookMark;
+import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.Member;
 
@@ -78,6 +81,19 @@ public class BookMarkController {
 		return "bookmark/spotList";
 	}
 	
+	// 호텔 목록에서 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkHotelList", method = RequestMethod.GET)
+	public String addBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+		bookMarkService.addHotelBookmark(bookmark);
+		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+	}
+	// 호텔 목록에서 즐겨찾기 취소
+	@RequestMapping(value = "deleteBookmarkHotelList", method = RequestMethod.GET)
+	public String deleteBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+		bookMarkService.deleteHotelBookmark(bookmark);
+		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+	}
+	
 	// 호텔 즐겨찾기 추가
 	@RequestMapping(value = "addBookmarkHotel", method = RequestMethod.GET)
 	public String addBookmarkHotel(BookMark bookmark, String mid, String pageNum, String lname) throws UnsupportedEncodingException {
@@ -93,5 +109,45 @@ public class BookMarkController {
 		String hname = 	URLEncoder.encode(bookmark.getHname(), "utf-8");
 		lname = URLEncoder.encode(lname, "utf-8");
 		return "redirect:../hotel/detail.do?hname="+hname+"&mid="+mid+"&pageNum="+pageNum+"&lname="+lname;
+	}
+	
+	// 관광지 목록에서 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkSpotList", method = RequestMethod.GET)
+	public String addBookmarkSpotList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.addSpotBookmark(bookmark);
+		return "redirect:../spot/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+	}
+	// 관광지 목록에서 즐겨찾기 취소
+	@RequestMapping(value = "deleteBookmarkSpotList", method = RequestMethod.GET)
+	public String deleteBookmarkSpotList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.deleteSpotBookmark(bookmark);
+		return "redirect:../spot/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+	}
+	
+	// 관광지 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkSpot", method = RequestMethod.GET)
+	public String addBookmarkSpot(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.addSpotBookmark(bookmark);
+		String sname = 	URLEncoder.encode(bookmark.getSname(), "utf-8");
+		return "redirect:../spot/detail.do?sname="+sname+"&pageNum="+pageNum;
+	}
+	// 관광지 즐겨찾기 취소
+	@RequestMapping(value = "deleteBookmarkSpot", method = RequestMethod.GET)
+	public String deleteBookmarkSpot(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if(pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.deleteSpotBookmark(bookmark);
+		String sname = 	URLEncoder.encode(bookmark.getSname(), "utf-8");
+		return "redirect:../spot/detail.do?sname="+sname+"&pageNum="+pageNum;
 	}
 }

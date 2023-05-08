@@ -43,7 +43,7 @@
 
 	<!-- 상세보기 -->
 	<select id="getDetailBusiness" parameterType="String" resultType="Business">
-		SELECT * FROM Business WHERE bid = #{bid}
+		SELECT * FROM Business WHERE bid = #{param1.bid}
 	</select>
 
 	<!-- 정보수정 -->
@@ -58,13 +58,23 @@
 			bphoto = #{bphoto}
 	    WHERE bid = #{bid}
 	</update>
-
+	
+	<!-- 등록된 글 갯수 -->
+	<select id="hotelTotalCount" resultType="int">
+	  SELECT COUNT(*) FROM HOTEL WHERE bid=#{bid}
+	</select>
+	
+	<!-- 등록된 글 갯수 -->
+	<select id="restaurantTotalCount" resultType="int">
+	  SELECT COUNT(*) FROM RESTAURANT WHERE bid=#{bid}
+	</select>
+	
     <!-- 업체 등록요청 (등록글 작성) -->
 	<!-- Hotel 등록 -->
-	<insert id="registerHotel" parameterType="com.lec.jeju.vo.Hotel">
-	    INSERT INTO Hotel (hName, bId, hAddr, hTel, hLink, hInfo, inTime, outTime, hMainImg, hSubImg_1, hSubImg_2, hSubImg_3, hPrice, requestStatus, hLatitude, hLongitude, locationNo)
-		VALUES #{param1.hname}, #{param1.bid, jdbcType=VARCHAR}, #{param1.haddr}, #{param1.htel}, #{param1.hlink}, #{param1.hinfo}, #{param1.intime},#{param1.outtime}, #{param1.hmainimg}, #{param1.hsubimg_1}, #{param1.hsubimg_2}, #{param1.hsubimg_3}, #{param1.hprice}, #{param1.requeststatus}, #{param1.hlatitude}, #{param1.hlongitude}, #{param1.locationno}
-	</insert>
+   <insert id="registerHotel" parameterType="com.lec.jeju.vo.Hotel">
+       INSERT INTO Hotel (hname, bid, locationno, haddr, htel, hlink, hinfo, intime, outtime, hmainimg, hsubimg_1, hsubimg_2, hsubimg_3, hprice, requeststatus)
+       VALUES (#{param1.hname, jdbcType=VARCHAR}, #{param1.bid, jdbcType=VARCHAR}, #{param1.locationno}, #{param1.haddr}, #{param1.htel}, #{param1.hlink}, #{param1.hinfo}, #{param1.intime}, #{param1.outtime}, #{param1.hmainimg}, #{param1.hsubimg_1}, #{param1.hsubimg_2}, #{param1.hsubimg_3}, #{param1.hprice}, #{param1.requeststatus})
+   </insert>
 	
 	<!-- 업체 등록요청 (등록글 수정) -->
 	<!-- Hotel 수정 -->
@@ -82,15 +92,18 @@
 	
 	<!-- Hotel 나의 글 조회 매퍼 -->
 	<select id="myHotelPosts" resultType="com.lec.jeju.vo.Hotel">
-	    SELECT * FROM Hotel WHERE bid=#{bid, jdbcType=VARCHAR}
+	    SELECT *
+	    FROM (SELECT H.*, ROWNUM RN
+	    FROM (SELECT * FROM Hotel WHERE bId = #{param1, jdbcType=VARCHAR} ORDER BY hname DESC) H)
+	    WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
 	</select>
 	
 	<!-- 업체 등록요청 (등록글 작성) -->
 	<!-- Restaurant 등록 -->
 	<insert id="registerRestaurant" parameterType="com.lec.jeju.vo.Restaurant">
-	   INSERT INTO Restaurant (rName, bId, locationNo, rAddr, rTel, rLink, rInfo, rMENU, rMainImg, rSubImg_1, rSubImg_2, rSubImg_3, rLatitude, rLongitude, rPrice, requestStatus)
+	   INSERT INTO Restaurant (rName, bId, locationNo, rAddr, rTel, rLink, rInfo, rMENU, rMainImg, rSubImg_1, rSubImg_2, rSubImg_3, rPrice, requeststatus)
 	    VALUES (#{param1.rname}, #{param1.bid, jdbcType=VARCHAR}, #{param1.locationno}, #{param1.raddr}, #{param1.rtel}, #{param1.rlink}, #{param1.rinfo},#{param1.rmenu},
-	    #{param1.rmainimg}, #{param1.rsubimg_1}, #{param1.rsubimg_2}, #{param1.rsubimg_3}, #{param1.rlatitude}, #{param1.rlongitude}, #{param1.rprice}, #{param1.requestStatus})
+	    #{param1.rmainimg}, #{param1.rsubimg_1}, #{param1.rsubimg_2}, #{param1.rsubimg_3}, #{param1.rprice}, #{param1.requeststatus})
 	</insert>
 	
 	<!-- 업체 등록요청 (등록글 수정) -->
@@ -102,12 +115,15 @@
 	</update>
 	
 	<!-- Restaurant 나의 글 조회 매퍼 -->
-	<select id="myRestaurantPosts" resultType="Business">
-	    SELECT * FROM Restaurant WHERE bid=#{bid, jdbcType=VARCHAR}
+	<select id="myRestaurantPosts" resultType="com.lec.jeju.vo.Restaurant">
+	    SELECT *
+	    FROM (SELECT R.*, ROWNUM RN
+	    FROM (SELECT * FROM Restaurant WHERE bId = #{param1, jdbcType=VARCHAR} ORDER BY rname DESC) R)
+	    WHERE RN BETWEEN #{param2, jdbcType=INTEGER} AND #{param3, jdbcType=INTEGER}
 	</select>
 	
 	<!-- Restaurant 등록 승인 여부 확인 매퍼 -->
-	<select id="restaurantApprovalStatus" resultType="Business">
+	<select id="restaurantApprovalStatus" resultType="com.lec.jeju.vo.Restaurant">
 	    SELECT requestStatus FROM Restaurant WHERE rname=#{restaurant.rname}
 	</select>
 	
@@ -126,4 +142,13 @@
 	<delete id="deleteBusiness" parameterType="String">
 	    DELETE FROM Business WHERE bid=#{bid}
 	</delete>
+	
+	<!-- 상세 내용 보기 -->
+	<select id="selectHotelByName" parameterType="String" resultType="com.lec.jeju.vo.Hotel">
+		SELECT * FROM Hotel WHERE hName=#{hname}
+	</select>
+	
+	<select id="selectRestaurantByName" parameterType="String" resultType="com.lec.jeju.vo.Restaurant">
+		SELECT * FROM Restaurant WHERE rName=#{rname}
+	</select>
 </mapper>

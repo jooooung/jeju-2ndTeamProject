@@ -21,13 +21,11 @@ color: blue;
 <script src="${conPath }/js/address.js"></script>
 <script>
     $(function() {
-        var patternbemail = /^[a-zA-Z0-9_\.]+@[a-zA-Z0-9_]+(\.\w+){1,2}$/;
+        var patternBemail = /^[a-zA-Z0-9_\.]+@[a-zA-Z0-9_]+(\.\w+){1,2}$/;
         $('input[name="bemail"]').on('blur', function() {
             let bemail = $(this).val();
             if (bemail == '${business.bemail}') { // 기존 이메일과 동일할 경우 중복검사 실행
                 checkDuplicateEmail(bemail);
-            } else if ((!bemail)) {
-                $('#bemailConfirmResult').html(' &nbsp; ');
             } else if (patternBemail.test(bemail)) {
                 checkDuplicateEmail(bemail);
             } else if (!patternBemail.test(bemail)) {
@@ -48,23 +46,23 @@ color: blue;
         }
         $('form').submit(function() {
         	  var oldBpw = $('input[name="oldBpw"]').val();
-        	  var bemailConfirmResult = $('#bemailConfirmResult').text().trim();
-        	  
-        	  // 중복 확인 결과가 나타나지 않은 경우
-        	  if (!bemailConfirmResult) {
-        	    alert('이메일 중복 여부를 확인하세요.');
-        	    return false;
-        	  }
+        	  var bemailConfirmResult = ''; // 중복 검사 결과를 저장하는 변수 초기화
         	  
         	  // 현재 비밀번호가 일치하지 않는 경우
-        	  if (oldbpw !== '${business.bpw}') {
+        	  if (oldBpw !== '${business.bpw}') {
         	    alert('현재 비밀번호가 틀렸습니다.');
-        	    $('input[name="oldbpw"]').focus();
+        	    $('input[name="oldBpw"]').focus();
         	    return false;
         	  }
 
+        	  // 이메일이 변경된 경우 중복 검사 실행
+        	  var bemail = $('input[name="bemail"]').val();
+        	  if (bemail !== '${business.bemail}') {
+                checkDuplicateEmail(bemail);
+              }
+
         	  // 이메일이 중복된 경우
-        	  if (bemailConfirmResult !== '사용 가능한 이메일 입니다.') {
+        	  if (bemailConfirmResult !== '사용 가능한 이메일 입니다.' && bemail !== '${business.bemail}') {
         	    alert('이미 등록된 이메일입니다.');
         	    $('input[name="bemail"]').focus();
         	    return false;
@@ -91,14 +89,14 @@ color: blue;
 					</td>
 					<td rowspan="6">
 					<p>[프로필사진]</p>
-						<img src="${conPath }/${business.bphoto}" alt="${business.bname }사진">
+						<img src="${conPath }/${business.bphoto}" alt="${business.bname }사진"style="width: 150px;">
 					</td>
 				</tr>
 
 				<tr>
 					<td>현 비밀번호</td>
 					<td>
-						<input type="password" name="oldbpw" required="required" size="3">
+						<input type="password" name="oldBpw" required="required" size="3">
 					</td>
 				</tr>
 				<tr>

@@ -47,7 +47,7 @@
 	<update id="modifyMember" parameterType="Member"> 
 	UPDATE MEMBER SET 
         mPW = #{mpw},
-        mNAME = #{mname},
+        mNAME = #{mname, jdbcType=VARCHAR},
         mEMAIL = #{memail},
         mADDR = #{maddr},
         mDEADDR = #{mdeaddr},
@@ -59,6 +59,23 @@
 	
 	<!-- 회원탈퇴 -->
 	<delete id="deleteMember" parameterType="String"> 
-		DELETE FROM MEMBER WHERE mID = #{mid}
+		DELETE FROM MEMBER WHERE mID = #{mid, jdbcType=VARCHAR}
 	</delete>
+	
+	<!-- 아이디 찾기 -->
+	<select id="findID" parameterType="Member" resultType="String">
+		SELECT MID FROM MEMBER
+    	WHERE MEMAIL = #{memail, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 비번찾기 -->
+	<select id="findPW" parameterType="Member" resultType="String">
+		SELECT MPW FROM MEMBER
+    	WHERE MID = #{mid} and MEMAIL = #{memail, jdbcType=VARCHAR}
+	</select>
+	
+	<!-- 비번업데이트 -->
+	<update id="updatePW" parameterType="Member"> 
+		UPDATE MEMBER SET MPW = #{mpw} WHERE MID = #{mid, jdbcType=VARCHAR}
+	</update>
 </mapper>

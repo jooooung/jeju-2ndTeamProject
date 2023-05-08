@@ -6,6 +6,8 @@ import lombok.Data;
 public class Spot {
 	private String sname;
 	private String aid;
+	private String mid;    // 즐겨찾기용
+	private int bookmarkok; // 즐겨찾기용
 	private int locationno;
 	private String saddr;
 	private String stel;
@@ -19,6 +21,8 @@ public class Spot {
 	private int slatitude;
 	private int slongitude;
 	private String sprice;
+	private int bcnt;
+	private String lname;
 	
 	private int startRow;
 	private int endRow;

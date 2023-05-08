@@ -8,23 +8,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap" rel="stylesheet">
 <link href="${conPath }/css/business/login.css" rel=stylesheet>
 <style>
-p {
+#logo {
 	text-align: center;
-	margin: 25px;
-	padding: 10px;
-}
-
-p a {
-	text-decoration: none;
-	color: #6b6b6b;
-	font-size: 12px;
+	height: 200px;
 }
 
 img {
+	display: block;
+	width : 300xp;
 	margin: 0 auto;
-	width: 500px;
+}
+
+caption {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+th {
+	text-align: center;
 }
 </style>
 </head>
@@ -62,17 +67,16 @@ img {
 		</c:if>
 	</c:if>
 	<%-- <jsp:include page="../main/header.jsp" /> --%>
-	<br>
+	<div id="logo">
+		<a href="${conPath }/main.do"> <img alt="로고"
+			src="${conPath }/img/logo(2).png">
+		</a>
+	</div>
 	<div id="content">
 		<form action="${conPath }/business.do" method="post">
-			<input type="hidden" name="method" value="login"> <input
-				type="hidden" name="after"
-				value="${empty param.after ? 'main.do':param.after}"> <a
-				href="${conPath }/main.do"> 
-				<img alt="로고" src="${conPath }/img/logo_jeju.png">
-			</a>
+			<input type="hidden" name="method" value="login"> 
+			<input type="hidden" name="after" value="${empty param.after ? 'main.do':param.after}"> 
 			<table>
-				<caption>업체회원</caption>
 				<tr>
 					<th>아이디</th>
 					<td><input type="text" name="bid" required="required"

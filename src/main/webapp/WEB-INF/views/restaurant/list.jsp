@@ -59,15 +59,9 @@
 	<div id="spot_wrap">
 		<div id="title">
 			<ul>
-				<li>
-					<a href="${conPath }/spot/list.do">관광</a>
-				</li>
-				<li>
-					<a class="title_active" href="${conPath }/res/list.do">맛집</a>
-				</li>
-				<li>
-					<li><a href="${conPath }/hotel/list.do?mid=${member.mid}">숙박</a></li>
-				</li>
+				<li><a href="${conPath }/spot/list.do">관광</a></li>
+				<li><a class="title_active" href="${conPath }/res/list.do">맛집</a></li>
+				<li><a href="${conPath }/hotel/list.do?mid=${member.mid}">숙박</a></li>
 			</ul>
 		</div>
 		<div id="search_wrap">

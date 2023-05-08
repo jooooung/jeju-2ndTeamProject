@@ -52,7 +52,7 @@ public class ResCommentServiceImpl implements ResCommentService {
 
 	@Override
 	public int deleteRcomment(int rcommentno) {
-		return rCommentDao.deleteRcomment(rcommentno);
+		return rCommentDao.deleteRcomment(rcommentno); //dd
 	}
 
 }

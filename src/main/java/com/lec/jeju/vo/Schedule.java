@@ -12,7 +12,4 @@ public class Schedule {
 	  private Date startdate;
 	  private Date enddate;
 	  private String schedulecontent;
-	  private String hname;
-	  private String rname;
-	  private String sname;
 }

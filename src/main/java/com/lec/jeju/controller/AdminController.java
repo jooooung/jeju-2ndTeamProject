@@ -1,7 +1,5 @@
 package com.lec.jeju.controller;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -12,12 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.lec.jeju.service.AdminService;
 import com.lec.jeju.util.Paging;
 import com.lec.jeju.vo.Hotel;
-import com.lec.jeju.vo.HotelComment;
 import com.lec.jeju.vo.Restaurant;
 
 @Controller

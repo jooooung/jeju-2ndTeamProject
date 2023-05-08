@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.lec.jeju.dao.MemberDao;
 import com.lec.jeju.service.MemberService;
 import com.lec.jeju.vo.Member;
 
@@ -64,10 +65,12 @@ public class MemberController {
 
 	// 로그인 처리
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(String mid, String mpw, HttpSession httpSession, Model model, String after) {
+	public String login(String mid, String mpw, HttpSession httpSession, HttpServletRequest request, Model model) {
 		String loginResult = memberService.loginCheck(mid, mpw, httpSession);
 		if (loginResult.equals("로그인 성공")) {
 			model.addAttribute("loginResult", loginResult);
+	        HttpSession session = request.getSession();
+	        session.setAttribute("member", memberService.getDetailMember(mid));
 			return "forward:/main.do";
 		} else {
 			model.addAttribute("loginResult", loginResult);

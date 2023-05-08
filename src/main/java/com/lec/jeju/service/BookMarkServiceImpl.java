@@ -56,13 +56,13 @@ public class BookMarkServiceImpl implements BookMarkService {
 	}
 
 	@Override
-	public int deleteResBookmark(String mid, String rname) {
-		return bookMarkDao.deleteResMark(mid, rname);
+	public int deleteResBookmark(BookMark bookmark) {
+		return bookMarkDao.deleteResMark(bookmark);
 	}
 
 	@Override
-	public int deleteSpotBookmark(String mid, String sname) {
-		return bookMarkDao.deleteSpotMark(mid, sname);
+	public int deleteSpotBookmark(BookMark bookmark) {
+		return bookMarkDao.deleteSpotMark(bookmark);
 	}
 
 	@Override
@@ -84,9 +84,11 @@ public class BookMarkServiceImpl implements BookMarkService {
 	public int checkBookmarkHotel(BookMark bookmark) {
 		return bookMarkDao.checkBookmarkHotel(bookmark);
 	}
-
+	
 	@Override
 	public int cntBmarkHotel(String hname) {
 		return bookMarkDao.cntBmarkHotel(hname);
 	}
+
+	
 }

@@ -1,0 +1,73 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'KCC-Ganpan';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/KCC-Ganpan.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+}
+*{margin:0; padding: 0;} 
+
+#detail_wrap{width:700px; height: 100%; margin: 0 auto;}
+#title_wrap {text-align: center; height:50px; line-height: 50px;}
+#title_wrap ul{overflow: hidden; }
+#title_wrap ul li img{width:25px; height:25px;}
+#title_wrap .spotDetail{position: relative; top:6px; margin-right: 10px;}
+#title_wrap .lineBookmark{position: relative; top:6px; cursor: pointer;}
+#title_wrap .fullBookmark{position: relative; top:6px; cursor: pointer;}
+#title_wrap ul li:first-of-type{float: left; font-size: 1.6em; font-family: 'TheJamsil5Bold';}
+#title_wrap ul li:last-of-type{float: right;}
+
+#detail_wrap #detail_info{background-color: #F6F6F6; border-radius: 10px; padding: 25px;}
+#detail_wrap #detail_info span{font-size:1.2em; font-weight: bold;}
+#detail_wrap #detail_info hr{color:#ededed; margin:10px 0;}
+
+#detail_wrap #insertComment{width:100%; height:60px; margin: 10px 0 0 0;overflow: hidden;}
+#detail_wrap #insertComment .input{width: 82%; height:30px; border-radius: 8px; border: 1px solid gray; padding: 10px;float: left;margin-right: 10px;}
+#detail_wrap #insertComment input[type="text"]{width:100%;  height:30px; border: none; outline: none; font-size: 1.1em;}
+#detail_wrap #insertComment input[type="submit"]{float:left; width: 13%; height:50px; border-radius: 8px; border: none; font-size: 1.1em;}
+
+/* 댓글 */
+#comment_wrap {width:700px; margin: 0 auto; background-color: #F6F6F6; border-radius: 10px;}
+#comment_wrap #comment {padding: 25px;}
+#comment table{margin:10px 0; border-spacing: 10px; border-collapse: separate;}
+#comment .comment_title{font-size:1.2em; font-weight: bold;}
+#comment .comment_mid{margin-right: 450px;}
+#comment img{width:80px; height:80px;}
+.commentBtn{
+	cursor:pointer;
+	background: none;
+	border: 0;
+}
+
+/* 슬라이드 배너 */
+.swiper {
+	width: 100%;
+	height: 400px;
+	z-index: 1;
+	margin-bottom:30px;
+}
+		
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border-radius: 10px;
+}

@@ -77,34 +77,122 @@ public class BookMarkController {
 		model.addAttribute("spotList", spotList);
 		return "bookmark/spotList";
 	}
-	
+
 	// 호텔 목록에서 즐겨찾기 추가
 	@RequestMapping(value = "addBookmarkHotelList", method = RequestMethod.GET)
-	public String addBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+	public String addBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
 		bookMarkService.addHotelBookmark(bookmark);
-		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+		return "redirect:../hotel/list.do?&mid=" + bookmark.getMid() + "&pageNum=" + pageNum;
 	}
-	// 호텔 목록에서 즐겨찾기 추가
+
+	// 호텔 목록에서 즐겨찾기 취소
 	@RequestMapping(value = "deleteBookmarkHotelList", method = RequestMethod.GET)
-	public String deleteBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException{
+	public String deleteBookmarkHotelList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
 		bookMarkService.addHotelBookmark(bookmark);
-		return "redirect:../hotel/list.do?&mid="+bookmark.getMid()+"&pageNum="+pageNum;
+		return "redirect:../hotel/list.do?&mid=" + bookmark.getMid() + "&pageNum=" + pageNum;
 	}
-	
+
 	// 호텔 즐겨찾기 추가
 	@RequestMapping(value = "addBookmarkHotel", method = RequestMethod.GET)
-	public String addBookmarkHotel(BookMark bookmark, String mid, String pageNum, String lname) throws UnsupportedEncodingException {
+	public String addBookmarkHotel(BookMark bookmark, String mid, String pageNum, String lname)
+			throws UnsupportedEncodingException {
 		bookMarkService.addHotelBookmark(bookmark);
-		String hname = 	URLEncoder.encode(bookmark.getHname(), "utf-8");
+		String hname = URLEncoder.encode(bookmark.getHname(), "utf-8");
 		lname = URLEncoder.encode(lname, "utf-8");
-		return "redirect:../hotel/detail.do?hname="+hname+"&mid="+mid+"&pageNum="+pageNum+"&lname="+lname;
+		return "redirect:../hotel/detail.do?hname=" + hname + "&mid=" + mid + "&pageNum=" + pageNum + "&lname=" + lname;
 	}
+
 	// 호텔 즐겨찾기 취소
 	@RequestMapping(value = "deleteBookmarkHotel", method = RequestMethod.GET)
-	public String deleteBookmarkHotel(BookMark bookmark, String mid, String pageNum, String lname) throws UnsupportedEncodingException {
+	public String deleteBookmarkHotel(BookMark bookmark, String mid, String pageNum, String lname)
+			throws UnsupportedEncodingException {
 		bookMarkService.deleteHotelBookmark(bookmark);
-		String hname = 	URLEncoder.encode(bookmark.getHname(), "utf-8");
+		String hname = URLEncoder.encode(bookmark.getHname(), "utf-8");
 		lname = URLEncoder.encode(lname, "utf-8");
-		return "redirect:../hotel/detail.do?hname="+hname+"&mid="+mid+"&pageNum="+pageNum+"&lname="+lname;
+		return "redirect:../hotel/detail.do?hname=" + hname + "&mid=" + mid + "&pageNum=" + pageNum + "&lname=" + lname;
+	}
+
+	// 관광지 목록에서 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkSpotList", method = RequestMethod.GET)
+	public String addBookmarkSpotList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.addSpotBookmark(bookmark);
+		return "redirect:../spot/list.do?&mid=" + bookmark.getMid() + "&pageNum=" + pageNum;
+	}
+
+	// 관광지 목록에서 즐겨찾기 취소
+	@RequestMapping(value = "deleteBookmarkSpotList", method = RequestMethod.GET)
+	public String deleteBookmarkSpotList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.deleteSpotBookmark(bookmark);
+		return "redirect:../spot/list.do?&mid=" + bookmark.getMid() + "&pageNum=" + pageNum;
+	}
+
+	// 관광지 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkSpot", method = RequestMethod.GET)
+	public String addBookmarkSpot(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.addSpotBookmark(bookmark);
+		String sname = URLEncoder.encode(bookmark.getSname(), "utf-8");
+		return "redirect:../spot/detail.do?sname=" + sname + "&pageNum=" + pageNum;
+	}
+
+	// 관광지 즐겨찾기 취소
+	@RequestMapping(value = "deleteBookmarkSpot", method = RequestMethod.GET)
+	public String deleteBookmarkSpot(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.deleteSpotBookmark(bookmark);
+		String sname = URLEncoder.encode(bookmark.getSname(), "utf-8");
+		return "redirect:../spot/detail.do?sname=" + sname + "&pageNum=" + pageNum;
+	}
+
+	// 식당 목록에서 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkResList", method = RequestMethod.GET)
+	public String addBookmarkResList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.addResBookmark(bookmark);
+		return "redirect:../res/list.do?&mid=" + bookmark.getMid() + "&pageNum=" + pageNum;
+	}
+
+	// 식당 목록에서 즐겨찾기 취소
+	@RequestMapping(value = "deleteBookmarkResList", method = RequestMethod.GET)
+	public String deleteBookmarkResList(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.deleteResBookmark(bookmark);
+		return "redirect:../res/list.do?&mid=" + bookmark.getMid() + "&pageNum=" + pageNum;
+	}
+
+	// 식당 즐겨찾기 추가
+	@RequestMapping(value = "addBookmarkRes", method = RequestMethod.GET)
+	public String addBookmarkRes(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.addResBookmark(bookmark);
+		String rname = URLEncoder.encode(bookmark.getRname(), "utf-8");
+		return "redirect:../res/detail.do?rname=" + rname + "&pageNum=" + pageNum;
+	}
+
+	// 식당 즐겨찾기 취소
+	@RequestMapping(value = "deleteBookmarkRes", method = RequestMethod.GET)
+	public String deleteBookmarkRes(BookMark bookmark, String pageNum) throws UnsupportedEncodingException {
+		if (pageNum == null) {
+			pageNum = "1";
+		}
+		bookMarkService.deleteResBookmark(bookmark);
+		String rname = URLEncoder.encode(bookmark.getRname(), "utf-8");
+		return "redirect:../res/detail.do?sname=" + rname + "&pageNum=" + pageNum;
 	}
 }

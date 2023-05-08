@@ -23,8 +23,9 @@ public class RestaurantServiceImpl implements RestaurantService {
 	String backupPath = "D:/TeamProject/Source/jeju-2ndTeamProject/src\\main/webapp/resImgFileUpload/";
 
 	@Override
-	public List<Restaurant> ResList(String pageNum, Restaurant res) {
+	public List<Restaurant> ResList(String pageNum, Restaurant res, String mid) {
 		Paging paging = new Paging(resDao.totCntRes(res), pageNum, 4, 4);
+		res.setMid(mid);
 		res.setStartRow(paging.getStartRow());
 		res.setEndRow(paging.getEndRow());
 		return resDao.ResList(res);
@@ -118,14 +119,13 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public int deleteRes(Restaurant res) {
-		// TODO Auto-generated method stub
-		return resDao.deleteRes(res);
+	public int deleteRes(String rname) {
+		return resDao.deleteRes(rname);
 	}
 
 	@Override
-	public int detailRes(String rname) {
-		return resDao.detailRes(rname);
+	public Restaurant detailRes(String rname, String mid) {
+		return resDao.detailRes(rname, mid);
 	}
 
 	private int fileCopy(String serverFile, String backupFile) {

@@ -37,7 +37,12 @@ public class BookMarkServiceImpl implements BookMarkService {
 
 	@Override
 	public int addHotelBookmark(BookMark bookmark) {
-		return bookMarkDao.addHotel(bookmark);
+		int count = bookMarkDao.checkBookmarkHotel(bookmark);
+		if(count==0) {
+			return bookMarkDao.addHotel(bookmark);
+		}else { 
+			return 0;
+		}
 	}
 
 	@Override
@@ -56,8 +61,8 @@ public class BookMarkServiceImpl implements BookMarkService {
 	}
 
 	@Override
-	public int deleteResBookmark(String mid, String rname) {
-		return bookMarkDao.deleteResMark(mid, rname);
+	public int deleteResBookmark(BookMark bookmark) {
+		return bookMarkDao.deleteResMark(bookmark);
 	}
 
 	@Override

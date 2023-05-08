@@ -17,7 +17,8 @@
 			$('#spot_tag li').click(function(){
 				var schitem = $(this).attr('id');
 				var schword = $('input[name="schword"]').val();
-				location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }&schitem='+schitem+"&schword="+schword;
+				var mid = '${member.mid}';	
+				location.href='${conPath}/hotel/list.do?pageNum=${paging.currentPage }&schitem='+schitem+"&schword="+schword+'&mid='+mid;
 			});
 			
 			// 즐겨찾기 추가
@@ -25,13 +26,14 @@
 				event.stopPropagation(); 
 				var hname = $(this).prevAll('.hname').val();
 				var bmark = $(this).prevAll('.bmark').val();
+				var pageNum= $(this).prevAll('.pageNum').val();
 				var member = '${member}';
 				var mid = '${member.mid}';
 				if(!member){
 					alert('로그인 후 이용 가능한 서비스입니다.');
 					location.href='${conPath}/member/login.do?after=list.do';
 				}else{
-					location.href='${conPath}/bookmark/addBookmarkHotel.do?hname='+hname+'&mid='+mid;
+					location.href='${conPath}/bookmark/addBookmarkHotelList.do?hname='+hname+'&mid='+mid+'&pageNum='+pageNum;
 				}
 			});
 			
@@ -40,9 +42,14 @@
 				event.stopPropagation();
 				var hname = $(this).prevAll('.hname').val();
 				var bmark = $(this).prevAll('.bmark').val();
+				var pageNum= $(this).prevAll('.pageNum').val();
 				var mid = '${member.mid}';
-				location.href='${conPath}/bookmark/deleteBookmarkhotel.do?hname='+hname+'&mid='+mid;
+				location.href='${conPath}/bookmark/deleteBookmarkHotelList.do?hname='+hname+'&mid='+mid+'&pageNum='+pageNum;
 			});
+			$('.bookmark').click(function(){
+				var hname = $(this).children().eq(0).val();
+				alert(hname);
+			})
 		});
 	</script>
 <body>
@@ -153,12 +160,13 @@
 					</div>
 					<div class="list_form">
 						<span class="name">${list.hname }</span>
-						<p>${list.location.lname}</p>
+						<p class="lname">${list.location.lname}</p>
 						<p>${list.haddr.substring(list.haddr.indexOf('시')+2) }</p>
 						<p class="info">${list.hinfo }</p>
 						<div class="bookmark">
 							<input type="hidden" class="hname" value="${list.hname }">
 							<input type="hidden" class="bmark" value="${list.bookmarkok }">
+							<input type="hidden" class="pageNum" value="${paging.currentPage}">
 							<c:if test="${empty member }">
 								<img class="lineBookmark" onclick="click(event)" width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">
 								<span class="cnt">${list.bcnt }</span>
@@ -167,7 +175,7 @@
 								<img class="lineBookmark" onclick="click(event)" width="20px;" alt="빈 별" src="${conPath }/img/linestar.png">
 								<span class="cnt">${list.bcnt}</span>
 							</c:if>
-							<c:if test="${not empty member && list.bookmarkok == 1 }">
+							<c:if test="${not empty member && list.bookmarkok >= 1 }">
 								<img class="fullBookmark" onclick="click(event)" width="20px;" alt="별" src="${conPath }/img/fullstar.png">
 								<span class="cnt">${list.bcnt}</span>
 							</c:if>

@@ -13,17 +13,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lec.jeju.service.BookMarkService;
-import com.lec.jeju.service.BusinessService;
+import com.lec.jeju.service.BookMarkService;
 import com.lec.jeju.service.HotelCommentService;
 import com.lec.jeju.service.HotelService;
 import com.lec.jeju.service.HreservationService;
 import com.lec.jeju.util.Paging;
 import com.lec.jeju.vo.BookMark;
+import com.lec.jeju.vo.BookMark;
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.HotelComment;
 import com.lec.jeju.vo.Hreservation;
-import com.lec.jeju.vo.Location;
 import com.lec.jeju.vo.Member;
 
 @Controller
@@ -38,7 +38,7 @@ public class HotelController {
 	@Autowired
 	private BookMarkService bookmarkService;
 	@Autowired
-	private BusinessService businessService;
+	private BookMarkService bookmarkService;
 	
 	// 숙소목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -139,6 +139,15 @@ public class HotelController {
 		String hname = 	URLEncoder.encode(hotelComment.getHname(), "utf-8");
 		return "redirect:detail.do?hname="+hname;
 	}
+	
+	// 대댓글 작성
+	@RequestMapping(value = "replyComment", method = RequestMethod.POST)
+	public String replyComment(HotelComment hotelComment) throws UnsupportedEncodingException {
+		hotelCommentService.replyHotelComment(hotelComment);
+		String hname = 	URLEncoder.encode(hotelComment.getHname(), "utf-8");
+		return "redirect:detail.do?hname="+hname;
+	}
+	
 	
 	// 댓글 수정
 	@RequestMapping(value = "modifyComment", method = RequestMethod.POST)

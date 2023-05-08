@@ -21,7 +21,7 @@ public interface BookMarkService {
 
 	int deleteHotelBookmark(BookMark bookmark);
 
-	int deleteResBookmark(String mid, String rname);
+	int deleteResBookmark(BookMark bookmark);
 
 	int deleteSpotBookmark(BookMark bookmark);
 
@@ -34,5 +34,4 @@ public interface BookMarkService {
 	int checkBookmarkHotel(BookMark bookmark);
 	
 	int cntBmarkHotel(String hname);
-	
 }

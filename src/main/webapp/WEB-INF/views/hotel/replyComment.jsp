@@ -19,7 +19,7 @@
 		.comment input[type=text]{
 			border: 0;
 			background: #f6f6f6;
-			width: 80%;
+			width: 90%;
 			height: 50px;
 			margin-right: 8px;
 			border-radius: 30px;
@@ -32,7 +32,7 @@
 		.comment .write input[type=submit]{
 			border: 0;
 			background: #c8c8c8;
-			width: 100px;
+			width: 7%;
 			height: 70px;
 			border-radius: 10px;
 			padding: 10px;
@@ -73,7 +73,7 @@
 <body>
 	<div class="comment">
 		<div class="write">
-			<form action="writeComment.do" method="post">
+			<form action="replyComment.do" method="post">
 			<c:if test="${empty member and empty bid }">
 				<input type="text" name="hcontent" placeholder="로그인 후 이용해주세요." readonly="readonly">
 			</c:if>

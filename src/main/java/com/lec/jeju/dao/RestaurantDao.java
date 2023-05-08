@@ -3,6 +3,7 @@ package com.lec.jeju.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import com.lec.jeju.vo.Restaurant;
 
@@ -20,5 +21,5 @@ public interface RestaurantDao {
 
 	public int deleteRes(String rname);
 
-	public Restaurant detailRes(String rname);
+	public Restaurant detailRes(@Param("rname")String rname, @Param("mid")String mid);
 }

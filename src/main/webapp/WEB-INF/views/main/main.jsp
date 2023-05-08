@@ -61,8 +61,8 @@
 	<div class="subM">
 		<div class="spot">
 			<div class="main">
-				<a href="#관광지 상세보기">
-					<img alt="" src="https://api.cdn.visitjeju.net/photomng/imgpath/201810/17/41209f96-3700-4de3-8545-347a602229e2.jpg">
+				<a href="${conPath }/spot/detail.do?sname=성산일출봉">
+					<img alt="" src="${conPath}/spotImgFileUpload/성산일출봉m.jpg">
 					<p>
 						UNESCO 세계자연유산
 						<strong>
@@ -72,23 +72,23 @@
 				</a>
 			</div>
 			<div class="sub">
-				<a href="#관광지 상세보기">
-						<img alt="" src="https://api.cdn.visitjeju.net/photomng/thumbnailpath/202110/20/99fd2f85-ed17-4184-966d-f81cd5eabf31.jpg">
+				<a href="${conPath }/spot/detail.do?sname=협재해수욕장">
+						<img alt="" src="${conPath}/spotImgFileUpload/협재해수욕장m.jpg">
 					<p>
 						협재해수욕장
 					</p>
 				</a>
 			</div>
 			<div class="sub">
-				<a href="#관광지 상세보기">
-						<img alt="" src="https://api.cdn.visitjeju.net/photomng/thumbnailpath/202110/20/b06b8d55-0f87-4efd-8a9f-a682a48a4868.JPG">
+				<a href="${conPath }/spot/detail.do?sname=한라산국립공원">
+						<img alt="" src="${conPath}/spotImgFileUpload/한라산국립공원m.jpg">
 					<p>
-						카멜리아힐
+						한라산국립공원
 					</p>
 				</a>
 			</div>
 			<div class="sub">
-				<a href="#관광지 상세보기">
+				<a href="">
 						<img alt="" src="https://api.cdn.visitjeju.net/photomng/thumbnailpath/201908/06/ace38f9a-36db-491f-9ef6-4978d60e3da4.jpg">
 					<p>
 						오설록티뮤지엄
@@ -108,46 +108,46 @@
 			<div class="sub">
 				<div class="subject">
 				<p>
-					<a href="#리뷰 목록">
+					<a href="${conPath }/review/list.do">
 						<strong>리뷰 </strong>
 					</a>
-					<a href="#리뷰 상세보기">
-						{리뷰제목 가져오기}
+					<a href="${conPath }/review/content.do?reviewno=2&pageNum=1">
+						올레칠돈 너무 맛있어요!!
 					</a>
 				</p>
 				</div>
 				<div class="date">
-					2023.04.20
+					2023.05.08
 				</div>
 			</div>
 			<div class="sub">
 				<div class="subject">
 				<p>
-					<a href="#리뷰 목록">
+					<a href="${conPath }/review/list.do">
 						<strong>리뷰 </strong>
 					</a>
-					<a href="#리뷰 상세보기">
+					<a href="${conPath }/review/content.do?reviewno=3&pageNum=1">
 						{리뷰제목 가져오기} 
 					</a>
 				</p>
 				</div>
 				<div class="date">
-					2023.04.20
+					2023.05.08
 				</div>
 			</div>
 			<div class="sub">
 				<div class="subject">
 				<p>
-					<a href="#리뷰 목록">
+					<a href="${conPath }/review/list.do">
 						<strong>리뷰 </strong>
 					</a>
-					<a href="#리뷰 상세보기">
+					<a href="${conPath }/review/content.do?reviewno=4&pageNum=1">
 						{리뷰제목 가져오기}
 					</a>
 				</p>
 				</div>
 				<div class="date">
-					2023.04.20
+					2023.05.08
 				</div>
 			</div>
 		</div>

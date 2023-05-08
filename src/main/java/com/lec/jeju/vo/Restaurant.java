@@ -8,8 +8,8 @@ public class Restaurant {
 	private String bid;
 	private String mid;    // 즐겨찾기용
 	private int bookmarkok; // 즐겨찾기용
-	private Integer locationno;
-	private Integer restauranttypeno;
+	private int locationno;
+	private int restauranttypeno;
 	private String raddr;
 	private String rtel;
 	private String rlink;
@@ -19,8 +19,8 @@ public class Restaurant {
 	private String rsubimg_1;
 	private String rsubimg_2;
 	private String rsubimg_3;
-	private Double rlatitude;
-	private Double rlongitude;
+	private int rlatitude;
+	private int rlongitude;
 	private String rprice;
 	private String requeststatus;
 	private int bcnt;

@@ -7,6 +7,7 @@
     <meta charset="utf-8">
 </head>
 <body>
+
 <input type="hidden" id="addr" value="${haddr.substring(haddr.indexOf('도')+2, haddr.length())}"/>
 <form action="${conPath }/admin/approveHotel.do" id="frm" method="post">
 	<input type="hidden" id="pageNum" name="pageNum" value="${paging.pageNum }"/>

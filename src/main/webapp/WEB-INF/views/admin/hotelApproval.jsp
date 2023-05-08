@@ -30,7 +30,7 @@
                 <td>${hotel.haddr}</td>
                 <td>${hotel.htel}</td>
                 <td>
-                  <a href="${conPath}/admin/approveHotel.do?hname=${hotel.hname}&raddr=${hotel.haddr}" class="approval-button" onclick="return confirm('해당 호텔 등록을 승인하시겠습니까?')">승인</a>
+                  <a href="${conPath}/admin/approveHotel.do?hname=${hotel.hname}&haddr=${hotel.haddr}" class="approval-button" onclick="return confirm('해당 호텔 등록을 승인하시겠습니까?')">승인</a>
 				  <a href="${conPath}/admin/rejectHotel.do?hname=${hotel.hname}" class="reject-button" onclick="return confirm('해당 호텔 등록을 거절하시겠습니까?')">거절</a>
                 </td>
               </tr>

@@ -36,64 +36,64 @@
 	<select id="hotelList" parameterType="Hotel" resultMap="HotelResult">
 		<!-- 지역 미선택 -->
 		<if test="schitem == null or schitem== ''">
-			SELECT C.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID = #{mid} AND HNAME = c.hname) bookmarkOk
+			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName 
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
 			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO AND REQUESTSTATUS = 'A' 
-			                 AND H.HNAME LIKE '%'||#{schword}||'%' ORDER BY bCnt DESC) A) C
+			                 AND H.HNAME LIKE '%'||#{schword}||'%' ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
 		
 		<!-- 지역 선택 -->
 		<if test="schitem == '11,12,15'">
-			SELECT C.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID = #{mid} AND HNAME = c.hname) bookmarkOk 
+			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
 			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
 			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (11, 12, 15)
-			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)C
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
 		<if test="schitem == '1,3,13'">
-			SELECT C.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID = #{mid} AND HNAME = c.hname) bookmarkOk
+			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
 			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
 			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (1,3,13)
-			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)C
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
 		<if test="schitem == '4,5,14'">
-			SELECT C.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID = #{mid} AND HNAME = c.hname) bookmarkOk
+			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
 			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
 			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (4,5,14)
-			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)C
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
 		<if test="schitem == '2,6,7'">
-			SELECT C.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID = #{mid} AND HNAME = c.hname) bookmarkOk
+			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
 			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
 			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (2,6,7)
-			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)C
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
 		<if test="schitem == '8,9,10'">
-			SELECT C.*, (SELECT COUNT(*) FROM BOOKMARK WHERE MID = #{mid} AND HNAME = c.hname) bookmarkOk
+			SELECT * 
 			    FROM (SELECT ROWNUM RN, A.* 
 			        FROM (SELECT H.*, NVL(bCnt, 0) bCnt, lName
 			                FROM HOTEL H, LOCATION L, (SELECT HNAME, COUNT(*) bCnt FROM BOOKMARK GROUP BY HNAME) B 
 			                WHERE H.HNAME = B.HNAME(+) AND H.LOCATIONNO = L.LOCATIONNO 
 			                    AND REQUESTSTATUS = 'A' AND H.LOCATIONNO IN (8,9,10)
-			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)C
+			                    AND H.HNAME LIKE '%'||#{schword}||'%'  ORDER BY bCnt DESC) A)
 			    WHERE RN BETWEEN #{startrow} AND #{endrow}
 		</if>
 	</select>

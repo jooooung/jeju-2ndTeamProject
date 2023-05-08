@@ -12,7 +12,6 @@ import com.lec.jeju.vo.Restaurant;
 
 @Service
 public interface AdminService {
-	
     public String loginCheck(String aid, String apw, HttpSession httpSession);
     
     public Admin getDetailAdmin(String aid);

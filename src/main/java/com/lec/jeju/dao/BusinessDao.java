@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
+import com.lec.jeju.vo.HotelComment;
+//import com.lec.jeju.vo.RestaurantComment;
 import com.lec.jeju.vo.Restaurant;
 
 @Mapper

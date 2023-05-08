@@ -2,8 +2,6 @@ package com.lec.jeju.dao;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,12 +11,11 @@ import com.lec.jeju.vo.Restaurant;
 
 @Mapper
 public interface AdminDao {
+	public int idConfirm(String aid);
 	
 	public Admin getDetailAdmin(String aid);
 	
 	public Admin loginCheck(Admin admin);
-	
-	public void logout(HttpSession httpSession);
 	
 	
 	public List<Hotel> hotelApproval(String requeststatus, int startRow, int endRow);

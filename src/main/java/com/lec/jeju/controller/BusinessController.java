@@ -1,5 +1,7 @@
 package com.lec.jeju.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -18,6 +20,7 @@ import com.lec.jeju.service.BusinessService;
 import com.lec.jeju.util.Paging;
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
+import com.lec.jeju.vo.HotelComment;
 import com.lec.jeju.vo.Restaurant;
 
 @Controller

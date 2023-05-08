@@ -46,6 +46,10 @@
 				var mid = '${member.mid}';
 				location.href='${conPath}/bookmark/deleteBookmarkHotelList.do?hname='+hname+'&mid='+mid+'&pageNum='+pageNum;
 			});
+			$('.bookmark').click(function(){
+				var hname = $(this).children().eq(0).val();
+				alert(hname);
+			})
 		});
 	</script>
 <body>

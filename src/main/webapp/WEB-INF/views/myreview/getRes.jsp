@@ -61,7 +61,9 @@
 	<c:forEach var="res" items="${getRes}">
 		<div class="hotel-box">
 			<h3 class="hotel-name">${res.rname}</h3>
-			<p class="hotel-content">${res.rcontent}</p>
+			<p class="hotel-content">
+				<a href="${conPath}/res/detail.do?rname=${res.rname}">${res.rcontent }</a>
+			</p>
 		</div>
 	</c:forEach>
 </body>

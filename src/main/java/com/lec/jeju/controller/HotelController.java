@@ -13,9 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.lec.jeju.service.BookMarkService;
+import com.lec.jeju.service.BookMarkService;
 import com.lec.jeju.service.HotelCommentService;
 import com.lec.jeju.service.HotelService;
 import com.lec.jeju.service.HreservationService;
+import com.lec.jeju.util.Paging;
+import com.lec.jeju.vo.BookMark;
 import com.lec.jeju.vo.BookMark;
 import com.lec.jeju.vo.Business;
 import com.lec.jeju.vo.Hotel;
@@ -32,6 +35,8 @@ public class HotelController {
 	private HotelCommentService hotelCommentService;
 	@Autowired
 	private HreservationService hreservService;
+	@Autowired
+	private BookMarkService bookmarkService;
 	@Autowired
 	private BookMarkService bookmarkService;
 	

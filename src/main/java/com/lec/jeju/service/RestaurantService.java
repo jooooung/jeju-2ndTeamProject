@@ -11,13 +11,14 @@ public interface RestaurantService {
 
 	public List<Restaurant> ResSchList(String pageNum, Restaurant res);
 
-	public int totCntRes(Restaurant res);
-
 	public int insertRes(Restaurant res, MultipartHttpServletRequest mRequest);
 
 	public int modifyRes(Restaurant res, MultipartHttpServletRequest mRequest);
 
+	public int totCntRes(Restaurant res);
+
+	public Restaurant detailRes(String rname, String mid);
+
 	public int deleteRes(String rname);
 
-	public Restaurant detailRes(String rname);
 }

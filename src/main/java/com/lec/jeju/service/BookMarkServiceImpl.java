@@ -61,8 +61,8 @@ public class BookMarkServiceImpl implements BookMarkService {
 	}
 
 	@Override
-	public int deleteResBookmark(String mid, String rname) {
-		return bookMarkDao.deleteResMark(mid, rname);
+	public int deleteResBookmark(BookMark bookmark) {
+		return bookMarkDao.deleteResMark(bookmark);
 	}
 
 	@Override

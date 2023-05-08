@@ -32,7 +32,7 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private JavaMailSender mailSender;
 
-	String backupPath = "D:/TeamProject/jeju-2ndTeamProject/jeju-2ndTeamProject/src/main/webapp/memberPhoto";
+	String backupPath = "D:/TeamProject/Source/jeju-2ndTeamProject/src/main/webapp/memberPhoto/";
 
 	@Override
 	public int idConfirm(String mid) {
@@ -67,7 +67,7 @@ public class MemberServiceImpl implements MemberService {
 				System.out.println(e.getMessage());
 			}
 		} else {
-			mphoto = "default_profile.png";
+			mphoto = "memberPhoto/default_profile.png";
 		} // if
 			// 메일전송
 		final String mailContent = createWelcomeMailContent(member);

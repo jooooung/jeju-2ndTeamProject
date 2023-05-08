@@ -13,7 +13,6 @@
 	<input type="hidden" id="rlongitude" name="rlongitude" value=""/>
 	<input type="hidden" id="rlatitude" name="rlatitude" value=""/>
 	<input type="hidden" id="rname" name="rname" value="${rname }"/>
-	<input type="submit" value="go">
 </form>
 <script>
 	var addr = document.getElementById('addr').value;
@@ -41,13 +40,10 @@ geocoder.addressSearch(raddr, function(result, status) {
     document.getElementById('rlongitude').setAttribute('value', x)
     document.getElementById('rlatitude').setAttribute('value', y)
 });
-</script>
-<script>
-function go()
-{
-  var form =  document.getElementById('frm');
-  form.submit();
-}
+
+window.setTimeout(function(){
+	document.getElementById("frm").submit();
+}, 500);
 </script>
 </body>
 </html>

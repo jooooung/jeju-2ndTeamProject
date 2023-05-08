@@ -19,7 +19,9 @@ public interface SpotCommentDao {
 	
 	public int replyScomment(SpotComment sComment);
 	
-	public int modifysScmment(SpotComment sComment);
+	public SpotComment modifyScommentView(int scommentno);
+	
+	public int modifyScomment(SpotComment sComment);
 	
 	public int deleteScomment(int scommentno);
 }

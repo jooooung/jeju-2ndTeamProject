@@ -37,7 +37,7 @@
         <div id="placesList">
 			<c:if test="${category eq spotTemp && not empty spot }">
 				<c:forEach var="list" items="${spot }"> 
-					<table class="listTable">
+					<table class="listTable" onclick="location.href='${conPath}/spot/detail.do?sname=${list.sname }'">
 						<tr>
 							<td>
 								<span>${list.sname }</span>
@@ -67,7 +67,7 @@
 			</c:if>
 			<c:if test="${category eq resTemp && not empty res }">
 				<c:forEach var="list" items="${res }"> 
-					<table class="listTable">
+					<table class="listTable" onclick="location.href='${conPath}/res/detail.do?rname=${list.rname }'">
 						<tr>
 							<td>
 								<span>${list.rname }</span>
@@ -396,6 +396,7 @@ $(document).ready(function(){
 	    	// 마커 클릭 시 커스텀 오버레이 활성화
 			kakao.maps.event.addListener(spotMarker, 'mouseover', makeOpenListener(map, overlay));
 			kakao.maps.event.addListener(spotMarker, 'mouseout', makeCLoseListener(overlay));
+			kakao.maps.event.addListener(spotMarker, 'click', spotDetail(spotTitle));
 	    }
 	}
 	
@@ -436,7 +437,7 @@ $(document).ready(function(){
 	    	// 마커 클릭 시 커스텀 오버레이 활성화
 			kakao.maps.event.addListener(resMarker, 'mouseover', makeOpenListener(map, overlay));
 			kakao.maps.event.addListener(resMarker, 'mouseout', makeCLoseListener(overlay));
-	        
+			kakao.maps.event.addListener(resMarker, 'click', resDetail(resTitle));
 	    }        
 	}
 	
@@ -501,10 +502,24 @@ $(document).ready(function(){
 	    };
 	}
 	
+	// 관광지 상세보기 페이지로 가는 함수입니다
+	function spotDetail(spotTitle) {
+		return function() {
+			location.href='${conPath}/spot/detail.do?sname=' + spotTitle;
+		};
+	}
+	
 	// 호텔 상세보기 페이지로 가는 함수입니다
 	function hotelDetail(hotelTitle) {
 		return function() {
 			location.href='${conPath}/hotel/detail.do?hname=' + hotelTitle;
+		};
+	}
+	
+	// 음식점 상세보기 페이지로 가는 함수입니다
+	function resDetail(resTitle) {
+		return function() {
+			location.href='${conPath}/res/detail.do?rname=' + resTitle;
 		};
 	}
 </script>

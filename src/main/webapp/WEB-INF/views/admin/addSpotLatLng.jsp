@@ -8,20 +8,18 @@
     <meta charset="utf-8">
 </head>
 <body>
-<input type="text" id="addr" value="${haddr.substring(haddr.indexOf('도')+2, haddr.length())}"/>
-<form action="${conPath }/admin/approveHotel.do" id="frm" method="post">
-	<input type="text" id="hlongitude" name="hlongitude" value=""/>
-	<input type="text" id="hlatitude" name="hlatitude" value=""/>
-	<input type="text" id="hname" name="hname" value="${hname }"/>
-	<input type="submit" value="go">
+<input type="hidden" id="addr" value="${saddr.substring(saddr.indexOf('도')+2, saddr.length())}"/>
+<form action="${conPath }/admin/approveSpot.do" id="frm" method="post">
+	<input type="hidden" id="slongitude" name="slongitude" value=""/>
+	<input type="hidden" id="slatitude" name="slatitude" value=""/>
+	<input type="hidden" id="sname" name="sname" value="${sname }"/>
 </form>
 <script>
 	var addr = document.getElementById('addr').value;
-	var hlongitude = document.getElementById('hlongitude').value;
-	var hlatitude = document.getElementById('hlatitude').value;
+	var slongitude = document.getElementById('slongitude').value;
+	var slatitude = document.getElementById('slatitude').value;
 	var addrTemp = addr.split(",");
-	var haddr = addrTemp[0];
-	alert(haddr);
+	var saddr = addrTemp[0];
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=21cedbfdcfb60dc62330e49e8c4f4a19&libraries=services"></script>
@@ -39,18 +37,12 @@ geocoder.addressSearch(haddr, function(result, status) {
 		var x = coords.getLng();
         var y = coords.getLat();
     } 
-    document.getElementById('hlongitude').setAttribute('value', x)
-    document.getElementById('hlatitude').setAttribute('value', y)
-    alert(x);
-    alert(y);
+    document.getElementById('slongitude').setAttribute('value', x)
+    document.getElementById('slatitude').setAttribute('value', y)
 });
-</script>
-<script>
-function go()
-{
-  var form =  document.getElementById('frm');
-  form.submit();
-}
+window.setTimeout(function(){
+	document.getElementById("frm").submit();
+}, 500);
 </script>
 </body>
 </html>

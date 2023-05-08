@@ -37,15 +37,19 @@ public class SpotCommentServiceImpl implements SpotCommentService {
 		sCommentDao.preReplyScomment(sComment);
 		return sCommentDao.replyScomment(sComment);
 	}
+	
+	@Override
+	public SpotComment modifyScommentView(int scommentno) {
+		return sCommentDao.modifyScommentView(scommentno);
+	}
 
 	@Override
 	public int modifyScomment(SpotComment sComment) {
-		return sCommentDao.modifysScmment(sComment);
+		return sCommentDao.modifyScomment(sComment);
 	}
 
 	@Override
 	public int deleteScomment(int scommentno) {
 		return sCommentDao.deleteScomment(scommentno);
 	}
-
 }

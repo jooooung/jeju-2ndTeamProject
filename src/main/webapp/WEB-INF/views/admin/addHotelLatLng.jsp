@@ -9,10 +9,10 @@
 <body>
 <input type="hidden" id="addr" value="${haddr.substring(haddr.indexOf('도')+2, haddr.length())}"/>
 <form action="${conPath }/admin/approveHotel.do" id="frm" method="post">
+	<input type="hidden" id="pageNum" name="pageNum" value="${paging.pageNum }"/>
 	<input type="hidden" id="hlongitude" name="hlongitude" value=""/>
 	<input type="hidden" id="hlatitude" name="hlatitude" value=""/>
 	<input type="hidden" id="hname" name="hname" value="${hname }"/>
-	<input type="submit" value="go">
 </form>
 <script>
 	var addr = document.getElementById('addr').value;
@@ -40,13 +40,9 @@ geocoder.addressSearch(haddr, function(result, status) {
     document.getElementById('hlongitude').setAttribute('value', x)
     document.getElementById('hlatitude').setAttribute('value', y)
 });
-</script>
-<script>
-function go()
-{
-  var form =  document.getElementById('frm');
-  form.submit();
-}
+window.setTimeout(function(){
+	document.getElementById("frm").submit();
+}, 500);
 </script>
 </body>
 </html>

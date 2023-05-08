@@ -71,7 +71,11 @@
 		$(document).ready(function(){
 			$('button').click(function(){
 				var result = confirm("예약을 취소하시겠습니까?");
+				var mid = '${param.mid}';
+				var hname = $('.hname').val();
+				var indate = $('.indate').val();
 				if(result == true){
+					location.href='${conPath}/hotel/deleteReserv.do?mid='+mid+'&hname='+hname+'&indate='+indate;
 					alert("취소완료");
 				}else{
 					return false;
@@ -85,6 +89,8 @@
 	<jsp:include page="../main/header.jsp"/>
 	<h1>예약 내역</h1>
 	<c:forEach var="reservList" items="${reservList }">
+		<input type="hidden" class="hname" value="${reservList.hotel.hname }">
+		<input type="hidden" class="indate" value="${reservList.indate}">
 		<ul class="item_list">
 		<li>
 			<dl class="item_section">
@@ -107,7 +113,7 @@
 				<h3>
 					<fmt:formatNumber value="${reservList.hotel.hprice }" pattern="###,###"/>원 / 박
 				</h3>
-				<button onclick="location.href='${conPath}/hotel/deleteReserv.do?mid=${reservList.mid }&hname=${reservList.hname }&indate=${reservList.indate}'">
+				<button>
 					예약취소
 				</button>	
 			</dl>

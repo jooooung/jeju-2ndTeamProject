@@ -10,7 +10,7 @@
 <body>
 <c:if test="${not empty spotList }">
 	<c:forEach var="list" items="${spotList }"> 
-		<table class="listTable">
+		<table class="listTable" onclick="location.href='${conPath}/spot/detail.do?sname=${list.sname }'">
 			<tr>
 				<td>
 					<span>${list.sname }</span>
@@ -40,7 +40,7 @@
 </c:if>
 <c:if test="${not empty resList }">
 	<c:forEach var="list" items="${resList }"> 
-		<table class="listTable">
+		<table class="listTable" onclick="location.href='${conPath}/res/detail.do?rname=${list.rname }'">
 			<tr>
 				<td>
 					<span>${list.rname }</span>

@@ -124,8 +124,8 @@ public class RestaurantServiceImpl implements RestaurantService {
 	}
 
 	@Override
-	public Restaurant detailRes(String rname) {
-		return resDao.detailRes(rname);
+	public Restaurant detailRes(String rname, String mid) {
+		return resDao.detailRes(rname, mid);
 	}
 
 	private int fileCopy(String serverFile, String backupFile) {

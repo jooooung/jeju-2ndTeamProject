@@ -60,7 +60,9 @@
 	</c:if>
 	<c:forEach var="spot" items="${getSpot}">
 		<h3>${spot.sname}</h3>
-		<p>${spot.scontent}</p>
+		<p class="hotel-content">
+			<a href="${conPath}/spot/detail.do?sname=${spot.sname}">${spot.scontent }</a>
+		</p>
 	</c:forEach>
 </body>
 </html>

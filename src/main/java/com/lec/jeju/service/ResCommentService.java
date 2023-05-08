@@ -20,6 +20,9 @@ public interface ResCommentService {
 	// 답 댓글 달기
 	public int replyRcomment(ResComment rComment);
 
+	// 댓글 수정 뷰
+	public ResComment modifyRcommentView(int rcommentno);
+
 	// 댓글 수정
 	public int modifyRcomment(ResComment rComment);
 

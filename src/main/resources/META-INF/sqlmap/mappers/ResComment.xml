@@ -62,7 +62,12 @@
 		#{rcontent},
 		#{rgroup}, #{rindent}+1, #{rstep}+1, SYSDATE)
 	</insert>
-
+	
+	 <!-- 댓글 수정 뷰 -->
+    <select id="modifyRcommentView" parameterType="int" resultMap="RcommentResult">
+	 	SELECT * FROM restaurantComment WHERE RCOMMENTNO = #{rcommentno}
+    </select>
+    
 	<!-- 댓글 수정 -->
 	<update id="modifyRcomment" parameterType="ResComment">
 		UPDATE

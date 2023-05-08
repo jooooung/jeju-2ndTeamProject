@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.lec.jeju.vo.ResComment;
+import com.lec.jeju.vo.SpotComment;
 
 @Mapper
 public interface ResCommentDao {
@@ -17,6 +18,8 @@ public interface ResCommentDao {
 	public int preReplyRcomment(ResComment rComment);
 
 	public int replyRcomment(ResComment rComment);
+	
+	public ResComment modifyRcommentView(int rcommentno);
 
 	public int modifysRcmment(ResComment rComment);
 

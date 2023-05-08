@@ -196,6 +196,6 @@ public class BookMarkController {
 		}
 		bookMarkService.deleteResBookmark(bookmark);
 		String rname = URLEncoder.encode(bookmark.getRname(), "utf-8");
-		return "redirect:../res/detail.do?sname=" + rname + "&pageNum=" + pageNum;
+		return "redirect:../res/detail.do?rname=" + rname + "&pageNum=" + pageNum;
 	}
 }

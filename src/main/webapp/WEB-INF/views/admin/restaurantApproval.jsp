@@ -30,8 +30,8 @@
                 <td>${restaurant.raddr}</td>
                 <td>${restaurant.rtel}</td>
                 <td>
-                  <a href="${conPath}/admin/approveRestaurant.do?rname=${restaurant.rname}&raddr=${restaurant.raddr}" class="approval-button">승인</a>
-                  <a href="${conPath}/admin/rejectRestaurant.do?rname=${restaurant.rname}" class="reject-button">거절</a>
+                  <a href="${conPath}/admin/approveRestaurant.do?rname=${restaurant.rname}&raddr=${restaurant.raddr}" class="approval-button" onclick="return confirm('해당 식당 등록을 승인하시겠습니까?')">승인</a>
+				  <a href="${conPath}/admin/rejectRestaurant.do?rname=${restaurant.rname}" class="reject-button" onclick="return confirm('해당 식당 등록을 거절하시겠습니까?')">거절</a>
                 </td>
               </tr>
             </c:forEach>

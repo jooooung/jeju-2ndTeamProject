@@ -32,7 +32,6 @@ public interface BookMarkDao {
 	// 호텔 북마크 삭제
 
 	int deleteHotelMark(BookMark bookmark);
-	int deleteHotelMark(BookMark bookmark);
 
 	// 식당 북마크 삭제
 

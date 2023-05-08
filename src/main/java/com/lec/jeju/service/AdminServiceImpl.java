@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.lec.jeju.dao.AdminDao;
-import com.lec.jeju.dao.HotelDao;
 import com.lec.jeju.vo.Admin;
 import com.lec.jeju.vo.Hotel;
 import com.lec.jeju.vo.Restaurant;
@@ -17,9 +16,6 @@ import com.lec.jeju.vo.Restaurant;
 public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminDao adminDao;
-	
-	@Autowired
-	private HotelDao hotelDao;
 	
 	@Override
 	public String loginCheck(String aid, String apw, HttpSession httpSessioin) {

@@ -37,8 +37,6 @@ public class HotelController {
 	private HreservationService hreservService;
 	@Autowired
 	private BookMarkService bookmarkService;
-	@Autowired
-	private BookMarkService bookmarkService;
 	
 	// 숙소목록
 	@RequestMapping(value = "list", method = RequestMethod.GET)

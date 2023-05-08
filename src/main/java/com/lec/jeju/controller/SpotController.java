@@ -66,6 +66,13 @@ public class SpotController {
 		return "redirect:detail.do?sname=" + sname;
 	}
 	
+	// 댓글 수정 뷰
+	@RequestMapping(value = "modifyComment", method = RequestMethod.GET)
+	public String mdodifyCommentView(int scommentno, String sname, Model model) throws UnsupportedEncodingException {
+		model.addAttribute("modifyComment", sCService.modifyScommentView(scommentno));
+		return "forward:detail.do";
+	}
+	
 	// 댓글 수정
 	@RequestMapping(value = "modifyComment", method = RequestMethod.POST)
 	public String mdodifyComment(SpotComment sComment) throws UnsupportedEncodingException {

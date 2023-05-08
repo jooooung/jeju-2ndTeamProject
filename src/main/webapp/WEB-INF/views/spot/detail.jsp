@@ -123,7 +123,7 @@
 		  		</div>
 			  	<input type="submit" value="작성">
 	  	</c:if>
-	  	<c:if test="${not empty member }">
+	  	<c:if test="${not empty member && empty modifyComment}">
 		  	<form action="${conPath }/spot/insertComment.do" method="post">
 		  		<div class="input">
 			  		<input type="text" name="scontent" placeholder="댓글을 작성하세요.">
@@ -131,6 +131,16 @@
 			  		<input type="hidden" name="mid" value="${member.mid }">
 			  	</div>
 			  		<input type="submit" value="작성">
+		  	</form>
+	  	</c:if>
+	  		<c:if test="${not empty member && not empty modifyComment}">
+		  	<form action="${conPath }/spot/modifyComment.do" method="post">
+		  		<div class="input">
+			  		<input type="text" name="scontent" value="${modifyComment.scontent }">
+			  		<input type="hidden" name="sname" value="${detail.sname }">
+			  		<input type="hidden" name="mid" value="${member.mid }">
+			  	</div>
+			  		<input type="submit" value="수정">
 		  	</form>
 	  	</c:if>
 	</div>
@@ -149,7 +159,7 @@
 							<td>
 								<span class="comment_mid">${comment.mid }</span>
 								<c:if test="${not empty member.mid and comment.mid eq member.mid || not empty admin}">
-								<button class="commentBtn modifyComment" id="${comment.scommentno }">
+								<button class="commentBtn modifyComment" onclick="location.href='${conPath }/spot/modifyComment.do?sname=${detail.sname }&scommentno=${comment.scommentno }'" id="${comment.scommentno }">
 									수정
 								</button>
 								<button class="commentBtn deleteComment" onclick="location.href='${conPath }/spot/deleteComment.do?sname=${detail.sname }&scommentno=${comment.scommentno }'">

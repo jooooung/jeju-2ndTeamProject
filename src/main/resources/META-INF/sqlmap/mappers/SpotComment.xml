@@ -4,7 +4,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lec.jeju.dao.SpotCommentDao">
 	<resultMap type="SpotComment" id="ScommentResult">
-		<result property="scommentno" column="scomentno"/>
+		<result property="scommentno" column="scommentno"/>
 		<result property="sname" column="sname"/>
 		<result property="mid" column="mid"/>
 		<result property="scontent" column="scontent"/>
@@ -46,6 +46,11 @@
     	INSERT INTO SPOTCOMMENT (SCOMMENTNO, SNAME, MID, SCONTENT, SGROUP, SSTEP, SINDENT, SCRDATE)
     		VALUES (sCommentNo_seq.NEXTVAL, #{sname}, #{mid}, #{scontent}, #{sgroup}, #{sindent}+1, #{sstep}+1, SYSDATE)
     </insert>
+    
+    <!-- 댓글 수정 뷰 -->
+    <select id="modifyScommentView" parameterType="int" resultMap="ScommentResult">
+	 	SELECT * FROM SPOTCOMMENT WHERE SCOMMENTNO = #{scommentno}
+    </select>
     
     <!-- 댓글 수정 -->
     <update id="modifyScomment" parameterType="SpotComment">

@@ -30,8 +30,6 @@
 
 [9. 실행화면](#9-실행화면)
 
-----
-![exSecretary](https://user-images.githubusercontent.com/118671542/229038039-eb4677db-4ca9-4426-88d6-99d73c8a636a.gif)
 
 ## 1. 작업분할 구조도
 
